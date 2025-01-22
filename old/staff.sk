@@ -1,0 +1,81 @@
+command /rename [<text>]:
+	permission: op
+	trigger:
+		set name of player's held item to colored arg-1
+		
+command /setcoin [<offlineplayer>] [<number>]:
+	permission: op
+	trigger:
+		add arg-2 to {coins::%arg-1's uuid%}
+command /setdeaths [<offlineplayer>] [<number>]:
+	permission: op
+	trigger:
+		set {deaths::%arg-1's uuid%} to arg-2		
+command /payall [<number>]:
+	permission: op
+	trigger:
+		loop all players:
+			add arg-1 to {coins::%loop-player's uuid%}
+		broadcast "&7Gun&4PVP&aMC&6: Everyone has received &c%arg-1%&6 coins!"
+command /sudo [<player>] [<text>]:
+	permission: op
+	trigger:
+		make arg-1 say "%arg-2%"
+		
+command /openinv [<offlineplayer>]:
+	aliases: invsee
+	permission: op
+	trigger:
+		open arg-1's inventory to player	
+
+command /fullammo [<offlineplayer>]:	
+	permission: op
+	trigger:
+		set {glock19.%arg-1%} to 15
+		set {ak47.%arg-1%} to 30
+		set {m40.%arg-1%} to 5
+		set {m60.%arg-1%} to 100
+		set {sig516.%arg-1%} to 30
+		set {fnscar.%arg-1%} to 20	
+		set {cmmgmk47.%arg-1%} to 30
+		set {benellim4.%arg-1%} to 6
+		set {flare.%arg-1%} to 2	
+		set {lugerp08.%arg-1%} to 8
+		set {suomikp.%arg-1%} to 50
+command /allammo [<offlineplayer>]:	
+	permission: op
+	trigger:
+		loop all players:
+			set {glock19.%loop-player%} to 15
+			set {ak47.%loop-player%} to 30
+			set {m40.%loop-player%} to 5
+			set {m60.%loop-player%} to 100
+			set {sig516.%loop-player%} to 30
+			set {fnscar.%loop-player%} to 20	
+			set {cmmgmk47.%loop-player%} to 30
+			set {benellim4.%loop-player%} to 6
+			set {flare.%loop-player%} to 2
+			set {lugerp08.%loop-player%} to 8
+			set {suomikp.%loop-player%} to 50
+
+command /ipaddress [<offlineplayer>]:
+	permission: op
+	trigger:
+		send "%ip of arg-1%" to player			
+command /mute [<player>]:
+	permission: op
+	trigger:
+		set {mute::%arg-1's uuid%} to 1
+			
+command /unmute [<player>]:
+	permission: op
+	trigger:
+		delete {mute::%arg-1's uuid%}	
+
+command /allsudo [<text>]:
+	permission: op
+	trigger:
+		loop all players:
+			make loop-player say arg-1
+
+

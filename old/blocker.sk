@@ -1,0 +1,83 @@
+on join:
+	set {title::%player's uuid%} to "&7[Player]&7"
+
+on spawn of chicken:
+	cancel event
+on right click:
+	if gamemode of player is creative:
+		stop
+	if event-block is lever or repeater or trapped chest or chest or barrel or brewing stand or dispenser or dropper or trapdoor or crafting table or enchanting table or anvil or damaged anvil or chipped anvil or shulker box or hopper or furnace:
+		cancel event
+on right click with fishing rod:
+	cancel event
+on drop:
+	cancel event
+on craft:
+	cancel event
+on command "/pl":
+	cancel event
+	send "&7Gun&4PVP&aMC&6: &6You do not have permision to use that command."
+on command "/plugins":
+	cancel event
+	send "&7Gun&4PVP&aMC&6: &6You do not have permision to use that command."
+on command "/bukkit:pl":
+	cancel event
+	send "&7Gun&4PVP&aMC&6: &6You do not have permision to use that command."
+on command "/bukkit:plugins":
+	cancel event
+	set {_pl} to random integer between 1 and 10
+	send "&7Gun&4PVP&aMC&6: &6You do not have permision to use that command."
+on command "/bukkit:?":
+	make player execute "/help"
+	cancel event
+on command "/bukkit:help":
+	make player execute "/help"
+	cancel event
+on command "/bukkit:about":
+	make player execute "/help"
+	cancel event
+on command "/bukkit:ver":
+	cancel event
+	send "&7Gun&4PVP&aMC&6:&6 We are on &c1.17.1 &6but other versions can join too!"
+on command "/bukkit:version":
+	cancel event
+	send "&7Gun&4PVP&aMC&6:&6 We are on &c1.17.1 &6but other versions can join too!"
+on command "/ver":
+	cancel event
+	send "&7Gun&4PVP&aMC&6:&6 We are on &c1.17.1 &6but other versions can join too!"
+on command "/version":
+	cancel event
+	send "&7Gun&4PVP&aMC&6:&6 We are on &c1.17.1 &6but other versions can join too!"
+on command "/icanhasbukkit":
+	send "&7Gun&4PVP&aMC&6: &6You do not have permission to execute that command!"
+	cancel event
+on command "/me":
+	cancel event
+	send "&7Gun&4PVP&aMC&6: &6Why not speak in chat instead?"
+on command "/minecraft:me":
+	cancel event
+	send "&7Gun&4PVP&aMC&6: &6Why not speak in chat instead?"
+on command "/minecraft:tell":
+	cancel event
+	send "&7Gun&4PVP&aMC&6: &6Why not speak in chat instead?"
+on command "/minecraft:w":
+	cancel event
+	send "&7Gun&4PVP&aMC&6: &6Why not speak in chat instead?"
+on command "/minecraft:msg":
+	cancel event
+	send "&7Gun&4PVP&aMC&6: &6Why not speak in chat instead?"
+on command "/w":
+	cancel event
+	send "&7Gun&4PVP&aMC&6: &6Why not speak in chat instead?"			
+every 10 seconds:
+	loop all players:
+		if {walter::%loop-player's uuid%} is not set:
+			make loop-player execute "/spawn"
+			
+every 1 hour in "GunPVPMC":
+	console command "/fix"
+	
+command /hua:
+	aliases: /huaa, /huaaa, /huaaaa, /hubb, /hub1, /hub2, /hub3, /hub4, /hub5, /hub6, /hub7, /hub8, /hub9
+	trigger:
+		send ""

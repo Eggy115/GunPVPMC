@@ -1,0 +1,161 @@
+on death:
+	if victim is a player:
+		add {killstreak::%victim's uuid%} to {coins::%attacker's uuid%}
+		set {killstreak::%victim's uuid%} to 0
+		add 1 to {deaths::%victim's uuid%}
+		set {kdr::%victim's uuid%} to {kills::%victim's uuid%} / {deaths::%victim's uuid%}
+		if {coins::%victim's uuid%} > 10:
+			remove 1 from {coins::%victim's uuid%}
+			cancel event	
+
+on damage:
+	wait 1 tick
+	set the victim's invulnerability ticks to 5
+
+on death:			
+	if attacker is a player:
+	
+		heal attacker by 1 heart
+		add 1 to {killstreak::%attacker's uuid%}
+		add 1 to {kills::%attacker's uuid%}
+		add 1 to {LEVEL.exp::%attacker's uuid%}
+		set {kdr::%attacker's uuid%} to {kills::%attacker's uuid%} / {deaths::%attacker's uuid%}
+		set {_r} to random integer between 10 and 30
+		set {coins::%attacker's uuid%} to {coins::%attacker's uuid%} + {_r}
+		send action bar "&c+%{_r}%&6 Coins" to attacker
+		if {factiongruppe.%attacker%} is set:
+			add 1 to {kills.%{factiongruppe.%attacker%}%}
+		if {killstreak::%attacker's uuid%} > 4:
+			wait 0.1 seconds
+			broadcast "&7Gun&4PVP&aMC&6: &c%uncolored {title::%attacker's uuid%}% &c%attacker%&6 has a killstreak of &c%{killstreak::%attacker's uuid%}%&6!"
+			send "%uncolored {title::%attacker's uuid%}% %attacker% has a killstreak of %{killstreak::%attacker's uuid%}%!" to channel with id "734316055127916605"
+		if {kills::%attacker's uuid%} > {topkills}:
+			set {topkills} to {kills::%attacker's uuid%}
+			set {topkillplayer} to "%attacker%"
+		if {kills::%attacker's uuid%} > {2kills}:
+			if attacker = {topkillplayer}:
+				stop
+			set {2kills} to {kills::%attacker's uuid%}
+			set {2killplayer} to "%attacker%"
+		if {kills::%attacker's uuid%} > {3kills}:
+			if attacker = {topkillplayer} or {2killplayer}:
+				stop
+			set {3kills} to {kills::%attacker's uuid%}
+			set {3killplayer} to "%attacker%"	
+			
+		if {kills::%attacker's uuid%} > {4kills}:
+			if attacker = {topkillplayer} or {2killplayer} or {3killplayer}:
+				stop
+			set {4kills} to {kills::%attacker's uuid%}
+			set {4killplayer} to "%attacker%"	
+			
+		if {kills::%attacker's uuid%} > {5kills}:
+			if attacker = {topkillplayer} or {2killplayer} or {3killplayer} or {4killplayer}:
+				stop
+			set {5kills} to {kills::%attacker's uuid%}
+			set {5killplayer} to "%attacker%"
+
+command /topkills:
+	trigger:
+		send "%nl%&7Gun&4PVP&aMC&6 Leaderboard:%nl%%nl%&6##1 %{topkillplayer}%&6 | &c%{topkills}%%nl%&6##2 %{2killplayer}%&6 | &c%{2kills}%%nl%&6##3 %{3killplayer}%&6 | &c%{3kills}%%nl%&6##4 %{4killplayer}%&6 | &c%{4kills}%%nl%&6##5 %{5killplayer}%&6 | &c%{5kills}%%nl%" to player
+
+
+on death of player:
+	set the death message to "%{title::%victim's uuid%}% %victim%&6 died"
+	
+	if attacker is a player:
+		set the death message to "%{title::%victim's uuid%}% %victim%&6 was killed by %{title::%attacker's uuid%}% %attacker%"
+		
+		if attacker's held item is set:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 was killed by %{title::%attacker's uuid%}% %attacker%&6 using %name of attacker's held item%"
+			
+			if name of attacker's held item contains "&6[":
+				set {_death} to random integer between 1 and 10
+				if {_death} = 1:
+					set the death message to "%{title::%victim's uuid%}% %victim%&6 was shot by %{title::%attacker's uuid%}% %attacker%&6 using %name of attacker's held item%"
+				if {_death} = 2:
+					set the death message to "%{title::%victim's uuid%}% %victim%&6 was pumelled by %{title::%attacker's uuid%}% %attacker%&6 using %name of attacker's held item%"
+				if {_death} = 3:
+					set the death message to "%{title::%victim's uuid%}% %victim%&6 was gunned down by %{title::%attacker's uuid%}% %attacker%&6 using %name of attacker's held item%"
+				if {_death} = 4:
+					set the death message to "%{title::%victim's uuid%}% %victim%&6 was shot down by %{title::%attacker's uuid%}% %attacker%&6 with %name of attacker's held item%"
+				if {_death} = 5:
+					set the death message to "%{title::%victim's uuid%}% %victim%&6 was obliterated by %{title::%attacker's uuid%}% %attacker%&6 with %name of attacker's held item%"	
+				if {_death} = 6:
+					set the death message to "%{title::%attacker's uuid%}% %attacker%&6 opened fire on %{title::%victim's uuid%}% %victim%&6 using %name of attacker's held item%"
+				if {_death} = 7:
+					set the death message to "%{title::%victim's uuid%}% %victim%&6 was pumped full of lead by %{title::%attacker's uuid%}% %attacker%&6 using %name of attacker's held item%"	
+				if {_death} = 8:
+					set the death message to "%{title::%attacker's uuid%}% %attacker%&6 put a bullet in %{title::%victim's uuid%}% %victim%&6 with %name of attacker's held item%"	
+				if {_death} = 9:
+					set the death message to "%{title::%victim's uuid%}% %victim%&6 was blown away by %{title::%attacker's uuid%}% %attacker%&6 using %name of attacker's held item%"	
+				if {_death} = 10:
+					set the death message to "%{title::%victim's uuid%}% %victim%&6 was struck down by %{title::%attacker's uuid%}% %attacker%&6 with %name of attacker's held item%"						
+	if attacker is a pillager:
+		set {_death} to random integer between 1 and 2
+		if {_death} = 1:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 was shot by %attacker's name%"
+		if {_death} = 2:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 was gunned down by %attacker's name%"
+			
+	if attacker is a vindicator:
+		set {_death} to random integer between 1 and 2
+		if {_death} = 1:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 was killed by %attacker's name%"
+		if {_death} = 2:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 was murdered by %attacker's name%"
+		if {_death} = 3:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 was chopped up by %attacker's name%"
+			
+	if damage was caused by fall:
+		set {_death} to random integer between 1 and 8
+		if {_death} = 1:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 hit the ground too hard"
+		if {_death} = 2:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 fell"
+		if {_death} = 3:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 smacked into the ground"
+		if {_death} = 4:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 went splat"
+		if {_death} = 5:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 jumped off a building"
+		if {_death} = 6:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 forgot about gravity"
+		if {_death} = 7:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 broke their legs"
+		if {_death} = 8:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 fell to their doom"
+			
+	if damage was caused by drowning:
+		set {_death} to random integer between 1 and 4
+		if {_death} = 1:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 drowned"
+		if {_death} = 2:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 forgot how to breath"
+		if {_death} = 3:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 tried to find Atlantis"
+		if {_death} = 4:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 took a very long bath"
+			
+	if damage was caused by entity explosion:
+		set {_death} to random integer between 1 and 5
+		if {_death} = 1:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 exploded"
+		if {_death} = 2:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 went kaboom"
+		if {_death} = 3:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 was blown up"
+		if {_death} = 4:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 went out with a bang"
+		if {_death} = 5:
+			set the death message to "%{title::%victim's uuid%}% %victim%&6 blew up"
+									
+on damage:
+	console command "/execute at %victim% run particle item red_concrete ~ ~1 ~ 0 0 0 0.2 5 force @a"
+	console command "/execute at %victim's uuid% run particle item red_concrete ~ ~1 ~ 0 0 0 0.2 5 force @a"
+every 10 ticks:
+	loop all players:
+		if loop-player's health is less than 3: 
+			console command "/execute at %loop-player% run particle item red_concrete ~ ~1 ~ 0 0 0 0.05 5 force @a"
+			console command "/effect give  %loop-player% slowness 3 0 true"
+

@@ -1,0 +1,30 @@
+
+on join:	
+	console command "/playsound minecraft:entity.arrow.hit_player master @a ~ ~ ~ 10000"
+	set player's invulnerability ticks to 100
+	set player's gamemode to adventure
+	if {coins::%player's uuid%} is not set:
+		set {coins::%player's uuid%} to 0
+	if {kills::%player's uuid%} is not set:
+		set {kills::%player's uuid%} to 0
+	if {deaths::%player's uuid%} is not set:
+		set {deaths::%player's uuid%} to 0
+	if {kdr::%player's uuid%} is not set:
+		set {kdr::%player's uuid%} to 0	
+	if {rep::%player's uuid%} is not set:
+		set {rep::%player's uuid%} to 0
+	if {title::%player's uuid%} is not set:
+		set {title::%player's uuid%} to "&7[Player]"
+	set the join message to "%{title::%player's uuid%}% %player%&6 joined &7Gun&4PVP&aMC&6!"	
+	wait 0.1 seconds
+	make player execute "/help"
+	
+on quit:
+	set the quit message to "%{title::%player's uuid%}% %player%&6 left &7Gun&4PVP&aMC&6!"	
+	
+on join:	
+	send title "&6Welcome to &7Gun&4PVP&aMC&6!" with subtitle "&6Read chat for help" for 5 seconds
+	
+on first join:
+	add 1 to {counter}  
+	set the join message to "%{title::%player's uuid%}% %player%&6 joined &7Gun&4PVP&aMC&6 for the first time! [&c##%{counter}%&6]"

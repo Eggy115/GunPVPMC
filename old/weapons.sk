@@ -1,0 +1,159 @@
+on damage:
+	if victim is blocking:
+		if name of victim's offhand tool contains "<##BBBBBB>Riot Shield":
+			remove 1 from {shield.%victim%}
+			set name of victim's offhand tool to "<##BBBBBB>Riot Shield &6[&c%{shield.%victim%}%&6]"
+			set line 1 of lore of victim's offhand tool to "&6Durability: &c%{shield.%victim%}%&6/&c100"
+			if {shield.%victim%} < 1:
+				remove 1 shield from victim's offhand tool
+				
+		if name of victim's held item contains "<##BBBBBB>Riot Shield":
+			remove 1 from {shield.%victim%}
+			set name of victim's held item to "<##BBBBBB>Riot Shield &6[&c%{shield.%victim%}%&6]"
+			set line 1 of lore of victim's held item to "&6Durability: &c%{shield.%victim%}%&6/&c100"
+			if {shield.%victim%} < 1:
+				remove 1 shield from victim's held item
+		
+on right click:			
+	if name of player's offhand tool is "<##BBBBBB>Riot Shield":
+		set {shield.%player%} to 100
+		set name of player's offhand tool to "<##BBBBBB>Riot Shield &6[&c%{shield.%player%}%&6]"
+		
+	if name of player's held item is "<##BBBBBB>Riot Shield":
+		set {shield.%player%} to 100
+		set name of player's held item to "<##BBBBBB>Riot Shield &6[&c%{shield.%player%}%&6]"	
+		
+on damage:
+	if victim is blocking:
+		if name of victim's offhand tool contains "<##333333>Ballistic Shield":
+			remove 1 from {bshield.%victim%}
+			set name of victim's offhand tool to "<##333333>Ballistic Shield &6[&c%{bshield.%victim%}%&6]"
+			set line 1 of lore of victim's offhand tool to "&6Durability: &c%{bshield.%victim%}%&6/&c300"
+			if {bshield.%victim%} < 1:
+				remove 1 shield from victim's offhand tool
+				
+		if name of victim's held item contains "<##333333>Ballistic Shield":
+			remove 1 from {bshield.%victim%}
+			set name of victim's held item to "<##333333>Ballistic Shield &6[&c%{bshield.%victim%}%&6]"
+			set line 1 of lore of victim's held item to "&6Durability: &c%{bshield.%victim%}%&6/&c300"
+			if {bshield.%victim%} < 1:
+				remove 1 shield from victim's held item
+		
+on right click:			
+	if name of player's offhand tool is "<##333333>Ballistic Shield":
+		set {bshield.%player%} to 300
+		set name of player's offhand tool to "<##333333>Ballistic Shield &6[&c%{bshield.%player%}%&6]"
+		
+	if name of player's held item is "<##333333>Ballistic Shield":
+		set {bshield.%player%} to 300
+		set name of player's held item to "<##333333>Ballistic Shield &6[&c%{bshield.%player%}%&6]"	
+		
+every 1 second:
+	loop all players:
+		if name of loop-player's offhand tool is "<##555555>Night Vision Scope":
+			console command "/effect give %loop-player% night_vision 200000 9 true"
+			stop
+		if name of loop-player's tool is "<##555555>Night Vision Scope":
+			console command "/effect give %loop-player% night_vision 200000 9 true"
+			stop
+		else:	
+			console command "/effect clear %loop-player% night_vision"
+	
+on join:
+	set {flarecd.%player%} to now
+on rightclick:
+	if player is holding leather horse armor:
+		if name of event-item contains "<##FF4400>Flare Gun &6[&cReloading&6]":
+			if {flare.%player%} = 0:
+				stop
+		if name of event-item contains "<##FF4400>Flare Gun":		
+			set name of player's held item to "<##FF4400>Flare Gun &6[&c%{flare.%player%}%&6]"
+			set line 1 of lore of player's held item to "&6Cartridge: &c%{flare.%player%}%&6/&c2"
+			set line 2 of lore of player's held item to "&6Reload Time: &c1000ms"
+			set line 3 of lore of player's held item to "&6Damage: &cFlare"
+			set line 4 of lore of player's held item to "&6Ammunition: &cFlare"			
+			if {flare.%player%} > 0:
+				if difference between {flarecd.%player%} and now > 1 second:
+					set {flarecd.%player%} to now				
+					remove 1 from {flare.%player%}	
+					edit bossbar "%player%" title to "&6Flare Gun: &c%{flare.%player%}%"
+					set bossbar "%player%" value to {flare.%player%} * 50
+					shoot snowball at speed 5 
+					console command "/execute at %player% run tag @e[type=snowball,limit=1,sort=nearest] add FLARE"
+					console command "/execute at %player% run effect give @e[distance=0..30,name=!%player%] glowing 5 0 true"	
+					push player up at speed -0.5
+					set name of player's held item to "<##FF4400>Flare Gun &6[&c%{flare.%player%}%&6]"
+					set line 1 of lore of player's held item to "&6Cartridge: &c%{flare.%player%}%&6/&c2"
+					set line 2 of lore of player's held item to "&6Reload Time: &c1000ms"
+					set line 3 of lore of player's held item to "&6Damage: &cFlare"
+					set line 4 of lore of player's held item to "&6Ammunition: &cFlare"	
+				else:
+					send action bar "&6Wait before shooting!" to player
+			else:
+				if player has 2 firework rocket named "<##FF4400>Flare":
+					set name of player's held item to "<##FF4400>Flare Gun &6[&cReloading&6]"
+					set line 1 of lore of player's held item to "&6Cartridge: &c2&6/&c2"
+					set line 2 of lore of player's held item to "&6Reload Time: &c1000ms"
+					set line 3 of lore of player's held item to "&6Damage: &cFlare"
+					set line 4 of lore of player's held item to "&6Ammunition: &cFlare"	
+					loop 10 times:
+						console command "/execute at %player% run playsound minecraft:block.iron_door.open master @a ~ ~ ~ 0.5 2"
+						wait 0.1 second						
+					remove 2 firework rockets named "<##FF4400>Flare" from player's inventory
+					set {flare.%player%} to 2
+					edit bossbar "%player%" title to "&6Flare Gun: &c%{flare.%player%}%"
+					set bossbar "%player%" value to {flare.%player%} * 50
+				else:
+					send action bar "&6You are missing &cFlare&6!" to player
+
+on explode:
+	cancel event
+	create a safe explosion with force 1
+	
+on right click with tnt:
+	remove 1 tnt from player
+	shoot tnt at speed 0.5
+	
+on right click with firework star:
+	remove 1 firework star from player
+	shoot arrow at speed 1	
+	
+on projectile hit:
+	event-projectile is arrow
+	console command "/execute at %event-projectile's uuid% run summon tnt ~ ~ ~"
+	
+on right click with lever:
+	remove 1 lever from player
+	shoot armor stand at speed 1
+	console command "/execute at %player% run playsound entity.splash_potion.throw master @a ~ ~ ~ 5 1"
+	console command "/execute at %player% run tag @e[type=armor_stand,limit=1,sort=nearest] add FLASHBANG"
+	console command "/execute at %player% run data merge entity @e[type=armor_stand,limit=1,sort=nearest] {Silent:1b,Invulnerable:1b,Small:1b,Invisible:1b,ArmorItems:[{},{},{},{id:""minecraft:white_concrete"",Count:1b}]}"
+	wait 1 second
+	console command "/execute at @e[tag=FLASHBANG] run particle flash ~ ~ ~ 0 0 0 0 10 force @a"
+	console command "/execute at @e[tag=FLASHBANG] run particle flash ~ ~1 ~ 0 0 0 0 10 force @a"
+	console command "/execute at @e[tag=FLASHBANG] run particle flash ~1 ~ ~ 0 0 0 0 10 force @a"
+	console command "/execute at @e[tag=FLASHBANG] run particle flash ~-1 ~ ~ 0 0 0 0 10 force @a"
+	console command "/execute at @e[tag=FLASHBANG] run particle flash ~ ~ ~1 0 0 0 0 10 force @a"
+	console command "/execute at @e[tag=FLASHBANG] run particle flash ~ ~ ~-1 0 0 0 0 10 force @a"			
+	wait 0.2 seconds	
+	console command "/execute at @e[tag=FLASHBANG] run execute as @a[distance=0..10] at @s anchored eyes facing entity @e[tag=FLASHBANG] eyes anchored feet positioned ^ ^ ^1 rotated as @s positioned ^ ^ ^-1 if entity @s[distance=0..1] run effect give @a slowness 3 2 true"
+	console command "/execute at @e[tag=FLASHBANG] run execute as @a[distance=0..10] at @s anchored eyes facing entity @e[tag=FLASHBANG] eyes anchored feet positioned ^ ^ ^1 rotated as @s positioned ^ ^ ^-1 if entity @s[distance=0..1] run effect give @a blindness 3 2 true"
+	console command "/execute at @e[tag=FLASHBANG] run particle flash ~ ~ ~ 0 0 0 0 10 force @a"
+	console command "/execute at @e[tag=FLASHBANG] run particle flash ~ ~1 ~ 0 0 0 0 10 force @a"
+	console command "/execute at @e[tag=FLASHBANG] run particle flash ~1 ~ ~ 0 0 0 0 10 force @a"
+	console command "/execute at @e[tag=FLASHBANG] run particle flash ~-1 ~ ~ 0 0 0 0 10 force @a"
+	console command "/execute at @e[tag=FLASHBANG] run particle flash ~ ~ ~1 0 0 0 0 10 force @a"
+	console command "/execute at @e[tag=FLASHBANG] run particle flash ~ ~ ~-1 0 0 0 0 10 force @a"		
+	console command "/kill @e[tag=FLASHBANG]"
+
+on right click with potion:
+	remove 1 potion from player
+	shoot armor stand at speed 1
+	console command "/execute at %player% run playsound entity.splash_potion.throw master @a ~ ~ ~ 5 1"
+	console command "/execute at %player% run tag @e[type=armor_stand,limit=1,sort=nearest] add CHLORINE"
+	console command "/execute at %player% run data merge entity @e[type=armor_stand,limit=1,sort=nearest] {Silent:1b,Invulnerable:1b,Small:1b,Invisible:1b,ArmorItems:[{},{},{},{id:""minecraft:glass_bottle"",Count:1b}]}"
+	wait 0.5 second
+	console command "/execute at @e[tag=CHLORINE] run summon area_effect_cloud ~ ~ ~ {Particle:""dust 0.800 1.000 0.000 5"",Radius:2f,Duration:200,Color:13434624,Effects:[{Id:2b,Amplifier:2b,Duration:60,ShowParticles:0b},{Id:4b,Amplifier:2b,Duration:60,ShowParticles:0b},{Id:9b,Amplifier:2b,Duration:60,ShowParticles:0b},{Id:15b,Amplifier:2b,Duration:60,ShowParticles:0b},{Id:17b,Amplifier:2b,Duration:60,ShowParticles:0b},{Id:18b,Amplifier:2b,Duration:60,ShowParticles:0b},{Id:19b,Amplifier:2b,Duration:60,ShowParticles:0b}]}"
+	console command "/kill @e[tag=CHLORINE]"
+	console command "/execute at %player% run playsound block.glass.break master @a ~ ~ ~ 5 1"
+	

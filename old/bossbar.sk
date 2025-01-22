@@ -1,0 +1,13 @@
+on join:
+	create boss bar titled "&7Gun&4PVP&aMC&6.minehut.gg" and id "%player%" for player with colors green
+	set bossbar "%player%" value to 100
+	
+on quit:
+	remove bossbar "%player%"
+	
+every 1 tick:
+	loop all players:
+		if loop-player is not holding leather horse armor or iron horse armor:
+			edit bossbar "%loop-player%" title to "&7Gun&4PVP&aMC&6.minehut.gg"
+			
+			set bossbar "%loop-player%" value to 100

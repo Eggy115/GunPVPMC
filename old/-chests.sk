@@ -1,0 +1,81 @@
+on right click on minecart:
+	if gamemode of player is creative:
+		stop
+	cancel event	
+
+	set {_chest} to chest inventory named "&6[&cBarrel&6]" with 3 rows
+	console command "/playsound minecraft:block.barrel.open master %player% ~ ~ ~ 10000 1"
+	chance of 50%:
+		set {_n} to a random integer between 0 and 27
+		set {_a} to a random integer between 2 and 15
+		set slot {_n} of {_chest} to {_a} of gold nugget named "<##FFC300>9x19mm"
+	chance of 50%:
+		set {_n} to a random integer between 0 and 27
+		set {_a} to a random integer between 2 and 15
+		set slot {_n} of {_chest} to {_a} of iron nugget named "<##B3B3B3>7.62x39mm"
+	chance of 50%:
+		set {_n} to a random integer between 0 and 27
+		set {_a} to a random integer between 2 and 15
+		set slot {_n} of {_chest} to {_a} of gold nugget named "<##FAD905>7.62x51mm"
+	chance of 50%:
+		set {_n} to a random integer between 0 and 27
+		set {_a} to a random integer between 2 and 15
+		set slot {_n} of {_chest} to {_a} of gold nugget named "<##FFCB3D>12x70mm"	
+	chance of 50%:
+		set {_n} to a random integer between 0 and 27
+		set {_a} to a random integer between 2 and 15
+		set slot {_n} of {_chest} to {_a} of gold nugget named "<##FFC300>9x19mm"
+	chance of 50%:
+		set {_n} to a random integer between 0 and 27
+		set {_a} to a random integer between 2 and 15
+		set slot {_n} of {_chest} to {_a} of iron nugget named "<##B3B3B3>7.62x39mm"
+	chance of 50%:
+		set {_n} to a random integer between 0 and 27
+		set {_a} to a random integer between 2 and 15
+		set slot {_n} of {_chest} to {_a} of gold nugget named "<##FAD905>7.62x51mm"
+	chance of 50%:
+		set {_n} to a random integer between 0 and 27
+		set {_a} to a random integer between 2 and 15
+		set slot {_n} of {_chest} to {_a} of gold nugget named "<##FFCB3D>12x70mm"	
+		
+	chance of 10%:
+		set {_n} to a random integer between 0 and 27
+		set slot {_n} of {_chest} to 1 of leather helmet named "<##3D1600>Leather Helmet" with nbt "{display:{color:4003328},HideFlags:70,Unbreakable:1b}"
+	chance of 10%:
+		set {_n} to a random integer between 0 and 27
+		set slot {_n} of {_chest} to 1 of leather chestplate named "<##3D1600>Leather Chestplate" with nbt "{display:{color:4003328},HideFlags:70,Unbreakable:1b}"
+	chance of 10%:
+		set {_n} to a random integer between 0 and 27
+		set slot {_n} of {_chest} to 1 of leather leggings named "<##3D1600>Leather Leggings" with nbt "{display:{color:4003328},HideFlags:70,Unbreakable:1b}"		
+	chance of 10%:
+		set {_n} to a random integer between 0 and 27
+		set slot {_n} of {_chest} to 1 of leather boots named "<##3D1600>Leather Boots" with nbt "{display:{color:4003328},HideFlags:70,Unbreakable:1b}"	
+		
+	chance of 10%:	
+		set {_n} to a random integer between 0 and 27
+		set {_a} to a random integer between 1 and 5
+		set slot {_n} of {_chest} to {_a} of firework star named "&8Grenade"
+
+	chance of 20%:
+		set {_n} to a random integer between 0 and 27
+		set slot {_n} of {_chest} to 1 of leather horse armor named "<##333836>Glock-19" with nbt "{HideFlags:127,display:{color:3356726}}"		
+	chance of 20%:
+		set {_n} to a random integer between 0 and 27
+		set slot {_n} of {_chest} to 1 of leather horse armor named "<##452500>AK-47" with nbt "{HideFlags:127,display:{color:4531456}}"
+	chance of 20%:
+		set {_n} to a random integer between 0 and 27
+		set slot {_n} of {_chest} to 1 of leather horse armor named "<##6E360C>M40" with nbt "{HideFlags:127,display:{color:7222796}}"
+		
+	open {_chest} to player
+	wait 1 second
+	kill event-entity
+
+every 30 seconds:
+	loop all players:
+		console command "/execute at %loop-player% run summon chest_minecart ~%random integer between -10 and 10% ~%random integer between 30 and 50% ~%random integer between -10 and 10% {Silent:1b,Invulnerable:1b,CustomDisplayTile:1b,DisplayState:{Name:""minecraft:barrel"",Properties:{facing:""up"",open:""true""}}}"
+		
+on death:
+	wait 1 second
+	loop 2 times:
+		console command "/execute at %victim% run summon chest_minecart ~%random integer between -5 and 5% ~%random integer between 30 and 50% ~%random integer between -5 and 5% {Silent:1b,Invulnerable:1b,CustomDisplayTile:1b,DisplayState:{Name:""minecraft:barrel"",Properties:{facing:""up"",open:""true""}}}"
+	

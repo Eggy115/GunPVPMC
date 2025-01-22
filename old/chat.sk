@@ -1,0 +1,46 @@
+on chat:
+	replace all "gunpvpmc.minehut.gg" with "&7Gun&4PVP&aMC&6.minehut.gg&f" in the message
+	replace all "gunpvpmc" with "&7Gun&4PVP&aMC&f" in the message
+	replace all "gpm" with "&7G&4P&aM&f" in the message
+	
+	replace all ":item:" with "%name of player's held item%&f" in the message
+	
+	replace all ":kills:" with "&6[&c%{kills::%player's uuid%}%&6]&f" in the message
+	replace all ":deaths:" with "&6[&c%{deaths::%player's uuid%}%&6]&f" in the message
+	replace all ":kdr:" with "&6[&c%{kdr::%player's uuid%}%&6]&f" in the message	
+	replace all ":coins:" with "&6[&c%{coins::%player's uuid%}%&6]&f" in the message
+	
+	replace all ":&:" with "§" in the message	
+	
+	loop all players:
+		replace all "%loop-player%" with "&7[&7Pl&7ayer]&7 %loop-player%&f" in the message
+	
+on chat:
+	set chat format to "&6[&c%{rep::%player's uuid%}%✫&6] &7[Play&7er] %player%:&f %message%"
+	
+on chat:
+	if {mute::%player's uuid%} is 1:
+		send "&7Gun&4PVP&aMC&6: You're muted!"
+		cancel event
+		stop
+	if {%player%.cooldown} is true:
+		send "&7Gun&4PVP&aMC&6: Wait before sending messages!"
+		cancel event
+		stop
+	if message = {message::%player's uuid%}:
+		send "&7Gun&4PVP&aMC&6: Do not repeat the same message!"
+		cancel event
+		stop
+	set {message::%player's uuid%} to "%message%"
+	send "[%{rep::%player's uuid%}%✫] %uncolored {title::%player's uuid%}% %player%: %uncolored message%" to channel with id "734316055127916605"
+
+on join:
+	delete {message::%player's uuid%}
+
+on chat:
+	if {%player%.cooldown} is true:
+		stop
+	else:
+		set {%player%.cooldown} to true
+		wait 0.5 seconds
+		clear {%player%.cooldown}

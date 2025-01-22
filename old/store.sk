@@ -1,0 +1,90 @@
+command /shop:
+	aliases: /buy, /store
+	trigger:
+		set {_store} to a new chest inventory with 3 row with name "&7Gun&4PVP&aMC&6 Store"
+		
+		set {_e} to 0
+		loop 30 times:
+			set slot {_e} of {_store} to gray stained glass pane named "&0 "			
+			add 1 to {_e}
+
+		set slot 11 of {_store} to oak sign named "&6[&cRanks&6]"
+		set line 1 of lore of slot 11 of {_store} to "&6Official GunPVPMC ranks."
+
+		set slot 13 of {_store} to chest named "&6[&cCoins&6]"
+		set line 1 of lore of slot 13 of {_store} to "&6Buy coins."
+
+		set slot 15 of {_store} to barrier named "&6[&cWIP&6]"
+		set line 1 of lore of slot 15 of {_store} to "&6WIP"
+
+		open {_store} to player
+		set {trade::%player's uuid%} to true
+		
+on inventory click:
+	if name of event-item is "&6[&cRanks&6]":
+		console command "/playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+		set {_store} to a new chest inventory with 3 row with name "&7Gun&4PVP&aMC&6 Store"
+		
+		set {_e} to 0
+		loop 30 times:
+			set slot {_e} of {_store} to gray stained glass pane named "&0 "			
+			add 1 to {_e}
+
+		set slot 11 of {_store} to emerald named "&6[&cVIP&6]"
+		set line 1 of lore of slot 11 of {_store} to "&6Cost: &c£1.00"
+
+		set slot 13 of {_store} to diamond named "&6[&cMVP&6]"
+		set line 1 of lore of slot 13 of {_store} to "&6Cost: &c£2.00"
+
+		open {_store} to player
+		set {trade::%player's uuid%} to true	
+		
+on inventory click:
+	if name of event-item is "&6[&cCoins&6]":
+		console command "/playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+		set {_store} to a new chest inventory with 3 row with name "&7Gun&4PVP&aMC&6 Store"
+		
+		set {_e} to 0
+		loop 30 times:
+			set slot {_e} of {_store} to gray stained glass pane named "&0 "			
+			add 1 to {_e}
+
+		set slot 11 of {_store} to gold nugget named "&6[&cPile of Coins&6]"
+		set line 1 of lore of slot 11 of {_store} to "&6Cost: &c£1.00"
+
+		set slot 13 of {_store} to gold ingot named "&6[&cSack of Coins&6]"
+		set line 1 of lore of slot 13 of {_store} to "&6Cost: &c£2.00"
+
+		set slot 15 of {_store} to gold block named "&6[&cChest of Coins&6]"
+		set line 1 of lore of slot 15 of {_store} to "&6Cost: &c£3.00"
+		open {_store} to player
+		set {trade::%player's uuid%} to true	
+		
+on inventory click:
+	if name of event-item is "&6[&cWIP&6]":
+		console command "/playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+		set {_store} to a new chest inventory with 3 row with name "&7Gun&4PVP&aMC&6 Store"
+		
+		set {_e} to 0
+		loop 30 times:
+			set slot {_e} of {_store} to gray stained glass pane named "&0 "			
+			add 1 to {_e}
+
+		open {_store} to player
+		set {trade::%player's uuid%} to true	
+		
+on inventory click:
+	if {trade::%player's uuid%} is true:
+		cancel event
+		
+on drop:
+	if {trade::%player's uuid%} is true:
+		cancel event
+		
+on join:
+	set {trade::%player's uuid%} to false
+on quit:
+	set {trade::%player's uuid%} to false
+	
+on inventory close:
+	set {trade::%player's uuid%} to false

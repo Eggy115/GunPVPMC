@@ -1,0 +1,402 @@
+options: 
+	language: en 
+	messageonjoin: true 
+	maxmembers: 5
+
+on join:
+	wait 10 ticks
+	if "{@language}" is "en":
+		add uuid of player to {spillerlist::*}
+		add player to {spillerlist::*}
+		wait 20 ticks
+		if "{@messageonjoin}" is "true":
+			if {fjern.%player%} is set:
+				message "&7Gun&4PVP&aMC &6Gangs: You have been kicked from your gang!" to player
+				clear {fjern.%player%}
+	
+on quit:
+	remove uuid of player from {spillerlist::*}
+	remove player from {spillerlist::*}
+	clear {fjern.%player%}
+
+command /gang [<text>] [<text>] [<text>]:
+	aliases: g, gangs
+	trigger:
+	
+#-#-#-#-#-#-#-#-#-#Create command#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+
+		if arg-1 is "create":
+			if arg-2 is set:
+				if {factiongruppe.%player%} is set:	
+					if "{@language}" is "en":
+						message "&7Gun&4PVP&aMC &6Gangs: You are already in a gang!"
+						cancel command cooldown
+						stop
+				if {factiongruppe.%player%} is not set:
+					set {_arg2} to arg-2
+					if arg 3 is set:
+						if "{@language}" is "en":
+							message "&7Gun&4PVP&aMC &6Gangs: There can not be spaces in your gang's name!"
+							stop
+							cancel command cooldown
+					if arg-1 does not match "[a-z+]" or "[a-z+]+[a-z+]" or "[A-Z+]" or "[A-Z+]+[A-Z+]":
+						message "&7Gun&4PVP&aMC &6Gangs: Please only use letters!"
+						stop		
+					if length of {_arg2} is between -9999999999999 and 0:
+						if "{@language}" is "en":
+							message "&7Gun&4PVP&aMC &6Gangs: Your gang's name must be longer than 0 letters!"
+							stop
+					if length of {_arg2} is above 15:
+						if "{@language}" is "en":
+							message "&7Gun&4PVP&aMC &6Gangs: Your gang's name must not exceed 15 letters!"
+							stop
+					if {_arg2} contains "nigger" or "nigga":
+						if "{@language}" is "en":
+							message "&7Gun&4PVP&aMC &6Gangs: Why did you try to call the gang that?"
+							stop
+					loop {bande.list::*}:
+						if arg-2 is loop-value:
+							if "{@language}" is "en":
+								message "&7Gun&4PVP&aMC &6Gangs: The gang &c%arg-2%&6 already exists!" to player
+								stop
+					set {factiongruppe.%player%} to arg-2
+					clear {gruppe.list.%{factiongruppe.%player%}%::*}
+					add arg 2 to {bande.list::*}
+					set {gruppe.%{factiongruppe}%.%player%} to {factiongruppe.%player%}
+					set {ejer.%arg-2%} to uuid of player
+					set {max.invite.%{factiongruppe.%player%}%} to 1
+					if "{@language}" is "en":
+						message "&7Gun&4PVP&aMC &6Gangs: You have created the gang &c%{factiongruppe.%player%}%&6!"
+					wait 3 tick
+					add player to {gruppe.list.%{factiongruppe.%player%}%::*}
+					set {slet.%{factiongruppe.%player%}%} to false
+					delete {fjern.%player%}
+					stop
+			else:
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: You must name your gang!" to player
+					stop
+						
+#-#-#-#-#-#-#-#-#-#Remove command#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+	
+		if arg-1 is "remove":
+			if arg-2 is not set:
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: You must name the person you want to kick from your gang!"
+					stop
+			if {factiongruppe.%player%} is not set:
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: You are not in a gang!"
+					stop
+			if {ejer.%{factiongruppe.%player%}%} is not uuid of player:
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: You do not have permission to remove members from this gang!"
+					stop
+			if {ejer.%{factiongruppe.%player%}%} is uuid of player:
+				if arg-2 is player:
+		
+					if "{@language}" is "en":
+						set {slet.%{factiongruppe.%player%}%} to true
+						remove {factiongruppe.%player%} from {bande.list::*}
+						clear {max.invite.%{factiongruppe.%player%}%}
+						delete {ejer.%{factiongruppe.%player%}%}
+						delete {spawn.%{factiongruppe.%player%}%}
+						delete {gruppe.list.%{factiongruppe.%player%}%}
+						delete {gruppe.%{factiongruppe}%.%player%}
+						remove {gruppe.list.%{factiongruppe.%player%}%::*} from {bande.list::*}
+						loop {gruppe.list.%{factiongruppe.%player%}%::*}:
+							if "%player%" is not "%loop-value%":
+								clear {factiongruppe.%loop-value%}
+								clear {factiongruppe.%player%}
+								message "&7Gun&4PVP&aMC &6Gangs: Your gang has been disbanded!" to loop-value
+								remove loop-value from {gruppe.list.%{factiongruppe.%player%}%::*}
+							loop {gruppe.list.%{factiongruppe.%player%}%::*}:
+								if "%player%" is not "%loop-value-1%" or "%loop-value-1%":
+									clear {factiongruppe.%loop-value-1%}
+									clear {factiongruppe.%player%}
+									message "&7Gun&4PVP&aMC &6Gangs: Your gang has been disbanded!" to loop-value-1
+									remove loop-value-1 from {gruppe.list.%{factiongruppe.%player%}%::*}
+								loop {gruppe.list.%{factiongruppe.%player%}%::*}:
+									if "%player%" is not "%loop-value-1%", "%loop-value-1%" or "%loop-value-2%":
+										clear {factiongruppe.%loop-value-2%}
+										delete {gruppe.list.%{factiongruppe.%player%}%::*}
+										clear {factiongruppe.%player%}
+										message "&7Gun&4PVP&aMC &6Gangs: Your gang has been disbanded!" to loop-value-2
+										remove loop-value-2 from {gruppe.list.%{factiongruppe.%player%}%::*}
+									loop {gruppe.list.%{factiongruppe.%player%}%::*}:
+										if "%player%" is not "%loop-value-1%", "%loop-value-1%", "%loop-value-2%" or "%loop-value-3%":
+											clear {factiongruppe.%loop-value-3%}
+											clear {factiongruppe.%player%}
+											message "&7Gun&4PVP&aMC &6Gangs: Your gang has been disbanded!" to loop-value-3
+											remove loop-value-3 from {gruppe.list.%{factiongruppe.%player%}%::*}
+										loop {gruppe.list.%{factiongruppe.%player%}%::*}:
+											if "%player%" is not "%loop-value-1%", "%loop-value-1%", "%loop-value-2%", "%loop-value-3%" or "%loop-value-4%":
+												clear {factiongruppe.%loop-value-4%}
+												clear {factiongruppe.%player%}
+												message "&7Gun&4PVP&aMC &6Gangs: Your gang has been disbanded!" to loop-value-4
+												remove loop-value-4 from {gruppe.list.%{factiongruppe.%player%}%::*}
+					wait 3 ticks
+					delete {gruppe.list.%{factiongruppe.%player%}%}
+					clear {factiongruppe.%player%}
+					if "{@language}" is "en":
+						message "&7Gun&4PVP&aMC &6Gangs: As you left the gang, but you were also the leader, the gang has been disbanded!"
+					stop
+			if {factiongruppe.%arg-2%} is {factiongruppe.%player%}:
+				loop {gruppe.list.%{factiongruppe.%player%}%::*}:
+					if loop-value is arg-2:
+						remove arg-2 from {gruppe.list.%{factiongruppe.%loop-value%}%::*}
+						remove 1 from {max.invite.%{factiongruppe.%loop-value%}%}
+						delete {gruppe.%{factiongruppe}%.%loop-value%}
+						delete {spawn.%loop-value%}
+						delete {factiongruppe.%loop-value%}
+						set {fjern.%loop-value%} to true
+						wait 1 tick
+						if "{@language}" is "en":
+							message "&7Gun&4PVP&aMC &6Gangs: You have been kicked from your gang!" to loop-value
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: &c%arg-2% &6has been kicked from your gang!"
+					stop
+			else:
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: An error has occured! Make sure you type the name of the person you want to kick correctly!"
+					stop
+					
+#-#-#-#-#-#-#-#-#-#Leave command#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+					
+		if arg-1 is "leave":
+			if {factiongruppe.%player%} is set:
+				if {ejer.%{factiongruppe.%player%}%} is uuid of player:
+					if {factiongruppe.%player%} is not set:
+						if "{@language}" is "en":
+							message "&7Gun&4PVP&aMC &6Gangs: You must be in a gang to do this!"
+					if {factiongruppe.%player%} is set:
+						set {slet.%{factiongruppe.%player%}%} to true
+						remove {factiongruppe.%player%} from {bande.list::*}
+						clear {max.invite.%{factiongruppe.%player%}%}
+						delete {ejer.%{factiongruppe.%player%}%}
+						delete {spawn.%{factiongruppe.%player%}%}
+						delete {gruppe.list.%{factiongruppe.%player%}%}
+						delete {gruppe.%{factiongruppe}%.%player%}
+						remove {gruppe.list.%{factiongruppe.%player%}%::*} from {bande.list::*}
+						if "{@language}" is "en":
+							loop {gruppe.list.%{factiongruppe.%player%}%::*}:
+								if "%player%" is not "%loop-value%":
+									clear {factiongruppe.%loop-value%}
+									clear {factiongruppe.%player%}
+									message "&7Gun&4PVP&aMC &6Gangs: Your gang has been deleted!" to loop-value
+									remove loop-value from {gruppe.list.%{factiongruppe.%player%}%::*}
+								loop {gruppe.list.%{factiongruppe.%player%}%::*}:
+									if "%player%" is not "%loop-value-1%" or "%loop-value-1%":
+										clear {factiongruppe.%loop-value-1%}
+										clear {factiongruppe.%player%}
+										message "&7Gun&4PVP&aMC &6Gangs: Your gang has been deleted!" to loop-value-1
+										remove loop-value-1 from {gruppe.list.%{factiongruppe.%player%}%::*}
+									loop {gruppe.list.%{factiongruppe.%player%}%::*}:
+										if "%player%" is not "%loop-value-1%", "%loop-value-1%" or "%loop-value-2%":
+											clear {factiongruppe.%loop-value-2%}
+											clear {factiongruppe.%player%}
+											message "&7Gun&4PVP&aMC &6Gangs: Your gang has been deleted!" to loop-value-2
+											remove loop-value-2 from {gruppe.list.%{factiongruppe.%player%}%::*}
+										loop {gruppe.list.%{factiongruppe.%player%}%::*}:
+											if "%player%" is not "%loop-value-1%", "%loop-value-1%", "%loop-value-2%" or "%loop-value-3%":
+												clear {factiongruppe.%loop-value-3%}
+												clear {factiongruppe.%player%}
+												message "&7Gun&4PVP&aMC &6Gangs: Your gang has been deleted!" to loop-value-3
+												remove loop-value-3 from {gruppe.list.%{factiongruppe.%player%}%::*}
+											loop {gruppe.list.%{factiongruppe.%player%}%::*}:
+												if "%player%" is not "%loop-value-1%", "%loop-value-1%", "%loop-value-2%", "%loop-value-3%" or "%loop-value-4%":
+													clear {factiongruppe.%loop-value-4%}
+													clear {factiongruppe.%player%}
+													message "&7Gun&4PVP&aMC &6Gangs: Your gang has been deleted!" to loop-value-4
+													remove loop-value-4 from {gruppe.list.%{factiongruppe.%player%}%::*}
+						wait 3 ticks
+						delete {gruppe.list.%{factiongruppe.%player%}%}
+						clear {factiongruppe.%player%}
+						if "{@language}" is "en":
+							message "&7Gun&4PVP&aMC &6Gangs: As you left the gang, but you were also the leader, the gang has been disbanded!"
+						stop
+			if {factiongruppe.%player%} is {factiongruppe.%player%}:
+				remove player from {gruppe.list.%{factiongruppe.%player%}%::*}
+				remove 1 from {max.invite.%{factiongruppe.%player%}%}
+				delete {gruppe.%{factiongruppe}%.%player%}
+				delete {spawn.%player%}
+				delete {factiongruppe.%player%}
+				remove player from {gruppe.list.%{factiongruppe.%player%}%}
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: You just left the gang!"
+				stop
+				
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
+#Invite command
+#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
+								
+		if arg-1 is "invite":
+			set {_arg2} to arg-2
+			if {factiongruppe.%player%} is not set:
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: You are not in a gang!"
+					stop
+			if arg-2 is not set:
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: You must write the name of the player you want to invite!"
+					stop
+			if arg-2 is "%player%":
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: You cannot invite yourself!"
+					stop
+			if {max.invite.%{factiongruppe.%player%}%} is "{@maxmembers}":
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: There can only be &c{@maxmembers}&6 members in a gang!"
+					stop
+			if {factiongruppe.%player%} is set:
+				if {ejer.%{factiongruppe.%player%}%} is uuid of player:
+					set {_arg2} to arg-2 parsed as player
+					set {invite.%{_arg2}%} to {factiongruppe.%player%}
+					if "{@language}" is "en":
+						message "&7Gun&4PVP&aMC &6Gangs: You have invited &c%arg-2% &6to your gang!"
+					if "{@language}" is "en":
+						message "&7Gun&4PVP&aMC &6Gangs: &c%player%&6 has asked you if you would join the their gang. You have 30 seconds to accept it, otherwise it will be rejected automatically. Use &e/gang accept&7 to accept it" to {_arg2}
+					wait 30 seconds
+					clear {invite.%{_arg2}%}
+					stop
+				if {ejer.%{factiongruppe.%player%}%} is not uuid of player:
+					if "{@language}" is "en":
+						message "&7Gun&4PVP&aMC &6Gangs: You can not invite people since you are not the owner of the gang!" to player
+			else:
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: Error. Please wait for about 30 seconds."
+
+		if arg-1 is "accept":
+			if {factiongruppe.%player%} is set:
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: You are already in a gang!" 
+					stop
+			if {max.invite.%{factiongruppe.%player%}%} is {@maxmembers}:
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: There can only be &c{@maxmembers}&6 members in the gang!"
+					stop
+			if {invite.%player%} is set:
+				set {factiongruppe.%player%} to {invite.%player%}
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: You are now in the gang &c%{factiongruppe.%player%}%&6!"
+				add player to {gruppe.list.%{factiongruppe.%player%}%::*}
+				add 1 to {max.invite.%{factiongruppe.%player%}%}
+				clear {invite.%player%}
+				clear {fjern.%player%}
+				stop
+			if {invite.%player%} is not set:
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: There is not anyone who invited you into their gang!"
+					stop
+					
+#-#-#-#-#-#-#-#-#-#Info command#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+		if arg-1 is "info":
+			if player is op:
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs:"
+					message "&6Gang Name: &c%{factiongruppe.%player%}%"
+					message "&6Players in your gang: &c%{gruppe.list.%{factiongruppe.%player%}%::*}%"
+					message "&6All gangs Created: &c%{bande.list::*}%"
+					stop
+			if {factiongruppe.%player%} is set:
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs:"
+					message "&6Gang Name: &c%{factiongruppe.%player%}%"
+					message "&6Players in your gang: &c%{gruppe.list.%{factiongruppe.%player%}%::*}%"
+			else:
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: You are not in a gang!"
+		if arg-1 is not set:
+			if "{@language}" is "en":
+				message "%nl%&7Gun&4PVP&aMC &6Gang:%nl%" to player
+				message "&c/g create <name> &6- Create a gang" to player
+				message "&c/g remove <name> &6- Remove a member from your gang" to player
+				message "&c/g invite <playername> &6- Add a player to your gang" to player
+				message "&c/g accept &6- Accept a gang invite" to player
+				message "&c/g leave &6- Leave a gang" to player
+				message "&c/g info &6- Information about your gang" to player
+				message "&c/gchat &6- Speak to your gang"
+				if player has permission "f.setgroup":
+					message "&c/g setgroup <player> <groupname> &6 - Force a player to join a gang" to player
+				message "%nl%&6Gang members cannot harm each other. Gangs can only have up to &c5&6 members. Earn gang reputation.%nl%" to player
+
+			
+					
+#-#-#-#-#-#-#-#-#-#Setgroup command#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#
+		if arg-1 is "setgroup":
+			if arg-2 is set:
+				if arg-3 is set:
+					loop {bande.list::*}:
+						if loop-value is arg-3:
+							set {_arg2parsed} to (arg-2 parsed as player)
+							if player has permission "f.setgroup":
+								if {factiongruppe.%{_arg2parsed}%} is set:
+									if {max.invite.%{factiongruppe.%{_arg2parsed}%}%} is {@maxmembers}:
+										if "{@language}" is "en":
+											message "&7Gun&4PVP&aMC &6Gangs: There can only be &c{@maxmembers} &6members in a gang!" to {_arg2parsed}
+											stop
+									if {ejer.%{factiongruppe.%{_arg2parsed}%}%} is uuid of {_arg2parsed}:
+										set {slet.%{factiongruppe.%{_arg2parsed}%}%} to true
+										remove {factiongruppe.%{_arg2parsed}%} from {bande.list::*}
+										clear {max.invite.%{factiongruppe.%{_arg2parsed}%}%}
+										delete {ejer.%{factiongruppe.%{_arg2parsed}%}%}
+										delete {spawn.%{factiongruppe.%{_arg2parsed}%}%}
+										delete {gruppe.list.%{factiongruppe.%{_arg2parsed}%}%}
+										delete {gruppe.%{factiongruppe}%.%{_arg2parsed}%}
+										remove {gruppe.list.%{factiongruppe.%{_arg2parsed}%}%::*} from {bande.list::*}
+
+										if "{@language}" is "en":
+											loop {gruppe.list.%{factiongruppe.%{_arg2parsed}%}%::*}:
+												if "%{_arg2parsed}%" is not "%loop-value-1%":
+													clear {factiongruppe.%loop-value-1%}
+													clear {factiongruppe.%{_arg2parsed}%}
+													message "&7Gun&4PVP&aMC &6Gangs: Your gang has been disbanded!" to loop-value-1
+													remove loop-value-1 from {gruppe.list.%{factiongruppe.%{_arg2parsed}%}%::*}
+								remove {_arg2parsed} from {gruppe.list.%{factiongruppe.%{_arg2parsed}%}%::*}
+								remove 1 from {max.invite.%{factiongruppe.%{_arg2parsed}%}%}
+								delete {gruppe.%{factiongruppe}%.%{_arg2parsed}%}
+								delete {spawn.%{_arg2parsed}%}
+								delete {factiongruppe.%{_arg2parsed}%}
+								remove {_arg2parsed} from {gruppe.list.%{factiongruppe.%{_arg2parsed}%}%}
+								wait 1 tick
+								set {factiongruppe.%{_arg2parsed}%} to arg-3
+								add {_arg2parsed} to {gruppe.list.%{factiongruppe.%{_arg2parsed}%}%::*}
+								add 1 to {max.invite.%{factiongruppe.%{_arg2parsed}%}%}
+								clear {invite.%{_arg2parsed}%}
+								clear {fjern.%{_arg2parsed}%}
+								set {_arg2parsed} to ({_arg2parsed} parsed as player)
+								if "{@language}" is "en":
+									message "&7Gun&4PVP&aMC &6Gangs: A member of staff has forced you to join &c%{factiongruppe.%{_arg2parsed}%}%&6!" to {_arg2parsed}
+								if "{@language}" is "en":
+									message "&7Gun&4PVP&aMC &6Gangs: You have forced &c%{_arg2parsed}% &6to join&c %{factiongruppe.%{_arg2parsed}%}%&6!" to player
+								stop
+							else:
+								if "{@language}" is "en":
+									message "&7Gun&4PVP&aMC &6Gangs: You do not have permission to do this!" to player
+						if loop-value is not arg-3:
+							add 1 to {_list}
+							message "1" to console
+							if size of {bande.list::*} is {_list}:
+								if "{@language}" is "en":
+									message "&7Gun&4PVP&aMC &6Gangs: &c%arg-3%&6 is not an existing gang!" to player
+				if arg-3 is not set:
+					if "{@language}" is "en":
+						message "&7Gun&4PVP&aMC &6Gangs: You must type a gang name!" to player
+			if {_arg2parsed} is not set:
+				if "{@language}" is "en":
+					message "&7Gun&4PVP&aMC &6Gangs: You must type a player name!" to player
+						
+on damage:
+	if {factiongruppe.%attacker%} is {factiongruppe.%victim%}:
+		if attacker is victim:
+			stop
+		cancel event
+		message "&7Gun&4PVP&aMC &6Gangs: You cannot harm someone who is in your gang!" to attacker
+		
+command /gchat [<text>]:
+	aliases: /gangchat
+	trigger:
+		if arg-1 is set:
+			send "&7Gun&4PVP&aMC &6Gang Chat: %{title::%player's uuid%}% %player%&6: %arg-1%" to {gruppe.list.%{factiongruppe.%player%}%::*}
+		else:
+			send  "&7Gun&4PVP&aMC &6Gang Chat: You must send something" to player

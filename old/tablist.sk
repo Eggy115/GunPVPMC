@@ -1,0 +1,11 @@
+every 20 ticks:
+	loop all players:
+	
+		set loop-player's tablist header to "%nl%&6==================================================================%nl%%nl%&7Gun&4PVP&aMC&6.minehut.gg%nl%"
+		
+		if {factiongruppe.%loop-player%} is set:
+			set loop-player's tablist name to "&r&6[&c%{rep::%loop-player's uuid%}%✫&6] %{title::%loop-player's uuid%}% %loop-player% &6[&c%{factiongruppe.%loop-player%}%&6]"
+		else:	
+			set loop-player's tablist name to "&r&6[&c%{rep::%loop-player's uuid%}%✫&6] %{title::%loop-player's uuid%}% %loop-player%"
+		set loop-player's tablist footer to "%nl%&6TPS: &c%tps from last 1m%%nl%&6Ping: &c%loop-player's ping%%nl%&6Players: &c%online player count%%nl%%nl%&6==================================================================%nl%"
+		

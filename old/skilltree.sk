@@ -1,0 +1,126 @@
+command /skilltree:
+	aliases: /st
+	trigger:
+		set {skilltree::%player's uuid%} to a new chest inventory with 3 row with name "&7Gun&4PVP&aMC&6 Skill Tree:"
+		
+		set {_e} to 0
+		loop 30 times:
+			set slot {_e} of {skilltree::%player's uuid%} to gray stained glass pane named "&0 "			
+			add 1 to {_e}
+
+		set slot 10 of {skilltree::%player's uuid%} to feather named "&6[&cMovement&6]"
+		set line 1 of lore of slot 10 of {skilltree::%player's uuid%} to "&6Move faster and avoid enemy attacks."
+	
+		set slot 12 of {skilltree::%player's uuid%} to diamond horse armour named "&6[&cDamage&6]"
+		set line 1 of lore of slot 12 of {skilltree::%player's uuid%} to "&6Improve your strength and damage."
+
+		set slot 14 of {skilltree::%player's uuid%} to iron block named "&6[&cProtection&6]"
+		set line 1 of lore of slot 14 of {skilltree::%player's uuid%} to "&6Upgrade your durability and fortitude."
+
+		set slot 16 of {skilltree::%player's uuid%} to repeater named "&6[&cMiscellaneous&6]"
+		set line 1 of lore of slot 16 of {skilltree::%player's uuid%} to "&6Other abilities and bonuses."
+
+
+		open {skilltree::%player's uuid%} to player
+		set {trade::%player's uuid%} to true
+
+on inventory click:
+	if name of event-item is "&6[&cMiscellaneous&6]":
+		set {skilltree::%player's uuid%} to a new chest inventory with 6 row with name "&7G&4P&aM&6 Skill Tree &6[&cMiscellaneous&6]"
+		console command "/playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+		set {_e} to 0
+		loop 60 times:
+			set slot {_e} of {skilltree::%player's uuid%} to gray stained glass pane named "&0 "			
+			add 1 to {_e}
+		set {_a} to 10
+		loop 4 times:
+			set {_e} to {_a}
+			loop 4 times:
+				set slot {_e} of {skilltree::%player's uuid%} to gray dye named "&6Attribute"			
+				add 9 to {_e}
+			add 2 to {_a}	
+		
+		set slot 38 of {skilltree::%player's uuid%} to gray dye named "&6Attribute"
+		set slot 13 of {skilltree::%player's uuid%} to gray dye named "&6Attribute"
+		set slot 42 of {skilltree::%player's uuid%} to gray dye named "&6Attribute"			
+		open {skilltree::%player's uuid%} to player
+		set {trade::%player's uuid%} to true
+
+on inventory click:
+	if name of event-item is "&6[&cMovement&6]":
+		set {skilltree::%player's uuid%} to a new chest inventory with 6 row with name "&7G&4P&aM&6 Skill Tree &6[&cMovement&6]"
+		console command "/playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+		set {_e} to 0
+		loop 60 times:
+			set slot {_e} of {skilltree::%player's uuid%} to gray stained glass pane named "&0 "			
+			add 1 to {_e}
+		set {_a} to 10
+		loop 4 times:
+			set {_e} to {_a}
+			loop 4 times:
+				set slot {_e} of {skilltree::%player's uuid%} to gray dye named "&6Attribute"			
+				add 9 to {_e}
+			add 2 to {_a}	
+		
+		set slot 38 of {skilltree::%player's uuid%} to gray dye named "&6Attribute"
+		set slot 13 of {skilltree::%player's uuid%} to gray dye named "&6Attribute"
+		set slot 42 of {skilltree::%player's uuid%} to gray dye named "&6Attribute"	
+		open {skilltree::%player's uuid%} to player
+		set {trade::%player's uuid%} to true
+		
+on inventory click:
+	if name of event-item is "&6[&cProtection&6]":
+		set {skilltree::%player's uuid%} to a new chest inventory with 6 row with name "&7G&4P&aM&6 Skill Tree &6[&cProtection&6]"
+		console command "/playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+		set {_e} to 0
+		loop 60 times:
+			set slot {_e} of {skilltree::%player's uuid%} to gray stained glass pane named "&0 "			
+			add 1 to {_e}
+		set {_a} to 10
+		loop 4 times:
+			set {_e} to {_a}
+			loop 4 times:
+				set slot {_e} of {skilltree::%player's uuid%} to gray dye named "&6Attribute"			
+				add 9 to {_e}
+			add 2 to {_a}	
+		
+		set slot 10 of {skilltree::%player's uuid%} to gray dye named "&6[&cMinor Health Boost&6]"
+		set line 1 of slot 10 of {skilltree::%player's uuid%}'s lore to "&6Grants &c+1&6 hearts (permanent)."
+		set line 2 of slot 10 of {skilltree::%player's uuid%}'s lore to "&6Cost: &c250 Coins"
+		set slot 38 of {skilltree::%player's uuid%} to gray dye named "&6Attribute "
+		set slot 13 of {skilltree::%player's uuid%} to gray dye named "&6Attribute"
+		set slot 42 of {skilltree::%player's uuid%} to gray dye named "&6Attribute"
+		
+		open {skilltree::%player's uuid%} to player
+		set {trade::%player's uuid%} to true
+on inventory click:
+	if event-item is lime dye:
+		console command "/playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+		stop
+	if name of event-item is "&6[&cMinor Health Boost&6]":
+		console command "/playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+		set slot 10 of {skilltree::%player's uuid%} to lime dye named "&6[&cMinor Health Boost&6]"
+		set line 1 of slot 10 of {skilltree::%player's uuid%}'s lore to "&6Grants &c+1&6 hearts (permanent)."
+
+on inventory click:
+	if name of event-item is "&6[&cDamage&6]":
+		set {skilltree::%player's uuid%} to a new chest inventory with 6 row with name "&7G&4P&aM&6 Skill Tree &6[&cDamage&6]"
+		console command "/playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+		set {_e} to 0
+		loop 60 times:
+			set slot {_e} of {skilltree::%player's uuid%} to gray stained glass pane named "&0 "			
+			add 1 to {_e}
+		set {_a} to 10
+		loop 4 times:
+			set {_e} to {_a}
+			loop 4 times:
+				set slot {_e} of {skilltree::%player's uuid%} to gray dye named "&6Attribute"			
+				add 9 to {_e}
+			add 2 to {_a}	
+		
+		set slot 38 of {skilltree::%player's uuid%} to gray dye named "&6Attribute"
+		set slot 13 of {skilltree::%player's uuid%} to gray dye named "&6Attribute"
+		set slot 42 of {skilltree::%player's uuid%} to gray dye named "&6Attribute"		
+		open {skilltree::%player's uuid%} to player
+		set {trade::%player's uuid%} to true

@@ -1,0 +1,47 @@
+command /daily:
+	cooldown: 1 day
+	cooldown message: &7Gun&4PVP&aMC&6: Please wait [&c%remaining time%&6] before using this again!
+	trigger:
+		set {_rew} to chest inventory with 3 rows named "&7Gun&4PVP&aMC &6Rewards:"
+		
+		set {_e} to 0
+		loop 30 times:
+			set slot {_e} of {_rew} to gray stained glass pane named "&0 "			
+			add 1 to {_e}
+		
+		set {trade::%player's uuid%} to true
+		open {_rew} to player
+		set {trade::%player's uuid%} to true
+
+		console command "/playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 1000000 1"
+		set slot 13 of {_rew} to sunflower named "&6Reward &6[&c???&6]"
+			
+		wait 0.2 seconds
+		console command "/playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 1000000 1.25"
+		set slot 13 of {_rew} to iron horse armor named "&6Reward &6[&c???&6]"
+			
+		wait 0.2 seconds
+		console command "/playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 1000000 1.5"
+		set slot 13 of {_rew} to diamond named "&6Reward &6[&c???&6]"
+			
+		wait 0.2 seconds
+		console command "/playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 1000000 1.75"
+		set slot 13 of {_rew} to gold block named "&6Reward &6[&c???&6]"
+			
+		wait 0.2 seconds
+		console command "/playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 1000000 2"
+		console command "/playsound minecraft:entity.generic.explode master %player% ~ ~ ~ 1000000 1"
+		
+		set {_d} to random integer between 1 and 3
+		if {_d} = 1: 
+			set slot 13 of {_rew} to diamond block named "&6Reward &6[&cDiamond&6]"	
+		if {_d} = 3: 
+			set slot 13 of {_rew} to emerald block named "&6Reward &6[&cEmerald&6]"	
+		if {_d} = 2: 
+			set slot 13 of {_rew} to iron block named "&6Reward &6[&cIron&6]"	
+			
+		wait 1 second
+		close player's inventory
+		
+		send "&7Gun&4PVP&aMC&6 Rewards: You have received &6[&c500 Coins&6]"
+		add 500 to {coins::%player's uuid%} 	

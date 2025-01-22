@@ -1,0 +1,67 @@
+every 1 second:
+	remove 1 from {time}
+	
+	if {time} = 120:
+		loop all players:
+			send title "&6 &7Gun&4PVP&aMC&6" with subtitle "&6Two Minutes!" to loop-player
+		broadcast "%nl%&7Gun&4PVP&aMC&6: Two Minutes!%nl%"
+		
+	if {time} = 60:
+		loop all players:
+			console command "/kill @e[type=chest_minecart]"
+			send title "&6 &7Gun&4PVP&aMC&6" with subtitle "&6One Minute!" to loop-player
+		broadcast "%nl%&7Gun&4PVP&aMC&6: One Minute!%nl%"
+		
+	if {time} < 1:
+		set {time} to 300
+		
+		broadcast "%nl%&7Gun&4PVP&aMC&6: New Game!%nl%"
+		if {map} is "Village":
+			set {map} to "Coastal City" 
+			set {cen} to "-38 -588"
+			set {max} to "400"
+		else:
+			set {map} to "Village" 
+			set {cen} to "-125 -150"
+			set {max} to "200"
+			
+		console command "/worldborder center %{cen}%"
+		console command "/worldborder set %{max}%"
+		console command "/worldborder set 100 300"
+		console command "/kill @e[type=chest_minecart]"
+		loop all players:
+			send title "&6 &7Gun&4PVP&aMC&6" with subtitle "&6New Game!" to loop-player
+			console command "/allammo"
+			console command "/spreadplayers %{cen}% 1 100 false %loop-player%"
+			close loop-player's inventory
+			clear loop-player's inventory
+			give loop-player iron sword named "&7Dagger" with nbt "{HideFlags:127,Unbreakable:1b}"
+			console command "/effect give %loop-player% blindness 1 9 true"	
+			console command "/effect give %loop-player% invisibility 1 9 true"
+			console command "/effect give %loop-player% resistance 1 9 true"
+			console command "/effect give %loop-player% instant_health 1 9 true"
+			console command "/effect give %loop-player% weakness 3 9 true"
+			console command "/effect give %loop-player% saturation 1 99 true"
+
+
+command /time [<integer>]:
+	permission: op
+	trigger:
+		set {time} to arg-1
+	
+on death:
+	victim is a player
+	wait 1 tick
+	drop all items in victim's inventory at victim
+	console command "/spreadplayers %{cen}% 1 50 false %player%"
+
+	clear victim's inventory
+	give victim iron sword named "&7Dagger" with nbt "{HideFlags:127,Unbreakable:1b}"
+	wait 2 tick
+	set the player's invulnerability ticks to 60
+	
+	console command "/effect give %player% blindness 1 9 true"	
+	console command "/effect give %player% invisibility 1 9 true"
+	console command "/effect give %player% resistance 1 9 true"
+	console command "/effect give %player% weakness 3 9 true"
+	console command "/effect give %player% saturation 1 99 true"
