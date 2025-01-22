@@ -1,7 +1,7 @@
 on load:
 	make new discord bot:  
 		enable all default intent
-		login to "NzM0MzEzMDA3NDE2NjA2Nzcx.XxP4Rw.9PgR8W864P6YhVuLyQBhjjQ-K5w" with name "Gun PVP MC"
+		login to "this is where the bot token would have gone" with name "Gun PVP MC"
 		set online status of bot "Gun PVP MC" to do not disturb 
 		set presence of bot "Gun PVP MC" to playing "on GunPVPMC" 
 
