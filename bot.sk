@@ -1,0 +1,266 @@
+define new bot named "Gun PVP MC":
+    token: "this is where the bot token would have gone"
+    intents: default intents
+    policy: all
+    auto reconnect: true
+
+on load:
+    set online status of bot "Gun PVP MC" to do not disturb 
+    set presence of bot "Gun PVP MC" to playing "on GunPVPMC" 
+
+discord command embed:
+    prefixes: !
+    trigger:
+        make embed:
+            set title of embed to "__Title__"
+            set description of embed to "Text"
+            set author of the embed to "GunPVPMC"
+            set author icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            add inline field named "Field Name" with value "Text" to fields of embed
+            add inline field named "Field Name" with value "Text" to fields of embed
+            add inline field named "Field Name" with value "Text" to fields of embed
+            add field named "Non-inline field name" with value "Text" to fields of embed
+            add field named "Non-inline field name" with value "Text" to fields of embed
+            set image of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set thumbnail of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set footer of embed to "GunPVPMC"
+            set footer icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set timestamp of embed to now
+            set embed color of the embed to green
+        reply with last embed    
+        
+discord command help:
+    prefixes: !
+    trigger:
+        make embed:
+            set title of embed to "__Help__"
+            set description of embed to "GunPVPMC is a PVP/RPG Minecraft server based around custom skripted guns. This is the official GunPVPMC Bot."
+            set author of the embed to "GunPVPMC"
+            set author icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            add field named "Help Commands:" with value "`!help`" to fields of embed
+            add field named "Utility Commands:" with value "`!tps`%nl%`!playerlist`%nl%`!playercount`%nl%`!discord`%nl%`!ip`%nl%`!stats <player>`" to fields of embed
+            add field named "Fun Commands:" with value "`!dice`%nl%`!100`%nl%`!coinflip`" to fields of embed            
+            add field named "Mining Commands:" with value "`!profile`%nl%`!mine`%nl%`!sell`" to fields of embed            
+            set footer of embed to "GunPVPMC"
+            set footer icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set timestamp of embed to now
+            set embed color of the embed to green
+        reply with last embed    
+        
+discord command tps:
+    prefixes: !
+    trigger:
+        make embed:
+            set title of embed to "__TPS__"
+            set description of embed to "TPS from last 1m: `%tps from last 1m%`%nl%TPS from last 5m: `%tps from last 5m%`%nl%TPS from last 15m: `%tps from last 15m%`"
+            set author of the embed to "GunPVPMC"
+            set author icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set footer of embed to "GunPVPMC"
+            set footer icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set timestamp of embed to now
+            set embed color of the embed to green
+        reply with last embed            
+        
+discord command playercount:
+    aliases: pc
+    prefixes: !
+    trigger:
+        make embed:
+            set title of embed to "__Playercount__"
+            set description of embed to "There are **%online player count%** players online."
+            set author of the embed to "GunPVPMC"
+            set author icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set footer of embed to "GunPVPMC"
+            set footer icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set timestamp of embed to now
+            set embed color of the embed to green
+        reply with last embed            
+
+discord command playerlist:
+    aliases: pl, list
+    prefixes: !
+    trigger:
+        make embed:
+            set title of embed to "__Playerlist__"
+            set {_players} to "%players%"
+            replace all "<none>" in {_players} with "There are no players on right now :("
+            set description of embed to {_players}
+            set author of the embed to "GunPVPMC"
+            set author icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set footer of embed to "GunPVPMC"
+            set footer icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set timestamp of embed to now
+            set embed color of the embed to green
+        reply with last embed    
+
+discord command discord:
+    prefixes: !
+    trigger:
+        make embed:
+            set title of embed to "__Discord Invite__"
+            set description of embed to "https://discord.gg/uJgwCQC"
+            set author of the embed to "GunPVPMC"
+            set author icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set footer of embed to "GunPVPMC"
+            set footer icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set timestamp of embed to now
+            set embed color of the embed to green
+        reply with last embed    
+
+discord command ip:
+    prefixes: !
+    trigger:
+        make embed:
+            set title of embed to "__IP__"
+            set description of embed to "Server IP: `GunPVPMC.minehut.gg`"
+            set author of the embed to "GunPVPMC"
+            set author icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set footer of embed to "GunPVPMC"
+            set footer icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set timestamp of embed to now
+            set embed color of the embed to green
+        reply with last embed    
+
+discord command stats [<offlineplayer>]:
+    prefixes: !
+    trigger:
+        make embed:
+            set title of embed to "__Player Stats__"
+            if arg-1 is not set:
+                set description of embed to "You need to mention a player!"
+            else:
+                if {GANG::ganglist::%{GANG::gang::%arg-1's uuid%}%} is set:
+                    set description of embed to "Player: %arg-1%%nl%Gang: %{GANG::ganglist::%{GANG::gang::%arg-1's uuid%}%}%%nl%Reputation: %{rep::%arg-1's uuid%}%%nl%Coins: %{coins::%arg-1's uuid%}%%nl%Kills: %{kills::%arg-1's uuid%}%%nl%Deaths: %{deaths::%arg-1's uuid%}%%nl%KDR: %{kdr::%arg-1's uuid%}%"
+                else:
+                    set description of embed to "Player: %arg-1%%nl%Reputation: %{rep::%arg-1's uuid%}%%nl%Coins: %{coins::%arg-1's uuid%}%%nl%Kills: %{kills::%arg-1's uuid%}%%nl%Deaths: %{deaths::%arg-1's uuid%}%%nl%KDR: %{kdr::%arg-1's uuid%}%"
+            set author of the embed to "GunPVPMC"
+            set author icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set footer of embed to "GunPVPMC"
+            set footer icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set timestamp of embed to now
+            set embed color of the embed to green
+        reply with last embed    
+
+discord command dice:
+    prefixes: !
+    trigger:
+        make embed:
+            set title of embed to "__Dice__"
+            set {_dice} to a random integer between 1 and 6
+            set description of embed to "The dice landed on **%{_dice}%**!"
+            set author of the embed to "GunPVPMC"
+            set author icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set footer of embed to "GunPVPMC"
+            set footer icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set timestamp of embed to now
+            set embed color of the embed to green
+        reply with last embed
+
+discord command 100:
+    prefixes: !
+    trigger:
+        make embed:
+            set title of embed to "__100__"
+            set {_100} to a random integer between 1 and 100
+            set description of embed to "The number is **%{_100}%**!"
+            set author of the embed to "GunPVPMC"
+            set author icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set footer of embed to "GunPVPMC"
+            set footer icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set timestamp of embed to now
+            set embed color of the embed to green
+        reply with last embed
+
+discord command coinflip:
+    prefixes: !
+    trigger:
+        make embed:
+            set title of embed to "__Coinflip__"
+            set {_coin} to a random integer between 1 and 2
+            if {_coin} = 1:
+                set description of embed to "The coin landed on **heads**!"
+            if {_coin} = 2:
+                set description of embed to "The coin landed on **tails**!"                
+            set author of the embed to "GunPVPMC"
+            set author icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set footer of embed to "GunPVPMC"
+            set footer icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set timestamp of embed to now
+            set embed color of the embed to green
+        reply with last embed
+
+discord command mine:
+    prefixes: !
+    trigger:
+        make embed:
+            set title of embed to "__Mining__"
+            set {_mine} to random integer between 0 and 10
+            set {stone::%event-user%} to {stone::%event-user%} + {_mine}
+            set {_mine2} to random integer between 0 and 2
+            set {iron::%event-user%} to {iron::%event-user%} + {_mine2}        
+            set {_mine3} to random integer between 0 and 3
+            set {copper::%event-user%} to {copper::%event-user%} + {_mine3}                    
+            set {_mine4} to random integer between 0 and 1
+            set {lapis::%event-user%} to {lapis::%event-user%} + {_mine4}        
+
+            set description of embed to "Stone Found: **%{_mine}%**%nl%Iron Found: **%{_mine2}%**%nl%Copper Found: **%{_mine3}%**%nl%Lapis Found: **%{_mine4}%** %nl%%nl%Total Stone: **%{stone::%event-user%}%**%nl%Total Iron: **%{iron::%event-user%}%**%nl%Total Copper: **%{copper::%event-user%}%**%nl%Total Lapis: **%{lapis::%event-user%}%**%nl%%nl%Coins: **%{coins::%event-user%}%**"    
+            set author of the embed to "GunPVPMC"
+            set author icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set footer of embed to "GunPVPMC"
+            set footer icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set timestamp of embed to now
+            set embed color of the embed to green
+        reply with last embed
+
+discord command profile:
+    prefixes: !
+    trigger:
+        make embed:
+            set title of embed to "__Mining__"
+            set description of embed to "Total Stone: **%{stone::%event-user%}%**%nl%Total Iron: **%{iron::%event-user%}%**%nl%Total Copper: **%{copper::%event-user%}%**%nl%Total Lapis: **%{lapis::%event-user%}%**%nl%%nl%Coins: **%{coins::%event-user%}%**"    
+            set author of the embed to "GunPVPMC"
+            set author icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set footer of embed to "GunPVPMC"
+            set footer icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set timestamp of embed to now
+            set embed color of the embed to green
+        reply with last embed        
+
+discord command sell:
+    prefixes: !
+    trigger:
+        make embed:
+            set title of embed to "__Mining__"
+            set {coins::%event-user%} to {coins::%event-user%}+ {stone::%event-user%}
+            set {coins::%event-user%} to {coins::%event-user%} + {iron::%event-user%}
+            set {coins::%event-user%} to {coins::%event-user%} + {copper::%event-user%}        
+            set {coins::%event-user%} to {coins::%event-user%} + {lapis::%event-user%}        
+            
+            set description of embed to "Stone Sold: **%{stone::%event-user%}%**%nl%Iron Sold: **%{iron::%event-user%}%**%nl%Copper Sold: **%{copper::%event-user%}%**%nl%Lapis Sold: **%{lapis::%event-user%}%**%nl%%nl%Total Stone: **0**%nl%Total Iron: **0**%nl%Total Copper: **0**%nl%Total Lapis: **0**%nl%%nl%Coins: **%{coins::%event-user%}%**"
+    
+            set {stone::%event-user%} to 0
+            set {iron::%event-user%} to 0
+            set {copper::%event-user%} to 0
+            set {lapis::%event-user%} to 0            
+
+            set author of the embed to "GunPVPMC"
+            set author icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set footer of embed to "GunPVPMC"
+            set footer icon of embed to "https://media.discordapp.net/attachments/730316752352706592/1328304815272628267/logo.png"
+            set timestamp of embed to now
+            set embed color of the embed to green
+        reply with last embed
+
+on join:
+    wait 0.2 seconds
+    post "%uncolored {title::%player's uuid%}% %player% joined GunPVPMC!" to channel with id "734316055127916605"        
+on quit:
+    wait 0.2 seconds
+    post "%uncolored {title::%player's uuid%}% %player% left GunPVPMC!" to channel with id "734316055127916605"    
+    
+on message receive:
+    if "%mention tag of event-channel%" contains "3431605512791660": 
+        set {_} to "&8[Discord] %event-user%&f: %uncolored event-message%"
+        if {_} contains "&8[Discord] Gun PVP MC":
+            stop
+        broadcast {_}
