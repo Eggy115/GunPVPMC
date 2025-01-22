@@ -1,0 +1,88 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 41929964-1afe-4a6f-b412-375bf9923f6e 58 64 -523"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Dealer] David":
+        if {storyquest1::%player's uuid%} is "&cIn Progress":
+            if {storyquest1::david::%player's uuid%} is not set:
+                set {storyquest1::david::%player's uuid%} to true
+
+                console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+                send "%nl%&6[&cDealer&6] David: Ah, you made it - I was beginning to worry.%nl%" to player
+                wait 2 seconds
+
+                console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+                send "%nl%&6[&cDealer&6] David: Now I've heard good things about you from Walter, so I'm trusting you not to mess this up.%nl%" to player
+                wait 2 seconds          
+
+                console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+                send "%nl%&6[&cDealer&6] David: I need you to take this product from here, to Daquavius.%nl%" to player
+                wait 2 seconds                          
+
+                console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+                send "%nl%&6[&cDealer&6] David: Daquavius and I have an... arrangement...%nl%" to player
+                wait 2 seconds 
+
+                console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+                send "%nl%&6[&cDealer&6] David: Alright, you good? Good.%nl%" to player
+                wait 2 seconds  
+
+                console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+                send "%nl%&6[&cDealer&6] David: You're gonna need some of the product.%nl%" to player
+                wait 2 seconds    
+
+                console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+                send "%nl%&6[&cDealer&6] David: You can either get some here, or from the greenhouse.%nl%" to player
+                wait 2 seconds                                
+
+                console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+                send "%nl%&6[&cDealer&6] David: Good luck.%nl%" to player
+                set {storyquest1::pickupweed::%player's uuid%} to "&cIn Progress"
+                set {storyquest1::pickupweedprogress::%player's uuid%} to 0
+                send "&7Gun&4PVP&aMC&6 Quests: Collect &c10 Cannabis plant&6!" to player
+                stop
+            if {storyquest1::pickupweed::%player's uuid%} is "&cIn Progess":
+                console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+                send "%nl%&6[&cDealer&6] David: Head over to the greenhouse tot collect the weed.%nl%" to player                
+                stop 
+            if {storyquest1::pickupweed::%player's uuid%} is "&cComplete":
+                console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+                send "%nl%&6[&cDealer&6] David: Alright, now you gotta go speak to Daquavius. He's at &c-150 70 -566&6.%nl%" to player                
+                stop                 
+            stop
+
+        set {_store} to a new chest inventory with 3 row with name "&6[&cDealer&6] David"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to fern named "&2Cannabi&2s &6[&cx1&6]"
+        set line 1 of lore of slot 10 of {_store} to "&6Potency: &c3&6/&c10"
+        set line 2 of lore of slot 10 of {_store} to "&6Vendor: &cDavid"
+        set line 4 of lore of slot 10 of {_store} to "&6Cost: &c100"              
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "&2Cannabi&2s &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 99:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cDealer&6] David: Nice."
+            set {_i} to fern named "&2Cannabi&2s"   
+            set line 1 of lore of {_i} to "&6Potency: &c3&6/&c10"
+            set line 2 of lore of {_i} to "&6Vendor: &cDavid"
+            give {_i} to player
+        else:
+            send "&6[&cDealer&6] David: ..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                        

@@ -1,0 +1,199 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport d58a2006-3d9d-4c26-8501-8036ea0d201b -8 65 -682"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Fisherman] Frank":
+        set {_store} to a new chest inventory with 5 row with name "&6[&cFisherman&6] Frank"
+        
+        set {_e} to 0
+        loop 45 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to 1 oak boat named "<##91754D>Oak Boat &6[&cx1&6]"
+        set line 2 of lore of slot 10 of {_store} to "&6Cost: &c100"
+
+        set slot 11 of {_store} to 1 spruce boat named "<##4e3b20>Spruce Boat &6[&cx1&6]"
+        set line 2 of lore of slot 11 of {_store} to "&6Cost: &c100"
+
+        set slot 12 of {_store} to 1 birch boat named "<##bba568>Birch Boat &6[&cx1&6]"
+        set line 2 of lore of slot 12 of {_store} to "&6Cost: &c100"
+
+        set slot 13 of {_store} to 1 dark oak boat named "<##3e2913>Dark Oak Boat &6[&cx1&6]"
+        set line 2 of lore of slot 13 of {_store} to "&6Cost: &c100"
+
+        set slot 14 of {_store} to 1 acacia boat named "<##ba683b>Acacia Boat &6[&cx1&6]"
+        set line 2 of lore of slot 14 of {_store} to "&6Cost: &c100"
+
+        set slot 15 of {_store} to 1 jungle boat named "<##896139>Jungle Boat &6[&cx1&6]"
+        set line 2 of lore of slot 15 of {_store} to "&6Cost: &c100"          
+
+        set slot 19 of {_store} to 1 raw cod named "<##c6a271>Raw Cod &6[&cx1&6]"
+        set line 2 of lore of slot 19 of {_store} to "&6Sell: &cDepends on Weight of Fish"   
+
+        set slot 20 of {_store} to 1 raw salmon named "<##ab3533>Raw Salmon &6[&cx1&6]"
+        set line 2 of lore of slot 20 of {_store} to "&6Sell: &cDepends on Weight of Fish"    
+
+        set slot 28 of {_store} to 1 fishing rod named "<##4c3916>Fishing Rod &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 2 of lore of slot 28 of {_store} to "&6Cost: &c1000"  
+
+        set slot 29 of {_store} to 1 trident named "<##349a84>Trident &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 2 of lore of slot 29 of {_store} to "&6Cost: &c1000"                                                                    
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##4c3916>Fishing Rod &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 1000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to 1 fishing rod named "<##4c3916>Fishing Rod" with nbt "{HideFlags:127,Unbreakable:1b}"
+            give player {_i}
+            send "&6[&cFisherman&6] Frank: Here ya go lad"
+        else:
+            send "&6[&cFisherman&6] Frank: This is an expensive rod, lad!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##349a84>Trident &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 1000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player trident named "<##349a84>Trident" with nbt "{HideFlags:127,Unbreakable:1b}"
+            send "&6[&cFisherman&6] Frank: Here ya go lad"
+        else:
+            send "&6[&cFisherman&6] Frank: This is an expensive trident, lad!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##c6a271>Raw Cod &6[&cx1&6]":
+        if player has 1 raw cod:
+            remove 1 raw cod from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 5
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cFisherman&6] Frank: That's some good cod right there"
+        else:
+            send "&6[&cFisherman&6] Frank: Nice one, lad, but I ain't fooled"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##ab3533>Raw Salmon &6[&cx1&6]":
+        if player has 1 raw salmon:
+            remove 1 raw salmon from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 5
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cFisherman&6] Frank: That's some good salmon right there"
+        else:
+            send "&6[&cFisherman&6] Frank: Nice one, lad, but I ain't fooled"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+
+
+on inventory click:
+    if name of event-item is "<##896139>Jungle Boat &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 99:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 jungle boat named "<##896139>Jungle Boat"
+            send "&6[&cFisherman&6] Frank: Here ya go lad"
+        else:
+            send "&6[&cFisherman&6] Frank: Gonna take a lot more than that to afford one of these mighty beasts!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##ba683b>Acacia Boat &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 99:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 acacia boat named "<##ba683b>Acacia Boat"
+            send "&6[&cFisherman&6] Frank: Here ya go lad"
+        else:
+            send "&6[&cFisherman&6] Frank: Gonna take a lot more than that to afford one of these mighty beasts!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##3e2913>Dark Oak Boat &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 99:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 dark oak boat named "<##3e2913>Dark Oak Boat"
+            send "&6[&cFisherman&6] Frank: Here ya go lad"
+        else:
+            send "&6[&cFisherman&6] Frank: Gonna take a lot more than that to afford one of these mighty beasts!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##bba568>Birch Boat &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 99:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 birch boat named "<##bba568>Birch Boat"
+            send "&6[&cFisherman&6] Frank: Here ya go lad"
+        else:
+            send "&6[&cFisherman&6] Frank: Gonna take a lot more than that to afford one of these mighty beasts!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##4e3b20>Spruce Boat &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 99:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 spruce boat named "<##4e3b20>Spruce Boat"
+            send "&6[&cFisherman&6] Frank: Here ya go lad"
+        else:
+            send "&6[&cFisherman&6] Frank: Gonna take a lot more than that to afford one of these mighty beasts!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##91754D>Oak Boat &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 99:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 oak boat named "<##91754D>Oak Boat"
+            send "&6[&cFisherman&6] Frank: Here ya go lad"
+        else:
+            send "&6[&cFisherman&6] Frank: Gonna take a lot more than that to afford one of these mighty beasts!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  

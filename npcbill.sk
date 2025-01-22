@@ -1,0 +1,122 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport c96e9b37-b328-40a8-aa6b-70d8f15e22a9 -69 70 -523"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Mob Boss] Bill":
+        if {storyquest2::%player's uuid%} is "&cIn Progress":
+            if {bill::%player's uuid%} is true:
+                stop
+            set {bill::%player's uuid%} to true
+
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cMob Boss&6] Bill: So you're the one Walter sent, huh?%nl%" to player
+            wait 2 seconds
+
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cMob Boss&6] Bill: You look like you'll do.%nl%" to player
+            wait 2 second        
+
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cMob Boss&6] Bill: This one lad, Orlando, has been causing trouble in my club.%nl%" to player
+            wait 2 second    
+            
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cMob Boss&6] Bill: I need you to take him to... somewhere discreet.%nl%" to player
+            wait 2 second       
+            
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cMob Boss&6] Bill: I've arranged a helicopter. Take him there.%nl%" to player
+            wait 2 second
+            
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cMob Boss&6] Bill: The co-ordinates are &c32 90 -537&6.%nl%" to player
+            wait 2 second    
+            console command "/makevillager %player%"             
+
+            stop
+        set {_store} to a new chest inventory with 3 row with name "&6[&cMob Boss&6] Bill"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to leather horse armor named "<##212029>M60 &6[&cx1&6]" with nbt "{display:{color:2170921},HideFlags:127}"
+        set line 1 of lore of slot 10 of {_store} to "&6Cartridge: &c100&6/&c100"
+        set line 2 of lore of slot 10 of {_store} to "&6Reload Time: &c5000ms"
+        set line 3 of lore of slot 10 of {_store} to "&6Damage: &c6"
+        set line 4 of lore of slot 10 of {_store} to "&6Ammunition: &c7.62x51mm"
+        set line 6 of lore of slot 10 of {_store} to "&6Cost: &c3500"
+
+        set slot 11 of {_store} to 50 gold nuggets named "<##FAD905>7.62x51mm &6[&cx50&6]"
+        set line 2 of lore of slot 11 of {_store} to "&6Cost: &c50"
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##212029>M60 &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop     
+        if {coins::%player's uuid%} > 3499:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 3500
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player leather horse armor named "<##212029>M60" with nbt "{display:{color:2170921},HideFlags:127,AttributeModifiers:[{AttributeName:""generic.movement_speed"",Name:""generic.movement_speed"",Amount:-0.03,Operation:0,UUID:[I;169330485,-1820177759,-1813702515,-1975406584],Slot:""mainhand""}]}"
+            send "&6[&cMob Boss&6] Bill: It is a good a gun..."
+        else:
+            send "&6[&cMob Boss&6] Bill: You think this is a joke?"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+
+
+on inventory click:
+    if name of event-item is "<##FAD905>7.62x51mm &6[&cx50&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop     
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 50 gold nugget named "<##FAD905>7.62x51mm"
+            send "&6[&cMob Boss&6] Bill: It is a good ammunition..."
+        else:
+            send "&6[&cMob Boss&6] Bill: You think this is a joke?"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+
+command /makevillager [<player>]:
+    permission: op
+    trigger:
+        set {_n} to nbt compound from "{Tags:[""ORLANDO%arg-1%""],NoAI:1,NoGravity:1,Invulnerable:1}"
+        spawn 1 villager at arg-1 with nbt {_n}
+        set name of last spawned villager to "&6[&cSuspicious Citizen]&6 Orlando" 
+        make last spawned villager ride arg-1
+        
+on death:
+    if victim is player:
+        if {bill::%victim's uuid%} is true:
+            if {storyquest2::%victim's uuid%} is "&cIn Progress":
+                delete {storyquest2::%victim's uuid%}
+                delete {bill::%victim's uuid%}
+                send "%nl%&cQuest failed!%nl%" to victim
+                send title "&cQuest failed!" to victim
+                console command "/kill @e[tag=ORLANDO%victim%]"
+                console command "/execute at %victim% run playsound minecraft:entity.enderman.teleport master %victim% ~ ~ ~ 10000 0"
+
+
+every 10 seconds:
+    loop all players:
+        if {bill::%loop-player's uuid%} is true:
+            if {storyquest2::%loop-player's uuid%} is "&cIn Progress":   
+                if distance between {helicopter} and loop-player < 5:    
+                    console command "/kill @e[tag=ORLANDO%loop-player%]"     
+                    set {storyquest2::%loop-player's uuid%} to "&cComplete"  
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cThe ""Non-Consensual Human Delivery Service""&6!" to loop-player
+                    add 500 to {LEVEL.exp::%loop-player's uuid%}
+                    console command "/execute at %loop-player% run playsound block.note_block.pling master %loop-player% ~ ~ ~ 100000 2"                                                         

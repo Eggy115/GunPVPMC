@@ -1,0 +1,64 @@
+on right click with red concrete:
+    if name of event-item is "&4Car":
+        remove 1 red concrete from player
+#        console command "/execute at %player% run summon pig ~ ~ ~ {Attributes:[{Name:generic.movement_speed,Base:0.1}],Silent:1b,Invulnerable:1b,Saddle:1b,Tags:[""CAR"",""CARPIG""]}"
+ 
+
+        set {_n} to nbt compound from "{Attributes:[{Name:generic.movement_speed,Base:1}],Silent:1b,Invulnerable:1b,Saddle:1b,Tags:[""CAR"",""CARPIG""]}"
+        spawn 1 pig at player's location with nbt {_n}
+        set {carid::%uuid of last spawned pig%} to random integer from 10000 to 99999
+        add "%{carid::%uuid of last spawned pig%}%" to the scoreboard tags of last spawned pig
+        set {_material} to "red_concrete"
+        #SEAT
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{carid::%uuid of last spawned pig%}%"",""CAR"",""CARA""],ArmorItems:[{},{},{},{id:""minecraft:smooth_stone_slab"",Count:1b}]}"
+
+        #BASE
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{carid::%uuid of last spawned pig%}%"",""CAR"",""CAR1""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{carid::%uuid of last spawned pig%}%"",""CAR"",""CAR2""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{carid::%uuid of last spawned pig%}%"",""CAR"",""CAR3""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{carid::%uuid of last spawned pig%}%"",""CAR"",""CAR4""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{carid::%uuid of last spawned pig%}%"",""CAR"",""CAR5""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{carid::%uuid of last spawned pig%}%"",""CAR"",""CAR6""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{carid::%uuid of last spawned pig%}%"",""CAR"",""CAR7""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{carid::%uuid of last spawned pig%}%"",""CAR"",""CAR8""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"                                                                
+
+        #SHOES
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{carid::%uuid of last spawned pig%}%"",""CAR"",""CARSHOES1""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{carid::%uuid of last spawned pig%}%"",""CAR"",""CARSHOES2""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{carid::%uuid of last spawned pig%}%"",""CAR"",""CARSHOES3""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{carid::%uuid of last spawned pig%}%"",""CAR"",""CARSHOES4""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{carid::%uuid of last spawned pig%}%"",""CAR"",""CARSHOES5""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{carid::%uuid of last spawned pig%}%"",""CAR"",""CARSHOES6""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+
+        console command "/effect give @e[tag=CAR] invisibility 100000 99 true"
+      
+
+command /carkill:
+    permission: op
+    trigger:
+        console command "/tp @e[tag=CAR] 0 -10000 0"
+
+every 1 tick in "GunPVPMC":
+    loop all pigs:
+        if name of loop-entity is not "&6Seat":
+            if loop-entity has scoreboard tag "CARPIG":
+                # SEAT
+                console command "/execute at @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{carid::%loop-value's uuid%}%,tag=CARA] ~ ~-0.5 ~"
+
+                # BASE
+                console command "/execute at @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{carid::%loop-value's uuid%}%,tag=CAR1] ~.5 ~-1 ~"  
+                console command "/execute at @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{carid::%loop-value's uuid%}%,tag=CAR2] ~.5 ~-1 ~.5"  
+                console command "/execute at @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{carid::%loop-value's uuid%}%,tag=CAR3] ~.5 ~-1 ~-.5"  
+                console command "/execute at @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{carid::%loop-value's uuid%}%,tag=CAR4] ~-.5 ~-1 ~"  
+                console command "/execute at @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{carid::%loop-value's uuid%}%,tag=CAR5] ~-.5 ~-1 ~.5"  
+                console command "/execute at @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{carid::%loop-value's uuid%}%,tag=CAR6] ~-.5 ~-1 ~-.5"  
+                console command "/execute at @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{carid::%loop-value's uuid%}%,tag=CAR7] ~ ~-1 ~.5"  
+                console command "/execute at @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{carid::%loop-value's uuid%}%,tag=CAR8] ~ ~-1 ~-.5"                
+
+                # SHOES                                                                         
+                console command "/execute at @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{carid::%loop-value's uuid%}%,tag=CARSHOES1] ~.6 ~-1.5 ~"  
+                console command "/execute at @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{carid::%loop-value's uuid%}%,tag=CARSHOES2] ~.6 ~-1.5 ~.6"  
+                console command "/execute at @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{carid::%loop-value's uuid%}%,tag=CARSHOES3] ~.6 ~-1.5 ~-.6"  
+                console command "/execute at @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{carid::%loop-value's uuid%}%,tag=CARSHOES4] ~-.6 ~-1.5 ~"  
+                console command "/execute at @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{carid::%loop-value's uuid%}%,tag=CARSHOES5] ~-.6 ~-1.5 ~.6"  
+                console command "/execute at @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=CARPIG,tag=%{carid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{carid::%loop-value's uuid%}%,tag=CARSHOES6] ~-.6 ~-1.5 ~-.6"  

@@ -1,0 +1,165 @@
+command /topkills [<text>]:
+    cooldown: 10 minutes
+    cooldown message: &7Gun&4PVP&aMC&6: Please wait [&c%remaining time%&6] before using this again!
+    trigger:
+        stop
+        loop {kills::*}:
+            add 1 to {_size}
+            if {_low.to.high.list::%loop-value%} is not set:
+                set {_low.to.high.list::%loop-value%} to loop-index
+            else:
+                set {_n} to 0
+                loop {_size} times:
+                    set {_n} to {_n}+1
+                    {_low.to.high.list::%loop-value-1%.%{_n}%} is not set
+                    set {_low.to.high.list::%loop-value-1%.%{_n}%} to loop-index
+                    stop loop
+        wait 1 tick
+        set {_n} to size of {_low.to.high.list::*}
+        loop {_low.to.high.list::*}:
+            set {_high.to.low.list::%{_n}%} to loop-value
+            set {_n} to {_n}-1
+        wait 1 tick
+        send "&7 "
+        send "&7Gun&4PVP&aMC&6 Top Kills:"
+        loop {_high.to.low.list::*}:
+            add 1 to {_result}
+            set {_player} to loop-value parsed as an offline player
+            set {_uuid} to {_player}'s uuid
+            send "&6%{_result}%&6. &c%{title::%{_uuid}%}% %{_player}% &6» &c%{kills::%loop-value%}% &6Kills" to player
+            if {_result} is 10:
+                send "&7 "
+                stop
+
+command /topdeaths [<text>]:
+    cooldown: 10 minutes
+    cooldown message: &7Gun&4PVP&aMC&6: Please wait [&c%remaining time%&6] before using this again!
+    trigger:
+        stop
+        loop {deaths::*}:
+            add 1 to {_size}
+            if {_low.to.high.list::%loop-value%} is not set:
+                set {_low.to.high.list::%loop-value%} to loop-index
+            else:
+                set {_n} to 0
+                loop {_size} times:
+                    set {_n} to {_n}+1
+                    {_low.to.high.list::%loop-value-1%.%{_n}%} is not set
+                    set {_low.to.high.list::%loop-value-1%.%{_n}%} to loop-index
+                    stop loop
+        wait 1 tick
+        set {_n} to size of {_low.to.high.list::*}
+        loop {_low.to.high.list::*}:
+            set {_high.to.low.list::%{_n}%} to loop-value
+            set {_n} to {_n}-1
+        wait 1 tick
+        send "&7 "
+        send "&7Gun&4PVP&aMC&6 Top Deaths:"
+        loop {_high.to.low.list::*}:
+            add 1 to {_result}
+            set {_player} to loop-value parsed as an offline player
+            set {_uuid} to {_player}'s uuid
+            send "&6%{_result}%&6. &c%{title::%{_uuid}%}% %{_player}% &6» &c%{deaths::%loop-value%}% &6Deaths" to player
+            if {_result} is 10:
+                send "&7 "
+                stop
+
+command /topcoins [<text>]:
+    cooldown: 10 minutes
+    cooldown message: &7Gun&4PVP&aMC&6: Please wait [&c%remaining time%&6] before using this again!
+    trigger:
+        stop
+        loop {coins::*}:
+            add 1 to {_size}
+            if {_low.to.high.list::%loop-value%} is not set:
+                set {_low.to.high.list::%loop-value%} to loop-index
+            else:
+                set {_n} to 0
+                loop {_size} times:
+                    set {_n} to {_n}+1
+                    {_low.to.high.list::%loop-value-1%.%{_n}%} is not set
+                    set {_low.to.high.list::%loop-value-1%.%{_n}%} to loop-index
+                    stop loop
+        wait 1 tick
+        set {_n} to size of {_low.to.high.list::*}
+        loop {_low.to.high.list::*}:
+            set {_high.to.low.list::%{_n}%} to loop-value
+            set {_n} to {_n}-1
+        wait 1 tick
+        send "&7 "
+        send "&7Gun&4PVP&aMC&6 Top Coins:"
+        loop {_high.to.low.list::*}:
+            add 1 to {_result}
+            set {_player} to loop-value parsed as an offline player
+            set {_uuid} to {_player}'s uuid
+            send "&6%{_result}%&6. &c%{title::%{_uuid}%}% %{_player}% &6» &c%{coins::%loop-value%}% &6Coins" to player
+            if {_result} is 10:
+                send "&7 "
+                stop                            
+
+command /topbank [<text>]:
+    cooldown: 10 minutes
+    cooldown message: &7Gun&4PVP&aMC&6: Please wait [&c%remaining time%&6] before using this again!
+    trigger:
+        stop
+        loop {bank::*}:
+            add 1 to {_size}
+            if {_low.to.high.list::%loop-value%} is not set:
+                set {_low.to.high.list::%loop-value%} to loop-index
+            else:
+                set {_n} to 0
+                loop {_size} times:
+                    set {_n} to {_n}+1
+                    {_low.to.high.list::%loop-value-1%.%{_n}%} is not set
+                    set {_low.to.high.list::%loop-value-1%.%{_n}%} to loop-index
+                    stop loop
+        wait 1 tick
+        set {_n} to size of {_low.to.high.list::*}
+        loop {_low.to.high.list::*}:
+            set {_high.to.low.list::%{_n}%} to loop-value
+            set {_n} to {_n}-1
+        wait 1 tick
+        send "&7 "
+        send "&7Gun&4PVP&aMC&6 Top Bank:"
+        loop {_high.to.low.list::*}:
+            add 1 to {_result}
+            set {_player} to loop-value parsed as an offline player
+            set {_uuid} to {_player}'s uuid
+            send "&6%{_result}%&6. &c%{title::%{_uuid}%}% %{_player}% &6» &c%{bank::%loop-value%}% &6Bank" to player
+            if {_result} is 10:
+                send "&7 "
+                stop  
+
+command /topreputation [<text>]:
+    cooldown: 10 minutes
+    cooldown message: &7Gun&4PVP&aMC&6: Please wait [&c%remaining time%&6] before using this again!
+    trigger:
+        stop
+        loop {rep::*}:
+            add 1 to {_size}
+            if {_low.to.high.list::%loop-value%} is not set:
+                set {_low.to.high.list::%loop-value%} to loop-index
+            else:
+                set {_n} to 0
+                loop {_size} times:
+                    set {_n} to {_n}+1
+                    {_low.to.high.list::%loop-value-1%.%{_n}%} is not set
+                    set {_low.to.high.list::%loop-value-1%.%{_n}%} to loop-index
+                    stop loop
+        wait 1 tick
+        set {_n} to size of {_low.to.high.list::*}
+        loop {_low.to.high.list::*}:
+            set {_high.to.low.list::%{_n}%} to loop-value
+            set {_n} to {_n}-1
+        wait 1 tick
+        send "&7 "
+        send "&7Gun&4PVP&aMC&6 Top Reputation:"
+        loop {_high.to.low.list::*}:
+            add 1 to {_result}
+            set {_player} to loop-value parsed as an offline player
+            set {_uuid} to {_player}'s uuid
+            send "&6%{_result}%&6. &c%{title::%{_uuid}%}% %{_player}% &6» &c%{rep::%loop-value%}% &6Reputation" to player
+            if {_result} is 10:
+                send "&7 "
+                stop                         
+

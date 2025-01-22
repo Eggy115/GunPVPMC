@@ -1,0 +1,42 @@
+command /meteors:
+    permission: op
+    trigger:
+        loop all players:
+            set {_y} to loop-player's y-coordinate
+            if {_y} > 40:         
+                send title "&7Gun&4PVP&aMC &6Events" with subtitle "&6A meteor shower is incoming!" to loop-player for 2 seconds
+        broadcast "&7Gun&4PVP&aMC&6 Events: &6A meteor show is incoming!"
+        loop all players:
+            set {_r} to random integer between 10 and 20
+            set {_w} to random integer between 90 and 110
+            set {_r} to {_r} / 100
+            console command "/execute at %loop-player% run summon fireball ~ ~%{_w}% ~-%{_w}% {ExplosionPower:5b,power:[0.0,-%{_r}%,%{_r}%]}"        
+            set {_r} to random integer between 10 and 20
+            set {_w} to random integer between 90 and 110
+            set {_r} to {_r} / 100
+            console command "/execute at %loop-player% run summon fireball ~ ~%{_w}% ~%{_w}% {ExplosionPower:5b,power:[0.0,-%{_r}%,-%{_r}%]}"        
+            set {_r} to random integer between 10 and 20
+            set {_w} to random integer between 90 and 110
+            set {_r} to {_r} / 100
+            console command "/execute at %loop-player% run summon fireball ~%{_w}% ~%{_w}% ~ {ExplosionPower:5b,power:[-%{_r}%,-%{_r}%,0.0]}"        
+            set {_r} to random integer between 10 and 20
+            set {_w} to random integer between 90 and 110
+            set {_r} to {_r} / 100
+            console command "/execute at %loop-player% run summon fireball ~-%{_w}% ~%{_w}% ~ {ExplosionPower:5b,power:[%{_r}%,-%{_r}%,0.0]}"        
+            set {_r} to random integer between 10 and 20
+            set {_w} to random integer between 90 and 110
+            set {_r} to {_r} / 100
+            console command "/execute at %loop-player% run summon fireball ~%{_w}% ~%{_w}% ~%{_w}% {ExplosionPower:5b,power:[-%{_r}%,-%{_r}%,-%{_r}%]}"        
+            set {_r} to random integer between 10 and 20
+            set {_w} to random integer between 90 and 110
+            set {_r} to {_r} / 100
+            console command "/execute at %loop-player% run summon fireball ~%{_w}% ~%{_w}% ~-%{_w}% {ExplosionPower:5b,power:[-%{_r}%,-%{_r}%,%{_r}%]}"        
+            set {_r} to random integer between 10 and 20
+            set {_w} to random integer between 90 and 110
+            set {_r} to {_r} / 100
+            console command "/execute at %loop-player% run summon fireball ~-%{_w}% ~%{_w}% ~%{_w}% {ExplosionPower:5b,power:[%{_r}%,-%{_r}%,-%{_r}%]}"
+            set {_r} to random integer between 10 and 20
+            set {_w} to random integer between 90 and 110        
+            set {_r} to {_r} / 100
+            console command "/execute at %loop-player% run summon fireball ~-%{_w}% ~%{_w}% ~-%{_w}% {ExplosionPower:10b,power:[%{_r}%,-%{_r}%,%{_r}%]}"
+

@@ -1,0 +1,78 @@
+command /lookup:
+    trigger:
+        set {_currentPitch} to pitch of player
+        set {_yaw} to yaw of player        
+        set {_currentPitch} to {_currentpitch} - 5
+        console command "/execute at %player% as %player% run tp %player% ~ ~ ~ %{_yaw}% %{_currentpitch}%"
+
+on right click with diamond horse armor:
+    make player execute "/lookup"
+
+on damage:  
+    attacker is player:
+        set {_vloc.%victim%} to victim's y coordinate
+        set {_ploc.%projectile%} to projectile's y coordinate
+        if {_ploc.%projectile%} is greater than or equal to {_vloc.%victim%} + 1.5:
+            send "headshot" to attacker
+
+command /tab [<text>]:
+    permission: op
+    trigger:
+        set player's tablist name to arg-1
+
+on spawn of villager:
+    set event-entity's tablist name to "michael"
+
+command /fr:
+    trigger:
+        send {coins::7e6018d7-67c3-4127-acec-955a18ecdad7} to player
+        send {deaths::7e6018d7-67c3-4127-acec-955a18ecdad7} to player
+        send {kills::7e6018d7-67c3-4127-acec-955a18ecdad7} to player
+        send {rep::7e6018d7-67c3-4127-acec-955a18ecdad7} to player
+
+on right click on villager:
+    if player is holding diamond block:
+        make event-entity ride player        
+
+on join:
+
+    if helmet of player is netherite helmet:
+        set {_i} to netherite helmet named "&8Stab-Proof Helmet" with nbt "{HideFlags:127,Unbreakable:1b}"
+        set line 1 of lore of {_i} to "&6Armour: &c3"
+        set helmet of player to {_i}
+
+    if chestplate of player is netherite chestplate:
+        set {_i} to netherite chestplate named "&8Stab-Proof Vest" with nbt "{HideFlags:127,Unbreakable:1b}"
+        set line 1 of lore of {_i} to "&6Armour: &c8"
+        set chestplate of player to {_i}
+
+    if leggings of player is netherite leggings:
+        set {_i} to netherite leggings named "&8Stab-Proof Leggings" with nbt "{HideFlags:127,Unbreakable:1b}"
+        set line 1 of lore of {_i} to "&6Armour: &c6"
+        set leggings of player to {_i}
+
+    if boots of player is netherite boots:
+        set {_i} to netherite boots named "&8Stab-Proof Boots" with nbt "{HideFlags:127,Unbreakable:1b}"
+        set line 1 of lore of {_i} to "&6Armour: &c3"
+        set boots of player to {_i}
+        
+    if player has 1 netherite helmet named "&8Bullet-Proof Helmet":
+        set {_i} to netherite helmet named "&8Stab-Proof Helmet" with nbt "{HideFlags:127,Unbreakable:1b}"
+        set line 1 of lore of {_i} to "&6Armour: &c3"
+        give player {_i}    
+    if player has 1 netherite chestplate named "&8Bullet-Proof Vest":
+        set {_i} to netherite chestplate named "&8Stab-Proof Vest" with nbt "{HideFlags:127,Unbreakable:1b}"
+        set line 1 of lore of {_i} to "&6Armour: &c8"
+        give player {_i}  
+    if player has 1 netherite leggings named "&8Bullet-Proof Leggings":
+        set {_i} to netherite leggings named "&8Stab-Proof Leggings" with nbt "{HideFlags:127,Unbreakable:1b}"
+        set line 1 of lore of {_i} to "&6Armour: &c6"
+        give player {_i} 
+    if player has 1 netherite boots named "&8Bullet-Proof Boots":
+        set {_i} to netherite boots named "&8Stab-Proof Boots" with nbt "{HideFlags:127,Unbreakable:1b}"
+        set line 1 of lore of {_i} to "&6Armour: &c3"
+        give player {_i}                            
+
+on mount:
+    if event-entity is villager:
+        cancel event        

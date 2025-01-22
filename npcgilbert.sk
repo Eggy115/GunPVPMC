@@ -1,0 +1,252 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport a932cb71-e6c0-4d93-ac4c-3c578ac05922 -23 70 -571"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Munitions Dealer] Gilbert":
+        set {_store} to a new chest inventory with 4 row with name "&6[&cMunitions Dealer&6] Gilbert"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to 64 gold nuggets named "<##FFC300>9x19mm &6[&cx64&6]"
+        set line 2 of lore of slot 10 of {_store} to "&6Cost: &c50"
+
+        set slot 11 of {_store} to 64 iron nuggets named "<##B3B3B3>7.62x39mm &6[&cx64&6]"
+        set line 2 of lore of slot 11 of {_store} to "&6Cost: &c50"
+
+        set slot 12 of {_store} to 64 gold nuggets named "<##FAD905>7.62x51mm &6[&cx64&6]"
+        set line 2 of lore of slot 12 of {_store} to "&6Cost: &c50"  
+
+        set slot 13 of {_store} to 64 gold nuggets named "<##FFCB3D>12x70mm &6[&cx64&6]"
+        set line 2 of lore of slot 13 of {_store} to "&6Cost: &c50" 
+
+        set slot 14 of {_store} to 64 gold nuggets named "<##CFA827>11.43×33mmR &6[&cx64&6]"
+        set line 2 of lore of slot 14 of {_store} to "&6Cost: &c50"   
+
+        set slot 15 of {_store} to 64 gold nuggets named "<##FFE666>5.56x45mm &6[&cx64&6]"
+        set line 2 of lore of slot 15 of {_store} to "&6Cost: &c50" 
+        
+
+        set slot 16 of {_store} to 64 firework rocket named "<##FF4400>Flare &6[&cx64&6]" with nbt "{HideFlags:127}"
+        set line 2 of lore of slot 16 of {_store} to "&6Cost: &c50"                
+
+        set slot 19 of {_store} to 16 gold nuggets named "<##FFC300>9x19mm &6[&cx16&6]"
+        set line 2 of lore of slot 19 of {_store} to "&6Sell: &c10"
+
+        set slot 20 of {_store} to 16 iron nuggets named "<##B3B3B3>7.62x39mm &6[&cx16&6]"
+        set line 2 of lore of slot 20 of {_store} to "&6Sell: &c10"
+
+        set slot 21 of {_store} to 16 gold nuggets named "<##FAD905>7.62x51mm &6[&cx16&6]"
+        set line 2 of lore of slot 21 of {_store} to "&6Sell: &c10"  
+
+        set slot 22 of {_store} to 16 gold nuggets named "<##FFCB3D>12x70mm &6[&cx16&6]"
+        set line 2 of lore of slot 22 of {_store} to "&6Sell: &c10"    
+
+        set slot 23 of {_store} to 16 gold nuggets named "<##CFA827>11.43×33mmR &6[&cx16&6]"
+        set line 2 of lore of slot 23 of {_store} to "&6Sell: &c10"  
+
+        set slot 24 of {_store} to 16 gold nuggets named "<##FFE666>5.56x45mm &6[&cx16&6]"
+        set line 2 of lore of slot 24 of {_store} to "&6Sell: &c10"          
+
+        set slot 25 of {_store} to 16 firework rocket named "<##FF4400>Flare &6[&cx16&6]" with nbt "{HideFlags:127}"
+        set line 2 of lore of slot 25 of {_store} to "&6Sell: &c10"                
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##FFE666>5.56x45mm &6[&cx16&6]":
+        if player has 16 gold nugget named "<##FFE666>5.56x45mm":
+            remove 16 gold nugget named "<##FFE666>5.56x45mm" from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 10
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cMunitions Dealer&6] Gilbert: Thankyou, have a wonderful day :)"
+        else:
+            send "&6[&cMunitions Dealer&6] Gilbert: Unfortunately, you don't actually have any ammunition..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+
+on inventory click:
+    if name of event-item is "<##FFC300>9x19mm &6[&cx16&6]":
+        if player has 16 gold nugget named "<##FFC300>9x19mm":
+            remove 16 gold nugget named "<##FFC300>9x19mm" from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 10
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cMunitions Dealer&6] Gilbert: Thankyou, have a wonderful day :)"
+        else:
+            send "&6[&cMunitions Dealer&6] Gilbert: Unfortunately, you don't actually have any ammunition..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##B3B3B3>7.62x39mm &6[&cx16&6]":
+        if player has 16 iron nugget named "<##B3B3B3>7.62x39mm":
+            remove 16 iron nugget named "<##B3B3B3>7.62x39mm" from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 10
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cMunitions Dealer&6] Gilbert: Thankyou, have a wonderful day :)"
+        else:
+            send "&6[&cMunitions Dealer&6] Gilbert: Unfortunately, you don't actually have any ammunition..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##FAD905>7.62x51mm &6[&cx16&6]":
+        if player has 16 gold nugget named "<##FAD905>7.62x51mm":
+            remove 16 gold nugget named "<##FAD905>7.62x51mm" from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 10
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cMunitions Dealer&6] Gilbert: Thankyou, have a wonderful day :)"
+        else:
+            send "&6[&cMunitions Dealer&6] Gilbert: Unfortunately, you don't actually have any ammunition..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##FFCB3D>12x70mm &6[&cx16&6]":
+        if player has 16 gold nugget named "<##FFCB3D>12x70mm":
+            remove 16 gold nugget named "<##FFCB3D>12x70mm" from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 10
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cMunitions Dealer&6] Gilbert: Thankyou, have a wonderful day :)"
+        else:
+            send "&6[&cMunitions Dealer&6] Gilbert: Unfortunately, you don't actually have any ammunition..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##CFA827>11.43×33mmR &6[&cx16&6]":
+        if player has 16 gold nugget named "<##CFA827>11.43×33mmR":
+            remove 16 gold nugget named "<##CFA827>11.43×33mmR" from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 10
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cMunitions Dealer&6] Gilbert: Thankyou, have a wonderful day :)"
+        else:
+            send "&6[&cMunitions Dealer&6] Gilbert: Unfortunately, you don't actually have any ammunition..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##FF4400>Flare &6[&cx16&6]":
+        if player has 16 firework rocket named "<##FF4400>Flare":
+            remove 16 firework rocket named "<##FF4400>Flare" from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 10
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cMunitions Dealer&6] Gilbert: Thankyou, have a wonderful day :)"
+        else:
+            send "&6[&cMunitions Dealer&6] Gilbert: Unfortunately, you don't actually have any flares..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##FFE666>5.56x45mm &6[&cx64&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 64 gold nugget named "<##FFE666>5.56x45mm" with nbt "{HideFlags:127}"
+            send "&6[&cMunitions Dealer&6] Gilbert: There you go, have a wonderful day :)"
+        else:
+            send "&6[&cMunitions Dealer&6] Gilbert: I'm really sorry, but you can't quite afford that..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+
+on inventory click:
+    if name of event-item is "<##FF4400>Flare &6[&cx64&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 64 firework rocket named "<##FF4400>Flare" with nbt "{HideFlags:127}"
+            send "&6[&cMunitions Dealer&6] Gilbert: There you go, have a wonderful day :)"
+        else:
+            send "&6[&cMunitions Dealer&6] Gilbert: I'm really sorry, but you can't quite afford that..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+
+on inventory click:
+    if name of event-item is "<##CFA827>11.43×33mmR &6[&cx64&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 64 gold nugget named "<##CFA827>11.43×33mmR"
+            send "&6[&cMunitions Dealer&6] Gilbert: There you go, have a wonderful day :)"
+        else:
+            send "&6[&cMunitions Dealer&6] Gilbert: I'm really sorry, but you can't quite afford that..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+
+on inventory click:
+    if name of event-item is "<##FFC300>9x19mm &6[&cx64&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 64 gold nugget named "<##FFC300>9x19mm"
+            send "&6[&cMunitions Dealer&6] Gilbert: There you go, have a wonderful day :)"
+        else:
+            send "&6[&cMunitions Dealer&6] Gilbert: I'm really sorry, but you can't quite afford that..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##B3B3B3>7.62x39mm &6[&cx64&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 64 iron nugget named "<##B3B3B3>7.62x39mm"
+            send "&6[&cMunitions Dealer&6] Gilbert: There you go, have a wonderful day :)"        
+        else:
+            send "&6[&cMunitions Dealer&6] Gilbert: I'm really sorry, but you can't quite afford that..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                        
+
+on inventory click:
+    if name of event-item is "<##FAD905>7.62x51mm &6[&cx64&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 64 gold nugget named "<##FAD905>7.62x51mm"
+            send "&6[&cMunitions Dealer&6] Gilbert: There you go, have a wonderful day :)"        
+        else:
+            send "&6[&cMunitions Dealer&6] Gilbert: I'm really sorry, but you can't quite afford that..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                        
+
+on inventory click:
+    if name of event-item is "<##FFCB3D>12x70mm &6[&cx64&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 64 gold nugget named "<##FFCB3D>12x70mm"
+            send "&6[&cMunitions Dealer&6] Gilbert: There you go, have a wonderful day :)"        
+        else:
+            send "&6[&cMunitions Dealer&6] Gilbert: I'm really sorry, but you can't quite afford that..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                        

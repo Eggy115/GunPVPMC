@@ -1,0 +1,469 @@
+on death:
+    if victim is a player:
+        add {killstreak::%victim's uuid%} to {coins::%attacker's uuid%}
+        set {killstreak::%victim's uuid%} to 0
+        add 1 to {deaths::%victim's uuid%}
+        set {kdr::%victim's uuid%} to {kills::%victim's uuid%} / {deaths::%victim's uuid%}
+        
+        set {_r} to 0
+        if {coins::%victim's uuid%} > 10:
+            set {_r} to random integer between 1 and 10
+        if {coins::%victim's uuid%} > 10000:
+            set {_r} to random integer between 1 and 100                        
+        remove {_r} from {coins::%victim's uuid%}
+
+    if attacker is a player:
+        if {GANG::gang::%attacker's uuid%} is set:
+            add 1 to {gangkills::%{GANG::gang::%attacker's uuid%}%}
+
+            set {_x} to attacker's x coordinate
+            set {_y} to attacker's y coordinate
+            set {_z} to attacker's z coordinate
+            set {_truerg} to "Park"
+            if {_z} < -440:
+                set {_truerg} to "Outer City"        
+            if {_z} < -510:
+                set {_truerg} to "City"
+            if {_x} < -65:
+                set {_truerg} to "Courtyard"           
+            if {_x} < -160:
+                set {_truerg} to "Highrises"                    
+            if {_z} < -580:
+                set {_truerg} to "Beach"
+            if {_z} < -610:
+                set {_truerg} to "Ocean"
+            if {_z} < -670:
+                set {_truerg} to "Deep Ocean"  
+            if {_y} > 80:
+                set {_truerg} to "Rooftops"      
+            if {_z} > -410:
+                set {_truerg} to "Docks"    
+            if {_x} > 100:
+                set {_truerg} to "East Coast"                                    
+            if {_y} < 40:
+                if {_z} > -610:
+                    set {_truerg} to "Walter's Bunker"    
+
+            add 1 to {gangkills.%{_truerg}%::%{GANG::gang::%attacker's uuid%}%}    
+            if {gangkills.%{_truerg}%::%{GANG::gang::%attacker's uuid%}%} > {topkills.%{_truerg}%}:
+                set {topkills.%{_truerg}%} to {gangkills.%{_truerg}%::%{GANG::gang::%attacker's uuid%}%}
+                if {topgang.%{_truerg}%} is {GANG::gang::%attacker's uuid%}:
+                    stop
+                set {topgang.%{_truerg}%} to {GANG::gang::%attacker's uuid%}
+                set {topgangdisplay.%{_truerg}%} to {GANG::ganglist::%{GANG::gang::%attacker's uuid%}%}
+                broadcast "&7Gun&4PVP&aMC&6: The top gang in &c%{_truerg}%&6 is now &c%{topgangdisplay.%{_truerg}%}%&6!"
+
+on damage:
+    wait 1 ticks
+    set victim's invulnerability ticks to 5
+
+command /ticks [<integer>]:
+    permission: op
+    trigger:
+        if arg-1 is set:
+            set {ticks} to arg-1
+        else:
+            send {ticks} to player
+
+on respawn:
+    set the player's invulnerability ticks to {ticks}
+    wait 1 ticks
+    set {_distance} to 10
+    if {deaths::%player's uuid%} > 5:
+        set {_distance} to 50
+    if {deaths::%player's uuid%} > 99:
+        set {_distance} to 100    
+    if {deaths::%player's uuid%} > 499:
+        set {_distance} to 120
+    console command "/spreadplayers -38 -588 1 %{_distance}% false %player%"            
+    console command "/effect give %player% blindness 1 9 true"    
+    console command "/effect give %player% invisibility 1 9 true"
+    console command "/effect give %player% resistance 1 9 true"
+    console command "/effect give %player% weakness 3 9 true"
+    console command "/effect give %player% saturation 1 99 true"
+    if {healthboost1::%player's uuid%} is true:
+        console command "/effect give %player% health_boost 100000 0 true"    
+        if {healthboost2::%player's uuid%} is true:
+            console command "/effect give %player% health_boost 100000 1 true"  
+            if {healthboost3::%player's uuid%} is true:
+                console command "/effect give %player% health_boost 100000 2 true"              
+        console command "/effect give %player% instant_health 1 19 true"
+
+on death:            
+    if attacker is a player:
+
+        add 1 to {kills::%attacker's uuid%}
+        add 1 to {LEVEL.exp::%attacker's uuid%}
+        add 1 to {GANGLEVEL.exp::%{GANG::gang::%attacker's uuid%}%}
+        if victim is a iron golem:
+            add 1 to {LEVEL.exp::%attacker's uuid%}
+            add 1 to {GANGLEVEL.exp::%{GANG::gang::%attacker's uuid%}%}
+
+        if victim is a skeleton:
+            add 1 to {LEVEL.exp::%attacker's uuid%}        
+            add 1 to {GANGLEVEL.exp::%{GANG::gang::%attacker's uuid%}%}
+
+        set {kdr::%attacker's uuid%} to {kills::%attacker's uuid%} / {deaths::%attacker's uuid%}
+        set {_r} to random integer between 10 and 30
+        if attacker is not victim:
+            if distance between attacker and victim is more than 30:
+                set {_r} to {_r} * 2
+            set {coins::%attacker's uuid%} to {coins::%attacker's uuid%} + {_r}
+            send action bar "&c+%{_r}%&6 Coins" to attacker            
+        if {GANG::gang::%attacker's uuid%} is set:
+            add 1 to {kills.%{GANG::gang::%attacker's uuid%}%}
+        if victim is a player:
+            add 1 to {killstreak::%attacker's uuid%}
+            if {killstreak::%attacker's uuid%} > 4:
+                wait 0.1 seconds
+                broadcast "&7Gun&4PVP&aMC&6: %{title::%attacker's uuid%}% %attacker%&6 has a killstreak of &c%{killstreak::%attacker's uuid%}%&6!"
+                post "%uncolored {title::%attacker's uuid%}% %attacker% has a killstreak of %{killstreak::%attacker's uuid%}%!" to channel with id "734316055127916605"
+                
+    if attacker is victim:
+        stop                      
+    else:
+        wait 1 tick
+        if {vampire1::%attacker's uuid%} is true:
+            heal attacker by 0.5 heart
+            {vampire2::%attacker's uuid%} is true:
+                heal attacker by 0.5 heart
+                {vampire3::%attacker's uuid%} is true:
+                    heal attacker by 0.5 heart                
+
+on death of player:
+    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 died"
+    
+    if attacker is a player:
+        set {_word} to random integer between 1 and 6
+        if {_word} = 1:
+            set {_words} to "killed"
+        if {_word} = 2:
+            set {_words} to "murderer"
+        if {_word} = 3:
+            set {_words} to "assassinated"
+        if {_word} = 4:
+            set {_words} to "destroyed"
+        if {_word} = 5:
+            set {_words} to "demolished"   
+        if {_word} = 6:
+            set {_words} to "got rekt"                                                           
+
+        set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was %{_words}% by %{title::%attacker's uuid%}% %attacker%"
+
+        if attacker's held item is set:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was %{_words}% by %{title::%attacker's uuid%}% %attacker%&6 using %name of attacker's held item%"
+            
+            if name of attacker's held item contains "&6[":
+                set {_death} to random integer between 1 and 18
+                if {_death} = 1:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was shot by %{title::%attacker's uuid%}% %attacker%&6 using %name of attacker's held item%"
+                if {_death} = 2:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was pumelled by %{title::%attacker's uuid%}% %attacker%&6 using %name of attacker's held item%"
+                if {_death} = 3:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was gunned down by %{title::%attacker's uuid%}% %attacker%&6 using %name of attacker's held item%"
+                if {_death} = 4:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was shot down by %{title::%attacker's uuid%}% %attacker%&6 with %name of attacker's held item%"
+                if {_death} = 5:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was obliterated by %{title::%attacker's uuid%}% %attacker%&6 with %name of attacker's held item%"    
+                if {_death} = 6:
+                    set {deathmessage::%victim%} to "%{title::%attacker's uuid%}% %attacker%&6 opened fire on %{title::%victim's uuid%}% %victim%&6 using %name of attacker's held item%"
+                if {_death} = 7:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was pumped full of lead by %{title::%attacker's uuid%}% %attacker%&6 using %name of attacker's held item%"    
+                if {_death} = 8:
+                    set {deathmessage::%victim%} to "%{title::%attacker's uuid%}% %attacker%&6 put a bullet in %{title::%victim's uuid%}% %victim%&6 with %name of attacker's held item%"    
+                if {_death} = 9:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was blown away by %{title::%attacker's uuid%}% %attacker%&6 using %name of attacker's held item%"    
+                if {_death} = 10:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was struck down by %{title::%attacker's uuid%}% %attacker%&6 with %name of attacker's held item%"                        
+                if {_death} = 11:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was riddled with bullets by %{title::%attacker's uuid%}% %attacker%&6 using %name of attacker's held item%"
+                if {_death} = 12:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was caught in the crossfire of %{title::%attacker's uuid%}% %attacker%&6's %name of attacker's held item%"
+                if {_death} = 13:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was shot in cold blood by %{title::%attacker's uuid%}% %attacker%&6 using their %name of attacker's held item%"
+                if {_death} = 14:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was turned into Swiss cheese by %{title::%attacker's uuid%}% %attacker%&6 wielding %name of attacker's held item%"
+                if {_death} = 15:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was gunned down in a hail of bullets from %{title::%attacker's uuid%}% %attacker%&6 and their %name of attacker's held item%"
+                if {_death} = 16:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was shot to pieces by %{title::%attacker's uuid%}% %attacker%&6 using their %name of attacker's held item%"
+                if {_death} = 17:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was blown apart by %{title::%attacker's uuid%}% %attacker%&6 and their %name of attacker's held item%"
+                if {_death} = 18:
+                    set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was outgunned and outclassed by %{title::%attacker's uuid%}% %attacker%&6 with %name of attacker's held item%"                        
+
+    if attacker is a pillager:
+        set {_death} to random integer between 1 and 5
+        set {_words::*} to attacker's name split by " |"        
+        if {_death} = 1:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was shot by %{_words::1}%"
+        if {_death} = 2:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was gunned down by %{_words::1}%"
+        if {_death} = 3:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was criminalised by %{_words::1}%"
+        if {_death} = 4:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was gang raped by %{_words::1}%"
+        if {_death} = 5:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 learnt the meaning of rising crime statistics from %{_words::1}%"
+                                                                      
+    if attacker is a vindicator:
+        set {_words::*} to attacker's name split by " |"        
+        set {_death} to random integer between 1 and 6
+        if {_death} = 1:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was killed by %{_words::1}%"
+        if {_death} = 2:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was murdered by %{_words::1}%"
+        if {_death} = 3:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was chopped up by %{_words::1}%"
+        if {_death} = 4:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was diced up and cooked by %{_words::1}%"
+        if {_death} = 5:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was sliced in two by %{_words::1}%"
+        if {_death} = 6:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was executed by %{_words::1}%"
+        
+ # sent to swim with the fishes            
+# touched up
+
+    if attacker is a iron golem or a skeleton:
+        set {_words::*} to attacker's name split by " |"        
+        set {_death} to random integer between 1 and 5
+        if {_death} = 1:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was killed by %{_words::1}%"
+        if {_death} = 2:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was brutalised by %{_words::1}%"
+        if {_death} = 3:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 faced police brutality at the hands of %{_words::1}%"    
+        if {_death} = 4:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was brutally murdered by %{_words::1}%"
+        if {_death} = 5:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 faced justice at the hands of %{_words::1}%"
+
+    if attacker is a zombie:
+        set {_words::*} to attacker's name split by " |"        
+        set {_death} to random integer between 1 and 5
+        if {_death} = 1:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was killed by %{_words::1}%"
+        if {_death} = 2:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was eaten by %{_words::1}%"
+        if {_death} = 3:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was eaten alive by %{_words::1}%"    
+        if {_death} = 4:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was zombified by %{_words::1}%"    
+        if {_death} = 5:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was turning into a zombie meal by %{_words::1}%"    
+
+    if attacker is a stray:
+        set {_words::*} to attacker's name split by " |"        
+        set {_death} to random integer between 1 and 5
+        if {_death} = 1:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was killed by %{_words::1}%"
+        if {_death} = 2:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was exterminated by %{_words::1}%"
+        if {_death} = 3:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 faced the full force of %{_words::1}%"    
+        if {_death} = 4:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 faced the military might of %{_words::1}%"    
+        if {_death} = 5:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 learnt not to mess with %{_words::1}%"    
+
+    if damage was caused by fall:
+        set {_death} to random integer between 1 and 28
+        if {_death} = 1:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 hit the ground too hard"
+        if {_death} = 2:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 fell"
+        if {_death} = 3:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 smacked into the ground"
+        if {_death} = 4:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 went splat"
+        if {_death} = 5:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 jumped off a building"
+        if {_death} = 6:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 forgot about gravity"
+        if {_death} = 7:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 broke their legs"
+        if {_death} = 8:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 fell to their doom"
+        if {_death} = 9:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 lept off a building"
+        if {_death} = 10:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 crippled themselves"
+        if {_death} = 11:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 forgot to do the funny little parkour roll thingy"
+        if {_death} = 12:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 wished they bought a parachute"
+        if {_death} = 13:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 miscalculated the distance of their fall"
+        if {_death} = 14:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 forgot that acceleration of gravity on earth is 9.81 m/s^2"
+        if {_death} = 15:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 broke their fucking legs"
+        if {_death} = 16:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 hit the ground way too fucking hard"          
+        if {_death} = 17:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 went fucking splat"
+        if {_death} = 18:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 lept off a fucking building"
+        if {_death} = 19:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 fought with gravity... and lost"
+        if {_death} = 20:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 forgot their water bucket"
+        if {_death} = 21:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 didn't land their backflip"
+        if {_death} = 22:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 hit the ground *really* *really* hard"
+        if {_death} = 23:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6's jetpack broke"
+        if {_death} = 24:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 tried to walk on a cloud"
+        if {_death} = 25:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 got ankle thing"
+        if {_death} = 26:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 landed on their heels"
+        if {_death} = 27:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 belly flopped into the earth"
+        if {_death} = 28:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 thought they could fly"
+
+    if damage was caused by drowning:
+        set {_death} to random integer between 1 and 19
+        if {_death} = 1:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 drowned"
+        if {_death} = 2:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 forgot how to breath"
+        if {_death} = 3:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 tried to find Atlantis"
+        if {_death} = 4:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 took a very long bath"
+        if {_death} = 5:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 fucking drowned"
+        if {_death} = 6:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 is now swimming with the fishies"
+        if {_death} = 7:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 failed their swimming lessons"
+        if {_death} = 8:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 has now met Madeleine McCann"
+        if {_death} = 9:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 learnt that they were not a fish"
+        if {_death} = 10:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 failed to set the freedive world record"
+        if {_death} = 11:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 never learnt how to swim"
+        if {_death} = 12:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6's lungs filled with water"
+        if {_death} = 13:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 now remains at the bottom of the ocean"
+        if {_death} = 14:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 thought they were playing Subnautica"
+        if {_death} = 15:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 failed SBS training"
+        if {_death} = 16:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 thought they were a fish"    
+        if {_death} = 17:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 forgot their gills"
+        if {_death} = 18:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 forgot to bring their oxygen tank"    
+        if {_death} = 19:
+            set {deathmessage::%victim%} to "&6Treading water was not %{title::%victim's uuid%}% %victim%&6's strong point"
+
+    if damage was caused by entity explosion:
+        set {_death} to random integer between 1 and 10
+        if {_death} = 1:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 exploded"
+        if {_death} = 2:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 went kaboom"
+        if {_death} = 3:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was blown up"
+        if {_death} = 4:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 went out with a bang"
+        if {_death} = 5:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 blew up"
+        if {_death} = 6:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 went Allāhu 'akbar"
+        if {_death} = 7:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 fucking exploded"
+        if {_death} = 8:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 spontaneously combusted"
+        if {_death} = 9:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 was involved in non-consensual detonation"
+        if {_death} = 10:
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 went fucking kaboom"
+            
+    if attacker is victim:
+        set {_death} to random integer between 1 and 3
+        if {_death} = 1:        
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 killed themself"
+        if {_death} = 2:        
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 committed suicide"
+        if {_death} = 3:        
+            set {deathmessage::%victim%} to "%{title::%victim's uuid%}% %victim%&6 ended their own life"  
+
+    if {deathmessage::%victim%} contains "<none>":
+        replace all "<none>" in {deathmessage::%victim%} with "fist"
+
+    loop all players:
+        if {dmsg::%loop-player%} is true:
+            send {deathmessage::%victim%} to loop-player
+    post "%uncolored {deathmessage::%victim%}%" to channel with id "734316055127916605"    
+
+on join:
+    set {dmsg::%player%} to true
+
+command /toggledeathmessages:
+    aliases: /toggledeaths, /toggledeathmsgs, /deathmessages, /deathmsgs
+    trigger:
+        if {dmsg::%player%} is true:
+            set {dmsg::%player%} to false
+            send "&7Gun&4PVP&aMC&6: Death messages DISABLED"
+            stop
+        else:
+            set {dmsg::%player%} to true
+            send "&7Gun&4PVP&aMC&6: Death messages ENABLED"
+            stop        
+
+on damage:
+    set {_y} to victim's y coordinate
+    if {_y} < 40:
+        stop
+    if victim is armor stand:
+        stop
+    console command "/execute at %victim% run particle item red_concrete ~ ~1 ~ 0 0 0 0.2 5 force @a"
+    console command "/execute at %victim's uuid% run particle item red_concrete ~ ~1 ~ 0 0 0 0.2 5 force @a"
+every 10 ticks:
+    loop all players:
+        if loop-player's health is less than 3: 
+            console command "/execute at %loop-player% run particle item red_concrete ~ ~1 ~ 0 0 0 0.05 5 force @a"
+            console command "/effect give  %loop-player% slowness 3 0 true"
+
+on damage:
+    if distance between attacker and victim is more than 30:
+        console command "/execute at %attacker% run playsound minecraft:entity.arrow.hit_player master %attacker% ~ ~ ~ 10000 1"
+    if {leech1::%attacker's uuid%} is true:
+        set {_} to 10
+        {leech2::%attacker's uuid%} is true:
+            set {_} to 20
+            {leech3::%attacker's uuid%} is true:
+                set {_} to 30            
+        chance of {_}%:
+            heal attacker by 0.1 hearts
+
+on damage:
+    if victim is a player:
+        if attacker is a player:
+            if {rep::%attacker's uuid%} + 20 < {rep::%victim's uuid%}:
+                delete {protection::%attacker's uuid%}
+            if {rep::%victim's uuid%} > 30:
+                stop
+            if {protection::%victim's uuid%} is true:
+                if {rep::%victim's uuid%} + 20 < {rep::%attacker's uuid%}:
+                    cancel event
+                    send "&cYou cannot attack a player with that low of a reputation!" to attacker
+                    console command "/execute at %attacker% run playsound minecraft:entity.enderman.teleport master %attacker% ~ ~ ~ 10000 0" 
+
+on death:
+    if victim is a player:
+        set {protection::%victim's uuid%} to true
+
+on join:
+    set {protection::%player's uuid%} to true

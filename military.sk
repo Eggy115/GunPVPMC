@@ -1,0 +1,24 @@
+command /paratrooper:
+    permission: op
+    trigger:
+        console command "/summon stray ~ ~20 ~ {Silent:1b,Health:100f,CustomName:'[{""text"":""["",""color"":""gold""},{""text"":""Military"",""color"":""red""},{""text"":""] Paratrooper"",""color"":""gold""}]',HandItems:[{id:""minecraft:bow"",Count:1b},{}],ArmorItems:[{id:""minecraft:netherite_boots"",Count:1b},{id:""minecraft:leather_leggings"",Count:1b,tag:{display:{color:3232280}}},{id:""minecraft:leather_chestplate"",Count:1b,tag:{display:{color:3232280}}},{id:""minecraft:player_head"",Count:1b,tag:{SkullOwner:""MHF_Villager""}}],ActiveEffects:[{Id:28b,Amplifier:0b,Duration:200,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:100}]}"
+
+command /paratroopers:
+    permission: op
+    trigger:
+        loop all players:
+            set {_y} to loop-player's y-coordinate
+            if {_y} > 40:          
+                send title "&7Gun&4PVP&aMC &6Events" with subtitle "&6Paratroopers are at spawn!" to loop-player for 2 seconds
+        broadcast "&7Gun&4PVP&aMC&6 Events: Paratroopers are at spawn!"
+        set {_counta} to online player count
+        loop {_counta} times:
+            console command "/paratrooper"
+
+on shoot:
+    if shooter is a stray:
+        if projectile is arrow:
+            cancel event
+            shoot snowball from shooter at speed 5
+            console command "/execute at %shooter's uuid% run tag @e[type=snowball,limit=1,sort=nearest] add HK416"
+            console command "/execute at %shooter's uuid% run playsound entity.iron_golem.repair master @a ~ ~ ~ 3 1.7"

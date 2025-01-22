@@ -1,0 +1,122 @@
+on right click on barrel:
+
+    if gamemode of player is creative:
+        set {lockedbarrel::%event-block%} to now
+        stop
+    cancel event
+    
+    set {_y} to player's y coordinate
+    set {_z} to player's z coordinate                                
+    if {_y} < 40:
+        if {_z} > -610:
+            stop
+
+    if difference between {lockedbarrel::%event-block%} and now < 2 minutes:
+        console command "/execute at %player% run playsound block.chest.locked master %player% ~ ~ ~ 10000 1" 
+        send actionbar "&cThis barrel is locked for %2 minutes - difference between {lockedbarrel::%event-block%} and now%" to player
+        stop        
+    set {lockedbarrel::%event-block%} to now
+    set {_chest} to chest inventory named "&6[&cBarrel&6]" with 3 rows
+    console command "/execute at %player% run playsound minecraft:block.barrel.open master %player% ~ ~ ~ 10000 1"
+    loop 3 times:
+        chance of 10%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 5
+            set slot {_n} of {_chest} to {_a} of gold nugget named "<##FFC300>9x19mm"
+        chance of 10%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 5
+            set slot {_n} of {_chest} to {_a} of iron nugget named "<##B3B3B3>7.62x39mm"
+        chance of 10%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 5
+            set slot {_n} of {_chest} to {_a} of gold nugget named "<##FAD905>7.62x51mm"
+        chance of 10%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 5
+            set slot {_n} of {_chest} to {_a} of gold nugget named "<##FFCB3D>12x70mm"   
+        chance of 10%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 5
+            set slot {_n} of {_chest} to {_a} of gold nugget named "<##CFA827>11.43×33mmR"   
+        chance of 10%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 5
+            set slot {_n} of {_chest} to {_a} of firework rocket named "<##FF4400>Flare" with nbt "{HideFlags:127}"   
+    chance of 1%:    
+        set {_n} to a random integer between 0 and 27
+        set {_a} to a random integer between 1 and 3
+        set slot {_n} of {_chest} to {_a} of firework star named "&8Grenade"
+
+    open {_chest} to player
+
+    if {barrellooter1::%player's uuid%} is "&cIn Progress":
+        set {barrellooter1progress::%player's uuid%} to {barrellooter1progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{barrellooter1progress::%player's uuid%}%&6/&c10&6 Barrels Looted!" to player
+        if {barrellooter1progress::%player's uuid%} is 10:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cBarrel Looter I&6!" to player
+            add 10 to {LEVEL.exp::%player's uuid%}
+            set {barrellooter1::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+    if {barrellooter2::%player's uuid%} is "&cIn Progress":
+        set {barrellooter2progress::%player's uuid%} to {barrellooter2progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{barrellooter2progress::%player's uuid%}%&6/&c20&6 Barrels Looted!" to player
+        if {barrellooter2progress::%player's uuid%} is 20:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cBarrel Looter II&6!" to player
+            add 20 to {LEVEL.exp::%player's uuid%}
+            set {barrellooter2::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+    if {barrellooter3::%player's uuid%} is "&cIn Progress":
+        set {barrellooter3progress::%player's uuid%} to {barrellooter3progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{barrellooter3progress::%player's uuid%}%&6/&c30&6 Barrels Looted!" to player
+        if {barrellooter3progress::%player's uuid%} is 30:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cBarrel Looter III&6!" to player
+            add 30 to {LEVEL.exp::%player's uuid%}
+            set {barrellooter3::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+
+    if {barrellooter4::%player's uuid%} is "&cIn Progress":
+        set {barrellooter4progress::%player's uuid%} to {barrellooter4progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{barrellooter4progress::%player's uuid%}%&6/&c40&6 Barrels Looted!" to player
+        if {barrellooter4progress::%player's uuid%} is 40:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cBarrel Looter IV&6!" to player
+            add 40 to {LEVEL.exp::%player's uuid%}
+            set {barrellooter4::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+
+    if {barrellooter5::%player's uuid%} is "&cIn Progress":
+        set {barrellooter5progress::%player's uuid%} to {barrellooter5progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{barrellooter5progress::%player's uuid%}%&6/&c50&6 Barrels Looted!" to player
+        if {barrellooter5progress::%player's uuid%} is 50:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cBarrel Looter V&6!" to player
+            add 50 to {LEVEL.exp::%player's uuid%}
+            set {barrellooter5::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+
+    if {barrellooter6::%player's uuid%} is "&cIn Progress":
+        set {barrellooter6progress::%player's uuid%} to {barrellooter6progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{barrellooter6progress::%player's uuid%}%&6/&c100&6 Barrels Looted!" to player
+        if {barrellooter6progress::%player's uuid%} is 100:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cBarrel Looter VI&6!" to player
+            add 100 to {LEVEL.exp::%player's uuid%}
+            set {barrellooter6::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+    if {barrellooter7::%player's uuid%} is "&cIn Progress":
+        set {barrellooter7progress::%player's uuid%} to {barrellooter7progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{barrellooter7progress::%player's uuid%}%&6/&c200&6 Barrels Looted!" to player
+        if {barrellooter7progress::%player's uuid%} is 200:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cBarrel Looter VII&6!" to player
+            add 200 to {LEVEL.exp::%player's uuid%}
+            set {barrellooter7::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+
+    set {locked::%event-block%} to true
+    wait 120 seconds
+    set {locked::%event-block%} to false

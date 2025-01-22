@@ -1,0 +1,132 @@
+
+on rightclick:
+	if player is holding leather horse armor:
+		if name of event-item contains "<##565656>HK USP &6[&cReloading&6]":
+			if {hkusp.%line 5 of lore of player's held item%} = 0:
+				stop
+		if name of event-item is "<##565656>HK USP":	
+			set {_} to "%player%%random integer between 10000 and 99999%"
+			set line 5 of lore of player's held item to "&6ID: &c%{_}%"
+			set {hkusp.%line 5 of lore of player's held item%} to 15
+			set name of player's held item to "<##565656>HK USP &6[&c%{hkusp.%line 5 of lore of player's held item%}%&6]"
+		if name of event-item contains "<##565656>HK USP":		
+			
+			set name of player's held item to "<##565656>HK USP &6[&c%{hkusp.%line 5 of lore of player's held item%}%&6]"
+			set line 1 of lore of player's held item to "&6Cartridge: &c%{hkusp.%line 5 of lore of player's held item%}%&6/&c15"
+			set line 2 of lore of player's held item to "&6Reload Time: &c500ms"
+			set line 3 of lore of player's held item to "&6Damage: &c6"
+			set line 4 of lore of player's held item to "&6Ammunition: &c9x19mm"
+			
+			if {hkusp.%line 5 of lore of player's held item%} > 0:
+				if difference between {hkuspcd.%player%} and now > 0.25 second:
+					set {hkuspcd.%player%} to now				
+					remove 1 from {hkusp.%line 5 of lore of player's held item%}	
+					shoot snowball at speed 5
+					edit bossbar "%player%" title to "&6HK USP: &c%{hkusp.%line 5 of lore of player's held item%}%"
+					set bossbar "%player%" value to {hkusp.%line 5 of lore of player's held item%} * 6.666666
+					console command "/execute at %player% run tag @e[type=snowball,limit=1,sort=nearest] add HKUSP"
+					console command "/execute at %player% run playsound minecraft:entity.generic.explode master @a ~ ~ ~ 3 1.7"
+					push player in direction of player at speed -0.1
+				
+					set name of player's held item to "<##565656>HK USP &6[&c%{hkusp.%line 5 of lore of player's held item%}%&6]"
+					set line 1 of lore of player's held item to "&6Cartridge: &c%{hkusp.%line 5 of lore of player's held item%}%&6/&c15"
+					set line 2 of lore of player's held item to "&6Reload Time: &c500ms"
+					set line 3 of lore of player's held item to "&6Damage: &c6"
+					set line 4 of lore of player's held item to "&6Ammunition: &c9x19mm"	
+					
+				else:
+					send action bar "&6Wait before shooting!" to player
+			else:
+				
+				if player has 1 gold nugget named "<##FFC300>9x19mm":
+					set {_id} to line 5 of lore of player's held item
+					set name of player's held item to "<##565656>HK USP &6[&cReloading&6]"
+					set line 1 of lore of player's held item to "&6Cartridge: &c0&6/&c15"
+					set line 2 of lore of player's held item to "&6Reload Time: &c500ms"
+					set line 3 of lore of player's held item to "&6Damage: &c6"
+					set line 4 of lore of player's held item to "&6Ammunition: &c9x19mm"
+					loop 5 times:
+						console command "/execute at %player% run playsound minecraft:block.iron_door.open master @a ~ ~ ~ 0.5 2"
+						wait 0.1 second	
+
+					set {ammo.%{_id}%} to amount of gold nugget named "<##FFC300>9x19mm" in player's inventory
+					if {ammo.%{_id}%} > 15:
+						remove 15 gold nugget named "<##FFC300>9x19mm" from player's inventory
+						set {hkusp.%{_id}%} to 15
+					else:
+						
+						remove 15 gold nugget named "<##FFC300>9x19mm" from player's inventory
+						set {hkusp.%{_id}%} to {ammo.%{_id}%}
+
+
+						
+					edit bossbar "%player%" title to "&6HK USP: &c%{hkusp.%line 5 of lore of player's held item%}%"
+					set bossbar "%player%" value to {hkusp.%line 5 of lore of player's held item%} * 6.666666
+				else:
+					send action bar "&6You are missing &c9x19mm&6!" to player
+
+
+on rightclick:
+	if player is holding leather horse armor:
+		if name of event-item contains "<##11A015>SSK.950 Rifle &6[&cReloading&6]":
+			if {ssk.%line 5 of lore of player's held item%} = 0:
+				stop
+		if name of event-item is "<##11A015>SSK.950 Rifle":	
+			set {_} to "%player%%random integer between 10000 and 99999%"
+			set line 5 of lore of player's held item to "&6ID: &c%{_}%"
+			set {ssk.%line 5 of lore of player's held item%} to 1
+			set name of player's held item to "<##11A015>SSK.950 Rifle &6[&c%{ssk.%line 5 of lore of player's held item%}%&6]"
+		if name of event-item contains "<##11A015>SSK.950 Rifle":		
+			
+			set name of player's held item to "<##11A015>SSK.950 Rifle &6[&c%{ssk.%line 5 of lore of player's held item%}%&6]"
+			set line 1 of lore of player's held item to "&6Cartridge: &c%{ssk.%line 5 of lore of player's held item%}%&6/&c1"
+			set line 2 of lore of player's held item to "&6Reload Time: &c2000ms"
+			set line 3 of lore of player's held item to "&6Damage: &c30"
+			set line 4 of lore of player's held item to "&6Ammunition: &c24.1x70mm"
+			
+			if {ssk.%line 5 of lore of player's held item%} > 0:
+				if difference between {sskcd.%player%} and now > 1.5 second:
+					set {sskcd.%player%} to now				
+					remove 1 from {ssk.%line 5 of lore of player's held item%}	
+					shoot snowball at speed 7
+					edit bossbar "%player%" title to "&6SSK.950 Rifle: &c%{ssk.%line 5 of lore of player's held item%}%"
+					set bossbar "%player%" value to {ssk.%line 5 of lore of player's held item%} * 100
+					console command "/execute at %player% run tag @e[type=snowball,limit=1,sort=nearest] add SSK"
+					console command "/execute at %player% run playsound minecraft:entity.firework_rocket.blast master @a ~ ~ ~ 3 0.3"
+					push player in direction of player at speed -1
+				
+					set name of player's held item to "<##11A015>SSK.950 Rifle &6[&c%{ssk.%line 5 of lore of player's held item%}%&6]"
+					set line 1 of lore of player's held item to "&6Cartridge: &c%{ssk.%line 5 of lore of player's held item%}%&6/&c1"
+					set line 2 of lore of player's held item to "&6Reload Time: &c2000ms"
+					set line 3 of lore of player's held item to "&6Damage: &c30"
+					set line 4 of lore of player's held item to "&6Ammunition: &c24.1x70mm"	
+					
+				else:
+					send action bar "&6Wait before shooting!" to player
+			else:
+				
+				if player has 1 gold nugget named "<##C99A00>24.1x70mm":
+					set {_id} to line 5 of lore of player's held item
+					set name of player's held item to "<##11A015>SSK.950 Rifle &6[&cReloading&6]"
+					set line 1 of lore of player's held item to "&6Cartridge: &c0&6/&c1"
+					set line 2 of lore of player's held item to "&6Reload Time: &c2000ms"
+					set line 3 of lore of player's held item to "&6Damage: &c30"
+					set line 4 of lore of player's held item to "&6Ammunition: &c24.1x70mm"
+					loop 20 times:
+						console command "/execute at %player% run playsound minecraft:block.iron_door.open master @a ~ ~ ~ 0.5 2"
+						wait 0.1 second	
+
+					set {ammo.%{_id}%} to amount of gold nugget named "<##C99A00>24.1x70mm" in player's inventory
+					if {ammo.%{_id}%} > 1:
+						remove 1 gold nugget named "<##C99A00>24.1x70mm" from player's inventory
+						set {ssk.%{_id}%} to 1
+					else:
+						
+						remove 1 gold nugget named "<##C99A00>24.1x70mm" from player's inventory
+						set {ssk.%{_id}%} to {ammo.%{_id}%}
+
+						
+					edit bossbar "%player%" title to "&6SSK.950 Rifle: &c%{ssk.%line 5 of lore of player's held item%}%"
+					set bossbar "%player%" value to {ssk.%line 5 of lore of player's held item%} * 100
+				else:
+					send action bar "&6You are missing &c24.1x70mm&6!" to player					

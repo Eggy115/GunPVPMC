@@ -1,0 +1,234 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 82a9c072-0a7f-4cf2-893e-a7a95850889c 24 72 -489"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Armourer] Arnav":
+        set {_store} to a new chest inventory with 5 row with name "&6[&cArmourer&6] Arnav"
+        
+        set {_e} to 0
+        loop 45 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to 1 shield named "<##BBBBBB>Riot Shield &6[&cx1&6]" with nbt "{HideFlags:127,Unbreakable:1b,BlockEntityTag:{Base:8}}"
+        set line 1 of lore of slot 10 of {_store} to "&6Durability: &c100&6/&c100"
+        set line 3 of lore of slot 10 of {_store} to "&6Cost: &c100"
+
+        set slot 11 of {_store} to 1 shield named "<##333333>Ballistic Shield &6[&cx1&6]" with nbt "{HideFlags:127,Unbreakable:1b,BlockEntityTag:{Base:15}}"
+        set line 1 of lore of slot 11 of {_store} to "&6Durability: &c300&6/&c300"
+        set line 3 of lore of slot 11 of {_store} to "&6Cost: &c300"   
+
+        set slot 19 of {_store} to 1 iron helmet named "&7Bullet-Proof Helmet &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 19 of {_store} to "&6Armour: &c2"
+        set line 3 of lore of slot 19 of {_store} to "&6Cost: &c1000"        
+
+        set slot 20 of {_store} to 1 iron chestplate named "&7Bullet-Proof Vest &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 20 of {_store} to "&6Armour: &c6"
+        set line 3 of lore of slot 20 of {_store} to "&6Cost: &c3000"
+
+        set slot 21 of {_store} to 1 iron leggings named "&7Bullet-Proof Leggings &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 21 of {_store} to "&6Armour: &c5"
+        set line 3 of lore of slot 21 of {_store} to "&6Cost: &c2500"
+        
+        set slot 22 of {_store} to 1 iron boots named "&7Bullet-Proof Boots &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 22 of {_store} to "&6Armour: &c2"
+        set line 3 of lore of slot 22 of {_store} to "&6Cost: &c1000"        
+
+        set slot 28 of {_store} to 1 netherite helmet named "&8Stab-Proof Helmet &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 28 of {_store} to "&6Armour: &c3"
+        set line 3 of lore of slot 28 of {_store} to "&6Cost: &c3000"   
+        
+        set slot 29 of {_store} to 1 netherite chestplate named "&8Stab-Proof Vest &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 29 of {_store} to "&6Armour: &c8"
+        set line 3 of lore of slot 29 of {_store} to "&6Cost: &c8000"  
+
+        set slot 30 of {_store} to 1 netherite leggings named "&8Stab-Proof Leggings &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 30 of {_store} to "&6Armour: &c6"
+        set line 3 of lore of slot 30 of {_store} to "&6Cost: &c6000"   
+        
+        set slot 31 of {_store} to 1 netherite boots named "&8Stab-Proof Boots &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 31 of {_store} to "&6Armour: &c3"
+        set line 3 of lore of slot 31 of {_store} to "&6Cost: &c3000"         
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##BBBBBB>Riot Shield &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop
+        if {coins::%player's uuid%} > 99:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 shield named "<##BBBBBB>Riot Shield" with nbt "{HideFlags:127,Unbreakable:1b,BlockEntityTag:{Base:8}}"
+            send "&6[&cArmourer&6] Arnav: A fine product, for a fine price"
+        else:
+            send "&6[&cArmourer&6] Arnav: Please make a sensible offer next time..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##333333>Ballistic Shield &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop    
+        if {coins::%player's uuid%} > 299:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 300
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 shield named "<##333333>Ballistic Shield" with nbt "{HideFlags:127,Unbreakable:1b,BlockEntityTag:{Base:15}}"
+            send "&6[&cArmourer&6] Arnav: A fine product, for a fine price"
+        else:
+            send "&6[&cArmourer&6] Arnav: Please make a sensible offer next time..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+
+on inventory click:
+    if name of event-item is "&7Bullet-Proof Helmet &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop    
+        if {coins::%player's uuid%} > 999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 1000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cArmourer&6] Arnav: A fine product, for a fine price"
+            set {_i} to iron helmet named "&7Bullet-Proof Helmet" with nbt "{HideFlags:127,Unbreakable:1b}"
+            set line 1 of lore of {_i} to "&6Armour: &c2"
+            give player {_i}
+        else:
+            send "&6[&cArmourer&6] Arnav: Please make a sensible offer next time..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"            
+
+on inventory click:
+    if name of event-item is "&7Bullet-Proof Boots &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop    
+        if {coins::%player's uuid%} > 999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 1000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cArmourer&6] Arnav: A fine product, for a fine price"
+            set {_i} to iron boots named "&7Bullet-Proof Boots" with nbt "{HideFlags:127,Unbreakable:1b}"
+            set line 1 of lore of {_i} to "&6Armour: &c2"
+            give player {_i}
+        else:
+            send "&6[&cArmourer&6] Arnav: Please make a sensible offer next time..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"            
+
+on inventory click:
+    if name of event-item is "&7Bullet-Proof Leggings &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop    
+        if {coins::%player's uuid%} > 2499:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 2500
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cArmourer&6] Arnav: A fine product, for a fine price"
+            set {_i} to iron leggings named "&7Bullet-Proof Leggings" with nbt "{HideFlags:127,Unbreakable:1b}"
+            set line 1 of lore of {_i} to "&6Armour: &c5"
+            give player {_i}
+        else:
+            send "&6[&cArmourer&6] Arnav: Please make a sensible offer next time..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"            
+
+
+on inventory click:
+    if name of event-item is "&7Bullet-Proof Vest &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop    
+        if {coins::%player's uuid%} > 2999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 3000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cArmourer&6] Arnav: A fine product, for a fine price"
+            set {_i} to iron chestplate named "&7Bullet-Proof Vest" with nbt "{HideFlags:127,Unbreakable:1b}"
+            set line 1 of lore of {_i} to "&6Armour: &c6"
+            give player {_i}
+        else:
+            send "&6[&cArmourer&6] Arnav: Please make a sensible offer next time..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "&8Stab-Proof Vest &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop    
+        if {coins::%player's uuid%} > 7999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 8000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cArmourer&6] Arnav: A fine product, for a fine price"
+            set {_i} to netherite chestplate named "&8Stab-Proof Vest" with nbt "{HideFlags:127,Unbreakable:1b}"
+            set line 1 of lore of {_i} to "&6Armour: &c8"
+            give player {_i}
+        else:
+            send "&6[&cArmourer&6] Arnav: Please make a sensible offer next time..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+
+on inventory click:
+    if name of event-item is "&8Stab-Proof Leggings &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop    
+        if {coins::%player's uuid%} > 5999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 6000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cArmourer&6] Arnav: A fine product, for a fine price"
+            set {_i} to netherite leggings named "&8Stab-Proof Leggings" with nbt "{HideFlags:127,Unbreakable:1b}"
+            set line 1 of lore of {_i} to "&6Armour: &c6"
+            give player {_i}
+        else:
+            send "&6[&cArmourer&6] Arnav: Please make a sensible offer next time..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "&8Stab-Proof Helmet &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop    
+        if {coins::%player's uuid%} > 2999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 3000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cArmourer&6] Arnav: A fine product, for a fine price"
+            set {_i} to netherite helmet named "&8Stab-Proof Helmet" with nbt "{HideFlags:127,Unbreakable:1b}"
+            set line 1 of lore of {_i} to "&6Armour: &c3"
+            give player {_i}
+        else:
+            send "&6[&cArmourer&6] Arnav: Please make a sensible offer next time..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "&8Stab-Proof Boots &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop    
+        if {coins::%player's uuid%} > 2999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 3000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cArmourer&6] Arnav: A fine product, for a fine price"
+            set {_i} to netherite boots named "&8Stab-Proof Boots" with nbt "{HideFlags:127,Unbreakable:1b}"
+            set line 1 of lore of {_i} to "&6Armour: &c3"
+            give player {_i}
+        else:
+            send "&6[&cArmourer&6] Arnav: Please make a sensible offer next time..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  

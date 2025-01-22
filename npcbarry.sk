@@ -1,0 +1,113 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 29c908f6-931b-45a8-b005-dc155ce846bb -83 64 -588"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Bomber] Barry":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cBomber&6] Barry"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to 1 firework star named "&8Grenade &6[&cx1&6]"
+        set line 2 of lore of slot 10 of {_store} to "&6Cost: &c50"
+
+        set slot 11 of {_store} to 1 tnt named "&4TNT &6[&cx1&6]"
+        set line 2 of lore of slot 11 of {_store} to "&6Cost: &c25"
+
+        set slot 12 of {_store} to 1 lever named "&7Flashbang &6[&cx1&6]"
+        set line 2 of lore of slot 12 of {_store} to "&6Cost: &c25"
+
+        set slot 13 of {_store} to 1 wither skeleton skull named "<##333333>Explosive &6[&cx1&6]"
+        set line 2 of lore of slot 13 of {_store} to "&6Cost: &c25"      
+        
+        set slot 14 of {_store} to bowl named "<##91754D>Landmine &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 2 of lore of slot 14 of {_store} to "&6Cost: &c50"        
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##91754D>Landmine &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop     
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 bowl named "<##91754D>Landmine"
+            send "&6[&cBomber&6] Barry: Be careful with that!"
+        else:
+            send "&6[&cBomber&6] Barry: Explosives aren't cheap you know!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+
+on inventory click:
+    if name of event-item is "<##333333>Explosive &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop     
+        if {coins::%player's uuid%} > 24:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 25
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 wither skeleton skull named "<##333333>Explosive"
+            send "&6[&cBomber&6] Barry: Be careful with that!"
+        else:
+            send "&6[&cBomber&6] Barry: Explosives aren't cheap you know!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+
+on inventory click:
+    if name of event-item is "&8Grenade &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop     
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 firework star named "&8Grenade"
+            send "&6[&cBomber&6] Barry: Be careful with that!"
+        else:
+            send "&6[&cBomber&6] Barry: Explosives aren't cheap you know!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "&4TNT &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop     
+        if {coins::%player's uuid%} > 24:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 25
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 tnt named "&4TNT"
+            send "&6[&cBomber&6] Barry: Be careful with that!"
+        else:
+            send "&6[&cBomber&6] Barry: Explosives aren't cheap you know!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+
+on inventory click:
+    if name of event-item is "&7Flashbang &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop     
+        if {coins::%player's uuid%} > 24:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 25
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 lever named "&7Flashbang"
+            send "&6[&cBomber&6] Barry: Be careful with that!"
+        else:
+            send "&6[&cBomber&6] Barry: Explosives aren't cheap you know!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                          

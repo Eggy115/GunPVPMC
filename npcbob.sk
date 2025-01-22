@@ -1,0 +1,143 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 779891c6-78cd-4284-947e-6b44f22fbd33 -67 66 -615"
+
+on right click on wandering trader:
+    cancel event
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Bazaar] Bob":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cBazaar&6] Bob"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to 1 golden apple named "<##FFBE36>Golden Apple &6[&cx1&6]"
+        set line 1 of lore of slot 10 of {_store} to "&6Heal: &c1"
+        set line 3 of lore of slot 10 of {_store} to "&6Cost: &c50"
+
+        set slot 11 of {_store} to 1 golden apple named "<##FFBE36>G<##FFBE36>olden Apple &6[&cx1&6]"
+        set line 1 of lore of slot 11 of {_store} to "&6Heal: &c2"
+        set line 3 of lore of slot 11 of {_store} to "&6Cost: &c100"
+
+        set slot 12 of {_store} to 1 golden apple named "<##FFBE36>Go<##FFBE36>lden Apple &6[&cx1&6]"
+        set line 1 of lore of slot 12 of {_store} to "&6Heal: &c3"
+        set line 3 of lore of slot 12 of {_store} to "&6Cost: &c150"
+
+        set slot 13 of {_store} to 1 golden apple named "<##FFBE36>Gol<##FFBE36>den Apple &6[&cx1&6]"
+        set line 1 of lore of slot 13 of {_store} to "&6Heal: &c4"
+        set line 3 of lore of slot 13 of {_store} to "&6Cost: &c200"    
+
+        set slot 14 of {_store} to 1 golden apple named "<##FFBE36>Gold<##FFBE36>en Apple &6[&cx1&6]"
+        set line 1 of lore of slot 14 of {_store} to "&6Heal: &c5"
+        set line 3 of lore of slot 14 of {_store} to "&6Cost: &c250"                               
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##FFBE36>Golden Apple &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to 1 golden apple named "<##FFBE36>Golden Apple"
+            set line 1 of lore of {_i} to "&6Heal: &c1"
+            give player {_i}
+            send "&6[&cBazaar&6] Bob: Mashallah brother..."
+        else:
+            send "&6[&cBazaar&6] Bob: May Allah strike you down for that unreasonable offer!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+
+on inventory click:
+    if name of event-item is "<##FFBE36>G<##FFBE36>olden Apple &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 99:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to 1 golden apple named "<##FFBE36>Golden Apple"
+            set line 1 of lore of {_i} to "&6Heal: &c2"
+            give player {_i}
+            send "&6[&cBazaar&6] Bob: Mashallah brother..."
+        else:
+            send "&6[&cBazaar&6] Bob: May Allah strike you down for that unreasonable offer!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+
+on inventory click:
+    if name of event-item is "<##FFBE36>Go<##FFBE36>lden Apple &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 149:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 150
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to 1 golden apple named "<##FFBE36>Golden Apple"
+            set line 1 of lore of {_i} to "&6Heal: &c3"
+            give player {_i}
+            send "&6[&cBazaar&6] Bob: Mashallah brother..."
+        else:
+            send "&6[&cBazaar&6] Bob: May Allah strike you down for that unreasonable offer!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+
+on inventory click:
+    if name of event-item is "<##FFBE36>Gol<##FFBE36>den Apple &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 199:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 200
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to 1 golden apple named "<##FFBE36>Golden Apple"
+            set line 1 of lore of {_i} to "&6Heal: &c4"
+            give player {_i}
+            send "&6[&cBazaar&6] Bob: Mashallah brother..."
+        else:
+            send "&6[&cBazaar&6] Bob: May Allah strike you down for that unreasonable offer!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+
+on inventory click:
+    if name of event-item is "<##FFBE36>Gold<##FFBE36>en Apple &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 249:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 250
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to 1 golden apple named "<##FFBE36>Golden Apple"
+            set line 1 of lore of {_i} to "&6Heal: &c5"
+            give player {_i}
+            send "&6[&cBazaar&6] Bob: Mashallah brother..."
+        else:
+            send "&6[&cBazaar&6] Bob: May Allah strike you down for that unreasonable offer!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+
+
+on right click:
+    if player's held item is golden apple:
+
+        set {_sections::*} to line 1 of lore of player's held item split at " "
+        set {_hearts} to uncolored {_sections::2} parsed as integer
+        heal player by {_hearts} hearts
+        remove 1 golden apple from player's held item
+        
+		
+on eat:
+    if player's held item is golden apple:
+        cancel event
+    if player's offhand item is golden apple:
+        cancel event        

@@ -1,0 +1,109 @@
+on explode:
+    broadcast blast radius of last spawned tnt
+    set {_x} to x coordinate of event-location
+    set {_y} to y coordinate of event-location
+    set {_z} to z coordinate of event-location       
+    if {_x} > -21:
+        if {_x} < 7:
+            if {_z} > -440:
+                if {_z} < -393:
+                    loop all blocks in radius 2 around event-location:
+                        if loop-block is smooth stone:
+                            doExplosion(loop-block)
+
+local function doExplosion(value:block):
+    set {_r} to type of block at {_value}
+    set block at {_value} to air
+    set {_x} to x coordinate of block at {_value}
+    set {_y} to y coordinate of block at {_value}
+    set {_z} to z coordinate of block at {_value}
+    console command "/particle block smooth_stone %{_x}% %{_y}% %{_z}%0 0 0 1 5 normal"
+    wait 3 second
+    set block at {_value} to {_r}                    
+
+on right click on iron door:  
+    set {_x} to x coordinate of player
+    set {_y} to y coordinate of player
+    set {_z} to z coordinate of player        
+    if {_x} > -21:
+        if {_x} < 7:
+            if {_z} > -440:
+                if {_z} < -393:
+                    if {_y} < 67:
+                        set {_store} to a new chest inventory with 6 row with name "&6[&cHacking&6]"
+            
+                        set {_e} to 0
+                        loop 54 times:
+                            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+                            add 1 to {_e}
+
+                        set slot 13 of {_store} to red concrete named "&4Start Hack"
+                
+                        open {_store} to player
+                        set {trade::%player's uuid%} to true
+                        set {hackingdoor::%player's uuid%} to event-block
+
+on inventory click:
+    if name of event-item is "&4Start Hack":
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set {_r} to random integer between 10 and 16
+        set {_r} to {_r} + (9 * random integer between 0 and 3)
+        set {hackingdoornumber::%player's uuid%} to 0
+        set {hackingdoortime::%player's uuid%} to now
+        set clicked item to gray stained glass pane named "&0 "   
+        set slot {_r} of clicked inventory to yellow concrete named "&eContinue Hack"        
+
+on inventory click:
+    if name of event-item is "&eContinue Hack":
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2" 
+        set clicked item to gray stained glass pane named "&0 "   
+
+        if difference between {hackingdoortime::%player's uuid%} and now > 1 second:
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            
+            set {_e} to 0
+            loop 54 times:
+                set slot {_e} of clicked inventory to red stained glass pane named "&0 "            
+                add 1 to {_e}
+                
+            wait 0.5 seconds
+
+            set {_e} to 0
+            loop 54 times:
+                set slot {_e} of clicked inventory to gray stained glass pane named "&0 "            
+                add 1 to {_e}
+
+            set slot 13 of clicked inventory to red concrete named "&4Start Hack"
+    
+            delete {hackingdoornumber::%player's uuid%}      
+            delete {hackingdoortime::%player's uuid%}  
+            stop 
+
+        if {hackingdoornumber::%player's uuid%} > 10:
+            wait 2 tick
+            set slot 13 of clicked inventory to lime concrete named "&aComplete Hack"
+            set {hackingdoornumber::%player's uuid%} to 0
+            stop
+
+        set {_r} to random integer between 10 and 16
+        set {_r} to {_r} + (9 * random integer between 0 and 3)
+        add 1 to {hackingdoornumber::%player's uuid%}
+        set {hackingdoortime::%player's uuid%} to now
+        set slot {_r} of clicked inventory to yellow concrete named "&eContinue Hack"    
+
+on inventory click:
+    if name of event-item is "&aComplete Hack":
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set {_r} to type of block at {hackingdoor::%player's uuid%}
+        set block at {hackingdoor::%player's uuid%} to air
+        set {_x} to x coordinate of block at {hackingdoor::%player's uuid%}
+        set {_y} to y coordinate of block at {hackingdoor::%player's uuid%}
+        set {_z} to z coordinate of block at {hackingdoor::%player's uuid%}
+        console command "/particle block iron_door %{_x}% %{_y}% %{_z}%0 0 0 1 5 normal"
+        close player's inventory        
+        wait 3 second
+        set block at {hackingdoor::%player's uuid%} to {_r}   
+        delete {hackingdoor::%player's uuid%}      
+        delete {hackingdoornumber::%player's uuid%}      
+        delete {hackingdoortime::%player's uuid%}      
+        

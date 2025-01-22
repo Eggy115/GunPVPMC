@@ -1,0 +1,155 @@
+on chat:
+	replace all "gunpvpmc.minehut.gg" with "&7Gun&4PVP&aMC&6.minehut.gg&f" in the message
+	replace all "gunpvpmc" with "&7Gun&4PVP&aMC&f" in the message
+	replace all "gpm" with "&7G&4P&aM&f" in the message
+	
+	replace all ":item:" with "%name of player's held item%&f" in the message
+	
+	replace all ":kills:" with "&6[&c%{kills::%player's uuid%}%&6]&f" in the message
+	replace all ":deaths:" with "&6[&c%{deaths::%player's uuid%}%&6]&f" in the message
+	replace all ":kdr:" with "&6[&c%{kdr::%player's uuid%}%&6]&f" in the message	
+	replace all ":coins:" with "&6[&c%{coins::%player's uuid%}%&6]&f" in the message
+	
+	if {rank::%player's uuid%} is "VIP" or "MVP":
+		replace all "&" with "§" in the message	
+
+	loop all players:
+		replace all "%loop-player%" with "%{title::%loop-player's uuid%}% %loop-player%&f" in the message
+	
+command /fixmychat:
+	trigger:
+		if {fixchat::%uuid of player%} is set:
+			clear {fixchat::%uuid of player%}
+			send "your chat is no longer fixed for you"
+		else:
+			set {fixchat::%uuid of player%} to true
+			send "your chat is fixed for you"
+
+command /chat:
+	trigger:
+		send "%nl%:item:%nl%:kills:%nl%:deaths:%nl%:kdr:%nl%:coins:%nl%"
+
+on chat:
+	set {messagevar::%player's uuid%} to message
+	
+	set {_rank} to ""
+
+	if {rank::%player's uuid%} is "VIP":
+		if {title::%player's uuid%} is not "&a[VIP]":
+			set {_rank} to "&a[V] "
+
+	if {rank::%player's uuid%} is "MVP":
+		if {title::%player's uuid%} is not "&b[MVP]":
+			set {_rank} to "&b[M] "
+
+	if {rank::%player's uuid%} is "Helper":
+		if {title::%player's uuid%} is not "&9[Helper]":
+			set {_rank} to "&9[H] "
+
+	if {rank::%player's uuid%} is "Manager":
+		if {title::%player's uuid%} is not "&e[Manager]":
+			set {_rank} to "&e[M] "			
+
+	if {fixchat::%uuid of player%} is true:
+		set {messagevar::%player's uuid%} to message
+
+		replace all "god" in {messagevar::%player's uuid%} with "God"
+		replace all "dont" in {messagevar::%player's uuid%} with "don't"
+		replace all "wont" in {messagevar::%player's uuid%} with "won't"
+		replace all "cant" in {messagevar::%player's uuid%} with "can't"
+		replace all "isnt" in {messagevar::%player's uuid%} with "isn't"
+		replace all "arent" in {messagevar::%player's uuid%} with "aren't"
+		replace all "doesnt" in {messagevar::%player's uuid%} with "doesn't"
+		replace all "havent" in {messagevar::%player's uuid%} with "haven't"
+		replace all "hadnt" in {messagevar::%player's uuid%} with "hadn't"
+		replace all "wasnt" in {messagevar::%player's uuid%} with "wasn't"
+		replace all "werent" in {messagevar::%player's uuid%} with "weren't"
+		replace all "wouldnt" in {messagevar::%player's uuid%} with "wouldn't"
+		replace all "shouldnt" in {messagevar::%player's uuid%} with "shouldn't"
+		replace all "shouldve" in {messagevar::%player's uuid%} with "should've"
+		replace all "cantve" in {messagevar::%player's uuid%} with "can'tve"				
+		replace all "cant've" in {messagevar::%player's uuid%} with "can't've"
+		replace all "couldnt" in {messagevar::%player's uuid%} with "couldn't"
+		replace all "mightnt" in {messagevar::%player's uuid%} with "mightn't"
+		replace all "mustnt" in {messagevar::%player's uuid%} with "mustn't"
+		replace all "didnt" in {messagevar::%player's uuid%} with "didn't"
+		replace all "woudntve" in {messagevar::%player's uuid%} with "wouldn'tve"
+		replace all "woudnt've" in {messagevar::%player's uuid%} with "wouldn't've"
+		replace all "npc" in {messagevar::%player's uuid%} with "NPC"	
+		replace all " u " in {messagevar::%player's uuid%} with " you "	
+		replace all " r " in {messagevar::%player's uuid%} with " are "	
+		replace all " i " in {messagevar::%player's uuid%} with " I "	
+		replace all "youre" in {messagevar::%player's uuid%} with "you're"	
+		replace all "theyre" in {messagevar::%player's uuid%} with "you're"	
+
+		if {messagevar::%player's uuid%} starts with "r ":
+			replace all "r " in {messagevar::%player's uuid%} with "are "
+		if {messagevar::%player's uuid%} starts with "u ":
+			replace all "u " in {messagevar::%player's uuid%} with "you "		
+
+		set {_words::*} to {messagevar::%player's uuid%} split by " "
+		set {_words::1} to {_words::1} in strict proper case
+		set {_newMessage} to join {_words::*} with " "
+		set {messagevar::%player's uuid%} to {_newmessage}
+
+							
+
+		set {_} to 1
+		if {messagevar::%player's uuid%} ends with ".":
+			set {_} to 0
+		if {messagevar::%player's uuid%} ends with "!":
+			set {_} to 0
+		if {messagevar::%player's uuid%} ends with "?":
+			set {_} to 0
+		if {messagevar::%player's uuid%} ends with ")":
+			set {_} to 0	
+		if {messagevar::%player's uuid%} ends with "}":
+			set {_} to 0	
+		if {messagevar::%player's uuid%} ends with "]":
+			set {_} to 0												
+		if {_} is 1:
+			set {messagevar::%player's uuid%} to "%{messagevar::%player's uuid%}%."
+
+	if {mute::%player's uuid%} is 1:
+		send "&cYou have been muted by %{mutestaff::%player's uuid%}%!"
+		cancel event
+	
+
+		loop all players:
+			if {cs::%uuid of loop-player%} is set:
+				if "%player%" is not "%loop-player%":
+					send "&c[MUTED] &6[&c%{rep::%player's uuid%}%✫&6] %{title::%player's uuid%}% %player%:&c %message%" to loop-player
+		stop
+	
+	if {chat.%player%.cooldown} is true:
+		send "&cWait before sending messages!"
+		cancel event
+		stop
+	if {messagevar::%player's uuid%} = {message::%player's uuid%}:
+		send "&cDo not repeat the same message!"
+		cancel event
+		stop
+	set {message::%player's uuid%} to {messagevar::%player's uuid%}
+	set chat format to "&6[&c%{rep::%player's uuid%}%✫&6] %{title::%player's uuid%}% %player%:&f %{messagevar::%player's uuid%}%"
+	set {message::%player's uuid%} to "%{messagevar::%player's uuid%}%"
+	post "[%{rep::%player's uuid%}%✫] %uncolored {title::%player's uuid%}% %player%: %uncolored {messagevar::%player's uuid%}%" to channel with id "734316055127916605"
+
+on join:
+	delete {message::%player's uuid%}
+
+on death:
+	delete {message::%victim's uuid%}
+
+on chat:
+	if {chat.%player%.cooldown} is true:
+		stop
+	else:
+		set {chat.%player%.cooldown} to true
+		wait 0.5 seconds
+		clear {chat.%player%.cooldown}
+
+on join:
+	delete {chat.%player%.cooldown}
+
+on death:
+	{chat.%victim%.cooldown}

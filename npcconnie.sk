@@ -1,0 +1,44 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 1ad38c5d-38f3-4e50-951e-f00a1d80e998 -158 69 -505"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Chemist] Connie":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cChemist&6] Connie"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to 1 ghast tear named "<##DDDDDD>Paracetamol &6[&cx1&6]"
+        set line 1 of lore of slot 10 of {_store} to "&6Potency: &c1&6/&c10"
+        set line 2 of lore of slot 10 of {_store} to "&6Vendor: &cConnie"        
+        set line 4 of lore of slot 10 of {_store} to "&6Cost: &c100"
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##DDDDDD>Paracetamol &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 99:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to ghast tear named "<##DDDDDD>Paracetamol"   
+            set line 1 of lore of {_i} to "&6Potency: &c1&6/&c10"
+            set line 2 of lore of {_i} to "&6Vendor: &cConnie"
+            give {_i} to player            
+            send "&6[&cChemist&6] Connie: There you are. That'll be 100"
+        else:
+            send "&6[&cChemist&6] Connie: It costs 100, dearie"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0" 
+
+on right click with ghast tear:
+    remove 1 ghast tear from player     
+    console command "/effect give %player% resistance 30 0 true"        

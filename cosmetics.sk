@@ -1,0 +1,90 @@
+command /cosmetics:
+	trigger:
+		console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 10000 2"
+		set {_shop} to a new chest inventory with 4 rows with name "&7Gun&4PVP&aMC &6Cosmetics"
+		set slot 10 of {_shop} to spectral arrow named "&6Arrow Trails"
+		set slot 12 of {_shop} to oak sign named "&6Chat"
+		set slot 14 of {_shop} to skeleton skull named "&6Kill Effects"
+		set slot 16 of {_shop} to diamond named "&6Cosmetic Items"
+		set slot 20 of {_shop} to iron sword named "&6Death Messages" with nbt "{HideFlags:6}"
+		set slot 22 of {_shop} to nether star named "&6Particle Effects"
+		set slot 24 of {_shop} to player head named "&6Player Heads"
+		
+		set slot 35 of {_shop} to arrow named "&c&6Back"
+		
+		open {_shop} to player
+		set {trade::%player's uuid%} to true
+		
+on inventory click:
+	if name of event-item is "&6Arrow Trails":
+		console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 10000 2"
+		set {_shop} to a new chest inventory with 3 rows with name "&7Gun&4PVP&aMC &6Arrow Trails"
+		
+		set slot 26 of {_shop} to arrow named "&c&6Back"
+		
+		open {_shop} to player
+		set {trade::%player's uuid%} to true
+		
+on inventory click:
+	if name of event-item is "&6Chat":
+		console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 10000 2"
+		set {_shop} to a new chest inventory with 3 rows with name "&7Gun&4PVP&aMC &6Chat"
+		
+		set slot 26 of {_shop} to arrow named "&c&6Back"
+		
+		open {_shop} to player
+		set {trade::%player's uuid%} to true
+		
+on inventory click:
+	if name of event-item is "&6Kill Effects":
+		console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 10000 2"
+		set {_shop} to a new chest inventory with 3 rows with name "&7Gun&4PVP&aMC &6Kill Effects"
+		
+		set slot 26 of {_shop} to arrow named "&c&6Back"
+		
+		open {_shop} to player
+		set {trade::%player's uuid%} to true
+		
+on inventory click:
+	if name of event-item is "&6Cosmetic Items":
+		console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 10000 2"
+		set {_shop} to a new chest inventory with 3 rows with name "&7Gun&4PVP&aMC &6Cosmetic Items"
+		
+		set slot 26 of {_shop} to arrow named "&c&6Back"
+		
+		open {_shop} to player
+		set {trade::%player's uuid%} to true
+		
+on inventory click:
+	if name of event-item is "&6Death Messages":
+		console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 10000 2"
+		set {_shop} to a new chest inventory with 3 rows with name "&7Gun&4PVP&aMC &6Death Messages"
+		
+		set slot 26 of {_shop} to arrow named "&c&6Back"
+		
+		open {_shop} to player
+		set {trade::%player's uuid%} to true
+
+on inventory click:
+	if name of event-item is "&6Particle Effects":
+		console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 10000 2"
+		set {_shop} to a new chest inventory with 3 rows with name "&7Gun&4PVP&aMC &6Particle Effects"
+		
+		set slot 26 of {_shop} to arrow named "&c&6Back"
+		
+		open {_shop} to player
+		set {trade::%player's uuid%} to true
+		
+on inventory click:
+	if name of event-item is "&6Player Heads":
+		console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 10000 2"
+		set {_shop} to a new chest inventory with 3 rows with name "&7Gun&4PVP&aMC &6Player Heads"
+		
+		set slot 26 of {_shop} to arrow named "&c&6Back"
+		
+		open {_shop} to player
+		set {trade::%player's uuid%} to true
+
+on inventory click:
+	if name of event-item is "&c&6Back":
+		make player execute "/cosmetics"	

@@ -1,0 +1,54 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport fd9f2d59-20e4-4ffd-8410-1a0831a4caf4 -110 68 -586"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Homeless] Harry":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cHomeless&6] Harry"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to 1 bundle named "<##804929>Backpack &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 2 of lore of slot 10 of {_store} to "&6Cost: &c1000"
+
+        set slot 11 of {_store} to 1 cooked beef named "<##6c3d2c>Steak &6[&cx1&6]"
+        set line 2 of lore of slot 11 of {_store} to "&6Cost: &c2"        
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##804929>Backpack &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 1000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 bundle named "<##804929>Backpack" with nbt "{HideFlags:127}"
+            send "&6[&cHomeless&6] Harry: A deal is a deal, here ya go"
+        else:
+            send "&6[&cHomeless&6] Harry: Mate, I'm out here starvin', and you're showing up with no cash? What a joke..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##6c3d2c>Steak &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 1:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 2
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 cooked beef named "<##6c3d2c>Steak"
+            send "&6[&cHomeless&6] Harry: A deal is a deal, here ya go"
+        else:
+            send "&6[&cHomeless&6] Harry: Mate, I'm out here starvin', and you're showing up with no cash? What a joke..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              

@@ -1,0 +1,115 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport f3bd11d2-ece3-427d-a99d-0f00d97a0812 -77 70 -511"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Dancer] Delilah":
+        if {rep::%player's uuid%} < 10:
+            send "&6[&cDancer&6] Delilah: I only speak to people with &c10✫&6... sorry..." to player
+        else:
+            set {_store} to a new chest inventory with 3 row with name "&6[&cDancer&6] Delilah"
+            
+            set {_e} to 0
+            loop 36 times:
+                set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+                add 1 to {_e}
+
+            set slot 10 of {_store} to painting named "<##DFDFDF>Photo of Delilah &6[&cx1&6]"
+            set line 2 of lore of slot 10 of {_store} to "&6Cost: &c100"  
+
+            open {_store} to player
+            set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##DFDFDF>Photo of Delilah &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 99:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cDancer&6] Delilah: Oh my gosh, if you insist."
+            give painting named "<##DFDFDF>Photo of Delilah" to player
+        else:
+            send "&6[&cDancer&6] Delilah: Oh my gosh, surely you didn't think I'd give it away &othat&6 easily?"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                                    
+
+every 1 minute in "GunPVPMC":        
+    set {_name} to random element out of {name::*}
+    set {_villagers} to 0
+    loop all villagers:
+        if loop-villager has scoreboard tag "suspicious":
+            set {_villagers} to {_villagers} + 1
+    if {_villagers} < 10:
+        loop 3 times:
+            set {_x} to -77 + random integer between -3 and 3
+            set {_z} to -512 + random integer between -3 and 3
+            console command "/summon villager %{_x}% 70 %{_z}% {Tags:[""npcvillager"",""suspicious""],CustomName:'[{""text"":""["",""color"":""gold""},{""text"":""Suspicious Citizen"",""color"":""red""},{""text"":""] %{_name}%"",""color"":""gold""}]'}"  
+
+on death of villager:
+    if victim has scoreboard tag "suspicious":
+        if {cleaningupthecity1::%attacker's uuid%} is "&cIn Progress":
+            set {cleaningupthecity1progress::%attacker's uuid%} to {cleaningupthecity1progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{cleaningupthecity1progress::%attacker's uuid%}%&6/&c10&6 Suspicious Citizens Killed!" to attacker
+            if {cleaningupthecity1progress::%attacker's uuid%} is 10:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCleaning up the City I&6!" to attacker
+                add 10 to {LEVEL.exp::%attacker's uuid%}
+                set {cleaningupthecity1::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {cleaningupthecity2::%attacker's uuid%} is "&cIn Progress":
+            set {cleaningupthecity2progress::%attacker's uuid%} to {cleaningupthecity2progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{cleaningupthecity2progress::%attacker's uuid%}%&6/&c50&6 Suspicious Citizens Killed!" to attacker
+            if {cleaningupthecity2progress::%attacker's uuid%} is 50:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCleaning up the City II&6!" to attacker
+                add 50 to {LEVEL.exp::%attacker's uuid%}
+                set {cleaningupthecity2::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {cleaningupthecity3::%attacker's uuid%} is "&cIn Progress":
+            set {cleaningupthecity3progress::%attacker's uuid%} to {cleaningupthecity3progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{cleaningupthecity3progress::%attacker's uuid%}%&6/&c100&6 Suspicious Citizens Killed!" to attacker
+            if {cleaningupthecity3progress::%attacker's uuid%} is 100:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCleaning up the City III&6!" to attacker
+                add 100 to {LEVEL.exp::%attacker's uuid%}
+                set {cleaningupthecity3::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {cleaningupthecity4::%attacker's uuid%} is "&cIn Progress":
+            set {cleaningupthecity4progress::%attacker's uuid%} to {cleaningupthecity4progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{cleaningupthecity4progress::%attacker's uuid%}%&6/&c200&6 Suspicious Citizens Killed!" to attacker
+            if {cleaningupthecity4progress::%attacker's uuid%} is 200:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCleaning up the City IV&6!" to attacker
+                add 200 to {LEVEL.exp::%attacker's uuid%}
+                set {cleaningupthecity4::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {cleaningupthecity5::%attacker's uuid%} is "&cIn Progress":
+            set {cleaningupthecity5progress::%attacker's uuid%} to {cleaningupthecity5progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{cleaningupthecity5progress::%attacker's uuid%}%&6/&c500&6 Suspicious Citizens Killed!" to attacker
+            if {cleaningupthecity5progress::%attacker's uuid%} is 500:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCleaning up the City V&6!" to attacker
+                add 500 to {LEVEL.exp::%attacker's uuid%}
+                set {cleaningupthecity5::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {cleaningupthecity6::%attacker's uuid%} is "&cIn Progress":
+            set {cleaningupthecity6progress::%attacker's uuid%} to {cleaningupthecity6progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{cleaningupthecity6progress::%attacker's uuid%}%&6/&c1000&6 Suspicious Citizens Killed!" to attacker
+            if {cleaningupthecity6progress::%attacker's uuid%} is 1000:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCleaning up the City VI&6!" to attacker
+                add 1000 to {LEVEL.exp::%attacker's uuid%}
+                set {cleaningupthecity6::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {cleaningupthecity7::%attacker's uuid%} is "&cIn Progress":
+            set {cleaningupthecity7progress::%attacker's uuid%} to {cleaningupthecity7progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{cleaningupthecity7progress::%attacker's uuid%}%&6/&c2000&6 Suspicious Citizens Killed!" to attacker
+            if {cleaningupthecity7progress::%attacker's uuid%} is 2000:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCleaning up the City VII&6!" to attacker
+                add 2000 to {LEVEL.exp::%attacker's uuid%}
+                set {cleaningupthecity7::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"

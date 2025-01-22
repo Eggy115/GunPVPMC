@@ -1,0 +1,38 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport ad8ddf33-a3fa-47fe-b247-f898c0590e9a -70 70 -513"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Dancer] Daphne":
+        if {rep::%player's uuid%} < 30:
+            send "&6[&cDancer&6] Daphne: I only speak to people with &c30✫&6... sorry..." to player
+        else:
+            set {_store} to a new chest inventory with 3 row with name "&6[&cDancer&6] Daphne"
+            
+            set {_e} to 0
+            loop 36 times:
+                set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+                add 1 to {_e}
+
+            set slot 10 of {_store} to painting named "<##DFDFDF>Photo of Daphne &6[&cx1&6]"
+            set line 2 of lore of slot 10 of {_store} to "&6Cost: &c300"  
+
+            open {_store} to player
+            set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##DFDFDF>Photo of Daphne &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 299:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 300
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cDancer&6] Daphne: Enjoy..."
+            give painting named "<##DFDFDF>Photo of Daphne" to player
+        else:
+            send "&6[&cDancer&6] Daphne: Oh my gosh, surely you didn't think I'd give it away &othat&6 easily?"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                                    

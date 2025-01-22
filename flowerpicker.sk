@@ -1,0 +1,279 @@
+on right click on red tulip:
+    if {flowerpicker1::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker1progress::%player's uuid%} to {flowerpicker1progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker1progress::%player's uuid%}%&6/&c10&6 Flowers Picked!" to player
+        if {flowerpicker1progress::%player's uuid%} is 10:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker I&6!" to player
+            add 10 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker1::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to red tulip
+        stop
+    if {flowerpicker2::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker2progress::%player's uuid%} to {flowerpicker2progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker2progress::%player's uuid%}%&6/&c25&6 Flowers Picked!" to player
+        if {flowerpicker2progress::%player's uuid%} is 25:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker II&6!" to player
+            add 25 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker2::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to red tulip    
+        stop
+    if {flowerpicker3::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker3progress::%player's uuid%} to {flowerpicker3progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker3progress::%player's uuid%}%&6/&c50&6 Flowers Picked!" to player
+        if {flowerpicker3progress::%player's uuid%} is 50:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker III&6!" to player
+            add 50 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker3::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to red tulip   
+        stop
+    if {flowerpicker4::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker4progress::%player's uuid%} to {flowerpicker4progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker4progress::%player's uuid%}%&6/&c75&6 Flowers Picked!" to player
+        if {flowerpicker4progress::%player's uuid%} is 75:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker IV&6!" to player
+            add 75 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker4::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to red tulip          
+        stop
+    if {flowerpicker5::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker5progress::%player's uuid%} to {flowerpicker5progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker5progress::%player's uuid%}%&6/&c100&6 Flowers Picked!" to player
+        if {flowerpicker5progress::%player's uuid%} is 100:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker V&6!" to player
+            add 100 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker5::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to red tulip   
+        stop
+    if {flowerpicker6::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker6progress::%player's uuid%} to {flowerpicker6progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker6progress::%player's uuid%}%&6/&c200&6 Flowers Picked!" to player
+        if {flowerpicker6progress::%player's uuid%} is 200:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker VI&6!" to player
+            add 200 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker6::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to red tulip                                
+        stop
+    if {flowerpicker7::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker7progress::%player's uuid%} to {flowerpicker7progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker7progress::%player's uuid%}%&6/&c500&6 Flowers Picked!" to player
+        if {flowerpicker7progress::%player's uuid%} is 500:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker VII&6!" to player
+            add 500 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker7::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to red tulip    
+        stop
+
+on right click on white tulip:
+    if {flowerpicker1::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker1progress::%player's uuid%} to {flowerpicker1progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker1progress::%player's uuid%}%&6/&c10&6 Flowers Picked!" to player
+        if {flowerpicker1progress::%player's uuid%} is 10:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker I&6!" to player
+            add 10 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker1::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to white tulip
+        stop
+    if {flowerpicker2::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker2progress::%player's uuid%} to {flowerpicker2progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker2progress::%player's uuid%}%&6/&c25&6 Flowers Picked!" to player
+        if {flowerpicker2progress::%player's uuid%} is 25:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker II&6!" to player
+            add 25 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker2::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to white tulip    
+        stop
+    if {flowerpicker3::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker3progress::%player's uuid%} to {flowerpicker3progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker3progress::%player's uuid%}%&6/&c50&6 Flowers Picked!" to player
+        if {flowerpicker3progress::%player's uuid%} is 50:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker III&6!" to player
+            add 50 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker3::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to white tulip   
+        stop
+    if {flowerpicker4::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker4progress::%player's uuid%} to {flowerpicker4progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker4progress::%player's uuid%}%&6/&c75&6 Flowers Picked!" to player
+        if {flowerpicker4progress::%player's uuid%} is 75:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker IV&6!" to player
+            add 75 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker4::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to white tulip          
+        stop
+    if {flowerpicker5::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker5progress::%player's uuid%} to {flowerpicker5progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker5progress::%player's uuid%}%&6/&c100&6 Flowers Picked!" to player
+        if {flowerpicker5progress::%player's uuid%} is 100:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker V&6!" to player
+            add 100 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker5::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to white tulip   
+        stop
+    if {flowerpicker6::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker6progress::%player's uuid%} to {flowerpicker6progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker6progress::%player's uuid%}%&6/&c200&6 Flowers Picked!" to player
+        if {flowerpicker6progress::%player's uuid%} is 200:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker VI&6!" to player
+            add 200 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker6::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to white tulip           
+        stop
+    if {flowerpicker7::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker7progress::%player's uuid%} to {flowerpicker7progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker7progress::%player's uuid%}%&6/&c500&6 Flowers Picked!" to player
+        if {flowerpicker7progress::%player's uuid%} is 500:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker VII&6!" to player
+            add 500 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker7::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to white tulip                                 
+        stop
+ 
+
+on right click on orange tulip:
+    if {flowerpicker1::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker1progress::%player's uuid%} to {flowerpicker1progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker1progress::%player's uuid%}%&6/&c10&6 Flowers Picked!" to player
+        if {flowerpicker1progress::%player's uuid%} is 10:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker I&6!" to player
+            add 10 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker1::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to orange tulip
+        stop
+    if {flowerpicker2::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker2progress::%player's uuid%} to {flowerpicker2progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker2progress::%player's uuid%}%&6/&c25&6 Flowers Picked!" to player
+        if {flowerpicker2progress::%player's uuid%} is 25:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker II&6!" to player
+            add 25 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker2::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to orange tulip    
+        stop
+    if {flowerpicker3::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker3progress::%player's uuid%} to {flowerpicker3progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker3progress::%player's uuid%}%&6/&c50&6 Flowers Picked!" to player
+        if {flowerpicker3progress::%player's uuid%} is 50:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker III&6!" to player
+            add 50 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker3::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to orange tulip   
+        stop
+    if {flowerpicker4::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker4progress::%player's uuid%} to {flowerpicker4progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker4progress::%player's uuid%}%&6/&c75&6 Flowers Picked!" to player
+        if {flowerpicker4progress::%player's uuid%} is 75:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker IV&6!" to player
+            add 75 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker4::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to orange tulip          
+        stop
+    if {flowerpicker5::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker5progress::%player's uuid%} to {flowerpicker5progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker5progress::%player's uuid%}%&6/&c100&6 Flowers Picked!" to player
+        if {flowerpicker5progress::%player's uuid%} is 100:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker V&6!" to player
+            add 100 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker5::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to orange tulip   
+        stop
+    if {flowerpicker6::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker6progress::%player's uuid%} to {flowerpicker6progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker6progress::%player's uuid%}%&6/&c200&6 Flowers Picked!" to player
+        if {flowerpicker6progress::%player's uuid%} is 200:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker VI&6!" to player
+            add 200 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker6::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to orange tulip  
+        stop
+    if {flowerpicker7::%player's uuid%} is "&cIn Progress":
+        console command "/execute at %player% run playsound minecraft:entity.arrow.hit_player master %player% ~ ~ ~ 100000 1"
+        set {flowerpicker7progress::%player's uuid%} to {flowerpicker7progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{flowerpicker7progress::%player's uuid%}%&6/&c500&6 Flowers Picked!" to player
+        if {flowerpicker7progress::%player's uuid%} is 500:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cFlower Picker VII&6!" to player
+            add 500 to {LEVEL.exp::%player's uuid%}
+            set {flowerpicker7::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        set event-block to air
+        wait 2 minutes
+        set event-block to orange tulip            
+        stop

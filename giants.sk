@@ -1,0 +1,24 @@
+command /giant:
+    permission: op
+    trigger:
+        console command "/summon giant ~ ~ ~ {CustomName:'[{""text"":""["",""color"":""gold""},{""text"":""Undead"",""color"":""red""},{""text"":""] Giant"",""color"":""gold""}]',Tags:[""Giant""]}"
+        console command "/summon husk ~ ~ ~ {Attributes:[{Name:generic.movement_speed,Base:0.5}],Invulnerable:1b,Tags:[""AIgiant""],ActiveEffects:[{Id:14b,Amplifier:2b,Duration:200000,ShowParticles:0b}]}"
+
+on death of giant:
+    console command "/kill @e[tag=AIgiant]"
+    if attacker is player:
+        if {davidvsgoliath::%attacker's uuid%} is "&cIn Progress":
+            set {davidvsgoliathprogress::%attacker's uuid%} to {davidvsgoliathprogress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{davidvsgoliathprogress::%attacker's uuid%}%&6/&c1&6 Giants Killed!" to attacker
+            if {davidvsgoliathprogress::%attacker's uuid%} > 0:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cDavid VS Goliath&6!" to attacker
+                add 10 to {LEVEL.exp::%attacker's uuid%}
+                delete {davidvsgoliath::%attacker's uuid%}
+                delete {davidvsgoliathprogress::%attacker's uuid%}
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+
+every 1 second:
+    loop all husks:
+        loop all players in radius 5 around loop-husk:
+            damage loop-player by 3 heart

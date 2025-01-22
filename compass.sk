@@ -1,0 +1,42 @@
+on right click with compass:
+    set {trade::%player's uuid%} to true
+    set {_a} to online player count
+    set {_rows} to 1
+    if {_a} > 9:
+        set {_rows} to 2
+    if {_a} > 18:
+        set {_rows} to 3
+    if {_a} > 27:
+        set {_rows} to 4
+    if {_a} > 36:
+        set {_rows} to 5
+    if {_a} > 45:
+        set {_rows} to 6               
+    
+    set {_store} to a new chest inventory with {_rows} row with name "&6Choose Player"
+    set {_e} to 0
+    set {_rows} to {_rows} * 10
+    loop {_rows} times:
+        set slot {_e} of {_store} to gray stained glass pane named "&0 "    
+        add 1 to {_e}
+
+    set {_b} to 0
+    loop all players:
+        if {vanish::%loop-player's uuid%} is not true:
+            set slot {_b} of {_store} to loop-player's skull named "&6Track %{title::%loop-player's uuid%}% %loop-player%"
+            set {_b} to {_b} + 1
+
+    open {_store} to player
+    set {trade::%player's uuid%} to true
+
+on inventory click:
+    if event-item is player skull:
+        if {trade::%player's uuid%} is true:
+            if name of event-item contains "&6Track":
+                set {_words::*} to name of event-item split by "] "
+                set the player's compass target to location of {_words::2} parsed as player
+                close player's inventory
+                set {_words::*} to name of event-item split by "Track "
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                send action bar "&6Now tracking %{_words::2}%" to player
+   #<##882222>Tracking Compass

@@ -1,0 +1,72 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport cf1a1857-7d1c-4ccf-8e7e-eebed9bf7ca4 -147 70 -568"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Dealer] Daquavius":
+        if {storyquest1::%player's uuid%} is "&cIn Progress":
+            if {storyquest1::pickupweed::%player's uuid%} is "&cComplete":
+                if {storyquest1::daquavius::%player's uuid%} is not set:
+                    set {storyquest1::daquavius::%player's uuid%} to true
+                    console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+                    send "%nl%&6[&cDealer&6] Daquavius: Alright alright alright...%nl%" to player
+                    wait 2 seconds
+
+                    console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+                    send "%nl%&6[&cDealer&6] Daquavius: You is here...%nl%" to player
+                    wait 2 seconds  
+
+                    console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+                    send "%nl%&6[&cDealer&6] Daquavius: And you got the product...%nl%" to player
+                    remove 10 fern named "&2Cannabi&2s" from player
+                    wait 2 seconds 
+
+                    console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+                    send "%nl%&6[&cDealer&6] Daquavius: Nice, man, well peace out...%nl%" to player
+                    wait 2 seconds
+                    set {storyquest1::%player's uuid%} to "&cComplete"  
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cToke and Transit&6!" to player
+                    add 50 to {LEVEL.exp::%player's uuid%}
+                    console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"                                                         
+                    delete {storyquest1::david::%player's uuid%}
+                    stop
+            if {storyquest1::daquavius::%player's uuid%} is true:
+                stop
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cDealer&6] Daquavius: Yo, you gotta speak to David first...%nl%" to player            
+            stop
+
+        set {_store} to a new chest inventory with 3 row with name "&6[&cDealer&6] Daquavius"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to fern named "&2Ca&2nnabis &6[&cx1&6]"
+        set line 1 of lore of slot 10 of {_store} to "&6Potency: &c3&6/&c10"
+        set line 2 of lore of slot 10 of {_store} to "&6Vendor: &cDaquavius"
+        set line 4 of lore of slot 10 of {_store} to "&6Cost: &c100"              
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "&2Ca&2nnabis &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 99:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cDealer&6] Daquavius: Alright alright alright..."
+            set {_i} to fern named "&2Ca&2nnabis"   
+            set line 1 of lore of {_i} to "&6Potency: &c3&6/&c10"
+            set line 2 of lore of {_i} to "&6Vendor: &cDaquavius"
+            give {_i} to player
+        else:
+            send "&6[&cDealer&6] Daquavius: Nah man... I can't accept that..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                        

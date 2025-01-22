@@ -1,0 +1,488 @@
+every 20 seconds in "GunPVPMC":
+    if {message} is set:
+        if {message} is 0:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Talk to villagers to get ammunition and other items!" to loop-player
+            set {message} to {message} + 1
+            stop
+        if {message} is 1:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Players with high kill streaks drop more coins!" to loop-player
+            set {message} to {message} + 1
+            stop
+        if {message} is 2:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Join the Discord with &c/discord&6!" to loop-player
+            set {message} to {message} + 1
+            stop
+        if {message} is 3:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Remember to shoot players!" to loop-player
+            set {message} to {message} + 1
+            stop
+        if {message} is 4:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: You can purchase multiple of the same gun type!" to loop-player
+            set {message} to {message} + 1
+            stop
+        if {message} is 5:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Trade with villagers to get items!" to loop-player
+            set {message} to {message} + 1
+            stop
+        if {message} is 6:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Gang raids and other events happen periodically!" to loop-player
+            set {message} to {message} + 1
+            stop
+        if {message} is 7:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Create a gang with &c/gang&6!" to loop-player
+            set {message} to {message} + 1
+            stop
+        if {message} is 8:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: You can see your stats on the scoreboard!" to loop-player
+            set {message} to {message} + 1
+            stop
+        if {message} is 9:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Stuck somewhere and you can't escape? Use &c/suicide&6!" to loop-player
+            set {message} to {message} + 1
+            stop     
+        if {message} is 10:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Apply for staff with &c/apply&6! (PLEASE - WE NEED STAFF)" to loop-player
+            set {message} to {message} + 1
+            stop   
+        if {message} is 11:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: NPC villagers can be killed for coins!" to loop-player
+            set {message} to {message} + 1
+            stop   
+        if {message} is 12:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Items are purchased from villager shopkeepers around the map!" to loop-player
+            set {message} to {message} + 1
+            stop   
+        if {message} is 13:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Shoot at the ground, and the recoil of the gun will let you double jump!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 14:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Gilbert sells ammunition in bulk qualities!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 15:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Dying will result in you losing coins!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 16:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Open chests and barrels to get items!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 17:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Travel to spawn quickly with &c/spawn&6!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 18:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Shooting NPCs may result in police spawning!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 19:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Grenades can be found in barrels and chests!" to loop-player
+            set {message} to {message} + 1
+            stop  
+        if {message} is 20:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Chests containing ammo and other items can be found around the map!" to loop-player
+            set {message} to {message} + 1
+            stop   
+        if {message} is 21:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: The boats have shopkeepers on them!" to loop-player
+            set {message} to {message} + 1
+            stop               
+        if {message} is 22:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Right click once to activate an automatic gun!" to loop-player
+            set {message} to {message} + 1
+            stop   
+        if {message} is 23:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Gain coins by killing players!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 24:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Sell blood and bones to the cannibal!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 25:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Check out the list of guns with &c/gunlist&6!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 26:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Make sure you buy the correct type of ammunition!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 27:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: NPCs are everywhere - look hard for them!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 28:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Use &c/toggledeaths&6 to turn death messages on and off!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 29:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Police and Criminals will fight each other!" to loop-player
+            set {message} to {message} + 1
+            stop   
+        if {message} is 30:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Is someone hacking? Report them on &c/discord&6!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 31:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: The server is constantly updating - we really appreciate your feedback!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 32:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Bombs blow both you and your opponent up!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 33:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: We need your help! Make suggestions on &c/discord&6!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 34:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Players in the same gang cannot hurt each other!" to loop-player
+            set {message} to {message} + 1
+            stop     
+        if {message} is 35:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Bullets from the M40 (sniper) travel faster!" to loop-player
+            set {message} to {message} + 1
+            stop  
+        if {message} is 36:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Use &c/titles&6 to set your title and really show off!" to loop-player
+            set {message} to {message} + 1
+            stop      
+        if {message} is 37:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: You can eat blood and bones to regain hunger!" to loop-player
+            set {message} to {message} + 1
+            stop     
+        if {message} is 38:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Parachutes will slow down your fall!" to loop-player
+            set {message} to {message} + 1
+            stop  
+        if {message} is 39:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Being a member of the regional gang in your region gives regen!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 40:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Use &c/shootingrange&6 to practice!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 41:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Give iron to Blacksmith Bert for extra coins!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 42:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Join the &c/discord&6 for a map of all NPCs!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 43:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: You earn double EXP and double coins in the &c/shootingrange&6!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 44:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Go to Walter to get quests!" to loop-player
+            set {message} to {message} + 1
+            stop     
+        if {message} is 45:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Different guns need different types of ammo!" to loop-player
+            set {message} to {message} + 1
+            stop  
+        if {message} is 46:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Think you could help? Apply for staff with &c/apply&6!" to loop-player
+            set {message} to {message} + 1
+            stop      
+        if {message} is 47:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Police Officers have bats, whereas Police Sergeants have guns!" to loop-player
+            set {message} to {message} + 1
+            stop     
+        if {message} is 48:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Have an idea? Place a suggestion on &c/discord&6!" to loop-player
+            set {message} to {message} + 1
+            stop  
+        if {message} is 49:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Reputation is important! Get it as high as you can!" to loop-player
+            set {message} to {message} + 1
+            stop   
+        if {message} is 50:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: This may come as a surprise, but hacking is NOT ALLOWED!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 51:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Everything is custom skripted!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 52:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Use &c/afk&6 to gain extra coins and reputation whilst away!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 53:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Generally speaking, the higher your KDR, the better!" to loop-player
+            set {message} to {message} + 1
+            stop    
+        if {message} is 54:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Homeless Harry, Chef Chester, and Huntsman Gerald all sell food!" to loop-player
+            set {message} to {message} + 1
+            stop     
+        if {message} is 55:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Is someone cheating? Report them on &c/discord&6!" to loop-player
+            set {message} to {message} + 1
+            stop  
+        if {message} is 56:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Use &c/pay&6 to give your friends some extra money!" to loop-player
+            set {message} to {message} + 1
+            stop      
+        if {message} is 57:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Use &c/daily&6 to get some extra coins!" to loop-player
+            set {message} to {message} + 1
+            stop     
+        if {message} is 58:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Use &c/togglehints&6 to turn these hints off!" to loop-player
+            set {message} to {message} + 1
+            stop  
+        if {message} is 59:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Use &c/quests&6 to check your quests!" to loop-player
+            set {message} to {message} + 1
+            stop      
+        if {message} is 60:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Is someone cheating? Report them on &c/discord&6!" to loop-player
+            set {message} to {message} + 1
+            stop  
+        if {message} is 61:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Use &c/toggledeathmessages&6 to disable/enable death messages&6!" to loop-player
+            set {message} to {message} + 1
+            stop      
+        if {message} is 62:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Shoot glass to make it crack!" to loop-player
+            set {message} to {message} + 1
+            stop     
+        if {message} is 63:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Go to Walter for quests!" to loop-player
+            set {message} to {message} + 1
+            stop  
+        if {message} is 64:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Want a snazzy title? Use &c/titles&6!" to loop-player
+            set {message} to {message} + 1
+            stop   
+        if {message} is 65:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: You can use &c/quests&6 to check quests when not with Walter!" to loop-player
+            set {message} to {message} + 1
+            stop  
+        if {message} is 66:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Homeless Harry's Backpack is not a bundle - it's an enderchest!" to loop-player
+            set {message} to {message} + 1
+            stop      
+        if {message} is 67:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Speak to Magician Merlin to unlock the skilltree!" to loop-player
+            set {message} to {message} + 1
+            stop     
+        if {message} is 68:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Cowboy Carl sells the fastest gun in the game!" to loop-player
+            set {message} to {message} + 1
+            stop  
+        if {message} is 69:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: You don't need to have a full magazines worth of ammunition to reload some guns!" to loop-player
+            set {message} to {message} + 1
+            stop                                                                                                                                                                                                                                 
+        if {message} is 70:
+            loop all players:
+                if {hints::%loop-player's uuid%} is true:
+                    send "&7Gun&4PVP&aMC&6: Out of ammo? Trade with a villager!" to loop-player
+            set {message} to 0
+            stop                                                                                                            
+    else:
+        set {message} to 0
+
+on first join:   
+    set {hints::%player's uuid%} to false
+
+command /hints:
+    aliases: /togglehints
+    trigger:
+        if {hints::%player's uuid%} is true:
+            set {hints::%player's uuid%} to false
+            send "&7Gun&4PVP&aMC&6: Hints DISABLED"
+            stop
+        else:
+            set {hints::%player's uuid%} to true
+            send "&7Gun&4PVP&aMC&6: Hints ENABLED"
+            stop        
+
+on command "/crackshot":
+    cancel event
+    send "%nl%&7Gun&4PVP&aMC&6: We don't use Crackshot - everything is custom skripted!%nl%"
+on command "/qualityarmory":
+    cancel event
+    send "%nl%&7Gun&4PVP&aMC&6: We don't use Quality Armory - everything is custom skripted!%nl%"     
+on command "/kit":
+    cancel event
+    send "%nl%&7Gun&4PVP&aMC&6: We don't have kits - buy items from villager shopkeepers!%nl%"       
+on command "/kits":
+    cancel event
+    send "%nl%&7Gun&4PVP&aMC&6: We don't have kits - buy items from villager shopkeepers!%nl%"      
+on command "/shop":
+    cancel event
+    send "%nl%&7Gun&4PVP&aMC&6: We don't have &c/shop&6 - buy items from villager shopkeepers!%nl%"        
+on command "/feed":
+    cancel event
+    send "%nl%&7Gun&4PVP&aMC&6: We don't have &c/feed&6 - buy food from villager shopkeepers!%nl%" 
+on command "/stuck":
+    cancel event
+    send "%nl%&7Gun&4PVP&aMC&6: If you're stuck, you can use &c/spawn&6 or &c/suicide&6!%nl%"                          
+on command "/rtp":
+    cancel event
+    send "%nl%&7Gun&4PVP&aMC&6: We don't have &c/rtp&6. When you die, you spawn in a random place. The more deaths you have, the further out you spawn.%nl%"
+on command "/home":
+    cancel event
+    send "%nl%&7Gun&4PVP&aMC&6: We don't have &c/home&6. Use &c/spawn&6 to get to spawn, or &c/shootingrange&6 to go to the shooting range!%nl%"    
+on command "/guilds":
+    cancel event
+    send "%nl%&7Gun&4PVP&aMC&6: We don't have guilds, but what we do have are gangs! Check out &c/gangs&6!%nl%"  
+on command "/factions":
+    cancel event
+    send "%nl%&7Gun&4PVP&aMC&6: We don't have factions, but what we do have are gangs! Check out &c/gangs&6!%nl%"         
+on command "/guild":
+    cancel event
+    send "%nl%&7Gun&4PVP&aMC&6: We don't have guilds, but what we do have are gangs! Check out &c/gangs&6!%nl%"  
+on command "/faction":
+    cancel event
+    send "%nl%&7Gun&4PVP&aMC&6: We don't have factions, but what we do have are gangs! Check out &c/gangs&6!%nl%"    
+on command "/vault":
+    cancel event
+    send "%nl%&7Gun&4PVP&aMC&6: If you have a vault, use &c/bank&6 to access it. Alternatively, you can buy a backpack from Homeless Harry!%nl%"       

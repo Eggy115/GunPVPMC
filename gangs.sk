@@ -1,0 +1,477 @@
+command /gang [<text>] [<text>] [<text>]:
+    aliases: g, gangs
+    trigger:
+
+        # CREATING A GANG
+        if arg-1 is "create": 
+
+            # GANG IS SET
+            if {GANG::gang::%player's uuid%} is set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou are already in a gang!"
+                stop
+
+            # NEED 5 REPUTATION
+            if {rep::%player's uuid%} < 5:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou must have 5✫ or higher to create a gang!"
+                stop
+
+            # NEED 100 COINS
+            if {coins::%player's uuid%} < 100:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cIt costs 100 coins to create a gang!"                
+                stop
+
+            # NEED TO NAME YOUR GANG
+            if arg-2 is not set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou need to name your gang!"                
+                stop    
+
+            # NO SPACES
+            if arg-3 is set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou cannot have spaces in your gang's name!"                
+                stop  
+
+            # NO SYMBOLS
+            if arg-2 does not match "^[A-Za-z]+$":
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cPlease only use letters!"                
+                stop                  
+
+            set {_arg2} to arg-2  
+
+            # LENGTHLOW
+            if length of {_arg2} is between -9999999999999 and 0:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYour gang's name must be longer than 0 letters!"                
+                stop         
+
+            # LENGTHHIGH
+            if length of {_arg2} is above 15:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYour gang's name must not exceed 15 letters!"                
+                stop                                           
+
+            loop {GANG::ganglist::*}:
+                if arg-2 is loop-value:
+                    console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                    send "&cThat gang name is taken!"                
+                    stop               
+
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 100
+            set {_id} to "%player%%random integer between 10000 and 99999%"
+            set {GANG::ganglist::%{_id}%} to arg-2
+            set {GANG::gang::%player's uuid%} to {_id}
+            set {GANG::gangfirst::%{_id}%} to player's uuid
+            send "%nl%&7Gun&4PVP&aMC &6Gangs: You have created the gang &c%{GANG::ganglist::%{GANG::gang::%player's uuid%}%}%&6!%nl%"
+            stop
+
+        # DELETING GANG
+        if arg-1 is "delete":
+            set {_arg2} to arg-2 parsed as offline player's uuid
+            # GANG IS SET
+            if {GANG::gang::%player's uuid%} is not set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou are not in a gang!"
+                stop        
+
+            # IF YOU THE LEADER
+            if {GANG::gangfirst::%{GANG::gang::%player's uuid%}%} is not uuid of player:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cOnly the gang leader can delete gangs!"
+                stop  
+            
+            delete {GANG::ganglist::%{GANG::gang::%player's uuid%}%}
+            delete {GANG::gang::%{GANG::gangfirst::%{GANG::gang::%player's uuid%}%}%}
+            delete {GANG::gang::%{GANG::gangsecond::%{GANG::gang::%player's uuid%}%}%}
+            delete {GANG::gang::%{GANG::gangthird::%{GANG::gang::%player's uuid%}%}%}
+            delete {GANG::gang::%{GANG::gangfourth::%{GANG::gang::%player's uuid%}%}%}
+            delete {GANG::gang::%{GANG::gangfifth::%{GANG::gang::%player's uuid%}%}%}
+            delete {GANG::gangfirst::%{GANG::gang::%player's uuid%}%}
+            delete {GANG::gangsecond::%{GANG::gang::%player's uuid%}%}
+            delete {GANG::gangthird::%{GANG::gang::%player's uuid%}%}
+            delete {GANG::gangfourth::%{GANG::gang::%player's uuid%}%}
+            delete {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}
+
+        # REMOVING MEMBERS
+        if arg-1 is "kick":
+            set {_arg2} to arg-2 parsed as offline player's uuid
+            # GANG IS SET
+            if {GANG::gang::%player's uuid%} is not set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou are not in a gang!"
+                stop        
+
+            # PLAYER IS SET
+            if arg-2 is not set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou must name the player you wish to kick!"
+                stop  
+
+            # IF YOU THE LEADER
+            if {GANG::gangfirst::%{GANG::gang::%player's uuid%}%} is not uuid of player:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cOnly the gang leader can kick players from the gang!"
+                stop  
+
+            # CANT KICK YOURSELF
+            if arg-2 is player:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou cannot kick yourself!"
+                stop    
+
+            # IF THEY'RE EVEN IN YOUR GANG
+            if {GANG::gang::%{_arg2}%} is not {GANG::gang::%player's uuid%}:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cThat player is not in your gang!"
+                stop                
+
+            # IF THEY'RE #2
+            if {GANG::gangsecond::%{GANG::gang::%player's uuid%}%} is {_arg2}:
+                delete {GANG::gangsecond::%{GANG::gang::%player's uuid%}%}
+                delete {GANG::gang::%{_arg2}%}
+
+                if {GANG::gangthird::%{GANG::gang::%player's uuid%}%} is set:
+                    set {GANG::gangsecond::%{GANG::gang::%player's uuid%}%} to {GANG::gangthird::%{GANG::gang::%player's uuid%}%}
+                    delete {GANG::gangthird::%{GANG::gang::%player's uuid%}%}
+
+                    if {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} is set:
+                        set {GANG::gangthird::%{GANG::gang::%player's uuid%}%} to {GANG::gangfourth::%{GANG::gang::%player's uuid%}%}
+                        delete {GANG::gangfourth::%{GANG::gang::%player's uuid%}%}   
+
+                        if {GANG::gangfifth::%{GANG::gang::%player's uuid%}%} is set:
+                            set {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} to {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}
+                            delete {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}   
+                send "&7Gun&4PVP&aMC &6Gangs: You have kicked &c%arg-2%&6 from your gang!" to player
+                stop  
+
+            # IF THEY'RE #3
+            if {GANG::gangthird::%{GANG::gang::%player's uuid%}%} is {_arg2}:
+                delete {GANG::gangthird::%{GANG::gang::%player's uuid%}%}
+                delete {GANG::gang::%{_arg2}%}
+
+                if {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} is set:
+                    set {GANG::gangthird::%{GANG::gang::%player's uuid%}%} to {GANG::gangfourth::%{GANG::gang::%player's uuid%}%}
+                    delete {GANG::gangfourth::%{GANG::gang::%player's uuid%}%}   
+
+                    if {GANG::gangfifth::%{GANG::gang::%player's uuid%}%} is set:
+                        set {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} to {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}
+                        delete {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}   
+                send "&7Gun&4PVP&aMC &6Gangs: You have kicked &c%arg-2%&6 from your gang!" to player
+                stop    
+
+            # IF THEY'RE #4
+            if {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} is {_arg2}:
+                delete {GANG::gangfourth::%{GANG::gang::%player's uuid%}%}
+                delete {GANG::gang::%{_arg2}%}
+
+                if {GANG::gangfifth::%{GANG::gang::%player's uuid%}%} is set:
+                    set {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} to {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}
+                    delete {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}   
+                send "&7Gun&4PVP&aMC &6Gangs: You have kicked &c%arg-2%&6 from your gang!" to player
+                stop    
+
+            # IF THEY'RE #5
+            if {GANG::gangfifth::%{GANG::gang::%player's uuid%}%} is {_arg2}:
+                delete {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}
+                delete {GANG::gang::%{_arg2}%}
+
+                send "%nl%&7Gun&4PVP&aMC &6Gangs: You have kicked &c%arg-2%&6 from your gang!%nl%" to player
+                stop                                                                                    
+
+            stop
+
+        # LEAVING A GANG            
+
+        if arg-1 is "leave":
+            set {_arg2} to arg-2 parsed as offline player's uuid        
+            # GANG IS SET
+            if {GANG::gang::%player's uuid%} is not set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou are not in a gang!"
+                stop  
+
+            # IF THEY'RE #1 
+            if {GANG::gangfirst::%{GANG::gang::%player's uuid%}%} is player's uuid:
+                delete {GANG::gangfirst::%{GANG::gang::%player's uuid%}%}
+                                
+
+                if {GANG::gangsecond::%{GANG::gang::%player's uuid%}%} is set:
+                    set {GANG::gangfirst::%{GANG::gang::%player's uuid%}%} to {GANG::gangsecond::%{GANG::gang::%player's uuid%}%}
+                    delete {GANG::gangsecond::%{GANG::gang::%player's uuid%}%}   
+
+                    if {GANG::gangthird::%{GANG::gang::%player's uuid%}%} is set:
+                        set {GANG::gangsecond::%{GANG::gang::%player's uuid%}%} to {GANG::gangthird::%{GANG::gang::%player's uuid%}%}
+                        delete {GANG::gangthird::%{GANG::gang::%player's uuid%}%}   
+
+                        if {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} is set:
+                            set {GANG::gangthird::%{GANG::gang::%player's uuid%}%} to {GANG::gangfourth::%{GANG::gang::%player's uuid%}%}
+                            delete {GANG::gangfourth::%{GANG::gang::%player's uuid%}%}    
+
+                            if {GANG::gangfifth::%{GANG::gang::%player's uuid%}%} is set:
+                                set {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} to {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}
+                                delete {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}   
+                                
+            # IF THEY'RE #2 
+            if {GANG::gangsecond::%{GANG::gang::%player's uuid%}%} is player's uuid:
+                delete {GANG::gangsecond::%{GANG::gang::%player's uuid%}%}
+               
+
+                if {GANG::gangthird::%{GANG::gang::%player's uuid%}%} is set:
+                    set {GANG::gangsecond::%{GANG::gang::%player's uuid%}%} to {GANG::gangthird::%{GANG::gang::%player's uuid%}%}
+                    delete {GANG::gangthird::%{GANG::gang::%player's uuid%}%}   
+
+                    if {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} is set:
+                        set {GANG::gangthird::%{GANG::gang::%player's uuid%}%} to {GANG::gangfourth::%{GANG::gang::%player's uuid%}%}
+                        delete {GANG::gangfourth::%{GANG::gang::%player's uuid%}%}    
+
+                        if {GANG::gangfifth::%{GANG::gang::%player's uuid%}%} is set:
+                            set {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} to {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}
+                            delete {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}   
+                   
+            # IF THEY'RE #3 
+            if {GANG::gangthird::%{GANG::gang::%player's uuid%}%} is player's uuid:
+                delete {GANG::gangthird::%{GANG::gang::%player's uuid%}%}
+                                   
+
+                if {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} is set:
+                    set {GANG::gangthird::%{GANG::gang::%player's uuid%}%} to {GANG::gangfourth::%{GANG::gang::%player's uuid%}%}
+                    delete {GANG::gangfourth::%{GANG::gang::%player's uuid%}%}    
+
+                    if {GANG::gangfifth::%{GANG::gang::%player's uuid%}%} is set:
+                        set {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} to {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}
+                        delete {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}                                                               
+                                                                                            
+            # IF THEY'RE #4 
+            if {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} is player's uuid:
+                delete {GANG::gangfourth::%{GANG::gang::%player's uuid%}%}
+                                   
+
+                if {GANG::gangfifth::%{GANG::gang::%player's uuid%}%} is set:
+                    set {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} to {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}
+                    delete {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}   
+
+            # IF THEY'RE #5 
+            if {GANG::gangfifth::%{GANG::gang::%player's uuid%}%} is player's uuid:
+                delete {GANG::gangfifth::%{GANG::gang::%player's uuid%}%}
+
+            if {GANG::gangfirst::%{GANG::gang::%player's uuid%}%} is not set: 
+                delete {GANG::ganglist::%{GANG::gang::%player's uuid%}%}        
+            delete {GANG::gang::%player's uuid%}
+            send "%nl%&7Gun&4PVP&aMC &6Gangs: You have left your gang!%nl%" to player
+            stop
+
+        # INVITING SOMEONE TO THE GANG
+        if arg-1 is "invite":
+            set {_arg2} to arg-2 parsed as offline player's uuid
+            # GANG IS SET
+            if {GANG::gang::%player's uuid%} is not set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou are not in a gang!"
+                stop        
+
+            # PLAYER IS SET
+            if arg-2 is not set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou must name the player you wish to invite!"
+                stop  
+
+            # IF YOU THE LEADER
+            if {GANG::gangfirst::%{GANG::gang::%player's uuid%}%} is not uuid of player:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cOnly the gang leader can invite players the gang!"
+                stop  
+
+            # CANT INVITE YOURSELF
+            if arg-2 is player:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou cannot invite yourself!"
+                stop    
+
+            # IF THEY'RE IN YOUR GANG
+            if {GANG::gang::%{_arg2}%} is {GANG::gang::%player's uuid%}:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cThat player is already in your gang!"
+                stop 
+
+            # GANG IS FULL
+            if {GANG::gangfifth::%{GANG::gang::%player's uuid%}%} is set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYour gang is full!"
+                stop 
+
+            # IF THEY'RE IN ANOTHER GANG
+            if {GANG::gang::%{_arg2}%} is set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cThat player is already in a gang!"
+                stop                
+
+            set {invite.%{_arg2}%} to {GANG::gang::%player's uuid%}
+
+            send "%nl%&7Gun&4PVP&aMC &6Gangs: You have invited &c%arg-2% &6to your gang!%nl%" to player
+            send "%nl%&7Gun&4PVP&aMC &6Gangs: &c%player%&6 has asked you if you would join the their gang. You have 30 seconds to accept it, otherwise it will be rejected automatically. Use &c/gang accept&6 to accept it%nl%" to {_arg2} parsed as offline player
+            wait 30 seconds
+            delete {invite.%{_arg2}%}
+            stop
+
+        # ACCEPT GANG INVITES
+        if arg-1 is "accept":
+
+            # GANG IS SET
+            if {GANG::gang::%player's uuid%} is set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou are already in a gang!"
+                stop 
+
+            # NO GANG INVITE
+            if {invite.%player's uuid%} is not set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cNobody has invited you to a gang!"
+                stop 
+
+            # YES GANG INVITE
+            if {invite.%player's uuid%} is set:
+                set {GANG::gang::%player's uuid%} to {invite.%player's uuid%}
+                send "&7Gun&4PVP&aMC &6Gangs: You are now in the gang &c%{GANG::ganglist::%{GANG::gang::%player's uuid%}%}%&6!" to player
+                delete {invite.%player's uuid%}
+
+                if {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} is set:
+                    set {GANG::gangfifth::%{GANG::gang::%player's uuid%}%} to player's uuid
+                    stop
+
+                if {GANG::gangthird::%{GANG::gang::%player's uuid%}%} is set:
+                    set {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} to player's uuid
+                    stop   
+
+                if {GANG::gangsecond::%{GANG::gang::%player's uuid%}%} is set:
+                    set {GANG::gangthird::%{GANG::gang::%player's uuid%}%} to player's uuid
+                    stop      
+
+                if {GANG::gangfirst::%{GANG::gang::%player's uuid%}%} is set:
+                    set {GANG::gangsecond::%{GANG::gang::%player's uuid%}%} to player's uuid
+                    stop                                                            
+                    
+        # INFO COMMAND
+        if arg-1 is "info":
+            if arg-2 is not set:
+                if {GANG::gang::%player's uuid%} is set:
+                    set {_message} to "%nl%&7Gun&4PVP&aMC &6Gangs:%nl%&6Gang Name: &c%{GANG::ganglist::%{GANG::gang::%player's uuid%}%}%%nl%&6Gang Kills: &c%{gangkills::%{GANG::gang::%player's uuid%}%}%%nl%&6Gang Reputation: &c%{GANGrep::%{GANG::gang::%player's uuid%}%}%✫%nl%%nl%&6Leader: &c%{GANG::gangfirst::%{GANG::gang::%player's uuid%}%} parsed as offline player%%nl%&6Right Hand: &c%{GANG::gangsecond::%{GANG::gang::%player's uuid%}%} parsed as offline player%%nl%&6Underboss: &c%{GANG::gangthird::%{GANG::gang::%player's uuid%}%} parsed as offline player%%nl%&6Elder: &c%{GANG::gangfourth::%{GANG::gang::%player's uuid%}%} parsed as offline player%%nl%&6Member: &c%{GANG::gangfifth::%{GANG::gang::%player's uuid%}%} parsed as offline player%%nl%"
+
+                    replace all "<none>" in {_message} with "None"
+                    send {_message} to player    
+
+                else:
+                    console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                    send "&cYou are not in a gang!"
+                    stop                      
+            else:  
+                set {_arg2} to arg-2 parsed as offline player
+                set {_arg2} to {_arg2}'s uuid
+                set {_message} to "%nl%&7Gun&4PVP&aMC &6Gangs:%nl%&6Gang Name: &c%{GANG::ganglist::%{GANG::gang::%{_arg2}%}%}%%nl%&6Gang Kills: &c%{gangkills::%{GANG::gang::%{_arg2}%}%}%%nl%&6Gang Reputation: &c%{GANGrep::%{GANG::gang::%{_arg2}%}%}%✫%nl%%nl%&6Leader: &c%{GANG::gangfirst::%{GANG::gang::%{_arg2}%}%} parsed as offline player%%nl%&6Right Hand: &c%{GANG::gangsecond::%{GANG::gang::%{_arg2}%}%} parsed as offline player%%nl%&6Underboss: &c%{GANG::gangthird::%{GANG::gang::%{_arg2}%}%} parsed as offline player%%nl%&6Elder: &c%{GANG::gangfourth::%{GANG::gang::%{_arg2}%}%} parsed as offline player%%nl%&6Member: &c%{GANG::gangfifth::%{GANG::gang::%{_arg2}%}%} parsed as offline player%%nl%"
+
+                replace all "<none>" in {_message} with "None"
+                send {_message} to player                                                   
+                stop
+                
+        # RENAME COMMAND
+
+        if arg-1 is "rename":
+
+            # GANG IS SET
+            if {GANG::gang::%player's uuid%} is not set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou are not in a gang!"
+                stop        
+
+            # IF YOU THE LEADER
+            if {GANG::gangfirst::%{GANG::gang::%player's uuid%}%} is not uuid of player:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cOnly the gang leader can rename the gang!"
+                stop 
+
+            # NEED TO NAME YOUR GANG
+            if arg-2 is not set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou need to give your gang a new name!"                
+                stop    
+
+            # NO SPACES
+            if arg-3 is set:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou cannot have spaces in your gang's name!"                
+                stop  
+
+            # NO SYMBOLS
+            if arg-2 does not match "^[A-Za-z]+$":
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cPlease only use letters!"                
+                stop                  
+
+            set {_arg2} to arg-2  
+
+            # LENGTHLOW
+            if length of {_arg2} is between -9999999999999 and 0:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYour gang's name must be longer than 0 letters!"                
+                stop         
+
+            # LENGTHHIGH
+            if length of {_arg2} is above 15:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYour gang's name must not exceed 15 letters!"                
+                stop                                           
+
+            loop {GANG::ganglist::*}:
+                if arg-2 is loop-value:
+                    console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                    send "&cThat gang name is taken! (perhaps even by you)"                
+                    stop               
+
+            set {GANG::ganglist::%{GANG::gang::%player's uuid%}%} to arg-2
+            send "%nl%&7Gun&4PVP&aMC &6Gangs: You have renamed your gang to &c%{GANG::ganglist::%{GANG::gang::%player's uuid%}%}%&6!%nl%"
+            stop
+
+
+        # LIST
+
+        if arg-1 is "list":
+            send "%nl%&7Gun&4PVP&aMC &6Gangs:" to player
+            send "&6All gangs Created: &c%{GANG::ganglist::*}%%nl%" to player
+
+        if arg-1 is not set:
+            message "%nl%&7Gun&4PVP&aMC &6Gangs:%nl%" to player
+            message "&c/g create <name> &6- Create a gang" to player
+            message "&c/g kick <name> &6- Remove a member from your gang" to player
+            message "&c/g invite <playername> &6- Add a player to your gang" to player
+            message "&c/g accept &6- Accept a gang invite" to player
+            message "&c/g leave &6- Leave a gang" to player
+            message "&c/g info &6- Information about your gang" to player
+            message "&c/g list &6- List of all gangs" to player
+            message "%nl%&c/gchat &6- Speak to your gang" to player
+            message "&c/gangbase &6- View commands about gang bases" to player
+
+            message "%nl%&6Gang members cannot harm each other. You need &c5✫&6 to make a gang. You need &c100&6 coins to make a gang. Gangs can only have up to &c5&6 members. Gang kills are earned by members within a gang. The leader of the gang is shown by the &c☠&6 symbol.%nl%" to player
+                        
+on damage:
+    if {GANG::gang::%attacker's uuid%} is {GANG::gang::%victim's uuid%}:
+        if attacker is victim:
+            stop
+        cancel event
+        message "&7Gun&4PVP&aMC &6Gangs: You cannot harm someone who is in your gang!" to attacker
+        
+command /gchat [<text>]:
+    aliases: /gangchat
+    trigger:
+        if arg-1 is set:
+            loop all players:
+                if {GANG::gang::%loop-player's uuid%} is {GANG::gang::%player's uuid%}:
+                    message "&6[&c%{GANG::ganglist::%{GANG::gang::%player's uuid%}%}%&6] %player%&6: %arg-1%" to loop-player
+        else:
+            send  "&7Gun&4PVP&aMC &6Gang Chat: You must send something" to player
+
+command /check:
+    trigger:
+        send {GANG::gang::%player's uuid%} to player

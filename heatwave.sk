@@ -1,0 +1,18 @@
+command /heatwave:
+    permission: op
+    trigger:
+        if time is day:
+            loop all players:
+                set {_y} to loop-player's y-coordinate
+                if {_y} > 40:             
+                    send title "&7Gun&4PVP&aMC &6Events" with subtitle "&6A heatwave has begun!" to loop-player for 2 seconds
+            broadcast "&7Gun&4PVP&aMC&6 Events: &6A heatwave has begun!"
+            set {heatwave} to true
+            wait 30 seconds
+            set {heatwave} to false
+
+every 10 seconds in "GunPVPMC":
+    if {heatwave} is true:
+        loop all players:
+            altitude of highest block at location of loop-player < y-coordinate of loop-player:
+                console command "/effect give %loop-player% instant_damage 1 0 true"  

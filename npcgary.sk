@@ -1,0 +1,38 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 14b89aa7-36fd-4ad1-ba01-418d09c33af5 -85 70 -519"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Dancer] Gary":
+        if {rep::%player's uuid%} < 50:
+            send "&6[&cDancer&6] Gary: I only speak to people with &c50✫&6... sorry..." to player
+        else:
+            set {_store} to a new chest inventory with 3 row with name "&6[&cDancer&6] Gary"
+            
+            set {_e} to 0
+            loop 36 times:
+                set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+                add 1 to {_e}
+
+            set slot 10 of {_store} to painting named "<##DFDFDF>Photo of Gary &6[&cx1&6]"
+            set line 2 of lore of slot 10 of {_store} to "&6Cost: &c5000"  
+
+            open {_store} to player
+            set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##DFDFDF>Photo of Gary &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 4999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 5000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cDancer&6] Gary: Have fun..."
+            give painting named "<##DFDFDF>Photo of Gary" to player
+        else:
+            send "&6[&cDancer&6] Gary: Oh my gosh, surely you didn't think I'd give it away &othat&6 easily?"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                                    

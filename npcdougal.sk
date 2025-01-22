@@ -1,0 +1,64 @@
+every 1 second in "GunPVPMC":
+    console command "/teleport 20294fea-a3e4-42f6-b288-1ce2d5b8bfbf -112 70 -502"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Gunsmith] Dougal":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cGunsmith&6] Dougal"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 13 of {_store} to 1 iron horse armour named "&7Repair Broken Gun &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 2 of lore of slot 13 of {_store} to "&6Cost: &c2000"
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "&7Repair Broken Gun &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+
+        if player has 1 iron horse armor:
+
+            if {coins::%player's uuid%} > 1999:
+                set {coins::%player's uuid%} to {coins::%player's uuid%} - 2000
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                send "&6[&cGunsmith&6] Dougal: Wowza - look at that!"
+                remove 1 iron horse armor from player
+
+                set {_lottery} to random integer between 1 and 10
+                if {_lottery} is 1:
+                    give player leather horse armor named "<##333836>Glock-19" with nbt "{display:{color:3356726},HideFlags:127}"
+                if {_lottery} is 2:
+                    give player leather horse armor named "<##452500>AK-47" with nbt "{display:{color:4531456},HideFlags:127}"
+                if {_lottery} is 3:
+                    give player leather horse armor named "<##6E360C>M40" with nbt "{display:{color:7222796},HideFlags:127}"
+                if {_lottery} is 4:
+                    give player leather horse armor named "<##565656>HK USP" with nbt "{display:{color:5658198},HideFlags:127}"
+                if {_lottery} is 5:
+                    give player leather horse armor named "<##3B3B3B>SIG 516" with nbt "{display:{color:3881787},HideFlags:127}"
+                if {_lottery} is 6:
+                    give player leather horse armor named "<##D4C462>FN SCAR" with nbt "{display:{color:13943906},HideFlags:127}"
+                if {_lottery} is 7:
+                    give player leather horse armor named "<##444444>Benelli M4" with nbt "{display:{color:4473924},HideFlags:127}"
+                if {_lottery} is 8:
+                    give player leather horse armor named "<##222222>CMMG Mk47" with nbt "{display:{color:2236962},HideFlags:127}"
+                if {_lottery} is 9:
+                    give player leather horse armor named "<##382000>Luger P08" with nbt "{display:{color:3678208},HideFlags:127}"
+                if {_lottery} is 10:
+                    give player leather horse armor named "<##191919>HK416" with nbt "{display:{color:1644825},HideFlags:127}"
+
+            else:
+                send "&6[&cGunsmith&6] Dougal: 'Fraid it's gonna cost a bit more than that to fix up this"
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else:
+            send "&6[&cGunsmith&6] Dougal: I'm a gunsmith - I fix guns, I don't make 'em"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  

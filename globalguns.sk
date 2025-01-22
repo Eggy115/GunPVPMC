@@ -1,0 +1,84 @@
+on damage:
+    if projectile is snowball:
+        set {_armour} to victim's armor value                   
+
+        set {_dmg} to 5 - victim's armor value
+        
+        if projectile has scoreboard tag "GLOCK19":
+            set {_dmg} to 5 - {_armour} / 2
+        if projectile has scoreboard tag "M1873":
+            set {_dmg} to 5 - {_armour} / 2            
+        if projectile has scoreboard tag "AK47":
+            set {_dmg} to 7 - {_armour} / 2    
+        if projectile has scoreboard tag "M40":
+            set {_dmg} to 20 - {_armour} / 2    
+        if projectile has scoreboard tag "M60":
+            set {_dmg} to 6 - {_armour} / 2            
+        if projectile has scoreboard tag "SIG516":
+            set {_dmg} to 7.5 - {_armour} / 2
+        if projectile has scoreboard tag "FNSCAR":
+            set {_dmg} to 8 - {_armour} / 2    
+        if projectile has scoreboard tag "CMMGMK47":
+            set {_dmg} to 8.5 - {_armour} / 2    
+        if projectile has scoreboard tag "BENELLIM4":
+            set {_dmg} to 5 - {_armour} / 2    
+        if projectile has scoreboard tag "LUGERP08":
+            set {_dmg} to 6 - {_armour} / 2    
+        if projectile has scoreboard tag "SUOMIKP":
+            set {_dmg} to 4.5 - {_armour} / 2   
+        if projectile has scoreboard tag "M1873":
+            set {_dmg} to 5 - {_armour} / 2 
+        if projectile has scoreboard tag "HK416":
+            set {_dmg} to 9 - {_armour} / 2    
+        if projectile has scoreboard tag "HKUSP":
+            set {_dmg} to 6 - {_armour} / 2      
+        if projectile has scoreboard tag "SSK":
+            set {_dmg} to 30 - {_armour} / 2                                             
+            
+        make attacker damage victim by {_dmg}
+        send action bar "&6You dealt &c%{_dmg}%&6 damage to &c%victim%&6!" to attacker
+
+on join:
+    set {glock19cd.%player%} to now
+    set {ak47cd.%player%} to now
+    set {m40cd.%player%} to now
+    set {m60cd.%player%} to now
+    set {sig516cd.%player%} to now
+    set {fnscarcd.%player%} to now    
+    set {cmmgmk47cd.%player%} to now
+    set {benellim4cd.%player%} to now
+    set {lugerp08cd.%player%} to now
+    set {suomikpcd.%player%} to now    
+    set {m1873cd.%player%} to now        
+    set {flashbangcd.%player%} to now
+    set {hk416cd.%player%} to now	       
+    set {m79cd.%player%} to now	       
+    set {hkuspcd.%player%} to now	       
+    set {tankcd.%player%} to now
+    set {taser.%player%} to now
+    set {sskcd.%player%} to now
+
+on load:
+    loop all players:
+        set {glock19cd.%loop-player%} to now
+        set {ak47cd.%loop-player%} to now
+        set {m40cd.%loop-player%} to now
+        set {m60cd.%loop-player%} to now
+        set {sig516cd.%loop-player%} to now
+        set {fnscarcd.%loop-player%} to now    
+        set {cmmgmk47cd.%loop-player%} to now
+        set {benellim4cd.%loop-player%} to now
+        set {lugerp08cd.%loop-player%} to now
+        set {suomikpcd.%loop-player%} to now    
+        set {m1873cd.%loop-player%} to now          
+        set {flashbangcd.%loop-player%} to now
+        set {hk416cd.%loop-player%} to now	        
+        set {m79cd.%loop-player%} to now	        
+        set {hkuspcd.%loop-player%} to now	        
+        set {tankcd.%loop-player%} to now	        
+        set {taser.%loop-player%} to now
+        set {sskcd.%loop-player%} to now
+
+on right click:
+    if name of player's held item contains "<none>":
+        remove player's held item from player

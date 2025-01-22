@@ -1,0 +1,132 @@
+
+on death of pillager:
+    if attacker is player:
+        if {criminalstopper1::%attacker's uuid%} is "&cIn Progress":
+            set {criminalstopper1progress::%attacker's uuid%} to {criminalstopper1progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{criminalstopper1progress::%attacker's uuid%}%&6/&c10&6 Criminals Stopped!" to attacker
+            if {criminalstopper1progress::%attacker's uuid%} is 10:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCriminal Stopper I&6!" to attacker
+                add 10 to {LEVEL.exp::%attacker's uuid%}
+                set {criminalstopper1::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {criminalstopper2::%attacker's uuid%} is "&cIn Progress":
+            set {criminalstopper2progress::%attacker's uuid%} to {criminalstopper2progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{criminalstopper2progress::%attacker's uuid%}%&6/&c50&6 Criminals Stopped!" to attacker
+            if {criminalstopper2progress::%attacker's uuid%} is 50:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCriminal Stopper II&6!" to attacker
+                add 50 to {LEVEL.exp::%attacker's uuid%}
+                set {criminalstopper2::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {criminalstopper3::%attacker's uuid%} is "&cIn Progress":
+            set {criminalstopper3progress::%attacker's uuid%} to {criminalstopper3progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{criminalstopper3progress::%attacker's uuid%}%&6/&c100&6 Criminals Stopped!" to attacker
+            if {criminalstopper3progress::%attacker's uuid%} is 100:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCriminal Stopper III&6!" to attacker
+                add 100 to {LEVEL.exp::%attacker's uuid%}
+                set {criminalstopper3::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {criminalstopper4::%attacker's uuid%} is "&cIn Progress":
+            set {criminalstopper4progress::%attacker's uuid%} to {criminalstopper4progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{criminalstopper4progress::%attacker's uuid%}%&6/&c200&6 Criminals Stopped!" to attacker
+            if {criminalstopper4progress::%attacker's uuid%} is 200:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCriminal Stopper IV&6!" to attacker
+                add 200 to {LEVEL.exp::%attacker's uuid%}
+                set {criminalstopper4::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {criminalstopper5::%attacker's uuid%} is "&cIn Progress":
+            set {criminalstopper5progress::%attacker's uuid%} to {criminalstopper5progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{criminalstopper5progress::%attacker's uuid%}%&6/&c500&6 Criminals Stopped!" to attacker
+            if {criminalstopper5progress::%attacker's uuid%} is 500:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCriminal Stopper V&6!" to attacker
+                add 500 to {LEVEL.exp::%attacker's uuid%}
+                set {criminalstopper5::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {criminalstopper6::%attacker's uuid%} is "&cIn Progress":
+            set {criminalstopper6progress::%attacker's uuid%} to {criminalstopper6progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{criminalstopper6progress::%attacker's uuid%}%&6/&c1000&6 Criminals Stopped!" to attacker
+            if {criminalstopper6progress::%attacker's uuid%} is 1000:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCriminal Stopper VI&6!" to attacker
+                add 1000 to {LEVEL.exp::%attacker's uuid%}
+                set {criminalstopper6::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {criminalstopper7::%attacker's uuid%} is "&cIn Progress":
+            set {criminalstopper7progress::%attacker's uuid%} to {criminalstopper7progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{criminalstopper7progress::%attacker's uuid%}%&6/&c2000&6 Criminals Stopped!" to attacker
+            if {criminalstopper7progress::%attacker's uuid%} is 2000:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCriminal Stopper VII&6!" to attacker
+                add 2000 to {LEVEL.exp::%attacker's uuid%}
+                set {criminalstopper7::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+
+on death of vindicator:
+    if attacker is player:
+        if {criminalstopper1::%attacker's uuid%} is "&cIn Progress":
+            set {criminalstopper1progress::%attacker's uuid%} to {criminalstopper1progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{criminalstopper1progress::%attacker's uuid%}%&6/&c10&6 Criminals Stopped!" to attacker
+            if {criminalstopper1progress::%attacker's uuid%} is 10:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCriminal Stopper I&6!" to attacker
+                add 10 to {LEVEL.exp::%attacker's uuid%}
+                set {criminalstopper1::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {criminalstopper2::%attacker's uuid%} is "&cIn Progress":
+            set {criminalstopper2progress::%attacker's uuid%} to {criminalstopper2progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{criminalstopper2progress::%attacker's uuid%}%&6/&c50&6 Criminals Stopped!" to attacker
+            if {criminalstopper2progress::%attacker's uuid%} is 50:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCriminal Stopper II&6!" to attacker
+                add 50 to {LEVEL.exp::%attacker's uuid%}
+                set {criminalstopper2::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {criminalstopper3::%attacker's uuid%} is "&cIn Progress":
+            set {criminalstopper3progress::%attacker's uuid%} to {criminalstopper3progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{criminalstopper3progress::%attacker's uuid%}%&6/&c100&6 Criminals Stopped!" to attacker
+            if {criminalstopper3progress::%attacker's uuid%} is 100:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCriminal Stopper III&6!" to attacker
+                add 100 to {LEVEL.exp::%attacker's uuid%}
+                set {criminalstopper3::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {criminalstopper4::%attacker's uuid%} is "&cIn Progress":
+            set {criminalstopper4progress::%attacker's uuid%} to {criminalstopper4progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{criminalstopper4progress::%attacker's uuid%}%&6/&c200&6 Criminals Stopped!" to attacker
+            if {criminalstopper4progress::%attacker's uuid%} is 200:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCriminal Stopper IV&6!" to attacker
+                add 200 to {LEVEL.exp::%attacker's uuid%}
+                set {criminalstopper4::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {criminalstopper5::%attacker's uuid%} is "&cIn Progress":
+            set {criminalstopper5progress::%attacker's uuid%} to {criminalstopper5progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{criminalstopper5progress::%attacker's uuid%}%&6/&c500&6 Criminals Stopped!" to attacker
+            if {criminalstopper5progress::%attacker's uuid%} is 500:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCriminal Stopper V&6!" to attacker
+                add 500 to {LEVEL.exp::%attacker's uuid%}
+                set {criminalstopper5::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {criminalstopper6::%attacker's uuid%} is "&cIn Progress":
+            set {criminalstopper6progress::%attacker's uuid%} to {criminalstopper6progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{criminalstopper6progress::%attacker's uuid%}%&6/&c1000&6 Criminals Stopped!" to attacker
+            if {criminalstopper6progress::%attacker's uuid%} is 1000:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCriminal Stopper VI&6!" to attacker
+                add 1000 to {LEVEL.exp::%attacker's uuid%}
+                set {criminalstopper6::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {criminalstopper7::%attacker's uuid%} is "&cIn Progress":
+            set {criminalstopper7progress::%attacker's uuid%} to {criminalstopper7progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{criminalstopper7progress::%attacker's uuid%}%&6/&c2000&6 Criminals Stopped!" to attacker
+            if {criminalstopper7progress::%attacker's uuid%} is 2000:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cCriminal Stopper VII&6!" to attacker
+                add 2000 to {LEVEL.exp::%attacker's uuid%}
+                set {criminalstopper7::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+

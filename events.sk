@@ -1,0 +1,126 @@
+on shoot:
+    if shooter is pillager:
+        if projectile is arrow:
+            cancel event
+            shoot snowball from shooter at speed 5
+            console command "/execute at %shooter's uuid% run tag @e[type=snowball,limit=1,sort=nearest] add GLOCK19"
+            console command "/execute at %shooter's uuid% run playsound minecraft:entity.generic.explode master @a ~ ~ ~ 3 2"
+
+command /gangraid:
+    permission: op
+    trigger:
+        loop all players:
+            set {_y} to loop-player's y-coordinate
+            if {_y} > 40:       
+                send title "&7Gun&4PVP&aMC &6Events" with subtitle "&6A Gang Raid has begun" to loop-player for 2 seconds
+        broadcast "&7Gun&4PVP&aMC&6 Events: A Gang Raid has begun"
+        set {_counta} to online player count
+        set {_countb} to online player count * 5
+        loop {_countb} times:
+            set {_name} to random element out of {name::*}
+            console command "/summon pillager ~ ~ ~ {CustomName:'[{""text"":""["",""color"":""gold""},{""text"":""Criminal"",""color"":""red""},{""text"":""] %{_name}%"",""color"":""gold""}]',HandItems:[{id:""minecraft:crossbow"",Count:1b,tag:{Enchantments:[{id:""minecraft:quick_charge"",lvl:5s}]}},{}],ActiveEffects:[{Id:24b,Amplifier:0b,Duration:100,ShowParticles:0b}]}"
+        loop {_counta} times:
+            set {_name} to random element out of {name::*}
+            set {_sword} to random integer between 1 and 3
+            if {_sword} is 1:
+                set {_sword} to "stone_sword"
+            if {_sword} is 2:
+                set {_sword} to "iron_sword"
+            if {_sword} is 3:
+                set {_sword} to "iron_axe"                                
+            console command "/summon vindicator ~ ~ ~ {CustomName:'[{""text"":""["",""color"":""gold""},{""text"":""Criminal"",""color"":""red""},{""text"":""] %{_name}%"",""color"":""gold""}]',HandItems:[{id:""minecraft:%{_sword}%"",Count:1b,},{}],ActiveEffects:[{Id:24b,Amplifier:0b,Duration:100,ShowParticles:0b}]}"            
+        console command "/spreadplayers -38 -547 10 50 false @e[type=pillager]"
+        console command "/spreadplayers -38 -547 10 50 false @e[type=vindicator]"
+
+
+every 1 second in "GunPVPMC":
+    set {time} to {time} - 1
+    if {time} is 0:
+        set {time} to 600
+        set {_random} to a random integer between 1 and 12
+        if {_random} = 1:
+            console command "/gangraid"
+        if {_random} = 2:
+            console command "/chestdrop"
+        if {_random} = 3:
+            console command "/airraid"      
+        if {_random} = 4:
+            console command "/policeraid"   
+        if {_random} = 5:
+            console command "/zombies"                   
+        if {_random} = 6:
+            console command "/storm"   
+        if {_random} = 7:
+            console command "/meteors"   
+        if {_random} = 8:
+            console command "/acidrain"   
+        if {_random} = 9:
+            console command "/paratroopers"    
+        if {_random} = 10:
+            console command "/wallstreetcrash"  
+        if {_random} = 11:
+            console command "/lightning"        
+        if {_random} = 12:
+            console command "/hurricane"                     
+        if {_random} = 13:
+            console command "/heatwave"               
+            
+            
+                                
+
+
+command /airraid:
+    permission: op
+    trigger:
+        loop all players:
+            set {_y} to loop-player's y-coordinate
+            if {_y} > 40:          
+                send title "&7Gun&4PVP&aMC &6Events" with subtitle "&6An air raid is incoming" to loop-player for 2 seconds
+            loop 3 times:
+                console command "/execute at %loop-player% run summon tnt_minecart ~%random integer between -5 and 5% ~%random integer between 50 and 70% ~%random integer between -5 and 5%"
+        broadcast "&7Gun&4PVP&aMC&6 Events: &6An air raid is incoming"
+
+
+command /wallstreetcrash:
+    permission: op
+    trigger:
+        loop all players:
+            set {_y} to loop-player's y-coordinate
+            if {_y} > 40:          
+                send title "&7Gun&4PVP&aMC &6Events" with subtitle "&6Wall Street has crashed!" to loop-player for 2 seconds
+        set {STOCKS::bigglass::price} to {STOCKS::bigglass::price} / 2
+        set {STOCKS::bigglass::price} to round({STOCKS::bigglass::price})
+        if {STOCKS::bigglass::price} < 10:
+            set {STOCKS::bigglass::price} to 10
+        set {STOCKS::gpmcoin::price} to {STOCKS::gpmcoin::price} / 2
+        set {STOCKS::gpmcoin::price} to round({STOCKS::gpmcoin::price})
+        if {STOCKS::gpmcoin::price} < 10:
+            set {STOCKS::gpmcoin::price} to 10          
+        set {STOCKS::villagerprotectioninc::price} to {STOCKS::villagerprotectioninc::price} / 2
+        set {STOCKS::villagerprotectioninc::price} to round({STOCKS::villagerprotectioninc::price})
+        if {STOCKS::villagerprotectioninc::price} < 10:
+            set {STOCKS::villagerprotectioninc::price} to 10                    
+        broadcast "&7Gun&4PVP&aMC&6 Events: &6Wall Street has crashed!"
+
+command /wallstreetuncrash:
+    permission: op
+    trigger:
+        loop all players:
+            set {_y} to loop-player's y-coordinate
+            if {_y} > 40:          
+                send title "&7Gun&4PVP&aMC &6Events" with subtitle "&6Wall Street has uncrashed!" to loop-player for 2 seconds
+        set {STOCKS::bigglass::price} to {STOCKS::bigglass::price} * 2
+        set {STOCKS::bigglass::price} to round({STOCKS::bigglass::price})
+        if {STOCKS::bigglass::price} < 10:
+            set {STOCKS::bigglass::price} to 10
+        set {STOCKS::gpmcoin::price} to {STOCKS::gpmcoin::price} * 2
+        set {STOCKS::gpmcoin::price} to round({STOCKS::gpmcoin::price})
+        if {STOCKS::gpmcoin::price} < 10:
+            set {STOCKS::gpmcoin::price} to 10          
+        set {STOCKS::villagerprotectioninc::price} to {STOCKS::villagerprotectioninc::price} * 2
+        set {STOCKS::villagerprotectioninc::price} to round({STOCKS::villagerprotectioninc::price})
+        if {STOCKS::villagerprotectioninc::price} < 10:
+            set {STOCKS::villagerprotectioninc::price} to 10                    
+        broadcast "&7Gun&4PVP&aMC&6 Events: &6Wall Street has uncrashed!"
+
+

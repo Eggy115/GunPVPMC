@@ -1,0 +1,76 @@
+command /credits:
+    trigger:
+        set {_credits} to a new chest inventory with 6 row with name "&7Gun&4PVP&aMC&6 Credits"
+
+        set {_e} to 0
+        loop 54 times:
+            set slot {_e} of {_credits} to gray stained glass pane named "&0 "    
+            add 1 to {_e}
+
+        set slot 10 of {_credits} to player head named "&fEggy115" with nbt "{SkullOwner:Eggy115}"
+        set line 1 of lore of slot 10 of {_credits} to "&6Created server"
+        set line 2 of lore of slot 10 of {_credits} to "&6All the code"
+
+        set slot 11 of {_credits} to player head named "&f7Iron" with nbt "{SkullOwner:7Iron}"
+        set line 1 of lore of slot 11 of {_credits} to "&6First/second player"
+        set line 2 of lore of slot 11 of {_credits} to "&6Bug fixes"
+
+        set slot 12 of {_credits} to player head named "&fbesitX" with nbt "{SkullOwner:besitX}"
+        set line 1 of lore of slot 12 of {_credits} to "&6First/second player"
+
+        set slot 13 of {_credits} to player head named "&fLazyyyyyyishhhhh" with nbt "{SkullOwner:Lazyyyyyyishhhhh}"
+        set line 1 of lore of slot 13 of {_credits} to "&6Found most bugs out of anyone"
+        set line 2 of lore of slot 13 of {_credits} to "&6Help with building"
+        set line 3 of lore of slot 13 of {_credits} to "&6Many many suggestions"
+
+        set slot 14 of {_credits} to player head named "&fKilledbytheTV" with nbt "{SkullOwner:KilledbytheTV}"
+        set line 1 of lore of slot 14 of {_credits} to "&6Help with building OG map"
+        set line 2 of lore of slot 14 of {_credits} to "&6Recorded OG map"
+
+        set slot 15 of {_credits} to player head named "&fk0ekj3s_" with nbt "{SkullOwner:k0ekj3s_}"
+        set line 1 of lore of slot 15 of {_credits} to "&6Help with building"
+        set line 2 of lore of slot 15 of {_credits} to "&6Particularly decorating"
+        set line 3 of lore of slot 15 of {_credits} to "&6Extensive documentation"
+
+        set slot 16 of {_credits} to player head named "&funskye_" with nbt "{SkullOwner:unskye_}"
+        set line 1 of lore of slot 16 of {_credits} to "&6Helper"
+        set line 2 of lore of slot 16 of {_credits} to "&6Much time AFK"
+
+        set slot 19 of {_credits} to player head named "&fTopTierWaffle" with nbt "{SkullOwner:TopTierWaffle}"
+        set line 1 of lore of slot 19 of {_credits} to "&6Many ""magic tricks"" (bug reports)"
+        set line 2 of lore of slot 19 of {_credits} to "&6Wrote 90%% of the wiki"
+
+        set slot 20 of {_credits} to player head named "&fCoinCatcher" with nbt "{SkullOwner:CoinCatcher}"
+        set line 1 of lore of slot 20 of {_credits} to "&6Ghillie suits"
+        set line 2 of lore of slot 20 of {_credits} to "&6Forest area"
+
+        set slot 21 of {_credits} to player head named "&fL4pinha" with nbt "{SkullOwner:L4pinha}"
+        set line 1 of lore of slot 21 of {_credits} to "&6Broken guns"
+        set line 2 of lore of slot 21 of {_credits} to "&6Bank notes"
+        set line 3 of lore of slot 21 of {_credits} to "&6/trash"
+
+        set slot 22 of {_credits} to player head named "&fbessthesigma" with nbt "{SkullOwner:bessthesigma}"
+        set line 1 of lore of slot 22 of {_credits} to "&6Helped decorate"
+        set line 2 of lore of slot 22 of {_credits} to "&6Secretary"
+
+        set slot 23 of {_credits} to player head named "&fDragon04092" with nbt "{SkullOwner:Dragon04092}"
+        set line 1 of lore of slot 23 of {_credits} to "&6Brought up average KDR by 7"
+
+        set slot 24 of {_credits} to player head named "&fSolgaleo0185" with nbt "{SkullOwner:Solgaleo0185}"
+        set line 1 of lore of slot 24 of {_credits} to "&6HK416"
+
+        set slot 25 of {_credits} to player head named "&fLordDM" with nbt "{SkullOwner:LordDM}"
+        set line 1 of lore of slot 25 of {_credits} to "&6Singlehandedly keeps server online"
+
+        set slot 28 of {_credits} to player head named "&fjay_carey124" with nbt "{SkullOwner:jay_carey124}"
+        set line 1 of lore of slot 28 of {_credits} to "&6Building"       
+        
+        set slot 29 of {_credits} to player head named "&fxSetsumakix" with nbt "{SkullOwner:xSetsumakix}"
+        set line 1 of lore of slot 29 of {_credits} to "&6SSK.950 Rifle"  
+        set line 2 of lore of slot 29 of {_credits} to "&624.1x70mm"  
+        
+        set slot 30 of {_credits} to player head named "&fstardistroier" with nbt "{SkullOwner:stardistroier}"
+        set line 1 of lore of slot 30 of {_credits} to "&6Tank stats and information"          
+
+        open {_credits} to player
+        set {trade::%player's uuid%} to true            

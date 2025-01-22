@@ -1,0 +1,8 @@
+
+on right click with tipped arrow:
+    if name of player's held item is "<##F0F0F0>Epinephrine":
+        remove 1 tipped arrow from player's held item
+        console command "/effect clear %player% nausea"
+        console command "/effect clear %player% blindness"
+        console command "/effect clear %player% slowness"                
+        console command "/effect give %player% instant_health"                        

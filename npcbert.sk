@@ -1,0 +1,30 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 11cb2d29-e238-4659-9b3e-79c690a99992 -117 69 -535"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Blacksmith] Bert":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cBlacksmith&6] Bert"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to 1 iron ingot named "&7Iron Ingot &6[&cx1&6]"
+        set line 2 of lore of slot 10 of {_store} to "&6Sell: &c100"     
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "&7Iron Ingot &6[&cx1&6]":
+        if player has 1 iron ingot:
+            remove 1 iron ingot from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cBlacksmith&6] Bert: That's some good quality iron!"
+        else:
+            send "&6[&cBlacksmith&6] Bert: Uhhh... I don't see any iron?"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                    

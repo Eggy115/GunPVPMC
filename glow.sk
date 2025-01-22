@@ -1,0 +1,102 @@
+import:
+  net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket
+  net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket
+  net.minecraft.network.syncher.SynchedEntityData$DataValue as DataWatcher
+  net.minecraft.network.syncher.EntityDataSerializers
+  java.util.List
+  
+  com.github.retrooper.packetevents.PacketEvents
+  com.github.retrooper.packetevents.event.PacketListenerPriority
+  com.github.retrooper.packetevents.event.PacketListener
+  com.github.retrooper.packetevents.protocol.packettype.PacketType
+  com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerEntityMetadata
+
+options:
+  colors: (aqua, black, blue, dark aqua, dark blue, dark gray, dark green, dark purple, dark red, gold, gray, green, light purple, red, white, yellow)
+
+on skript start:
+  delete {-glowing::*} # incase user doesn't have ram variables enabled
+
+on load:
+  loop {@colors}:
+    set {_team} to team named "%loop-value%"
+    set team color of {_team} to loop-value
+  
+  # register the packet listener
+  create section with {_proxy}, {_event} stored in {_listener::onPacketSend}: # server to client
+    if {_event}.getPacketType() is PacketType.Play.Server.ENTITY_METADATA:
+      set {_packet} to new WrapperPlayServerEntityMetadata({_event})
+      set {_entity.id} to {_packet}.getEntityId()
+      if {-glowing::%{_entity.id}%::*} doesn't contain {_event}.getPlayer():
+        stop
+      loop ...{_packet}.getEntityMetadata():
+        loop-value.getIndex() is 0 # byte
+        set {_value} to loop-value.getValue()
+        if {_value} < 64:
+          loop-value.setValue(({_value} + 64).byteValue())
+        stop
+
+  set {_listener} to new proxy instance of PacketListener using {_listener::*}
+  set {glow.packet.listener} to PacketEvents.getAPI().getEventManager().registerListener({_listener}, PacketListenerPriority.LOW)
+
+on unload:
+  loop {@colors}:
+    delete team named "%loop-value%"
+  PacketEvents.getAPI().getEventManager().unregisterListener({glow.packet.listener})
+
+on leave:
+  delete {-glowing::%player.getEntityId()%::*}
+
+on death:
+  victim isn't a player
+  delete {-glowing::%victim.getEntityId()%::*}
+
+# who: who should glow?
+# for: which players can see them glow?
+function enableGlowing(who: entity, for: players):
+  if any:
+    {_who} isn't set
+    {_for::*} isn't set
+  then:
+    stop
+  set {_id} to {_who}.getEntityId()
+  set {-glowing::%{_id}%::*} to {_for::*}
+  sendGlowPacket({_id}, {_for::*}, true)
+
+# who: who should stop glowing?
+# for: which players should stop seeing them glow?
+function disableGlowing(who: entity, for: players):
+  if any:
+    {_who} isn't set
+    {_for::*} isn't set
+  then:
+    stop
+  set {_id} to {_who}.getEntityId()
+  loop {_for::*}:
+    remove loop-value from {-glowing::%{_id}%::*}
+  if size of {-glowing::%{_id}%::*} is 0:
+    delete {-glowing::%{_id}%::*}
+  sendGlowPacket({_id}, {_for::*}, false)
+
+# who: set color of who
+# for: which players can see them in that color?
+# color: color of the glow
+function setGlowColor(who: entity, for: players, color: color):
+  if {_who} is a player:
+    set {_who} to {_who}'s name
+  else:
+    set {_who} to {_who}'s uuid
+  set {_packet} to new ClientboundSetPlayerTeamPacket("%{_color}%", 3.intValue(), null, List.of({_who}))
+  loop {_for::*}:
+    (loop-value).getHandle().connection.sendPacket({_packet})
+
+# for internal use only, don't use
+local function sendGlowPacket(who: int, for: players, glow: boolean):
+  if {_glow} is true:
+    set {_bitmask} to 64
+  else:
+    set {_bitmask} to 0
+  set {_watcher} to new DataWatcher(0, EntityDataSerializers.BYTE, {_bitmask}.byteValue())
+  set {_packet} to new ClientboundSetEntityDataPacket({_who}, List.of({_watcher}))
+  loop {_for::*}:
+    (loop-value).getHandle().connection.sendPacket({_packet})

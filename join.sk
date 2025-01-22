@@ -1,0 +1,54 @@
+
+on join:	
+	set player's gamemode to adventure
+	console command "/playsound minecraft:entity.arrow.hit_player master @a ~ ~ ~ 10000 0"
+	set player's invulnerability ticks to 100
+	set player's gamemode to adventure
+	if {coins::%player's uuid%} is not set:
+		set {coins::%player's uuid%} to 0
+	if {kills::%player's uuid%} is not set:
+		set {kills::%player's uuid%} to 0
+	if {deaths::%player's uuid%} is not set:
+		set {deaths::%player's uuid%} to 0
+	if {kdr::%player's uuid%} is not set:
+		set {kdr::%player's uuid%} to 0	
+	if {rep::%player's uuid%} is not set:
+		set {rep::%player's uuid%} to 0
+	if {title::%player's uuid%} is not set:
+		set {title::%player's uuid%} to "&7[Pla&7yer]"	
+	set the join message to "%{title::%player's uuid%}% %player%&6 joined &7Gun&4PVP&aMC&6!"	
+	wait 0.3 seconds
+	make player execute "/help"
+	
+on quit:
+	set the quit message to "%{title::%player's uuid%}% %player%&6 left &7Gun&4PVP&aMC&6!"	
+	
+on join:	
+	if {questwalter::%player's uuid%} is "&cComplete":
+		send title "&6Welcome back to &7Gun&4PVP&aMC&6!" for 2 seconds
+
+on first join:
+	add 1 to {counter}  
+	set the join message to "%{title::%player's uuid%}% %player%&6 joined &7Gun&4PVP&aMC&6 for the first time! [&c#%{counter}%&6]"
+
+
+on join:
+	wipe below scores for player
+	while player is online:
+		loop all players:
+			set score "&c❤" below player to player's health for loop-player
+		wait 2 ticks
+
+command /contentwarning:
+    trigger:
+        set {_i} to a written book
+        set {_a} to text component of "This server contains some content which may be unsuitable for small children.%nl%%nl%Whilst MineHut requires all users be 13 or older, we realise not all users follow these rules.%nl%%nl%&lPlease proceed with caution."
+        set page 1 of book {_i} to {_a}
+        set book author of {_i} to "GunPVPMC"
+        set book title of {_i} to "Warning"
+        open book {_i} to player
+
+#on join:
+	#if {contentwarning::%player's uuid%} is not set:
+	#	set {contentwarning::%player's uuid%} to true
+	#	make player execute "/contentwarning"

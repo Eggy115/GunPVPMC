@@ -1,0 +1,162 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport f1da5051-cb26-4676-b891-745a29af40db -15 69 -531"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Cannibal] Callum":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cCannibal&6] Callum"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to 1 redstone named "&4Blood &6[&cx1&6]"
+        set line 2 of lore of slot 10 of {_store} to "&6Sell: &c5"
+
+        set slot 11 of {_store} to 1 bone named "&7Bone &6[&cx1&6]"
+        set line 2 of lore of slot 11 of {_store} to "&6Sell: &c5"
+
+        set slot 12 of {_store} to 1 beef named "<##b73c34>Flesh &6[&cx1&6]"
+        set line 2 of lore of slot 12 of {_store} to "&6Sell: &c5"   
+
+        set slot 13 of {_store} to 1 weeping vine named "&4Veins &6[&cx1&6]"
+        set line 2 of lore of slot 13 of {_store} to "&6Sell: &c10"
+
+        set slot 14 of {_store} to 1 pink dye named "&dBrain &6[&cx1&6]"
+        set line 2 of lore of slot 14 of {_store} to "&6Sell: &c100"                     
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "&4Blood &6[&cx1&6]":
+        if player has 1 redstone dust:
+            remove 1 redstone dust from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 5
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cCannibal&6] Callum: Mmmm... that's good"
+        else:
+            send "&6[&cCannibal&6] Callum: Where's the blood?"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "&7Bone &6[&cx1&6]":
+        if player has 1 bone:
+            remove 1 bone from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 5
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cCannibal&6] Callum: Mmmm... that's good"
+        else:
+            send "&6[&cCannibal&6] Callum: Where's the bones?"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##b73c34>Flesh &6[&cx1&6]":
+        if player has 1 beef:
+            remove 1 beef from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 5
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cCannibal&6] Callum: Mmmm... that's good"
+        else:
+            send "&6[&cCannibal&6] Callum: Where's the flesh?"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "&4Veins &6[&cx1&6]":
+        if player has 1 weeping vines:
+            remove 1 weeping vines from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 5
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cCannibal&6] Callum: Mmmm... that's good"
+        else:
+            send "&6[&cCannibal&6] Callum: Where's the veins?"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "&dBrain &6[&cx1&6]":
+        if player has 1 pink dye:
+            remove 1 pink dye from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cCannibal&6] Callum: Mmmm... that's good"
+        else:
+            send "&6[&cCannibal&6] Callum: Where's the brain?"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+
+on death:
+    if victim is player or pillager or vindicator or villager:
+        chance of 10%:
+            drop redstone dust named "&4Blood" at victim  
+        chance of 10%:
+            drop redstone dust named "&4Blood" at victim    
+
+        chance of 10%:
+            drop bone named "&7Bone" at victim                
+        chance of 10%:
+            drop bone named "&7Bone" at victim                                
+
+        chance of 10%:
+            drop raw beef named "<##b73c34>Flesh" at victim
+        chance of 10%:
+            drop raw beef named "<##b73c34>Flesh" at victim
+
+        chance of 10%:
+            drop weeping vines named "&4Veins" at victim                
+
+        chance of 1%:
+            drop pink dye named "&dBrain" at victim                   
+
+    if victim is iron golem:
+        chance of 10%:
+            drop iron ingot named "&7Iron Ingot" at victim
+    if victim is zombie:
+        chance of 10%:
+            drop rotten flesh named "<##994B24>Rotten Flesh" at victim
+    if victim is villager:
+        chance of 1%:
+            drop 1 paper named "&aBank Note"
+ 
+    if victim is skeleton:
+        chance of 1%:
+            drop iron horse armor named "&7Broken Gun" with nbt "{HideFlags:127}" at victim       
+    if victim is stray:
+        chance of 3%:
+            drop iron horse armor named "&7Broken Gun" with nbt "{HideFlags:127}" at victim 
+
+on right click:
+    if name of player's held item is "&aBank Note":
+        remove 1 paper from player's held item
+        set {_r} to random integer between 10 and 50
+        set {coins::%player's uuid%} to {coins::%player's uuid%} + {_r}          
+        send "&6The &aBank Note&6 had &c%{_r}%&6 coins!" to player
+
+on right click:
+    if player's held item is redstone dust:
+        remove 1 redstone dust from player's held item
+        console command "/effect give %player% minecraft:nausea 5 0 true"
+        feed player by 1   
+        add 1 to {cannibal::%player's uuid%}
+
+on right click:
+    if player's held item is bone:
+        remove 1 bone from player's held item
+        console command "/effect give %player% minecraft:nausea 5 0 true"
+        feed player by 1     
+        add 1 to {cannibal::%player's uuid%}      
+
+on right click:
+    if player's held item is weeping vines:
+        remove 1 weeping vines from player's held item
+        console command "/effect give %player% minecraft:nausea 5 0 true"
+        feed player by 1     
+        add 1 to {cannibal::%player's uuid%}   
+
+on right click:
+    if player's held item is pink dye:
+        remove 1 pink dye from player's held item
+        console command "/effect give %player% minecraft:nausea 5 0 true"
+        feed player by 1     
+        add 1 to {cannibal::%player's uuid%}                                     

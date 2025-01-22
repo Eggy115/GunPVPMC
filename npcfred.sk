@@ -1,0 +1,146 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 977fa242-a581-43fc-a1bd-d971e1568a36 -33 69 -476"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Firearms Dealer] Fred":
+        set {_store} to a new chest inventory with 5 row with name "&6[&cFirearms Dealer&6] Fred"
+        
+        set {_e} to 0
+        loop 45 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to leather horse armor named "<##3B3B3B>SIG 516 &6[&cx1&6]" with nbt "{display:{color:3881787},HideFlags:127}"
+        set line 1 of lore of slot 10 of {_store} to "&6Cartridge: &c30&6/&c30"
+        set line 2 of lore of slot 10 of {_store} to "&6Reload Time: &c750ms"
+        set line 3 of lore of slot 10 of {_store} to "&6Damage: &c7.5"
+        set line 4 of lore of slot 10 of {_store} to "&6Ammunition: &c7.62x51mm"
+        set line 6 of lore of slot 10 of {_store} to "&6Cost: &c2000"
+
+        set slot 11 of {_store} to 30 gold nuggets named "<##FAD905>7.62x51mm &6[&cx30&6]"
+        set line 2 of lore of slot 11 of {_store} to "&6Cost: &c30"    
+
+        set slot 19 of {_store} to leather horse armor named "<##222222>CMMG Mk47 &6[&cx1&6]" with nbt "{display:{color:2236962},HideFlags:127}"
+        set line 1 of lore of slot 19 of {_store} to "&6Cartridge: &c30&6/&c30"
+        set line 2 of lore of slot 19 of {_store} to "&6Reload Time: &c600ms"
+        set line 3 of lore of slot 19 of {_store} to "&6Damage: &c8.5"
+        set line 4 of lore of slot 19 of {_store} to "&6Ammunition: &c7.62x39mm"
+        set line 6 of lore of slot 19 of {_store} to "&6Cost: &c3000"
+
+        set slot 20 of {_store} to 30 iron nuggets named "<##B3B3B3>7.62x<##B3B3B3>39mm &6[&cx30&6]"
+        set line 2 of lore of slot 20 of {_store} to "&6Cost: &c30"
+
+        set slot 28 of {_store} to leather horse armor named "<##382000>Luger P08 &6[&cx1&6]" with nbt "{display:{color:3678208},HideFlags:127}"
+        set line 1 of lore of slot 28 of {_store} to "&6Cartridge: &c8&6/&c8"
+        set line 2 of lore of slot 28 of {_store} to "&6Reload Time: &c1000ms"
+        set line 3 of lore of slot 28 of {_store} to "&6Damage: &c6"
+        set line 4 of lore of slot 28 of {_store} to "&6Ammunition: &c9x19mm"
+        set line 6 of lore of slot 28 of {_store} to "&6Cost: &c500"
+
+        set slot 29 of {_store} to 8 gold nuggets named "<##FFC300>9x19mm &6[&cx8&6]"
+        set line 2 of lore of slot 29 of {_store} to "&6Cost: &c8"        
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##3B3B3B>SIG 516 &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 1999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 2000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player leather horse armor named "<##3B3B3B>SIG 516" with nbt "{display:{color:3881787},HideFlags:127}"
+            send "&6[&cFirearms Dealer&6] Fred: Hope yer enjoy yerself with that"
+        else:
+            send "&6[&cFirearms Dealer&6] Fred: I'm afraid it's a wee bit expensive for yer"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+
+
+on inventory click:
+    if name of event-item is "<##FAD905>7.62x51mm &6[&cx30&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 29:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 30
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 30 gold nugget named "<##FAD905>7.62x51mm"
+            send "&6[&cFirearms Dealer&6] Fred: Hope yer enjoy yerself with that"
+        else:
+            send "&6[&cFirearms Dealer&6] Fred: I'm afraid it's a wee bit expensive for yer"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "<##222222>CMMG Mk47 &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 2999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 3000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player leather horse armor named "<##222222>CMMG Mk47" with nbt "{display:{color:2236962},HideFlags:127}"
+            send "&6[&cFirearms Dealer&6] Fred: Hope yer enjoy yerself with that"
+        else:
+            send "&6[&cFirearms Dealer&6] Fred: I'm afraid it's a wee bit expensive for yer"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+
+
+on inventory click:
+    if name of event-item is "<##B3B3B3>7.62x<##B3B3B3>39mm &6[&cx30&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 29:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 30
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 30 iron nugget named "<##B3B3B3>7.62x39mm"
+            send "&6[&cFirearms Dealer&6] Fred: Hope yer enjoy yerself with that"
+        else:
+            send "&6[&cFirearms Dealer&6] Fred: I'm afraid it's a wee bit expensive for yer"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+
+
+on inventory click:
+    if name of event-item is "<##382000>Luger P08 &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 499:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 500
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player leather horse armor named "<##382000>Luger P08" with nbt "{display:{color:3678208},HideFlags:127}"
+            send "&6[&cFirearms Dealer&6] Fred: Hope yer enjoy yerself with that"
+        else:
+            send "&6[&cFirearms Dealer&6] Fred: I'm afraid it's a wee bit expensive for yer"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+
+
+on inventory click:
+    if name of event-item is "<##FFC300>9x19mm &6[&cx8&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 7:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 8
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 8 gold nugget named "<##FFC300>9x19mm"
+            send "&6[&cFirearms Dealer&6] Fred: Hope yer enjoy yerself with that"
+        else:
+            send "&6[&cFirearms Dealer&6] Fred: I'm afraid it's a wee bit expensive for yer"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                          

@@ -1,0 +1,57 @@
+on damage of zombie:
+    set {_oldname} to name of victim
+    set {_hp} to health of victim
+    set {_mhp} to maximum health of victim
+    set {_words::*} to {_oldname} split by " |"
+    set {_name} to "%{_words::1}%&6 | &c%{_hp}%&6/&c%{_mhp}%"
+    set display name of victim to {_name}
+
+on damage of skeleton:
+    set {_oldname} to name of victim
+    set {_hp} to health of victim
+    set {_mhp} to maximum health of victim
+    set {_words::*} to {_oldname} split by " |"
+    set {_name} to "%{_words::1}%&6 | &c%{_hp}%&6/&c%{_mhp}%"
+    set display name of victim to {_name}    
+
+on damage of stray:
+    set {_oldname} to name of victim
+    set {_hp} to health of victim
+    set {_mhp} to maximum health of victim
+    set {_words::*} to {_oldname} split by " |"
+    set {_name} to "%{_words::1}%&6 | &c%{_hp}%&6/&c%{_mhp}%"
+    set display name of victim to {_name}    
+
+on damage of iron golem:
+    set {_oldname} to name of victim
+    set {_hp} to health of victim
+    set {_mhp} to maximum health of victim
+    set {_words::*} to {_oldname} split by " |"
+    set {_name} to "%{_words::1}%&6 | &c%{_hp}%&6/&c%{_mhp}%"
+    set display name of victim to {_name}    
+
+on damage of villager:
+    if victim has scoreboard tag "npcvillager":
+        set {_oldname} to name of victim
+        set {_hp} to health of victim
+        set {_mhp} to maximum health of victim
+        set {_words::*} to {_oldname} split by " |"
+        set {_name} to "%{_words::1}%&6 | &c%{_hp}%&6/&c%{_mhp}%"
+        set display name of victim to {_name}    
+
+on damage of drowned:
+    set {_oldname} to name of victim
+    set {_hp} to health of victim
+    set {_mhp} to maximum health of victim
+    set {_words::*} to {_oldname} split by " |"
+    set {_name} to "%{_words::1}%&6 | &c%{_hp}%&6/&c%{_mhp}%"
+    set display name of victim to {_name}   
+    
+
+on damage of giant:
+    set {_oldname} to name of victim
+    set {_hp} to health of victim
+    set {_mhp} to maximum health of victim
+    set {_words::*} to {_oldname} split by " |"
+    set {_name} to "%{_words::1}%&6 | &c%{_hp}%&6/&c%{_mhp}%"
+    set display name of victim to {_name}               

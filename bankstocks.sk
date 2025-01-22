@@ -1,0 +1,379 @@
+command /stocksandshares [<text>]:
+    aliases: /stocks, /shares
+    trigger:
+        if arg-1 is not set:
+            set {_arg1} to "hello"
+        else:
+            set {_arg1} to arg-1
+
+        if {rep::%player's uuid%} < 30:
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&cYou must be 30✫ to use stocks and shares!"                
+            stop   
+
+        if {STOCKS::villagerprotectioninc::price} < 1:
+            set {STOCKS::villagerprotectioninc::price} to 0      
+        if {STOCKS::bigglass::price} < 1:
+            set {STOCKS::bigglass::price} to 0  
+        if {STOCKS::gpmcoin::price} < 1:
+            set {STOCKS::gpmcoin::price} to 0                                   
+
+        if {_arg1} is not "one" or "two" or "three":
+            set {_store} to a new chest inventory with 6 row with name "&7Gun&4PVP&aMC&6 Bank"
+
+            set {_e} to 0
+            loop 54 times:
+                set slot {_e} of {_store} to gray stained glass pane named "&0 "    
+                add 1 to {_e}
+
+            set {_e} to 45
+            loop 9 times:
+                set slot {_e} of {_store} to black stained glass pane named "&0 "    
+                add 1 to {_e}
+
+            if {STOCKS::villagerprotectioninc::%player's uuid%} is not set:
+                set {STOCKS::villagerprotectioninc::%player's uuid%} to 0
+            if {STOCKS::bigglass::%player's uuid%} is not set:
+                set {STOCKS::bigglass::%player's uuid%} to 0      
+            if {STOCKS::gpmcoin::%player's uuid%} is not set:
+                set {STOCKS::gpmcoin::%player's uuid%} to 0                            
+
+            set slot 10 of {_store} to book named "&6Villager Protection Inc." with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 10 of {_store} to "&6Quantity Possessed: &c%{STOCKS::villagerprotectioninc::%player's uuid%}%"
+            set line 2 of lore of slot 10 of {_store} to "&6Total Available: &c%{STOCKS::villagerprotectioninc::available}%"
+            set line 3 of lore of slot 10 of {_store} to "&6Total in Circulation: &c%{STOCKS::villagerprotectioninc::circulation}%"
+            set line 5 of lore of slot 10 of {_store} to "&6Current Price: &c%{STOCKS::villagerprotectioninc::price}%"
+            set line 6 of lore of slot 10 of {_store} to "&6Risk: &4Very High"
+            set line 8 of lore of slot 10 of {_store} to "<##FF0000>&lDETERMINED BY PLAYER ACTIONS"
+            
+            set slot 11 of {_store} to book named "&6Maze Bank" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 11 of {_store} to "&6Quantity Possessed: &c0"
+            set line 2 of lore of slot 11 of {_store} to "&6Total Available: &c0"
+            set line 3 of lore of slot 11 of {_store} to "&6Total in Circulation: &c100"
+            set line 5 of lore of slot 11 of {_store} to "&6Current Price: &c200"
+            set line 6 of lore of slot 11 of {_store} to "&6Risk: &2Very Low"
+
+            set slot 12 of {_store} to book named "&6Los Pollos Hermanos" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 12 of {_store} to "&6Quantity Possessed: &c0"
+            set line 2 of lore of slot 12 of {_store} to "&6Total Available: &c0"
+            set line 3 of lore of slot 12 of {_store} to "&6Total in Circulation: &c100"
+            set line 5 of lore of slot 12 of {_store} to "&6Current Price: &c300"
+            set line 6 of lore of slot 12 of {_store} to "&6Risk: &eMedium"  
+            
+            set slot 13 of {_store} to book named "&6Jacob & Co Real Estate" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 13 of {_store} to "&6Quantity Possessed: &c0"
+            set line 2 of lore of slot 13 of {_store} to "&6Total Available: &c0"
+            set line 3 of lore of slot 13 of {_store} to "&6Total in Circulation: &c100"
+            set line 5 of lore of slot 13 of {_store} to "&6Current Price: &c400"
+            set line 6 of lore of slot 13 of {_store} to "&6Risk: &aLow"     
+            
+            set slot 14 of {_store} to book named "&6Red Light Club" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 14 of {_store} to "&6Quantity Possessed: &c0"
+            set line 2 of lore of slot 14 of {_store} to "&6Total Available: &c0"
+            set line 3 of lore of slot 14 of {_store} to "&6Total in Circulation: &c100"
+            set line 5 of lore of slot 14 of {_store} to "&6Current Price: &c500"
+            set line 6 of lore of slot 14 of {_store} to "&6Risk: &cHigh"  
+            
+            set slot 15 of {_store} to book named "&6GPM-Coin" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 15 of {_store} to "&6Quantity Possessed: &c%{STOCKS::gpmcoin::%player's uuid%}%"
+            set line 2 of lore of slot 15 of {_store} to "&6Total Available: &c%{STOCKS::gpmcoin::available}%"
+            set line 3 of lore of slot 15 of {_store} to "&6Total in Circulation: &c%{STOCKS::gpmcoin::circulation}%"
+            set line 5 of lore of slot 15 of {_store} to "&6Current Price: &c%{STOCKS::gpmcoin::price}%"
+            set line 6 of lore of slot 15 of {_store} to "&6Risk: &aLow"   
+
+            set slot 16 of {_store} to book named "&6Big Glass" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 16 of {_store} to "&6Quantity Possessed: &c%{STOCKS::bigglass::%player's uuid%}%"
+            set line 2 of lore of slot 16 of {_store} to "&6Total Available: &c%{STOCKS::bigglass::available}%"
+            set line 3 of lore of slot 16 of {_store} to "&6Total in Circulation: &c%{STOCKS::bigglass::circulation}%"
+            set line 5 of lore of slot 16 of {_store} to "&6Current Price: &c%{STOCKS::bigglass::price}%"
+            set line 6 of lore of slot 16 of {_store} to "&6Risk: &eMedium"
+            set line 8 of lore of slot 16 of {_store} to "<##FF0000>&lDETERMINED BY PLAYER ACTIONS"            
+
+            set slot 47 of {_store} to red stained glass pane named "&4Withdraw"
+
+            set slot 49 of {_store} to sunflower named "&eBank Info"
+            set line 1 of lore of slot 49 of {_store} to "&6Networth: &c%{networth::%player's uuid%}%"
+            set line 2 of lore of slot 49 of {_store} to "&6Wallet: &c%{coins::%player's uuid%}%"
+            set line 3 of lore of slot 49 of {_store} to "&6Bank: &c%{bank::%player's uuid%}%"
+            set line 4 of lore of slot 49 of {_store} to "&6Stocks Value: &c%{stocksvalue::%player's uuid%}%"
+            set line 5 of lore of slot 49 of {_store} to "&6Interest: &c%{interest::%player's uuid%} * 100%%%"
+
+            set slot 51 of {_store} to lime stained glass pane named "&aDeposit"
+
+            open {_store} to player
+            set {trade::%player's uuid%} to true
+            stop
+
+        if {_arg1} is "one":
+            set {_store} to a new chest inventory with 3 row with name "&7Gun&4PVP&aMC&6 Bank"
+
+            set {_e} to 0
+            loop 27 times:
+                set slot {_e} of {_store} to gray stained glass pane named "&0 "    
+                add 1 to {_e}
+    
+            set slot 13 of {_store} to book named "&6Villager Protection Inc." with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 13 of {_store} to "&6Quantity Possessed: &c%{STOCKS::villagerprotectioninc::%player's uuid%}%"
+            set line 2 of lore of slot 13 of {_store} to "&6Total Available: &c%{STOCKS::villagerprotectioninc::available}%"
+            set line 3 of lore of slot 13 of {_store} to "&6Total in Circulation: &c%{STOCKS::villagerprotectioninc::circulation}%"
+            set line 5 of lore of slot 13 of {_store} to "&6Current Price: &c%{STOCKS::villagerprotectioninc::price}%"
+            set line 6 of lore of slot 13 of {_store} to "&6Risk: &4Very High"
+            set line 8 of lore of slot 13 of {_store} to "<##FF0000>&lDETERMINED BY PLAYER ACTIONS"  
+            
+            set slot 11 of {_store} to red concrete named "&4Sell &6[&cx1&6]"
+            set line 1 of lore of slot 11 of {_store} to "&6Quantity Possessed: &c%{STOCKS::villagerprotectioninc::%player's uuid%}%"
+            set line 2 of lore of slot 11 of {_store} to "&6Current Price: &c%{STOCKS::villagerprotectioninc::price}%"
+            set line 4 of lore of slot 11 of {_store} to "&6Stock: &cVillager Protection Inc."
+    
+            set slot 15 of {_store} to lime concrete named "&aBuy &6[&cx1&6]"
+            set line 1 of lore of slot 15 of {_store} to "&6Total Available: &c%{STOCKS::villagerprotectioninc::available}%"
+            set line 2 of lore of slot 15 of {_store} to "&6Current Price: &c%{STOCKS::villagerprotectioninc::price}%"
+            set line 4 of lore of slot 15 of {_store} to "&6Stock: &cVillager Protection Inc."
+    
+            open {_store} to player
+            set {trade::%player's uuid%} to true
+
+        if {_arg1} is "two":
+            set {_store} to a new chest inventory with 3 row with name "&7Gun&4PVP&aMC&6 Bank"
+
+            set {_e} to 0
+            loop 27 times:
+                set slot {_e} of {_store} to gray stained glass pane named "&0 "    
+                add 1 to {_e}
+    
+            set slot 13 of {_store} to book named "&6Big Glass" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 13 of {_store} to "&6Quantity Possessed: &c%{STOCKS::bigglass::%player's uuid%}%"
+            set line 2 of lore of slot 13 of {_store} to "&6Total Available: &c%{STOCKS::bigglass::available}%"
+            set line 3 of lore of slot 13 of {_store} to "&6Total in Circulation: &c%{STOCKS::bigglass::circulation}%"
+            set line 5 of lore of slot 13 of {_store} to "&6Current Price: &c%{STOCKS::bigglass::price}%"
+            set line 6 of lore of slot 13 of {_store} to "&6Risk: &eMedium"
+            set line 8 of lore of slot 13 of {_store} to "<##FF0000>&lDETERMINED BY PLAYER ACTIONS"  
+            
+            set slot 11 of {_store} to red concrete named "&4Sell &6[&cx1&6]"
+            set line 1 of lore of slot 11 of {_store} to "&6Quantity Possessed: &c%{STOCKS::bigglass::%player's uuid%}%"
+            set line 2 of lore of slot 11 of {_store} to "&6Current Price: &c%{STOCKS::bigglass::price}%"
+            set line 4 of lore of slot 11 of {_store} to "&6Stock: &cBig Glass"
+    
+            set slot 15 of {_store} to lime concrete named "&aBuy &6[&cx1&6]"
+            set line 1 of lore of slot 15 of {_store} to "&6Total Available: &c%{STOCKS::bigglass::available}%"
+            set line 2 of lore of slot 15 of {_store} to "&6Current Price: &c%{STOCKS::bigglass::price}%"
+            set line 4 of lore of slot 15 of {_store} to "&6Stock: &cBig Glass"
+
+            open {_store} to player
+            set {trade::%player's uuid%} to true
+
+        if {_arg1} is "three":
+            set {_store} to a new chest inventory with 3 row with name "&7Gun&4PVP&aMC&6 Bank"
+
+            set {_e} to 0
+            loop 27 times:
+                set slot {_e} of {_store} to gray stained glass pane named "&0 "    
+                add 1 to {_e}
+    
+            set slot 13 of {_store} to book named "&6GPM-Coin" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 13 of {_store} to "&6Quantity Possessed: &c%{STOCKS::gpmcoin::%player's uuid%}%"
+            set line 2 of lore of slot 13 of {_store} to "&6Total Available: &c%{STOCKS::gpmcoin::available}%"
+            set line 3 of lore of slot 13 of {_store} to "&6Total in Circulation: &c%{STOCKS::gpmcoin::circulation}%"
+            set line 5 of lore of slot 13 of {_store} to "&6Current Price: &c%{STOCKS::gpmcoin::price}%"
+            set line 6 of lore of slot 13 of {_store} to "&6Risk: &aLow"
+            
+            set slot 11 of {_store} to red concrete named "&4Sell &6[&cx1&6]"
+            set line 1 of lore of slot 11 of {_store} to "&6Quantity Possessed: &c%{STOCKS::gpmcoin::%player's uuid%}%"
+            set line 2 of lore of slot 11 of {_store} to "&6Current Price: &c%{STOCKS::gpmcoin::price}%"
+            set line 4 of lore of slot 11 of {_store} to "&6Stock: &cGPM-Coin"
+    
+            set slot 15 of {_store} to lime concrete named "&aBuy &6[&cx1&6]"
+            set line 1 of lore of slot 15 of {_store} to "&6Total Available: &c%{STOCKS::gpmcoin::available}%"
+            set line 2 of lore of slot 15 of {_store} to "&6Current Price: &c%{STOCKS::gpmcoin::price}%"
+            set line 4 of lore of slot 15 of {_store} to "&6Stock: &cGPM-Coin"            
+    
+            open {_store} to player
+            set {trade::%player's uuid%} to true
+
+command /adminstocks:
+    permission: op
+    trigger:
+        set {STOCKS::gpmcoin::available} to 50000
+        set {STOCKS::gpmcoin::circulation} to 50000
+        set {STOCKS::gpmcoin::price} to 500
+
+#quantity possessed: {STOCKS::stockname::%player's uuid%}
+#total available: {STOCKS::stockname::available}
+#total in circulation: {STOCKS::stockname::circulation} 
+#current price: {STOCKS::stockname::price}   
+
+# VILLAGERS
+
+on inventory click:
+    if name of event-item is "&6Villager Protection Inc.":
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        make player execute "/stocks one"
+
+      
+
+on inventory click:
+    if name of event-item is "&aBuy &6[&cx1&6]":
+        if line 4 of lore of event-item is "&6Stock: &cVillager Protection Inc.":
+            if {coins::%player's uuid%} < {STOCKS::villagerprotectioninc::price}:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou cannot afford this stock!"    
+                close player's inventory                
+                stop
+            if {STOCKS::villagerprotectioninc::available} < 1:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cNone of this stock is available!"    
+                close player's inventory                
+                stop       
+
+
+            add 1 to {STOCKS::villagerprotectioninc::%player's uuid%}
+            remove 1 from {STOCKS::villagerprotectioninc::available}
+            remove {STOCKS::villagerprotectioninc::price} from {coins::%player's uuid%}
+            set {_r} to random integer between 0 and 2
+            add {_r} to {STOCKS::villagerprotectioninc::price}            
+            send action bar "%nl%&7Gun&4PVP&aMC&6 Stocks: Successfully bought &c1&6 of &cVillager Protection Inc. &6stock!%nl%" to player
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"        
+            make player execute "/stocks one"                   
+
+on inventory click:
+    if name of event-item is "&4Sell &6[&cx1&6]":
+        if line 4 of lore of event-item is "&6Stock: &cVillager Protection Inc.":
+            if {STOCKS::villagerprotectioninc::%player's uuid%} < 1:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou do not have any of this stock!"    
+                close player's inventory                
+                stop  
+
+   
+            remove 1 from {STOCKS::villagerprotectioninc::%player's uuid%}
+            add 1 to {STOCKS::villagerprotectioninc::available}
+            add {STOCKS::villagerprotectioninc::price} to {coins::%player's uuid%}
+            set {_r} to random integer between 0 and 2
+            remove {_r} from {STOCKS::villagerprotectioninc::price}   
+            if {STOCKS::villagerprotectioninc::price} < 10:
+                set {STOCKS::villagerprotectioninc::price} to 10                
+            send action bar "%nl%&7Gun&4PVP&aMC&6 Stocks: Successfully sold &c1&6 of &cVillager Protection Inc. &6stock!%nl%" to player
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2" 
+            make player execute "/stocks one"                   
+
+on death of villager:
+    remove 1 from {STOCKS::villagerprotectioninc::price}         
+    if {STOCKS::villagerprotectioninc::price} < 10:
+        set {STOCKS::villagerprotectioninc::price} to 10
+
+on death of skeleton:
+    remove 1 from {STOCKS::villagerprotectioninc::price} 
+on death of iron golem:
+    remove 1 from {STOCKS::villagerprotectioninc::price}              
+
+on death of player:
+    if attacker is skeleton:
+        set {_r} to random integer between 0 and 5
+        add {_r} to {STOCKS::villagerprotectioninc::price}      
+    if attacker is iron golem:
+        set {_r} to random integer between 0 and 5
+        add {_r} to {STOCKS::villagerprotectioninc::price}  
+
+# BIG GLASS        
+
+on inventory click:
+    if name of event-item is "&6Big Glass":
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        make player execute "/stocks two"          
+
+on inventory click:
+    if name of event-item is "&aBuy &6[&cx1&6]":
+        if line 4 of lore of event-item is "&6Stock: &cBig Glass":
+            if {coins::%player's uuid%} < {STOCKS::bigglass::price}:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou cannot afford this stock!"    
+                close player's inventory                
+                stop
+            if {STOCKS::bigglass::available} < 1:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cNone of this stock is available!"    
+                close player's inventory                
+                stop       
+
+
+            add 1 to {STOCKS::bigglass::%player's uuid%}
+            remove 1 from {STOCKS::bigglass::available}
+            remove {STOCKS::bigglass::price} from {coins::%player's uuid%}
+            set {_r} to random integer between 0 and 2
+            add {_r} to {STOCKS::bigglass::price}            
+            send action bar "%nl%&7Gun&4PVP&aMC&6 Stocks: Successfully bought &c1&6 of &cBig Glass &6stock!%nl%" to player
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"        
+            make player execute "/stocks two"                   
+
+on inventory click:
+    if name of event-item is "&4Sell &6[&cx1&6]":
+        if line 4 of lore of event-item is "&6Stock: &cBig Glass":
+            if {STOCKS::bigglass::%player's uuid%} < 1:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou do not have any of this stock!"    
+                close player's inventory                
+                stop  
+
+                     
+            remove 1 from {STOCKS::bigglass::%player's uuid%}
+            add 1 to {STOCKS::bigglass::available}
+            add {STOCKS::bigglass::price} to {coins::%player's uuid%}
+            set {_r} to random integer between 0 and 2
+            remove {_r} from {STOCKS::bigglass::price}   
+            if {STOCKS::bigglass::price} < 10:
+                set {STOCKS::bigglass::price} to 10                
+            send action bar "%nl%&7Gun&4PVP&aMC&6 Stocks: Successfully sold &c1&6 of &cBig Glass &6stock!%nl%" to player
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2" 
+            make player execute "/stocks two"                        
+
+# BIG GLASS        
+
+on inventory click:
+    if name of event-item is "&6GPM-Coin":
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        make player execute "/stocks three"          
+
+on inventory click:
+    if name of event-item is "&aBuy &6[&cx1&6]":
+        if line 4 of lore of event-item is "&6Stock: &cGPM-Coin":
+            if {coins::%player's uuid%} < {STOCKS::gpmcoin::price}:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou cannot afford this stock!"    
+                close player's inventory                
+                stop
+            if {STOCKS::gpmcoin::available} < 1:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cNone of this stock is available!"    
+                close player's inventory                
+                stop       
+
+
+            add 1 to {STOCKS::gpmcoin::%player's uuid%}
+            remove 1 from {STOCKS::gpmcoin::available}
+            remove {STOCKS::gpmcoin::price} from {coins::%player's uuid%}
+            set {_r} to random integer between 0 and 2
+            add {_r} to {STOCKS::gpmcoin::price}            
+            send action bar "%nl%&7Gun&4PVP&aMC&6 Stocks: Successfully bought &c1&6 of &cGPM-Coin &6stock!%nl%" to player
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"        
+            make player execute "/stocks three"                   
+
+on inventory click:
+    if name of event-item is "&4Sell &6[&cx1&6]":
+        if line 4 of lore of event-item is "&6Stock: &cGPM-Coin":
+            if {STOCKS::gpmcoin::%player's uuid%} < 1:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou do not have any of this stock!"    
+                close player's inventory                
+                stop  
+
+                     
+            remove 1 from {STOCKS::gpmcoin::%player's uuid%}
+            add 1 to {STOCKS::gpmcoin::available}
+            add {STOCKS::gpmcoin::price} to {coins::%player's uuid%}
+            set {_r} to random integer between 0 and 2
+            remove {_r} from {STOCKS::gpmcoin::price}   
+            if {STOCKS::gpmcoin::price} < 10:
+                set {STOCKS::gpmcoin::price} to 10                
+            send action bar "%nl%&7Gun&4PVP&aMC&6 Stocks: Successfully sold &c1&6 of &cGPM-Coin &6stock!%nl%" to player
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2" 
+            make player execute "/stocks three"                 

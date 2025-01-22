@@ -1,0 +1,25 @@
+
+#on fish:
+	#if fishing state is reel in:  
+        #push player upwards at speed 1
+		#push player forwards at speed 2		
+
+on fish:
+    cancel event
+    if fishing state is caught fish:
+        if {fishing::%player's uuid%} is not set:
+            set {fishing::%player's uuid%} to 0
+        add 1 to {fishing::%player's uuid%}
+        add 1 to {GANGLEVEL.exp::%{GANG::gang::%player's uuid%}%}
+        add 1 to {LEVEL.exp::%player's uuid%}
+        set {_fish} to random integer between 1 and 2
+        if {_fish} is 1:
+            set {_r} to raw cod named "<#c6a271>Raw Cod"
+            set line 1 of lore of {_r} to "&6Weight: &c%random integer between 1 and 6%"
+            set item of caught entity to {_r}
+            
+        if {_fish} is 2:
+            set {_r} to raw salmon named "<#ab3533>Raw Salmon"
+            set line 1 of lore of {_r} to "&6Weight: &c%random integer between 1 and 12%"
+            set item of caught entity to {_r}   
+           

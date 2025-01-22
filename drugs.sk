@@ -1,0 +1,99 @@
+# CANNABIS
+on rightclick:
+    if player is holding fern:
+        if {storyquest1::david::%player's uuid%} is true:
+            stop
+        remove 1 fern from player's held item
+        console command "/effect give %player% minecraft:nausea 30 0 true"
+        console command "/effect give %player% minecraft:weakness 30 0 true"
+        console command "/effect give %player% minecraft:regeneration 30 0 true"
+        add 1 to {drugs::%player's uuid%}
+        add 1 to {cannabis::%player's uuid%}
+
+on rightclick on player:
+    if player is holding fern:
+        if {storyquest1::david::%player's uuid%} is true:
+            stop
+        remove 1 fern from player's held item
+        console command "/effect give %event-entity% minecraft:nausea 30 0 true"
+        console command "/effect give %event-entity% minecraft:weakness 30 0 true"
+        console command "/effect give %event-entity% minecraft:regeneration 30 0 true"
+        add 1 to {drugs::%event-entity's uuid%}
+        add 1 to {cannabis::%event-entity's uuid%}        
+
+# COCAINE
+on rightclick:
+    if player is holding sugar:
+        remove 1 sugar from player's held item
+        console command "/effect give %player% minecraft:nausea 30 2 true"
+        console command "/effect give %player% minecraft:strength 30 0 true"
+        console command "/effect give %player% minecraft:speed 30 0 true"
+        add 1 to {drugs::%player's uuid%}
+        add 1 to {cocaine::%player's uuid%}      
+
+on rightclick on player:
+    if player is holding sugar:
+        remove 1 sugar from player's held item
+        console command "/effect give %event-entity% minecraft:nausea 30 2 true"
+        console command "/effect give %event-entity% minecraft:strength 30 0 true"
+        console command "/effect give %event-entity% minecraft:speed 30 0 true"
+        add 1 to {drugs::%event-entity's uuid%}
+        add 1 to {cocaine::%event-entity's uuid%}           
+
+#METH
+on rightclick:
+    if player is holding quartz:
+        remove 1 quartz from player's held item
+        console command "/effect give %player% minecraft:nausea 30 4 true"
+        console command "/effect give %player% minecraft:strength 30 0 true"
+        console command "/effect give %player% minecraft:speed 30 0 true"
+        console command "/effect give %player% minecraft:resistance 30 0 true"        
+        add 1 to {drugs::%player's uuid%}
+        add 1 to {meth::%player's uuid%}  
+
+on rightclick on player:
+    if player is holding quartz:
+        remove 1 quartz from player's held item
+        console command "/effect give %event-entity% minecraft:nausea 30 4 true"
+        console command "/effect give %event-entity% minecraft:strength 30 0 true"
+        console command "/effect give %event-entity% minecraft:speed 30 0 true"
+        console command "/effect give %event-entity% minecraft:resistance 30 0 true"        
+        add 1 to {drugs::%event-entity's uuid%}
+        add 1 to {meth::%event-entity's uuid%}             
+
+#CHEF
+on consume:
+    if {chef1::%player's uuid%} is true:
+        heal player by 0.5 hearts  
+    if {chef2::%player's uuid%} is true:
+        heal player by 0.5 hearts  
+    if {chef3::%player's uuid%} is true:
+        heal player by 0.5 hearts          
+
+# ALCOHOL                  
+on drink:
+    if name of player's held item is "<##FFD324>Thatcher's Gold Cider":
+        wait 1 ticks
+        remove 64 glass bottle from player                 
+        add 1 to {alcohol::%player's uuid%}  
+        add 1 to {cider::%player's uuid%}          
+    wait 1 ticks   
+    remove 64 glass bottle from player   
+
+# GROWING CANNABIS
+on right click on fern:
+    if {storyquest1::pickupweed::%player's uuid%} is "&cIn Progress":
+        set {storyquest1::pickupweedprogress::%player's uuid%} to {storyquest1::pickupweedprogress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{storyquest1::pickupweedprogress::%player's uuid%}%&6/&c10&6 Cannabis Collected!" to player
+        set {_i} to fern named "&2Cannabi&2s"   
+        set line 1 of lore of {_i} to "&6Potency: &c3&6/&c10"
+        set line 2 of lore of {_i} to "&6Vendor: &cDavid"
+        give {_i} to player        
+        if {storyquest1::pickupweedprogress::%player's uuid%} is 10:
+            add 10 to {LEVEL.exp::%player's uuid%}
+            set {storyquest1::pickupweed::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&7Gun&4PVP&aMC&6 Quests: &6Find and speak to &cDaquavius&6!" to player
+        set event-block to air
+        wait 2 minutes
+        set event-block to fern             

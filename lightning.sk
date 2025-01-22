@@ -1,0 +1,3 @@
+command /lightning:
+    trigger:
+        spawn fake lightning at player

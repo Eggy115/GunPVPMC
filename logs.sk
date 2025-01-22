@@ -1,0 +1,19 @@
+on break of oak log:
+    if gamemode of player is adventure:
+        set {_x} to player's x coordinate
+        set {_z} to player's z coordinate
+        cancel event
+        if {_z} > -420:
+            if {_z} < -400:
+                if {_x} < 30:
+                    if {_x} > 0:
+                        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                        give player 1 oak log named "<##4e3b20>Oak Log"                      
+                        send action bar "&6Chopped <##4e3b20>Oak Log&6!" to player
+
+                        if {logs::%player's uuid%} is not set:
+                            set {logs::%player's uuid%} to 0
+                        if {oaklogs::%player's uuid%} is not set:
+                            set {oaklogs::%player's uuid%} to 0       
+                        add 1 to {logs::%player's uuid%}
+                        add 1 to {oaklogs::%player's uuid%}                                                 

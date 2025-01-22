@@ -1,0 +1,134 @@
+on place of pink concrete:
+    if name of player's held item is "&dGang Base":
+        add location of event-block to {gangbases::*}
+        send "&dNew gang base at %location of event-block%" to player
+
+# Command to claim the first location in the list
+command /gangbase [<text>] [<text>]:
+    aliases: /gangbases, /gb
+    trigger:
+        if arg-1 is "claim":
+            if {gangbases::%{gangcounter}%} is set:
+
+                # GANG IS SET
+                if {GANG::gang::%player's uuid%} is not set:
+                    console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                    send "&cYou must be in a gang!"
+                    stop
+
+                # MUST BE LEADER
+                if {GANG::gangfirst::%{GANG::gang::%player's uuid%}%} is not uuid of player:
+                    console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                    send "&cOnly the leader of a gang can claim a gang base!"                
+                    stop   
+
+                # GANGBASE IS SET
+                if {GANG::gangbase::%{GANG::gang::%player's uuid%}%} is set:
+                    console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                    send "&cYou already have a gang base!"
+                    stop
+
+                # NEED 10 REPUTATION
+                if {GANGREP::%{GANG::gang::%player's uuid%}%} < 10:
+                    console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                    send "&cYour gang must have 10✫ or higher to claim a gang base!"
+                    stop
+
+                # NEED 10000 COINS
+                if {coins::%player's uuid%} < 10000:
+                    console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                    send "&cIt costs 10000 coins to claim a gang base!"                
+                    stop
+                
+                set {coins::%player's uuid%} to {coins::%player's uuid%} - 10000
+                set {_location} to {gangbases::%{gangcounter}%}
+                set {GANG::gangbase::%{GANG::gang::%player's uuid%}%} to {_location}
+                set {gangcounter} to {gangcounter} + 1
+                send "&6You have claimed your gang base! Use &c/gangbase warp&6 to access it!"
+
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cThere are currently no available gang bases. Please contact an administrator."                
+                stop               
+            stop
+
+        if arg-1 is "warp":
+            if {GANG::gang::%player's uuid%} is set:
+                if {GANG::gangbase::%{GANG::gang::%player's uuid%}%} is set:
+                    if {combat::%player%} is true:
+                        send "&7Gun&4PVP&aMC&6: You cannot use &c/gangbase warp&6 in combat!"   
+                        stop             
+                    teleport player to {GANG::gangbase::%{GANG::gang::%player's uuid%}%}
+                else:
+                    console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                    send "&cYour gang does not have a gang base!"                
+                    stop             
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou are not in a gang!"                
+                stop   
+            stop 
+
+        if arg-1 is "shop":
+            if {GANG::gang::%player's uuid%} is set:
+                if {GANG::gangbase::%{GANG::gang::%player's uuid%}%} is set:
+
+                    set {_store} to a new chest inventory with 3 row with name "&6[&cGang Base&6] Shop"
+                    
+                    set {_e} to 0
+                    loop 36 times:
+                        set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+                        add 1 to {_e}
+
+                    set slot 13 of {_store} to diamond pickaxe named "&bRoom Unlock &6[&cx1&6]" with nbt "{HideFlags:127}"
+                    set line 2 of lore of slot 13 of {_store} to "&6Cost: &c10000"
+
+                    open {_store} to player
+                    set {trade::%player's uuid%} to true    
+
+                else:
+                    console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                    send "&cYour gang does not have a gang base!"                
+                    stop             
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou are not in a gang!"                
+                stop   
+            stop 
+    
+
+        if arg-1 is not set:
+            send "%nl%&7Gun&4PVP&aMC&6 Gang Bases:%nl%%nl%&c/gangbase claim&6 - Claim a gang base%nl%&c/gangbase warp&6 - TP to your gang base%nl%&c/gangbase shop&6 - Unlock more rooms for your gang base%nl%%nl%Gang bases can be claimed by any gang with &c10✫&6 or higher. It costs &c10000&6 coins.%nl%"
+            stop
+
+        if arg-1 is not "claim" or "warp" or "shop":
+            send "%nl%&7Gun&4PVP&aMC&6 Gang Bases:%nl%%nl%&c/gangbase claim&6 - Claim a gang base%nl%&c/gangbase warp&6 - TP to your gang base%nl%&c/gangbase shop&6 - Unlock more rooms for your gang base%nl%%nl%Gang bases can be claimed by any gang with &c10✫&6 or higher. It costs &c10000&6 coins.%nl%"
+            stop
+
+#{GANG::ganglist::%{GANG::gang::%player's uuid%}%} = "bob"
+#{GANG::gang::%player's uuid%} = "12345"
+#set  = uuid of player   
+
+command /deletegangbases:
+    permission: op
+    trigger:
+        delete {gangbases::*}  
+        delete {GANG::gangbase::*}     
+        set {gangcounter} to 1 
+
+on inventory click:
+    if name of event-item is "&bRoom Unlock &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop     
+        if {coins::%player's uuid%} > 9999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 10000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 diamond pickaxe named "&bRoom Unlock" with nbt "{CanDestroy:[""minecraft:red_concrete"",""minecraft:orange_concrete"",""minecraft:yellow_concrete"",""minecraft:green_concrete"",""minecraft:lime_concrete"",""minecraft:blue_concrete"",""minecraft:light_blue_concrete"",""minecraft:purple_concrete""],HideFlags:127,Unbreakable:1b}"
+            send "&7Gun&4PVP&aMC&6 Gang Bases: You have received &bRoom Unlock&6 [&cx1&6]" to player
+        else:
+            send "&cIt costs 10000 coins to unlock a room!"                
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        

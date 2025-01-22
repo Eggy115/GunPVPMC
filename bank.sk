@@ -1,0 +1,175 @@
+command /bank [<text>]:
+    aliases: /banks, /b
+    trigger:
+        if {combat::%player%} is true:
+            send "&7Gun&4PVP&aMC&6: You cannot use &c/bank&6 in combat!"        
+            stop
+            
+        if {bank::%player's uuid%} is not set:
+            set {bank::%player's uuid%} to 0
+
+        set {networth::%player's uuid%} to {bank::%player's uuid%} + {coins::%player's uuid%}
+
+        set {stocksvalue::%player's uuid%} to 0
+        set {_} to {STOCKS::villagerprotectioninc::price} * {STOCKS::villagerprotectioninc::%player's uuid%}
+        add {_} to {stocksvalue::%player's uuid%}
+        set {_} to {STOCKS::bigglass::price} * {STOCKS::bigglass::%player's uuid%}
+        add {_} to {stocksvalue::%player's uuid%}
+
+        set {networth::%player's uuid%} to {networth::%player's uuid%} + {stocksvalue::%player's uuid%}
+
+        set {interest::%player's uuid%} to 0.005
+        if {bank::%player's uuid%} < 50000:
+            set {interest::%player's uuid%} to 0.01
+        if {bank::%player's uuid%} < 10000:
+            set {interest::%player's uuid%} to 0.02               
+
+        set {_store} to a new chest inventory with 6 row with name "&7Gun&4PVP&aMC&6 Bank"
+
+        set {_e} to 0
+        loop 54 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "    
+            add 1 to {_e}
+
+        set {_e} to 45
+        loop 9 times:
+            set slot {_e} of {_store} to black stained glass pane named "&0 "    
+            add 1 to {_e}
+
+        set slot 11 of {_store} to written book named "&5Stocks and Shares" with nbt "{HideFlags:127}"
+
+        set slot 13 of {_store} to ender chest named "&3Ender Chest"
+
+        set slot 15 of {_store} to chest named "&6Vaults"
+
+        set slot 47 of {_store} to red stained glass pane named "&4Withdraw"
+
+        set slot 49 of {_store} to sunflower named "&eBank Info"
+        set line 1 of lore of slot 49 of {_store} to "&6Networth: &c%{networth::%player's uuid%}%"
+        set line 2 of lore of slot 49 of {_store} to "&6Wallet: &c%{coins::%player's uuid%}%"
+        set line 3 of lore of slot 49 of {_store} to "&6Bank: &c%{bank::%player's uuid%}%"
+        set line 4 of lore of slot 49 of {_store} to "&6Stocks Value: &c%{stocksvalue::%player's uuid%}%"
+        set line 5 of lore of slot 49 of {_store} to "&6Interest: &c%{interest::%player's uuid%} * 100%%%"
+
+        set slot 51 of {_store} to lime stained glass pane named "&aDeposit"
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "&aDeposit":
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        close player's inventory      
+        send "%nl%&7Gun&4PVP&aMC&6: Enter amount to &aDeposit&6!%nl%"  
+        set {deposit::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "&3Ender Chest":
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        open player's ender chest to player   
+        
+on inventory click:
+    if name of event-item is "&5Stocks and Shares":
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        make player execute "/stocksandshares"
+
+        
+on inventory click:
+    if name of event-item is "&6Vaults":
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        send "&cVaults are broken - don't use them, or you'll lose items." to player
+        console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"             
+        stop
+        make player execute "/vaults"
+
+
+on inventory click:
+    if name of event-item is "&4Withdraw":
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        close player's inventory      
+        send "%nl%&7Gun&4PVP&aMC&6: Enter amount to &4Withdraw&6!%nl%"  
+        set {withdraw::%player's uuid%} to true        
+
+on join:
+    delete {deposit::%player's uuid%}
+    delete {withdraw::%player's uuid%}
+
+on death:
+    delete {deposit::%victim's uuid%}
+    delete {withdraw::%victim's uuid%}    
+
+on chat:
+    if {deposit::%player's uuid%} is true:
+        cancel event    
+        set {_message} to message parsed as integer
+
+        if {_message} is not a number:
+            send "&cInvalid amount! Please provide a valid number." to player
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                                
+            delete {deposit::%player's uuid%}
+            stop
+            
+        if {_message} <= 0:
+            send "&cYou cannot deposit a negative or zero amount!" to player
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                                
+            delete {deposit::%player's uuid%}            
+            stop
+
+        if {coins::%player's uuid%} is less than {_message}:
+            send "&cYou don't have enough coins to deposit that amount!" to player
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                                
+            delete {deposit::%player's uuid%}            
+            stop
+
+        set {coins::%player's uuid%} to {coins::%player's uuid%} - {_message}
+        set {bank::%player's uuid%} to {bank::%player's uuid%} + {_message}
+        delete {deposit::%player's uuid%}
+        
+        send "&6You have successfully paid &c%{_message}%&6 coins to your bank." to player
+
+    if {withdraw::%player's uuid%} is true:
+        cancel event    
+        set {_message} to message parsed as integer
+
+        if {_message} is not a number:
+            send "&cInvalid amount! Please provide a valid number." to player
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                                
+            delete {withdraw::%player's uuid%}
+            stop
+            
+        if {_message} <= 0:
+            send "&cYou cannot withdraw a negative or zero amount!" to player
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                                
+            delete {withdraw::%player's uuid%}            
+            stop
+
+        if {bank::%player's uuid%} is less than {_message}:
+            send "&cYou don't have enough coins to withdraw that amount!" to player
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                                
+            delete {withdraw::%player's uuid%}            
+            stop
+
+        set {bank::%player's uuid%} to {bank::%player's uuid%} - {_message}
+        set {coins::%player's uuid%} to {coins::%player's uuid%} + {_message}
+        delete {withdraw::%player's uuid%}
+        
+        send "&6You have successfully withdrawn &c%{_message}%&6 coins from your bank." to player
+
+every 60 minutes:
+    loop all players: 
+        if {bank::%loop-player's uuid%} is set:
+            set {interest::%loop-player's uuid%} to 0.005
+
+            if {bank::%loop-player's uuid%} < 50000:
+                set {interest::%loop-player's uuid%} to 0.01
+
+            if {bank::%loop-player's uuid%} < 10000:
+                set {interest::%loop-player's uuid%} to 0.02               
+
+            set {_balance} to {bank::%loop-player's uuid%}
+            set {_interest} to round({_balance} * {interest::%loop-player's uuid%})
+            set {bank::%loop-player's uuid%} to {bank::%loop-player's uuid%} + {_interest}
+
+on join:
+    if {bank::%player's uuid%} is not set:
+        set {bank::%player's uuid%} to 0                

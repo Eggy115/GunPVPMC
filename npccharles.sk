@@ -1,0 +1,99 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport b9b551c0-eed5-4e93-8eae-ba9a5ff12299 -18 102 -543"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[CEO] Charles":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cCEO&6] Charles"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to 1 redstone torch named "<##AB0909>Airstrike &6[&cx1&6]"
+        set line 1 of lore of slot 10 of {_store} to "&6TNT Quantity: &c9"
+        set line 2 of lore of slot 10 of {_store} to "&6Height: &c50"
+        set line 4 of lore of slot 10 of {_store} to "&6Cost: &c300"
+
+        set slot 11 of {_store} to leather horse armor named "<##11A015>SSK.950 Rifle &6[&cx1&6]" with nbt "{display:{color:1155093},HideFlags:127}"
+        set line 1 of lore of slot 11 of {_store} to "&6Cartridge: &c1&6/&c1"
+        set line 2 of lore of slot 11 of {_store} to "&6Reload Time: &c2000ms"
+        set line 3 of lore of slot 11 of {_store} to "&6Damage: &c30"
+        set line 4 of lore of slot 11 of {_store} to "&6Ammunition: &c24.1x70mm"	
+        set line 6 of lore of slot 11 of {_store} to "&6Cost: &c10000"       
+        
+        set slot 12 of {_store} to 10 gold nuggets named "<##C99A00>24.1x70mm &6[&cx10&6]"
+        set line 2 of lore of slot 12 of {_store} to "&6Cost: &c10"        
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##AB0909>Airstrike &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 299:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 300
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to 1 redstone torch named "<##AB0909>Airstrike" 
+            set line 1 of lore of {_i} to "&6TNT Quantity: &c9"
+            set line 2 of lore of {_i} to "&6Height: &c50"
+            give player {_i}
+            send "&6[&cCEO&6] Charles: I love money, and you just gave me some, so I love you."
+        else:
+            send "&6[&cCEO&6] Charles: I love money, and you didn't give me any, so sod off please."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+
+
+on inventory click:
+    if name of event-item is "<##11A015>SSK.950 Rifle &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 9999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 10000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player leather horse armor named "<##11A015>SSK.950 Rifle" with nbt "{display:{color:1155093},HideFlags:127}"
+            send "&6[&cCEO&6] Charles: I love money, and you just gave me some, so I love you."
+        else:
+            send "&6[&cCEO&6] Charles: I love money, and you didn't give me any, so sod off please."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+
+
+on inventory click:
+    if name of event-item is "<##C99A00>24.1x70mm &6[&cx10&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 9:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 10
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 10 gold nugget named "<##C99A00>24.1x70mm"
+            send "&6[&cCEO&6] Charles: I love money, and you just gave me some, so I love you."
+        else:
+            send "&6[&cCEO&6] Charles: I love money, and you didn't give me any, so sod off please."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+
+on right click with redstone torch:
+    remove 1 redstone torch from player
+    console command "/execute at %player% run summon tnt_minecart ~ ~50 ~"  
+
+    console command "/execute at %player% run summon tnt_minecart ~2 ~50 ~2" 
+    console command "/execute at %player% run summon tnt_minecart ~-2 ~50 ~2"  
+    console command "/execute at %player% run summon tnt_minecart ~2 ~50 ~-2"    
+    console command "/execute at %player% run summon tnt_minecart ~-2 ~50 ~-2"               
+
+    console command "/execute at %player% run summon tnt_minecart ~ ~50 ~2"         
+    console command "/execute at %player% run summon tnt_minecart ~2 ~50 ~" 
+    console command "/execute at %player% run summon tnt_minecart ~-2 ~50 ~"  
+    console command "/execute at %player% run summon tnt_minecart ~ ~50 ~-2"         

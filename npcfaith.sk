@@ -1,0 +1,117 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 199a1e7f-5ec8-427c-aeac-6473a0091b9d -48 70 -552"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Florist] Faith":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cFlorist&6] Faith"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to 1 cornflower named "&9Cornflower &6[&cx1&6]"
+        set line 2 of lore of slot 10 of {_store} to "&6Cost: &c50"
+
+        set slot 11 of {_store} to 1 allium named "&5Allium &6[&cx1&6]"
+        set line 2 of lore of slot 11 of {_store} to "&6Cost: &c50"
+        
+        set slot 12 of {_store} to 1 blue orchid named "&bBlue Orchid &6[&cx1&6]"
+        set line 2 of lore of slot 12 of {_store} to "&6Cost: &c50"
+
+        set slot 13 of {_store} to 1 Poppy named "&cPoppy &6[&cx1&6]"
+        set line 2 of lore of slot 13 of {_store} to "&6Cost: &c50"
+        
+        set slot 14 of {_store} to 1 dandelion named "&eDandelion &6[&cx1&6]"
+        set line 2 of lore of slot 14 of {_store} to "&6Cost: &c50"
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "&9Cornflower &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cFlorist&6] Faith: Enjoy!"
+            give player cornflower named "&9Cornflower" with nbt "{HideFlags:127}"
+            
+        else:
+            send "&6[&cFlorist&6] Faith: Sorry, unfortunately the flowers do cost money..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "&5Allium &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cFlorist&6] Faith: Enjoy!"
+            give player allium named "&5Allium" with nbt "{HideFlags:127}"
+            
+        else:
+            send "&6[&cFlorist&6] Faith: Sorry, unfortunately the flowers do cost money..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "&bBlue Orchid &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cFlorist&6] Faith: Enjoy!"
+            give player blue orchid named "&bBlue Orchid" with nbt "{HideFlags:127}"
+            
+        else:
+            send "&6[&cFlorist&6] Faith: Sorry, unfortunately the flowers do cost money..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "&cPoppy &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cFlorist&6] Faith: Enjoy!"
+            give player Poppy named "&cPoppy" with nbt "{HideFlags:127}"
+            
+        else:
+            send "&6[&cFlorist&6] Faith: Sorry, unfortunately the flowers do cost money..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "&eDandelion &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 49:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 50
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cFlorist&6] Faith: Enjoy!"
+            give player Dandelion named "&eDandelion" with nbt "{HideFlags:127}"
+            
+        else:
+            send "&6[&cFlorist&6] Faith: Sorry, unfortunately the flowers do cost money..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            

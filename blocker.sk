@@ -1,0 +1,114 @@
+on spawn of chicken:
+    cancel event
+on right click:
+    if gamemode of player is creative:
+        stop
+    if event-block is lever or repeater or trapped chest or chest or barrel or brewing stand or dispenser or dropper or trapdoor or crafting table or enchanting table or anvil or damaged anvil or chipped anvil or shulker box or hopper or furnace or flower pot or potted red tulip or potted blue orchid or potted lily of the valley or cartography table or smithing table or campfire or blast furnace or beacon or smoker or note block or stonecutter or cauldron or blast furnace:
+        cancel event
+on spawn of zombie villager:
+    cancel event
+on drop:
+    if {trade::%player's uuid%} is true:
+        cancel event
+        stop
+    if {drop::%player's uuid%} is not set:
+        cancel event
+        send "&6You have dropping disabled, use &c/drops&6 to enable!" to player
+        close player's inventory
+        stop
+
+command /drops:
+    trigger:
+        if {drop::%player's uuid%} is not set:
+            set {drop::%player's uuid%} to true
+            send "you can drop now"
+            stop
+        else:
+            delete {drop::%player's uuid%}
+            send "you cant drop now"
+            stop
+
+on craft:
+    cancel event
+on command "/pl":
+    cancel event
+    send "&7Gun&4PVP&aMC&6: &6You do not have permision to use that command."
+on command "/plugins":
+    cancel event
+    send "&7Gun&4PVP&aMC&6: &6You do not have permision to use that command."
+on command "/bukkit:pl":
+    cancel event
+    send "&7Gun&4PVP&aMC&6: &6You do not have permision to use that command."
+on command "/bukkit:plugins":
+    cancel event
+    set {_pl} to random integer between 1 and 10
+    send "&7Gun&4PVP&aMC&6: &6You do not have permision to use that command."
+on command "/bukkit:?":
+    make player execute "/help"
+    cancel event
+on command "/?":
+    make player execute "/help"
+    cancel event    
+on command "/bukkit:help":
+    make player execute "/help"
+    cancel event
+on command "/bukkit:about":
+    make player execute "/help"
+    cancel event
+on command "/bukkit:ver":
+    cancel event
+    send "&7Gun&4PVP&aMC&6:&6 We are on &c1.18.2 &6but other versions can join too!"
+on command "/bukkit:version":
+    cancel event
+    send "&7Gun&4PVP&aMC&6:&6 We are on &c1.18.2 &6but other versions can join too!"
+on command "/ver":
+    cancel event
+    send "&7Gun&4PVP&aMC&6:&6 We are on &c1.18.2 &6but other versions can join too!"
+on command "/version":
+    cancel event
+    send "&7Gun&4PVP&aMC&6:&6 We are on &c1.18.2 &6but other versions can join too!"
+on command "/icanhasbukkit":
+    send "&7Gun&4PVP&aMC&6: &6You do not have permission to execute that command!"
+    cancel event
+on command "/me":
+    cancel event
+    send "&7Gun&4PVP&aMC&6: &6Why not speak in chat instead?"
+on command "/minecraft:me":
+    cancel event
+    send "&7Gun&4PVP&aMC&6: &6Why not speak in chat instead?"
+on command "/minecraft:tell":
+    cancel event
+    send "&7Gun&4PVP&aMC&6: &6Why not speak in chat instead?"
+on command "/minecraft:w":
+    cancel event
+    send "&7Gun&4PVP&aMC&6: &6Why not speak in chat instead?"
+on command "/minecraft:msg":
+    cancel event
+    send "&7Gun&4PVP&aMC&6: &6Why not speak in chat instead?"
+on command "/w":
+    cancel event
+    send "&7Gun&4PVP&aMC&6: &6Why not speak in chat instead?"            
+
+on right click on armor stand:
+    if gamemode of player is creative:
+        stop
+    cancel event    
+on right click on item frame:
+    if gamemode of player is creative:
+        stop
+    else:
+        cancel event        
+on damage:
+    if victim is item frame:
+        if attacker is player:
+            if gamemode of attacker is creative:
+                stop
+        cancel event        
+
+on block trample:
+    if event-block is pressure plate:
+        stop
+    cancel event        
+
+on zombie break door:
+    cancel event    

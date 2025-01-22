@@ -1,0 +1,57 @@
+on right click on minecart:
+    if gamemode of player is creative:
+        stop
+    cancel event    
+
+    set {_chest} to chest inventory named "&6[&cLoot Drop Barrel&6]" with 3 rows
+    console command "/playsound minecraft:block.barrel.open master %player% ~ ~ ~ 10000 1"
+    loop 2 times:
+        chance of 50%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 15
+            set slot {_n} of {_chest} to {_a} of gold nugget named "<##FFC300>9x19mm"
+        chance of 50%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 15
+            set slot {_n} of {_chest} to {_a} of iron nugget named "<##B3B3B3>7.62x39mm"
+        chance of 50%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 15
+            set slot {_n} of {_chest} to {_a} of gold nugget named "<##FAD905>7.62x51mm"
+        chance of 50%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 15
+            set slot {_n} of {_chest} to {_a} of gold nugget named "<##FFCB3D>12x70mm" 
+        chance of 50%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 5
+            set slot {_n} of {_chest} to {_a} of gold nugget named "<##CFA827>11.43×33mmR"   
+        chance of 50%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 5
+            set slot {_n} of {_chest} to {_a} of firework rocket named "<##FF4400>Flare" with nbt "{HideFlags:127}"                 
+        chance of 10%:    
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 1 and 5
+            set slot {_n} of {_chest} to {_a} of firework star named "&8Grenade"
+        chance of 10%:    
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 1 and 5
+            set slot {_n} of {_chest} to {_a} of tnt named "&4TNT"
+        chance of 1%:
+            set {_n} to a random integer between 0 and 27
+            set slot {_n} of {_chest} to 1 of iron horse armor named "&7Broken Gun" with nbt "{HideFlags:127}"  
+
+    open {_chest} to player
+    wait 1 second
+    kill event-entity
+
+command /chestdrop:
+    permission: op
+    trigger:
+        loop all players:
+            console command "/execute at %loop-player% run summon chest_minecart ~%random integer between -10 and 10% ~%random integer between 30 and 50% ~%random integer between -10 and 10% {Silent:1b,Invulnerable:1b,CustomDisplayTile:1b,DisplayState:{Name:""minecraft:barrel"",Properties:{facing:""up"",open:""true""}}}"
+            set {_y} to loop-player's y-coordinate
+            if {_y} > 40:             
+                send title "&7Gun&4PVP&aMC &6Events" with subtitle "&6Loot chests have been dropped from the sky" to loop-player for 2 seconds
+        broadcast "&7Gun&4PVP&aMC&6 Events: &6Loot chests have been dropped from the sky"

@@ -1,0 +1,115 @@
+command /help:
+    aliases: /helps, /?, /about 
+    trigger:
+        send "%nl%&7Gun&4PVP&aMC&6.minehut.gg%nl%%nl%&6GunPVP server. Fight other players and mobs to get coins. Trade in coins for items from shopkeepers.%nl%&6Right click to reload and shoot. Right click to use miscellaneous items. Gun stats can be seen in item lore.%nl%%nl%&6Use &c/wiki&6 or &c/discord&6 for more in depth information and &c/commands&6 to see a list of helpful commands.%nl%"
+    
+command /commands:
+    trigger:
+        send "%nl%&6 - &c/afk&6 - go to the AFK area%nl%&6 - &c/apply &6- apply for staff%nl%&6 - &c/bank &6- access the bank remotely%nl%&6 - &c/chat &6- shows all chat shortcuts%nl%&6 - &c/cosmetics &6- access cosmetics%nl%&6 - &c/credits &6- view credits%nl%&6 - &c/daily &6- claim daily%nl%&6 - &c/deathmessages &6- toggle death messages%nl%&6 - &c/discord &6- join the Discord%nl%&6 - &c/fandom &6- see our wiki%nl%&6 - &c/freerank &6- get a free rank%nl%&6 - &c/gang &6- access gang commands%nl%&6 - &c/gangbase &6- access gangbase commands%nl%&6 - &c/gchat &6- speak to your gang%nl%&6 - &c/glass &6- view glass levels%nl%&6 - &c/goon &6- %nl%&6 - &c/gunlist &6- view list of all guns%nl%&6 - &c/hints &6- toggle hints (messages in chat)%nl%&6 - &c/list &6- see a list of all online players%nl%&6 - &c/legacygangs &6- view legacy gang info%nl%&6 - &c/pay &6- pay someone%nl%&6 - &c/profile &6- view your profile%nl%&6 - &c/quests &6- access quests remotely%nl%&6 - &c/referral &6- use your referral code%nl%&6 - &c/resourcepack &6- get the resource pack%nl%&6 - &c/rules &6- see our very important rules%nl%&6 - &c/shootingrange &6- alternative to &c/afk%nl%&6 - &c/sit &6- sit down%nl%&6 - &c/spawn &6- warp to spawn%nl%&6 - &c/stocks &6- access stocks and shares faster than &c/bank%nl%&6 - &c/suicide &6- end your suffering%nl%&6 - &c/titles &6- change your prefix (title)%nl%&6 - &c/trash &6- get rid of unwanted items%nl%&6 - &c/vaults &6- quick access to your vaults%nl%&6 - &c/whereami &6- find out where you are%nl%&6 - &c/wikipedia &6- alternative to &c/fandom%nl%&6 - &c/youtube &6- see YouTube channel%nl%"
+
+command /suicide [<text>]:
+    trigger:
+        if {combat::%player%} is true:
+            send "&7Gun&4PVP&aMC&6: You cannot use &c/suicide&6 in combat!"
+        else:     
+            set {_y} to player's y coordinate 
+            set {_z} to player's z coordinate 
+            if {_y} < 40:
+                if {_z} > -610:
+                    console command "/tp %player% ~ ~10000 ~"        
+            make player damage player by 10000
+    
+command /discord:
+    aliases: /dc, /disc
+    trigger:
+        send "%nl%&6Click <link:https://discord.gg/uJgwCQC>&nHERE&6 to join the &7Gun&4PVP&aMC&6 Discord.%nl%"
+  
+command /wiki:
+    aliases: /wikipedia, /fandom
+    trigger:
+        send "%nl%&6Click <link:https://gunpvpmc.fandom.com/wiki/GunPVPMc_Wiki>&nHERE&6 to see the &7Gun&4PVP&aMC&6 Wiki.%nl%"
+    
+command /instagram:
+    aliases: /insta, /gram
+    trigger:
+        send "%nl%&6Click <link:https://instagram.com/gunpvpmc>&nHERE&6 to see the &7Gun&4PVP&aMC&6 Instagram.%nl%"
+                    
+        
+command /dayswithoutnword:
+    trigger:
+        send "%difference between {lastnword} and now% since last n-word" to player
+
+on chat:
+    if message contains "nigger" or "nigga":
+        set {lastnword} to now     
+
+command /worldmap:
+    aliases: /map
+    trigger:
+        send "%nl%&6Click <link:http://gunpvpmc.my.pebble.host:8004/>&nHERE&6 to view &7Gun&4PVP&aMC&6 Dynmap.%nl%"
+            
+command /youtube:
+    aliases: /yt
+    trigger:
+        send "%nl%&6Click <link:https://youtube.com/@gunpvpmc>&nHERE&6 to see the &7Gun&4PVP&aMC&6 YouTube channel!%nl%"    
+
+command /stats [<offlineplayer>]:        
+    trigger:
+        if arg-1 is not set:
+            set {_} to "%nl%&6Player: &c%player%%nl%&6Gang: &c%{GANG::ganglist::%{GANG::gang::%player's uuid%}%}%%nl%&6Reputation: &c%{rep::%player's uuid%}%%nl%%nl%&6Networth: &c%{networth::%player's uuid%}%%nl%&6Coins: &c%{coins::%player's uuid%}%%nl%&6Bank: &c%{bank::%player's uuid%}%%nl%&6Stocks Value: &c%{stocksvalue::%player's uuid%}%%nl%%nl%&6Kills: &c%{kills::%player's uuid%}%%nl%&6Deaths: &c%{deaths::%player's uuid%}%%nl%&6KDR: &c%{kdr::%player's uuid%}%%nl%"
+            replace all "<none>" in {_} with "N/A"
+            send {_} to player
+
+        else:
+            set {_} to "%nl%&6Player: &c%arg-1%%nl%&6Gang: &c%{GANG::ganglist::%{GANG::gang::%arg-1's uuid%}%}%%nl%&6Reputation: &c%{rep::%arg-1's uuid%}%%nl%%nl%&6Networth: &c%{networth::%arg-1's uuid%}%%nl%&6Coins: &c%{coins::%arg-1's uuid%}%%nl%&6Bank: &c%{bank::%arg-1's uuid%}%%nl%&6Stocks Value: &c%{stocksvalue::%arg-1's uuid%}%%nl%%nl%&6Kills: &c%{kills::%arg-1's uuid%}%%nl%&6Deaths: &c%{deaths::%arg-1's uuid%}%%nl%&6KDR: &c%{kdr::%arg-1's uuid%}%%nl%"
+            replace all "<none>" in {_} with "N/A"
+            send {_} to player
+    
+command /apply:
+    trigger:
+        send "%nl%&6Click <link:https://forms.gle/pgjracorbH8p8LnWA>&nHERE&6 to apply for &7Gun&4PVP&aMC&6 staff!%nl%"
+        
+command /resourcepack:
+    aliases: /texturepack, /pack, /rpack, /tpack
+    trigger:
+        send "%nl%&6Click <link:https://discord.gg/uJgwCQC>&nHERE&6 to get the &7Gun&4PVP&aMC&6 resource pack!%nl%"    
+
+command /trash:
+    trigger:
+        set {_store} to a new chest inventory with 6 row with name "&7Gun&4PVP&aMC&6 Trash"
+        open {_store} to player
+
+command /pay <offlineplayer> <integer>:
+    cooldown: 10 seconds
+    cooldown message: &7Gun&4PVP&aMC&6: Please wait [&c%remaining time%&6] before using this again!
+    trigger:
+        if arg-2 is not a number:
+            send "&7Gun&4PVP&aMC&6: Invalid amount! Please provide a valid number." to player
+            stop
+        if arg-2 <= 0:
+            send "&7Gun&4PVP&aMC&6: You cannot pay a negative or zero amount!" to player
+            stop
+
+        if {coins::%player's uuid%} is less than arg-2:
+            send "&7Gun&4PVP&aMC&6: You don't have enough coins to pay that amount!" to player
+            stop
+
+        if arg-2 > {rep::%arg-1's uuid%} * 100:
+            send "&7Gun&4PVP&aMC&6: You can not pay a player with that low reputation that amount of coins!" to player
+            stop
+
+        subtract arg-2 from {coins::%player's uuid%}
+        add arg-2 to {coins::%arg-1's uuid%}
+
+        # Notify both players
+        send "&6You have successfully paid &c%arg-2%&6 coins to %{title::%arg-1's uuid%}% %arg-1%" to player
+        send "%{title::%player's uuid%}% %player%&6 has paid you &c%arg-2% &6coins!" to arg-1
+
+command /goon:
+    trigger:
+        if {combat::%player%} is true:
+            send "&7Gun&4PVP&aMC&6: You cannot use &c/goon&6 in combat!"
+        else:     
+            kill player
+            send "%nl%&cWARNING: GOONING IS FORBIDDEN%nl%" to player
+            send title "&cWARNING" with subtitle "&cGOONING IS FORBIDDEN" to player for 2 seconds

@@ -1,0 +1,10 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 9c956d42-d749-4372-bd41-9ad7c9536fc6 -4 73 -422"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Banker] Bartholomew":
+        cancel event
+        make player execute "/bank"
+

@@ -1,0 +1,20 @@
+every 1 minute in "GunPVPMC":        
+    set {_ghillie} to 0
+    loop all strays:
+        if loop-entity has scoreboard tag "ghillie":
+            set {_ghillie} to {_ghillie} + 1
+    if {_ghillie} < 20:
+        loop 5 times:
+            set {_x} to 26 + random integer between -5 and 5
+            set {_z} to -437 + random integer between -5 and 5
+            set {_y} to 64 + random integer between 0 and 1
+            console command "/summon stray %{_x}% %{_y}% %{_z}% {CustomName:'[{""text"":""["",""color"":""gold""},{""text"":""Military"",""color"":""red""},{""text"":""] Soldier"",""color"":""gold""}]',Health:50f,Silent:1b,Tags:[""ghillie""],HandItems:[{id:""minecraft:bow"",Count:1b},{}],ArmorItems:[{id:""minecraft:netherite_boots"",Count:1b},{id:""minecraft:leather_leggings"",Count:1b,tag:{display:{color:13056}}},{id:""minecraft:leather_chestplate"",Count:1b,tag:{display:{color:13056}}},{id:""minecraft:oak_leaves"",Count:1b}],ActiveEffects:[{Id:14b,Amplifier:9b,Duration:1200000,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:50}]}"
+        set {_x} to 26 + random integer between -5 and 5
+        set {_z} to -437 + random integer between -5 and 5
+        set {_y} to 64 + random integer between 0 and 1
+        console command "/summon stray %{_x}% %{_y}% %{_z}% {CustomName:'[{""text"":""["",""color"":""gold""},{""text"":""Military"",""color"":""red""},{""text"":""] Soldier"",""color"":""gold""}]',Health:50f,Silent:1b,Tags:[""ghillie""],HandItems:[{id:""minecraft:iron_sword"",Count:1b},{}],ArmorItems:[{id:""minecraft:netherite_boots"",Count:1b},{id:""minecraft:leather_leggings"",Count:1b,tag:{display:{color:13056}}},{id:""minecraft:leather_chestplate"",Count:1b,tag:{display:{color:13056}}},{id:""minecraft:oak_leaves"",Count:1b}],ActiveEffects:[{Id:14b,Amplifier:9b,Duration:1200000,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:50}]}"  
+        set {_x} to 26 + random integer between -5 and 5
+        set {_z} to -437 + random integer between -5 and 5
+        set {_y} to 64 + random integer between 0 and 1
+        console command "/summon stray %{_x}% %{_y}% %{_z}% {CustomName:'[{""text"":""["",""color"":""gold""},{""text"":""Military"",""color"":""red""},{""text"":""] Soldier"",""color"":""gold""}]',Health:50f,Silent:1b,Tags:[""ghillie""],HandItems:[{id:""minecraft:netherite_sword"",Count:1b},{}],ArmorItems:[{id:""minecraft:netherite_boots"",Count:1b},{id:""minecraft:leather_leggings"",Count:1b,tag:{display:{color:13056}}},{id:""minecraft:leather_chestplate"",Count:1b,tag:{display:{color:13056}}},{id:""minecraft:oak_leaves"",Count:1b}],ActiveEffects:[{Id:14b,Amplifier:9b,Duration:1200000,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:50}]}"          
+                      

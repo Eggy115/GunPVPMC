@@ -1,0 +1,412 @@
+           
+on projectile hit:
+    if event.getHitBlock() is set:
+        set {_block} to event.getHitBlock()
+        if "%{_block}%" contains "plain glass block":   
+            console command "/execute at %shooter% run playsound minecraft:block.glass.break master @a ~ ~ ~ 0.3 1"
+            set event-block to air
+            make 15 of block particle using glass at location of event-block
+            add 1 to {STOCKS::bigglass::price}  
+            add 1 to {glass}
+            if {glass} > 99:
+                remove 200 from {STOCKS::bigglass::price}
+                set {glass} to 0
+                if {STOCKS::bigglass::price} < 10:
+                    set {STOCKS::bigglass::price} to 10
+            if {STOCKS::bigglass::price} < 10:
+                set {stocks::bigglass::price} to 10
+            if {glasssmasher1::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher1progress::%shooter's uuid%} to {glasssmasher1progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher1progress::%shooter's uuid%}%&6/&c10&6 Glass Destroyed!" to shooter
+                if {glasssmasher1progress::%shooter's uuid%} is 10:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher I&6!" to shooter
+                    add 10 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher1::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher2::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher2progress::%shooter's uuid%} to {glasssmasher2progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher2progress::%shooter's uuid%}%&6/&c50&6 Glass Destroyed!" to shooter
+                if {glasssmasher2progress::%shooter's uuid%} is 50:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher II&6!" to shooter
+                    add 50 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher2::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher3::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher3progress::%shooter's uuid%} to {glasssmasher3progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher3progress::%shooter's uuid%}%&6/&c100&6 Glass Destroyed!" to shooter
+                if {glasssmasher3progress::%shooter's uuid%} is 100:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher III&6!" to shooter
+                    add 100 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher3::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher4::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher4progress::%shooter's uuid%} to {glasssmasher4progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher4progress::%shooter's uuid%}%&6/&c200&6 Glass Destroyed!" to shooter
+                if {glasssmasher4progress::%shooter's uuid%} is 200:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher IV&6!" to shooter
+                    add 200 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher4::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher5::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher5progress::%shooter's uuid%} to {glasssmasher5progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher5progress::%shooter's uuid%}%&6/&c500&6 Glass Destroyed!" to shooter
+                if {glasssmasher5progress::%shooter's uuid%} is 500:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher V&6!" to shooter
+                    add 500 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher5::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher6::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher6progress::%shooter's uuid%} to {glasssmasher6progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher6progress::%shooter's uuid%}%&6/&c1000&6 Glass Destroyed!" to shooter
+                if {glasssmasher6progress::%shooter's uuid%} is 1000:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher VI&6!" to shooter
+                    add 1000 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher6::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher7::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher7progress::%shooter's uuid%} to {glasssmasher7progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher7progress::%shooter's uuid%}%&6/&c2000&6 Glass Destroyed!" to shooter
+                if {glasssmasher7progress::%shooter's uuid%} is 2000:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher VII&6!" to shooter
+                    add 2000 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher7::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+            
+            wait 10 second
+            set event-block to plain glass block
+            stop
+
+        if "%{_block}%" contains "white stained glass block":   
+            console command "/execute at %shooter% run playsound minecraft:block.glass.break master @a ~ ~ ~ 0.3 1"
+            set event-block to air
+            make 15 of block particle using white stained glass block at location of event-block
+            add 1 to {STOCKS::bigglass::price}  
+            add 1 to {glass}
+            if {glass} > 99:
+                remove 200 from {STOCKS::bigglass::price}
+                set {glass} to 0
+                if {STOCKS::bigglass::price} < 10:
+                    set {STOCKS::bigglass::price} to 10
+            if {STOCKS::bigglass::price} < 10:
+                set {stocks::bigglass::price} to 10
+            if {glasssmasher1::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher1progress::%shooter's uuid%} to {glasssmasher1progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher1progress::%shooter's uuid%}%&6/&c10&6 Glass Destroyed!" to shooter
+                if {glasssmasher1progress::%shooter's uuid%} is 10:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher I&6!" to shooter
+                    add 10 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher1::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher2::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher2progress::%shooter's uuid%} to {glasssmasher2progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher2progress::%shooter's uuid%}%&6/&c50&6 Glass Destroyed!" to shooter
+                if {glasssmasher2progress::%shooter's uuid%} is 50:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher II&6!" to shooter
+                    add 50 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher2::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher3::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher3progress::%shooter's uuid%} to {glasssmasher3progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher3progress::%shooter's uuid%}%&6/&c100&6 Glass Destroyed!" to shooter
+                if {glasssmasher3progress::%shooter's uuid%} is 100:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher III&6!" to shooter
+                    add 100 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher3::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher4::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher4progress::%shooter's uuid%} to {glasssmasher4progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher4progress::%shooter's uuid%}%&6/&c200&6 Glass Destroyed!" to shooter
+                if {glasssmasher4progress::%shooter's uuid%} is 200:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher IV&6!" to shooter
+                    add 200 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher4::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher5::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher5progress::%shooter's uuid%} to {glasssmasher5progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher5progress::%shooter's uuid%}%&6/&c500&6 Glass Destroyed!" to shooter
+                if {glasssmasher5progress::%shooter's uuid%} is 500:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher V&6!" to shooter
+                    add 500 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher5::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher6::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher6progress::%shooter's uuid%} to {glasssmasher6progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher6progress::%shooter's uuid%}%&6/&c1000&6 Glass Destroyed!" to shooter
+                if {glasssmasher6progress::%shooter's uuid%} is 1000:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher VI&6!" to shooter
+                    add 1000 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher6::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher7::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher7progress::%shooter's uuid%} to {glasssmasher7progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher7progress::%shooter's uuid%}%&6/&c2000&6 Glass Destroyed!" to shooter
+                if {glasssmasher7progress::%shooter's uuid%} is 2000:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher VII&6!" to shooter
+                    add 2000 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher7::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+            
+            wait 10 second
+            set event-block to white stained glass block
+            stop
+
+        if "%{_block}%" contains "light blue stained glass block":   
+            console command "/execute at %shooter% run playsound minecraft:block.glass.break master @a ~ ~ ~ 0.3 1"
+            set event-block to air
+            make 15 of block particle using light blue stained glass block at location of event-block
+            add 1 to {STOCKS::bigglass::price}  
+            add 1 to {glass}
+            if {glass} > 99:
+                remove 200 from {STOCKS::bigglass::price}
+                set {glass} to 0
+                if {STOCKS::bigglass::price} < 10:
+                    set {STOCKS::bigglass::price} to 10
+            if {STOCKS::bigglass::price} < 10:
+                set {stocks::bigglass::price} to 10
+            if {glasssmasher1::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher1progress::%shooter's uuid%} to {glasssmasher1progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher1progress::%shooter's uuid%}%&6/&c10&6 Glass Destroyed!" to shooter
+                if {glasssmasher1progress::%shooter's uuid%} is 10:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher I&6!" to shooter
+                    add 10 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher1::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher2::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher2progress::%shooter's uuid%} to {glasssmasher2progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher2progress::%shooter's uuid%}%&6/&c50&6 Glass Destroyed!" to shooter
+                if {glasssmasher2progress::%shooter's uuid%} is 50:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher II&6!" to shooter
+                    add 50 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher2::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher3::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher3progress::%shooter's uuid%} to {glasssmasher3progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher3progress::%shooter's uuid%}%&6/&c100&6 Glass Destroyed!" to shooter
+                if {glasssmasher3progress::%shooter's uuid%} is 100:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher III&6!" to shooter
+                    add 100 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher3::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher4::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher4progress::%shooter's uuid%} to {glasssmasher4progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher4progress::%shooter's uuid%}%&6/&c200&6 Glass Destroyed!" to shooter
+                if {glasssmasher4progress::%shooter's uuid%} is 200:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher IV&6!" to shooter
+                    add 200 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher4::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher5::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher5progress::%shooter's uuid%} to {glasssmasher5progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher5progress::%shooter's uuid%}%&6/&c500&6 Glass Destroyed!" to shooter
+                if {glasssmasher5progress::%shooter's uuid%} is 500:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher V&6!" to shooter
+                    add 500 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher5::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher6::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher6progress::%shooter's uuid%} to {glasssmasher6progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher6progress::%shooter's uuid%}%&6/&c1000&6 Glass Destroyed!" to shooter
+                if {glasssmasher6progress::%shooter's uuid%} is 1000:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher VI&6!" to shooter
+                    add 1000 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher6::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher7::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher7progress::%shooter's uuid%} to {glasssmasher7progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher7progress::%shooter's uuid%}%&6/&c2000&6 Glass Destroyed!" to shooter
+                if {glasssmasher7progress::%shooter's uuid%} is 2000:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher VII&6!" to shooter
+                    add 2000 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher7::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+            
+            wait 10 second
+            set event-block to light blue stained glass block  
+            stop
+
+        if "%{_block}%" contains "light gray stained glass block":   
+            console command "/execute at %shooter% run playsound minecraft:block.glass.break master @a ~ ~ ~ 0.3 1"
+            set event-block to air
+            make 15 of block particle using light gray stained glass block at location of event-block
+            add 1 to {STOCKS::bigglass::price}  
+            add 1 to {glass}
+            if {glass} > 99:
+                remove 200 from {STOCKS::bigglass::price}
+                set {glass} to 0
+                if {STOCKS::bigglass::price} < 10:
+                    set {STOCKS::bigglass::price} to 10
+            if {STOCKS::bigglass::price} < 10:
+                set {stocks::bigglass::price} to 10
+            if {glasssmasher1::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher1progress::%shooter's uuid%} to {glasssmasher1progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher1progress::%shooter's uuid%}%&6/&c10&6 Glass Destroyed!" to shooter
+                if {glasssmasher1progress::%shooter's uuid%} is 10:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher I&6!" to shooter
+                    add 10 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher1::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher2::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher2progress::%shooter's uuid%} to {glasssmasher2progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher2progress::%shooter's uuid%}%&6/&c50&6 Glass Destroyed!" to shooter
+                if {glasssmasher2progress::%shooter's uuid%} is 50:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher II&6!" to shooter
+                    add 50 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher2::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher3::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher3progress::%shooter's uuid%} to {glasssmasher3progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher3progress::%shooter's uuid%}%&6/&c100&6 Glass Destroyed!" to shooter
+                if {glasssmasher3progress::%shooter's uuid%} is 100:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher III&6!" to shooter
+                    add 100 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher3::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher4::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher4progress::%shooter's uuid%} to {glasssmasher4progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher4progress::%shooter's uuid%}%&6/&c200&6 Glass Destroyed!" to shooter
+                if {glasssmasher4progress::%shooter's uuid%} is 200:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher IV&6!" to shooter
+                    add 200 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher4::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher5::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher5progress::%shooter's uuid%} to {glasssmasher5progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher5progress::%shooter's uuid%}%&6/&c500&6 Glass Destroyed!" to shooter
+                if {glasssmasher5progress::%shooter's uuid%} is 500:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher V&6!" to shooter
+                    add 500 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher5::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher6::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher6progress::%shooter's uuid%} to {glasssmasher6progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher6progress::%shooter's uuid%}%&6/&c1000&6 Glass Destroyed!" to shooter
+                if {glasssmasher6progress::%shooter's uuid%} is 1000:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher VI&6!" to shooter
+                    add 1000 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher6::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher7::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher7progress::%shooter's uuid%} to {glasssmasher7progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher7progress::%shooter's uuid%}%&6/&c2000&6 Glass Destroyed!" to shooter
+                if {glasssmasher7progress::%shooter's uuid%} is 2000:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher VII&6!" to shooter
+                    add 2000 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher7::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+            
+            wait 10 second
+            set event-block to light gray stained glass block                
+            stop
+
+        if "%{_block}%" contains "gray stained glass block":   
+            console command "/execute at %shooter% run playsound minecraft:block.glass.break master @a ~ ~ ~ 0.3 1"
+            set event-block to air
+            make 15 of block particle using gray stained glass block at location of event-block
+            add 1 to {STOCKS::bigglass::price}  
+            add 1 to {glass}
+            if {glass} > 99:
+                remove 200 from {STOCKS::bigglass::price}
+                set {glass} to 0
+                if {STOCKS::bigglass::price} < 10:
+                    set {STOCKS::bigglass::price} to 10
+            if {STOCKS::bigglass::price} < 10:
+                set {stocks::bigglass::price} to 10
+            if {glasssmasher1::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher1progress::%shooter's uuid%} to {glasssmasher1progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher1progress::%shooter's uuid%}%&6/&c10&6 Glass Destroyed!" to shooter
+                if {glasssmasher1progress::%shooter's uuid%} is 10:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher I&6!" to shooter
+                    add 10 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher1::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher2::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher2progress::%shooter's uuid%} to {glasssmasher2progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher2progress::%shooter's uuid%}%&6/&c50&6 Glass Destroyed!" to shooter
+                if {glasssmasher2progress::%shooter's uuid%} is 50:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher II&6!" to shooter
+                    add 50 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher2::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher3::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher3progress::%shooter's uuid%} to {glasssmasher3progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher3progress::%shooter's uuid%}%&6/&c100&6 Glass Destroyed!" to shooter
+                if {glasssmasher3progress::%shooter's uuid%} is 100:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher III&6!" to shooter
+                    add 100 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher3::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher4::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher4progress::%shooter's uuid%} to {glasssmasher4progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher4progress::%shooter's uuid%}%&6/&c200&6 Glass Destroyed!" to shooter
+                if {glasssmasher4progress::%shooter's uuid%} is 200:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher IV&6!" to shooter
+                    add 200 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher4::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher5::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher5progress::%shooter's uuid%} to {glasssmasher5progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher5progress::%shooter's uuid%}%&6/&c500&6 Glass Destroyed!" to shooter
+                if {glasssmasher5progress::%shooter's uuid%} is 500:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher V&6!" to shooter
+                    add 500 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher5::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher6::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher6progress::%shooter's uuid%} to {glasssmasher6progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher6progress::%shooter's uuid%}%&6/&c1000&6 Glass Destroyed!" to shooter
+                if {glasssmasher6progress::%shooter's uuid%} is 1000:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher VI&6!" to shooter
+                    add 1000 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher6::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+
+            if {glasssmasher7::%shooter's uuid%} is "&cIn Progress":
+                set {glasssmasher7progress::%shooter's uuid%} to {glasssmasher7progress::%shooter's uuid%} + 1
+                send "&7Gun&4PVP&aMC&6 Quests: &c%{glasssmasher7progress::%shooter's uuid%}%&6/&c2000&6 Glass Destroyed!" to shooter
+                if {glasssmasher7progress::%shooter's uuid%} is 2000:
+                    send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cGlass Smasher VII&6!" to shooter
+                    add 2000 to {LEVEL.exp::%shooter's uuid%}
+                    set {glasssmasher7::%shooter's uuid%} to "&cComplete"
+                    console command "/execute at %shooter% run playsound block.note_block.pling master %shooter% ~ ~ ~ 100000 2"
+            
+            wait 10 second
+            set event-block to gray stained glass block    
+            stop
+                                      
+every 10 minutes:
+    set {glass} to 0 
+    set {glasstimer} to now           
+
+command /glass:
+    trigger:
+        send {glass} to player    
+        send difference between {glasstimer} and now

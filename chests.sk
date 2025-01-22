@@ -1,0 +1,121 @@
+on right click on chest:
+    if gamemode of player is creative:
+        set {lockedchest::%event-block%} to now    
+        stop
+    cancel event
+    
+    if difference between {lockedchest::%event-block%} and now < 2 minutes:
+        console command "/execute at %player% run playsound block.chest.locked master %player% ~ ~ ~ 10000 1" 
+        send actionbar "&cThis chest is locked for %2 minutes - difference between {lockedchest::%event-block%} and now%" to player
+        stop        
+
+    set {lockedchest::%event-block%} to now            
+    set {_chest} to chest inventory named "&6[&cChest&6]" with 3 rows
+    console command "/execute at %player% run playsound minecraft:block.chest.open master %player% ~ ~ ~ 10000 1"
+    loop 3 times:
+        chance of 10%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 5
+            set slot {_n} of {_chest} to {_a} of gold nugget named "<##FFC300>9x19mm"
+        chance of 10%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 5
+            set slot {_n} of {_chest} to {_a} of iron nugget named "<##B3B3B3>7.62x39mm"
+        chance of 10%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 5
+            set slot {_n} of {_chest} to {_a} of gold nugget named "<##FAD905>7.62x51mm"
+        chance of 10%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 5
+            set slot {_n} of {_chest} to {_a} of gold nugget named "<##FFCB3D>12x70mm"   
+        chance of 10%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 5
+            set slot {_n} of {_chest} to {_a} of gold nugget named "<##CFA827>11.43×33mmR"   
+        chance of 10%:
+            set {_n} to a random integer between 0 and 27
+            set {_a} to a random integer between 2 and 5
+            set slot {_n} of {_chest} to {_a} of firework rocket named "<##FF4400>Flare" with nbt "{HideFlags:127}"   
+    chance of 1%:    
+        set {_n} to a random integer between 0 and 27
+        set {_a} to a random integer between 1 and 3
+        set slot {_n} of {_chest} to {_a} of firework star named "&8Grenade"
+
+    open {_chest} to player
+
+    if {chestlooter1::%player's uuid%} is "&cIn Progress":
+        set {chestlooter1progress::%player's uuid%} to {chestlooter1progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{chestlooter1progress::%player's uuid%}%&6/&c10&6 Chests Looted!" to player
+        if {chestlooter1progress::%player's uuid%} is 10:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cChest Looter I&6!" to player
+            add 10 to {LEVEL.exp::%player's uuid%}
+            set {chestlooter1::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+    if {chestlooter2::%player's uuid%} is "&cIn Progress":
+        set {chestlooter2progress::%player's uuid%} to {chestlooter2progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{chestlooter2progress::%player's uuid%}%&6/&c20&6 Chests Looted!" to player
+        if {chestlooter2progress::%player's uuid%} is 20:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cChest Looter II&6!" to player
+            add 20 to {LEVEL.exp::%player's uuid%}
+            set {chestlooter2::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+    if {chestlooter3::%player's uuid%} is "&cIn Progress":
+        set {chestlooter3progress::%player's uuid%} to {chestlooter3progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{chestlooter3progress::%player's uuid%}%&6/&c30&6 Chests Looted!" to player
+        if {chestlooter3progress::%player's uuid%} is 30:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cChest Looter III&6!" to player
+            add 30 to {LEVEL.exp::%player's uuid%}
+            set {chestlooter3::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+
+    if {chestlooter4::%player's uuid%} is "&cIn Progress":
+        set {chestlooter4progress::%player's uuid%} to {chestlooter4progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{chestlooter4progress::%player's uuid%}%&6/&c40&6 Chests Looted!" to player
+        if {chestlooter4progress::%player's uuid%} is 40:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cChest Looter IV&6!" to player
+            add 40 to {LEVEL.exp::%player's uuid%}
+            set {chestlooter4::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+
+    if {chestlooter5::%player's uuid%} is "&cIn Progress":
+        set {chestlooter5progress::%player's uuid%} to {chestlooter5progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{chestlooter5progress::%player's uuid%}%&6/&c50&6 Chests Looted!" to player
+        if {chestlooter5progress::%player's uuid%} is 50:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cChest Looter V&6!" to player
+            add 50 to {LEVEL.exp::%player's uuid%}
+            set {chestlooter5::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+
+    if {chestlooter6::%player's uuid%} is "&cIn Progress":
+        set {chestlooter6progress::%player's uuid%} to {chestlooter6progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{chestlooter6progress::%player's uuid%}%&6/&c100&6 Chests Looted!" to player
+        if {chestlooter6progress::%player's uuid%} is 100:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cChest Looter VI&6!" to player
+            add 100 to {LEVEL.exp::%player's uuid%}
+            set {chestlooter6::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+    if {chestlooter7::%player's uuid%} is "&cIn Progress":
+        set {chestlooter7progress::%player's uuid%} to {chestlooter7progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{chestlooter7progress::%player's uuid%}%&6/&c200&6 Chests Looted!" to player
+        if {chestlooter7progress::%player's uuid%} is 200:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cChest Looter VII&6!" to player
+            add 200 to {LEVEL.exp::%player's uuid%}
+            set {chestlooter7::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+
+    if {chestlooter8::%player's uuid%} is "&cIn Progress":
+        set {chestlooter8progress::%player's uuid%} to {chestlooter8progress::%player's uuid%} + 1
+        send "&7Gun&4PVP&aMC&6 Quests: &c%{chestlooter8progress::%player's uuid%}%&6/&c1000&6 Chests Looted!" to player
+        if {chestlooter8progress::%player's uuid%} is 1000:
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cChest Looter VIII&6!" to player
+            add 1000 to {LEVEL.exp::%player's uuid%}
+            set {chestlooter8::%player's uuid%} to "&cComplete"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"

@@ -1,0 +1,29 @@
+command /calcxp:
+    trigger:
+        if {rep::%player's uuid%} > 0:
+            set {_xpneeded} to 2 * {rep::%player's uuid%} + 7
+        if {rep::%player's uuid%} > 15:
+            set {_xpneeded} to 5 * {rep::%player's uuid%} - 38
+        if {rep::%player's uuid%} > 30:
+            set {_xpneeded} to 9 * {rep::%player's uuid%} - 158
+        set {_xpneeded} to {_xpneeded} - 1
+        send "FRACTION COMPLETE: %{LEVEL.exp::%player's uuid%} / {LEVEL.needed::%player's uuid%}%"
+        send "EXP MAXIMUM: %{_xpneeded}%"
+        set {_fraction} to {LEVEL.exp::%player's uuid%} / {LEVEL.needed::%player's uuid%}
+        set {_expgiven} to {_fraction} * {_xpneeded}
+        set {_expgiven} to rounded {_expgiven}
+        console command "/experience set %player% %{_expgiven}% points"
+
+every 5 tick:
+    loop all players:  
+        if {rep::%loop-player's uuid%} > 0:
+            set {_xpneeded} to 2 * {rep::%loop-player's uuid%} + 7
+        if {rep::%loop-player's uuid%} > 15:
+            set {_xpneeded} to 5 * {rep::%loop-player's uuid%} - 38
+        if {rep::%loop-player's uuid%} > 30:
+            set {_xpneeded} to 9 * {rep::%loop-player's uuid%} - 158
+        set {_xpneeded} to {_xpneeded} - 1
+        set {_fraction} to {LEVEL.exp::%loop-player's uuid%} / {LEVEL.needed::%loop-player's uuid%}
+        set {_expgiven} to {_fraction} * {_xpneeded}
+        set {_expgiven} to rounded {_expgiven}
+        console command "/experience set %loop-player% %{_expgiven}% points"          
