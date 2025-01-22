@@ -1,0 +1,100 @@
+command /shootingrange:
+    aliases: /afk
+    trigger:
+
+
+        if {deaths::%player's uuid%} < 1:
+            stop    
+        if {combat::%player%} is true:
+            send "&7Gun&4PVP&aMC&6: You cannot use &c/%command%&6 in combat!"
+            stop
+
+        set {_x} to player's x coordinate
+        set {_y} to player's y coordinate
+        set {_z} to player's z coordinate            
+
+        if {_y} < 40:
+            if {_z} > -610:
+                make player execute "/spawn"
+                stop
+
+        else:
+            console command "/tp %player% -40 25 -588"
+            console command "/clear %player% diamond_horse_armor"
+            give player diamond horse armor named "&bPractice Gun" with nbt "{HideFlags:127}"
+            send "&7Gun&4PVP&aMC&6 Shooting Range: You have received &bPractice Gun&6 [&cx1&6]"
+
+on damage:
+    set {_y} to victim's y coordinate
+    if {_y} < 40:
+        cancel event
+
+on projectile hit:
+    if event.getHitBlock() is set:
+        set {_block} to event.getHitBlock()
+        if "%{_block}%" contains "target":           
+            console command "/execute at %shooter% run playsound minecraft:entity.arrow.hit_player master %shooter% ~ ~ ~ 10000 1"
+            set event-block to iron block
+            if distance between shooter and event-block > 10:
+                set event-block to gold block                            
+            if distance between shooter and event-block > 20:
+                set event-block to diamond block
+            wait 1 second
+            set event-block to target
+on join:
+    set {practiceguncd.%player%} to now
+
+on rightclick:
+    if player is holding diamond horse armor:
+        if name of event-item contains "&bPractice Gun &6[&cReloading&6]":
+            if {practicegun.%line 5 of lore of player's held item%} = 0:
+                stop
+        if name of event-item is "&bPractice Gun":    
+            set {_} to "%player%%random integer between 10000 and 99999%"
+            set line 5 of lore of player's held item to "&6ID: &c%{_}%"
+            set {practicegun.%line 5 of lore of player's held item%} to 50
+            set name of player's held item to "&bPractice Gun &6[&c%{practicegun.%line 5 of lore of player's held item%}%&6]"
+        if name of event-item contains "&bPractice Gun":        
+            
+            set name of player's held item to "&bPractice Gun &6[&c%{practicegun.%line 5 of lore of player's held item%}%&6]"
+            set line 1 of lore of player's held item to "&6Cartridge: &c%{practicegun.%line 5 of lore of player's held item%}%&6/&c50"
+            set line 2 of lore of player's held item to "&6Reload Time: &c500ms"
+            set line 3 of lore of player's held item to "&6Damage: &cNone"
+            set line 4 of lore of player's held item to "&6Ammunition: &cNone"
+            
+            if {practicegun.%line 5 of lore of player's held item%} > 0:
+                if difference between {practiceguncd.%player%} and now > 0.1 second:
+                    set {practiceguncd.%player%} to now                
+                    remove 1 from {practicegun.%line 5 of lore of player's held item%}    
+                    shoot snowball at speed 5
+                    edit bossbar "%player%" title to "&6Practice Gun: &c%{practicegun.%line 5 of lore of player's held item%}%"
+                    set bossbar "%player%" value to {practicegun.%line 5 of lore of player's held item%} * 2
+                    console command "/execute at %player% run playsound minecraft:entity.generic.explode master @a ~ ~ ~ 1 2"
+                    push player in direction of player at speed -0.1
+                
+                    set name of player's held item to "&bPractice Gun &6[&c%{practicegun.%line 5 of lore of player's held item%}%&6]"
+                    set line 1 of lore of player's held item to "&6Cartridge: &c%{practicegun.%line 5 of lore of player's held item%}%&6/&c50"
+                    set line 2 of lore of player's held item to "&6Reload Time: &c500ms"
+                    set line 3 of lore of player's held item to "&6Damage: &cNone"
+                    set line 4 of lore of player's held item to "&6Ammunition: &cNone"    
+                    
+                else:
+                    send action bar "&6Wait before shooting!" to player
+            else:
+                set name of player's held item to "&bPractice Gun &6[&cReloading&6]"
+                set line 1 of lore of player's held item to "&6Cartridge: &c50&6/&c50"
+                set line 2 of lore of player's held item to "&6Reload Time: &c500ms"
+                set line 3 of lore of player's held item to "&6Damage: &cNone"
+                set line 4 of lore of player's held item to "&6Ammunition: &cNone"
+                set {_id} to line 5 of lore of player's held item
+                loop 5 times:
+                    console command "/execute at %player% run playsound minecraft:block.iron_door.open master @a ~ ~ ~ 0.5 2"
+                    wait 0.1 second    
+                set {practicegun.%{_id}%} to 50
+                edit bossbar "%player%" title to "&6Practice Gun: &c%{practicegun.%line 5 of lore of player's held item%}%"
+                set bossbar "%player%" value to {practicegun.%line 5 of lore of player's held item%} * 2
+
+on food bar change:
+    set {_y} to player's y coordinate
+    if {_y} < 40:
+        cancel event                

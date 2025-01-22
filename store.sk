@@ -1,0 +1,120 @@
+command /store:
+	trigger:
+		set {_store} to a new chest inventory with 3 row with name "&7Gun&4PVP&aMC&6 Store"
+		
+		set {_e} to 0
+		loop 30 times:
+			set slot {_e} of {_store} to gray stained glass pane named "&0 "			
+			add 1 to {_e}
+			
+		set slot 10 of {_store} to light gray shulker box named "&7Default"
+		if {rank::%player's uuid%} is "&7Default":
+			set slot 10 of {_store} to light gray shulker box named "&7Default" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"	
+
+		set line 1 of lore of slot 10 of {_store} to "&6None of the bonuses... :("
+
+	
+		set slot 11 of {_store} to pink shulker box named "&dDONOR"
+		if {rank::%player's uuid%} is "DONOR":
+			set slot 11 of {_store} to pink shulker box named "&dDONOR" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"	
+						
+		set line 1 of lore of slot 11 of {_store} to "&6Purchase &dDONOR&6 rank (lifetime) for &7Gun&4PVP&aMC"
+		set line 3 of lore of slot 11 of {_store} to "&dDONOR&6 player tag in game"
+		set line 4 of lore of slot 11 of {_store} to "&dDONOR&6 /title"
+		set line 5 of lore of slot 11 of {_store} to "&dDONOR&6 rank on Discord server"
+		set line 7 of lore of slot 11 of {_store} to "&6Access to &dDONOR&6 section of /daily"
+		set line 8 of lore of slot 11 of {_store} to "&6Access to &dDONOR&6 vault"
+		set line 9 of lore of slot 11 of {_store} to "&6Access to &dDONOR&6 /cosmetics"
+		set line 11 of lore of slot 11 of {_store} to "&6Coloured chat (using &)"
+		set line 12 of lore of slot 11 of {_store} to "&6Shorter chat cooldown"
+		set line 14 of lore of slot 11 of {_store} to "&61.5x reputation modifier (as opposed to 1x for &7Default&6)"
+
+		set slot 12 of {_store} to lime shulker box named "&aVIP"
+		if {rank::%player's uuid%} is "VIP":
+			set slot 12 of {_store} to lime shulker box named "&aVIP" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"			
+		set line 1 of lore of slot 12 of {_store} to "&6Purchase &aVIP&6 rank (lifetime) for &7Gun&4PVP&aMC"
+		set line 3 of lore of slot 12 of {_store} to "&aVIP&6 player tag in game"
+		set line 4 of lore of slot 12 of {_store} to "&aVIP&6 /title"
+		set line 5 of lore of slot 12 of {_store} to "&aVIP&6 rank on Discord server"
+		set line 7 of lore of slot 12 of {_store} to "&6Access to &aVIP&6 section of /daily"
+		set line 8 of lore of slot 12 of {_store} to "&6Access to &aVIP&6 vault"
+		set line 9 of lore of slot 12 of {_store} to "&6Access to &aVIP&6 /cosmetics"
+		set line 11 of lore of slot 12 of {_store} to "&6Coloured chat (using &)"
+		set line 12 of lore of slot 12 of {_store} to "&6Shorter chat cooldown"
+		set line 14 of lore of slot 12 of {_store} to "&62x reputation modifier (as opposed to 1x for &7Default&6)"
+		set line 16 of lore of slot 12 of {_store} to "&6All bonuses of &dDONOR"		
+
+		set slot 13 of {_store} to light blue shulker box named "&bMVP"
+		if {rank::%player's uuid%} is "MVP":
+			set slot 13 of {_store} to light blue shulker box named "&bMVP" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"	
+						
+		set line 1 of lore of slot 13 of {_store} to "&6Purchase &bMVP&6 rank (lifetime) for &7Gun&4PVP&aMC"
+		set line 3 of lore of slot 13 of {_store} to "&bMVP&6 player tag in game"
+		set line 4 of lore of slot 13 of {_store} to "&bMVP&6 /title"
+		set line 5 of lore of slot 13 of {_store} to "&bMVP&6 rank on Discord server"
+		set line 7 of lore of slot 13 of {_store} to "&6Access to &bMVP&6 section of /daily"
+		set line 8 of lore of slot 13 of {_store} to "&6Access to &bMVP&6 vault"
+		set line 9 of lore of slot 13 of {_store} to "&6Access to &bMVP&6 /cosmetics"
+		set line 11 of lore of slot 13 of {_store} to "&6Coloured chat (using &)"
+		set line 12 of lore of slot 13 of {_store} to "&6Shorter chat cooldown"
+		set line 14 of lore of slot 13 of {_store} to "&63x reputation modifier (as opposed to 1x for &7Default&6)"
+		set line 16 of lore of slot 13 of {_store} to "&6All bonuses of &aVIP&6, &dDONOR"	
+
+		set slot 14 of {_store} to purple shulker box named "&5EPIC"
+		if {rank::%player's uuid%} is "EPIC":
+			set slot 14 of {_store} to purple shulker box named "&5EPIC" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"	
+						
+		set line 1 of lore of slot 14 of {_store} to "&6Purchase &5EPIC&6 rank (lifetime) for &7Gun&4PVP&aMC"
+		set line 3 of lore of slot 14 of {_store} to "&5EPIC&6 player tag in game"
+		set line 4 of lore of slot 14 of {_store} to "&5EPIC&6 /title"
+		set line 5 of lore of slot 14 of {_store} to "&5EPIC&6 rank on Discord server"
+		set line 7 of lore of slot 14 of {_store} to "&6Access to &5EPIC&6 section of /daily"
+		set line 8 of lore of slot 14 of {_store} to "&6Access to &5EPIC&6 vault"
+		set line 9 of lore of slot 14 of {_store} to "&6Access to &5EPIC&6 /cosmetics"
+		set line 11 of lore of slot 14 of {_store} to "&6Coloured chat (using &)"
+		set line 12 of lore of slot 14 of {_store} to "&6Shorter chat cooldown"
+		set line 14 of lore of slot 14 of {_store} to "&64x reputation modifier (as opposed to 1x for &7Default&6)"
+		set line 16 of lore of slot 14 of {_store} to "&6All bonuses of &bMVP&6, &aVIP&6, &dDONOR"		
+
+		set slot 15 of {_store} to yellow shulker box named "&eLEGEND"
+		if {rank::%player's uuid%} is "LEGEND":
+			set slot 15 of {_store} to light gray shulker box named "&eLEGEND" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"	
+						
+		set line 1 of lore of slot 15 of {_store} to "&6Purchase &eLEGEND&6 rank (lifetime) for &7Gun&4PVP&aMC"
+		set line 3 of lore of slot 15 of {_store} to "&eLEGEND&6 player tag in game"
+		set line 4 of lore of slot 15 of {_store} to "&eLEGEND&6 /title"
+		set line 5 of lore of slot 15 of {_store} to "&eLEGEND&6 rank on Discord server"
+		set line 7 of lore of slot 15 of {_store} to "&6Access to &eLEGEND&6 section of /daily"
+		set line 8 of lore of slot 15 of {_store} to "&6Access to &eLEGEND&6 vault"
+		set line 9 of lore of slot 15 of {_store} to "&6Access to &eLEGEND&6 /cosmetics"
+		set line 11 of lore of slot 15 of {_store} to "&6Coloured chat (using &)"
+		set line 12 of lore of slot 15 of {_store} to "&6No chat cooldown"
+		set line 14 of lore of slot 15 of {_store} to "&65x reputation modifier (as opposed to 1x for &7Default&6)"
+		set line 16 of lore of slot 15 of {_store} to "&6All bonuses of &5EPIC&6, &bMVP&6, &aVIP&6, &dDONOR"	
+
+		set slot 16 of {_store} to tripwire hook named "&6Rank Upgrade (WIP)"
+
+		open {_store} to player
+		set {trade::%player's uuid%} to true	
+		
+on inventory click:
+	if {trade::%player's uuid%} is true:
+		cancel event
+		
+on drop:
+	if {trade::%player's uuid%} is true:
+		cancel event
+		
+on join:
+	set {trade::%player's uuid%} to false
+on quit:
+	set {trade::%player's uuid%} to false
+	
+on inventory close:
+	set {trade::%player's uuid%} to false
+
+
+on inventory click:
+	if event-item is light gray shulker box or pink shulker box or lime shulker box or light blue shulker box or purple shulker box or yellow shulker box:
+		close player's inventory
+		console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"

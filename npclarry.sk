@@ -1,0 +1,44 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport ca242676-1dc7-4b49-a6ef-737e3d331612 -53 70 -511"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Liquor Store] Larry":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cLiquor Store&6] Larry"
+            
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to 1 potion named "<##FFD324>Thatcher's Gold Cider &6[&cx1&6]"  with nbt "{HideFlags:127,CustomPotionColor:16765732}"     
+        set line 1 of lore of slot 10 of {_store} to "&6Volume: &c440ml"  
+        set line 2 of lore of slot 10 of {_store} to "&6Units: &c2.1"   
+        set line 4 of lore of slot 10 of {_store} to "&6Cost: &c30"   
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##FFD324>Thatcher's Gold Cider &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 29:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 30
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cLiquor Store&6] Larry: Good stuff, this"
+            set {_i} to potion named "<##FFD324>Thatcher's Gold Cider" with nbt "{HideFlags:127,CustomPotionEffects:[{Id:2b,Amplifier:0b,Duration:400,ShowParticles:0b},{Id:9b,Amplifier:0b,Duration:400,ShowParticles:0b}],CustomPotionColor:16765732}"     
+            set line 1 of lore of {_i} to "&6Volume: &c440ml"
+            set line 2 of lore of {_i} to "&6Units: &c2.1"
+            give player {_i}
+        else:
+            set {_} to random integer between 1 and 2
+            if {_} is 1:
+                send "&6[&cLiquor Store&6] Larry: Are you over 18...?"
+            if {_} is 2:        
+                send "&6[&cLiquor Store&6] Larry: I'm gonna need to see some ID..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  

@@ -1,0 +1,18 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 635f734b-77f7-46d7-a6c0-f0312c9ffa19 -34 67 -585"
+
+on right click on villager:
+    console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+    if uncolored name of event-entity is "[Guide] Walter":
+        if {questwalter::%player's uuid%} is not set:
+            set {questwalter::%player's uuid%} to "&cComplete"
+        if {questwalter::%player's uuid%} is "&cComplete":
+            set {_} to random integer between 1 and 3
+            if {_} = 1:
+                set {_message} to "Hello there, %player%..."
+            if {_} = 2:
+                set {_message} to "Good to see you again!"
+            if {_} = 3:
+                set {_message} to "I have something for you to do..."                                
+            send "&6[&cGuide&6] Walter: %{_message}%" to player
+            make player execute "/quests"

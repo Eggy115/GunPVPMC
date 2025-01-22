@@ -1,0 +1,324 @@
+on death of villager:
+    if victim has scoreboard tag "npcvillager":
+        if victim has scoreboard tag "suspicious":
+            stop
+        if attacker is not player:
+            stop            
+        if {villagerkiller1::%attacker's uuid%} is "&cIn Progress":
+            set {villagerkiller1progress::%attacker's uuid%} to {villagerkiller1progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{villagerkiller1progress::%attacker's uuid%}%&6/&c10&6 Villagers Killed!" to attacker
+            if {villagerkiller1progress::%attacker's uuid%} is 10:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cVillager Killer I&6!" to attacker
+                add 10 to {LEVEL.exp::%attacker's uuid%}
+                set {villagerkiller1::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {villagerkiller2::%attacker's uuid%} is "&cIn Progress":
+            set {villagerkiller2progress::%attacker's uuid%} to {villagerkiller2progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{villagerkiller2progress::%attacker's uuid%}%&6/&c50&6 Villagers Killed!" to attacker
+            if {villagerkiller2progress::%attacker's uuid%} is 50:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cVillager Killer II&6!" to attacker
+                add 50 to {LEVEL.exp::%attacker's uuid%}
+                set {villagerkiller2::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {villagerkiller3::%attacker's uuid%} is "&cIn Progress":
+            set {villagerkiller3progress::%attacker's uuid%} to {villagerkiller3progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{villagerkiller3progress::%attacker's uuid%}%&6/&c100&6 Villagers Killed!" to attacker
+            if {villagerkiller3progress::%attacker's uuid%} is 100:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cVillager Killer III&6!" to attacker
+                add 100 to {LEVEL.exp::%attacker's uuid%}
+                set {villagerkiller3::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {villagerkiller4::%attacker's uuid%} is "&cIn Progress":
+            set {villagerkiller4progress::%attacker's uuid%} to {villagerkiller4progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{villagerkiller4progress::%attacker's uuid%}%&6/&c200&6 Villagers Killed!" to attacker
+            if {villagerkiller4progress::%attacker's uuid%} is 200:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cVillager Killer IV&6!" to attacker
+                add 200 to {LEVEL.exp::%attacker's uuid%}
+                set {villagerkiller4::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {villagerkiller5::%attacker's uuid%} is "&cIn Progress":
+            set {villagerkiller5progress::%attacker's uuid%} to {villagerkiller5progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{villagerkiller5progress::%attacker's uuid%}%&6/&c500&6 Villagers Killed!" to attacker
+            if {villagerkiller5progress::%attacker's uuid%} is 500:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cVillager Killer V&6!" to attacker
+                add 500 to {LEVEL.exp::%attacker's uuid%}
+                set {villagerkiller5::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {villagerkiller6::%attacker's uuid%} is "&cIn Progress":
+            set {villagerkiller6progress::%attacker's uuid%} to {villagerkiller6progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{villagerkiller6progress::%attacker's uuid%}%&6/&c1000&6 Villagers Killed!" to attacker
+            if {villagerkiller6progress::%attacker's uuid%} is 1000:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cVillager Killer VI&6!" to attacker
+                add 1000 to {LEVEL.exp::%attacker's uuid%}
+                set {villagerkiller6::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {villagerkiller7::%attacker's uuid%} is "&cIn Progress":
+            set {villagerkiller7progress::%attacker's uuid%} to {villagerkiller7progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{villagerkiller7progress::%attacker's uuid%}%&6/&c2000&6 Villagers Killed!" to attacker
+            if {villagerkiller7progress::%attacker's uuid%} is 2000:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cVillager Killer VII&6!" to attacker
+                add 2000 to {LEVEL.exp::%attacker's uuid%}
+                set {villagerkiller7::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        chance of 50%:
+            if victim has scoreboard tag "suspicious":
+                stop
+            set {_r} to random integer between 1 and 3
+            set {_x} to victim's x coordinate
+            set {_y} to victim's y coordinate
+            set {_z} to victim's z coordinate            
+            if {_r} is 1:   
+                spawn iron golem at victim 
+            if {_r} is 2:   
+                console command "/policeofficer %{_x}% %{_y}% %{_z}%"
+            if {_r} is 3:   
+                console command "/policesergeant %{_x}% %{_y}% %{_z}%"
+            send title "&cWARNING" with subtitle "&cPOLICE HAVE SPAWNED" to attacker for 1 seconds
+
+on damage of villager:
+    if victim has scoreboard tag "npcvillager":
+        if victim has scoreboard tag "suspicious":
+            stop    
+        if attacker is not player:
+            stop
+        chance of 1%:
+            if victim has scoreboard tag "suspicious":
+                stop
+            set {_r} to random integer between 1 and 3
+            set {_x} to victim's x coordinate
+            set {_y} to victim's y coordinate
+            set {_z} to victim's z coordinate            
+            if {_r} is 1:   
+                spawn iron golem at victim 
+            if {_r} is 2:   
+                console command "/policeofficer %{_x}% %{_y}% %{_z}%"
+            if {_r} is 3:   
+                console command "/policesergeant %{_x}% %{_y}% %{_z}%"
+            send title "&cWARNING" with subtitle "&cPOLICE HAVE SPAWNED" to attacker for 1 seconds            
+
+on spawn of iron golem:
+    set name of event-entity to "&6[&cPolice&6] Golem"
+    wait 2 ticks
+    console command "/effect give %uuid of event-entity% minecraft:weakness 2 19 true"
+
+on entity target:
+    if event-entity is iron golem:
+        if entity's target is a skeleton:
+            delete targeted entity of entity
+        if entity's target is a stray:
+            delete targeted entity of entity            
+        if entity's target is a player:
+            if {deaths::%player's uuid%} < 5:
+                delete targeted entity of entity
+                
+    if event-entity is skeleton:
+        if entity's target is an iron golem:
+            delete targeted entity of entity
+
+
+on damage:
+    if attacker is skeleton:
+        if victim is skeleton:
+            cancel event
+        if victim is iron golem:
+            cancel event
+        if victim is stray:
+            cancel event    
+    if attacker is stray:
+        if victim is skeleton:
+            cancel event
+        if victim is iron golem:
+            cancel event
+        if victim is stray:
+            cancel event                       
+    if attacker is iron golem:
+        if victim is skeleton:
+            cancel event
+        if victim is stray:
+            cancel event             
+
+command /policeraid:
+    permission: op
+    trigger:
+        loop all players:
+            set {_y} to loop-player's y-coordinate
+            if {_y} > 40:          
+                send title "&7Gun&4PVP&aMC &6Events" with subtitle "&6A Police Raid has begun" to loop-player for 2 seconds
+        broadcast "&7Gun&4PVP&aMC&6 Events: A Police Raid has begun"
+        set {_counta} to online player count
+        loop {_counta} times:
+            console command "/summon iron_golem ~ ~ ~ {Team:""police"",Tags:[""raidgolem""],ActiveEffects:[{Id:24b,Amplifier:0b,Duration:100,ShowParticles:0b}]}"
+            console command "/policeofficer ~ ~ ~"
+            console command "/policesergeant ~ ~ ~"
+        console command "/spreadplayers -38 -547 10 50 false @e[tag=raidgolem]"
+        console command "/spreadplayers -38 -547 10 50 false @e[type=skeleton]"
+
+command /policeofficer [<text>] [<text>] [<text>]:
+    permission: op
+    trigger:
+        set {_colour1} to 583
+        set {_colour2} to 583
+        set {_colour3} to 583
+        set {_a} to ",{}"
+        set {_x} to arg-1
+        set {_y} to arg-2
+        set {_z} to arg-3        
+        chance of 25%:
+            set {_a} to ",{id:""minecraft:shield"",Count:1b}"
+        console command "/summon skeleton %{_x}% %{_y}% %{_z}% {ActiveEffects:[{Id:24b,Amplifier:0b,Duration:100,ShowParticles:0b}],Team:""police"",Silent:1b,Health:50f,CustomName:'[{""text"":""["",""color"":""gold""},{""text"":""Police"",""color"":""red""},{""text"":""] Officer"",""color"":""gold""}]',HandItems:[{id:""minecraft:stick"",Count:1b}%{_a}%],ArmorItems:[{id:""minecraft:leather_boots"",Count:1b,tag:{display:{color:1513239}}},{id:""minecraft:leather_leggings"",Count:1b,tag:{display:{color:583}}},{id:""minecraft:leather_chestplate"",Count:1b,tag:{display:{color:583}}},{id:""minecraft:player_head"",Count:1b,tag:{SkullOwner:""MHF_Villager""}}],Attributes:[{Name:generic.max_health,Base:50}]}"
+
+command /policesergeant [<text>] [<text>] [<text>]:
+    permission: op
+    trigger:
+        set {_colour1} to 583
+        set {_colour2} to 583
+        set {_colour3} to 583
+        set {_x} to arg-1
+        set {_y} to arg-2
+        set {_z} to arg-3         
+        console command "/summon skeleton %{_x}% %{_y}% %{_z}% {ActiveEffects:[{Id:24b,Amplifier:0b,Duration:100,ShowParticles:0b}],Team:""police"",Silent:1b,Health:50f,CustomName:'[{""text"":""["",""color"":""gold""},{""text"":""Police"",""color"":""red""},{""text"":""] Sergeant"",""color"":""gold""}]',HandItems:[{id:""minecraft:bow"",Count:1b},{}],ArmorItems:[{id:""minecraft:leather_boots"",Count:1b,tag:{display:{color:1513239}}},{id:""minecraft:leather_leggings"",Count:1b,tag:{display:{color:583}}},{id:""minecraft:leather_chestplate"",Count:1b,tag:{display:{color:583}}},{id:""minecraft:player_head"",Count:1b,tag:{SkullOwner:""MHF_Villager""}}],Attributes:[{Name:generic.max_health,Base:50}]}"        
+
+on shoot:
+    if shooter is a skeleton:
+        if projectile is arrow:
+            cancel event
+            shoot snowball from shooter at speed 5
+            console command "/execute at %shooter's uuid% run tag @e[type=snowball,limit=1,sort=nearest] add GLOCK19"
+            console command "/execute at %shooter's uuid% run playsound minecraft:entity.generic.explode master @a ~ ~ ~ 3 2"
+
+on death of iron golem:
+    if attacker is player:
+        if {fthepolice1::%attacker's uuid%} is "&cIn Progress":
+            set {fthepolice1progress::%attacker's uuid%} to {fthepolice1progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{fthepolice1progress::%attacker's uuid%}%&6/&c10&6 Police Killed!" to attacker
+            if {fthepolice1progress::%attacker's uuid%} is 10:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cF the Police I&6!" to attacker
+                add 10 to {LEVEL.exp::%attacker's uuid%}
+                set {fthepolice1::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {fthepolice2::%attacker's uuid%} is "&cIn Progress":
+            set {fthepolice2progress::%attacker's uuid%} to {fthepolice2progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{fthepolice2progress::%attacker's uuid%}%&6/&c50&6 Police Killed!" to attacker
+            if {fthepolice2progress::%attacker's uuid%} is 50:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cF the Police II&6!" to attacker
+                add 50 to {LEVEL.exp::%attacker's uuid%}
+                set {fthepolice2::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {fthepolice3::%attacker's uuid%} is "&cIn Progress":
+            set {fthepolice3progress::%attacker's uuid%} to {fthepolice3progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{fthepolice3progress::%attacker's uuid%}%&6/&c100&6 Police Killed!" to attacker
+            if {fthepolice3progress::%attacker's uuid%} is 100:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cF the Police III&6!" to attacker
+                add 100 to {LEVEL.exp::%attacker's uuid%}
+                set {fthepolice3::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {fthepolice4::%attacker's uuid%} is "&cIn Progress":
+            set {fthepolice4progress::%attacker's uuid%} to {fthepolice4progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{fthepolice4progress::%attacker's uuid%}%&6/&c200&6 Police Killed!" to attacker
+            if {fthepolice4progress::%attacker's uuid%} is 200:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cF the Police IV&6!" to attacker
+                add 200 to {LEVEL.exp::%attacker's uuid%}
+                set {fthepolice4::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {fthepolice5::%attacker's uuid%} is "&cIn Progress":
+            set {fthepolice5progress::%attacker's uuid%} to {fthepolice5progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{fthepolice5progress::%attacker's uuid%}%&6/&c500&6 Police Killed!" to attacker
+            if {fthepolice5progress::%attacker's uuid%} is 500:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cF the Police V&6!" to attacker
+                add 500 to {LEVEL.exp::%attacker's uuid%}
+                set {fthepolice5::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {fthepolice6::%attacker's uuid%} is "&cIn Progress":
+            set {fthepolice6progress::%attacker's uuid%} to {fthepolice6progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{fthepolice6progress::%attacker's uuid%}%&6/&c1000&6 Police Killed!" to attacker
+            if {fthepolice6progress::%attacker's uuid%} is 1000:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cF the Police VI&6!" to attacker
+                add 1000 to {LEVEL.exp::%attacker's uuid%}
+                set {fthepolice6::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {fthepolice7::%attacker's uuid%} is "&cIn Progress":
+            set {fthepolice7progress::%attacker's uuid%} to {fthepolice7progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{fthepolice7progress::%attacker's uuid%}%&6/&c2000&6 Police Killed!" to attacker
+            if {fthepolice7progress::%attacker's uuid%} is 2000:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cF the Police VII&6!" to attacker
+                add 2000 to {LEVEL.exp::%attacker's uuid%}
+                set {fthepolice7::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+on death of skeleton:
+    if attacker is player:
+        if {fthepolice1::%attacker's uuid%} is "&cIn Progress":
+            set {fthepolice1progress::%attacker's uuid%} to {fthepolice1progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{fthepolice1progress::%attacker's uuid%}%&6/&c10&6 Police Killed!" to attacker
+            if {fthepolice1progress::%attacker's uuid%} is 10:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cF the Police I&6!" to attacker
+                add 10 to {LEVEL.exp::%attacker's uuid%}
+                set {fthepolice1::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {fthepolice2::%attacker's uuid%} is "&cIn Progress":
+            set {fthepolice2progress::%attacker's uuid%} to {fthepolice2progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{fthepolice2progress::%attacker's uuid%}%&6/&c50&6 Police Killed!" to attacker
+            if {fthepolice2progress::%attacker's uuid%} is 50:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cF the Police II&6!" to attacker
+                add 50 to {LEVEL.exp::%attacker's uuid%}
+                set {fthepolice2::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {fthepolice3::%attacker's uuid%} is "&cIn Progress":
+            set {fthepolice3progress::%attacker's uuid%} to {fthepolice3progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{fthepolice3progress::%attacker's uuid%}%&6/&c100&6 Police Killed!" to attacker
+            if {fthepolice3progress::%attacker's uuid%} is 100:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cF the Police III&6!" to attacker
+                add 100 to {LEVEL.exp::%attacker's uuid%}
+                set {fthepolice3::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {fthepolice4::%attacker's uuid%} is "&cIn Progress":
+            set {fthepolice4progress::%attacker's uuid%} to {fthepolice4progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{fthepolice4progress::%attacker's uuid%}%&6/&c200&6 Police Killed!" to attacker
+            if {fthepolice4progress::%attacker's uuid%} is 200:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cF the Police IV&6!" to attacker
+                add 200 to {LEVEL.exp::%attacker's uuid%}
+                set {fthepolice4::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {fthepolice5::%attacker's uuid%} is "&cIn Progress":
+            set {fthepolice5progress::%attacker's uuid%} to {fthepolice5progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{fthepolice5progress::%attacker's uuid%}%&6/&c500&6 Police Killed!" to attacker
+            if {fthepolice5progress::%attacker's uuid%} is 500:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cF the Police V&6!" to attacker
+                add 500 to {LEVEL.exp::%attacker's uuid%}
+                set {fthepolice5::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {fthepolice6::%attacker's uuid%} is "&cIn Progress":
+            set {fthepolice6progress::%attacker's uuid%} to {fthepolice6progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{fthepolice6progress::%attacker's uuid%}%&6/&c1000&6 Police Killed!" to attacker
+            if {fthepolice6progress::%attacker's uuid%} is 1000:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cF the Police VI&6!" to attacker
+                add 1000 to {LEVEL.exp::%attacker's uuid%}
+                set {fthepolice6::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"
+
+        if {fthepolice7::%attacker's uuid%} is "&cIn Progress":
+            set {fthepolice7progress::%attacker's uuid%} to {fthepolice7progress::%attacker's uuid%} + 1
+            send "&7Gun&4PVP&aMC&6 Quests: &c%{fthepolice7progress::%attacker's uuid%}%&6/&c2000&6 Police Killed!" to attacker
+            if {fthepolice7progress::%attacker's uuid%} is 2000:
+                send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cF the Police VII&6!" to attacker
+                add 2000 to {LEVEL.exp::%attacker's uuid%}
+                set {fthepolice7::%attacker's uuid%} to "&cComplete"
+                console command "/execute at %attacker% run playsound block.note_block.pling master %attacker% ~ ~ ~ 100000 2"                

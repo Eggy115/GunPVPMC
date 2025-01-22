@@ -1,0 +1,932 @@
+
+on inventory click:
+    if name of event-item is "&6Flower Picker I":
+        if {flowerpicker1::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {flowerpicker1::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cFlower Picker I&6 Quest!"
+            set {flowerpicker1::%player's uuid%} to "&cIn Progress"
+            set {flowerpicker1progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Flower Picker II":
+        if {flowerpicker2::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {flowerpicker2::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cFlower Picker II&6 Quest!"
+            set {flowerpicker2::%player's uuid%} to "&cIn Progress"
+            set {flowerpicker2progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Flower Picker III":
+        if {flowerpicker3::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {flowerpicker3::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cFlower Picker III&6 Quest!"
+            set {flowerpicker3::%player's uuid%} to "&cIn Progress"
+            set {flowerpicker3progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+
+on inventory click:
+    if name of event-item is "&6Flower Picker IV":
+        if {flowerpicker4::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {flowerpicker4::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cFlower Picker IV&6 Quest!"
+            set {flowerpicker4::%player's uuid%} to "&cIn Progress"
+            set {flowerpicker4progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Flower Picker V":
+        if {flowerpicker5::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {flowerpicker5::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cFlower Picker V&6 Quest!"
+            set {flowerpicker5::%player's uuid%} to "&cIn Progress"
+            set {flowerpicker5progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Flower Picker VI":
+        if {flowerpicker6::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {flowerpicker6::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cFlower Picker VI&6 Quest!"
+            set {flowerpicker6::%player's uuid%} to "&cIn Progress"
+            set {flowerpicker6progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Flower Picker VII":
+        if {flowerpicker7::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {flowerpicker7::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cFlower Picker VII&6 Quest!"
+            set {flowerpicker7::%player's uuid%} to "&cIn Progress"
+            set {flowerpicker7progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Villager Killer I":
+        if {villagerkiller1::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {villagerkiller1::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cVillager Killer I&6 Quest!"
+            set {villagerkiller1::%player's uuid%} to "&cIn Progress"
+            set {villagerkiller1progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Villager Killer II":
+        if {villagerkiller2::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {villagerkiller2::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cVillager Killer II&6 Quest!"
+            set {villagerkiller2::%player's uuid%} to "&cIn Progress"
+            set {villagerkiller2progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Villager Killer III":
+        if {villagerkiller3::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {villagerkiller3::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cVillager Killer III&6 Quest!"
+            set {villagerkiller3::%player's uuid%} to "&cIn Progress"
+            set {villagerkiller3progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Villager Killer IV":
+        if {villagerkiller4::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {villagerkiller4::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cVillager Killer IV&6 Quest!"
+            set {villagerkiller4::%player's uuid%} to "&cIn Progress"
+            set {villagerkiller4progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Villager Killer V":
+        if {villagerkiller5::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {villagerkiller5::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cVillager Killer V&6 Quest!"
+            set {villagerkiller5::%player's uuid%} to "&cIn Progress"
+            set {villagerkiller5progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Villager Killer VI":
+        if {villagerkiller6::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {villagerkiller6::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cVillager Killer VI&6 Quest!"
+            set {villagerkiller6::%player's uuid%} to "&cIn Progress"
+            set {villagerkiller6progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Villager Killer VII":
+        if {villagerkiller7::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {villagerkiller7::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cVillager Killer VII&6 Quest!"
+            set {villagerkiller7::%player's uuid%} to "&cIn Progress"
+            set {villagerkiller7progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+
+on inventory click:
+    if name of event-item is "&6Chest Looter I":
+        if {chestlooter1::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {chestlooter1::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cChest Looter I&6 Quest!"
+            set {chestlooter1::%player's uuid%} to "&cIn Progress"
+            set {chestlooter1progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Chest Looter II":
+        if {chestlooter2::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {chestlooter2::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cChest Looter II&6 Quest!"
+            set {chestlooter2::%player's uuid%} to "&cIn Progress"
+            set {chestlooter2progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"            
+
+on inventory click:
+    if name of event-item is "&6Chest Looter III":
+        if {chestlooter3::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {chestlooter3::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cChest Looter III&6 Quest!"
+            set {chestlooter3::%player's uuid%} to "&cIn Progress"
+            set {chestlooter3progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2" 
+
+on inventory click:
+    if name of event-item is "&6Chest Looter IV":
+        if {chestlooter4::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {chestlooter4::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cChest Looter IV&6 Quest!"
+            set {chestlooter4::%player's uuid%} to "&cIn Progress"
+            set {chestlooter4progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"            
+
+
+on inventory click:
+    if name of event-item is "&6Chest Looter V":
+        if {chestlooter5::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {chestlooter5::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cChest Looter V&6 Quest!"
+            set {chestlooter5::%player's uuid%} to "&cIn Progress"
+            set {chestlooter5progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"            
+
+on inventory click:
+    if name of event-item is "&6Chest Looter VI":
+        if {chestlooter6::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {chestlooter6::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cChest Looter VI&6 Quest!"
+            set {chestlooter6::%player's uuid%} to "&cIn Progress"
+            set {chestlooter6progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"            
+
+
+
+on inventory click:
+    if name of event-item is "&6Chest Looter VII":
+        if {chestlooter7::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {chestlooter7::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cChest Looter VII&6 Quest!"
+            set {chestlooter7::%player's uuid%} to "&cIn Progress"
+            set {chestlooter7progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"            
+
+on inventory click:
+    if name of event-item is "&6Chest Looter VIII":
+        if {chestlooter8::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {chestlooter8::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cChest Looter VIII&6 Quest!"
+            set {chestlooter8::%player's uuid%} to "&cIn Progress"
+            set {chestlooter8progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"            
+
+
+
+
+on inventory click:
+    if name of event-item is "&6Barrel Looter I":
+        if {barrellooter1::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {barrellooter1::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cBarrel Looter I&6 Quest!"
+            set {barrellooter1::%player's uuid%} to "&cIn Progress"
+            set {barrellooter1progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Barrel Looter II":
+        if {barrellooter2::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {barrellooter2::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cBarrel Looter II&6 Quest!"
+            set {barrellooter2::%player's uuid%} to "&cIn Progress"
+            set {barrellooter2progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"            
+
+on inventory click:
+    if name of event-item is "&6Barrel Looter III":
+        if {barrellooter3::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {barrellooter3::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cBarrel Looter III&6 Quest!"
+            set {barrellooter3::%player's uuid%} to "&cIn Progress"
+            set {barrellooter3progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2" 
+
+on inventory click:
+    if name of event-item is "&6Barrel Looter IV":
+        if {barrellooter4::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {barrellooter4::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cBarrel Looter IV&6 Quest!"
+            set {barrellooter4::%player's uuid%} to "&cIn Progress"
+            set {barrellooter4progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"            
+
+
+on inventory click:
+    if name of event-item is "&6Barrel Looter V":
+        if {barrellooter5::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {barrellooter5::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cBarrel Looter V&6 Quest!"
+            set {barrellooter5::%player's uuid%} to "&cIn Progress"
+            set {barrellooter5progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"            
+
+on inventory click:
+    if name of event-item is "&6Barrel Looter VI":
+        if {barrellooter6::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {barrellooter6::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cBarrel Looter VI&6 Quest!"
+            set {barrellooter6::%player's uuid%} to "&cIn Progress"
+            set {barrellooter6progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"            
+
+
+
+on inventory click:
+    if name of event-item is "&6Barrel Looter VII":
+        if {barrellooter7::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {barrellooter7::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cBarrel Looter VII&6 Quest!"
+            set {barrellooter7::%player's uuid%} to "&cIn Progress"
+            set {barrellooter7progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"            
+
+
+
+
+
+
+on inventory click:
+    if name of event-item is "&6Zombie Hunter I":
+        if {zombiehunter1::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {zombiehunter1::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cZombie Hunter I&6 Quest!"
+            set {zombiehunter1::%player's uuid%} to "&cIn Progress"
+            set {zombiehunter1progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Zombie Hunter II":
+        if {zombiehunter2::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {zombiehunter2::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cZombie Hunter II&6 Quest!"
+            set {zombiehunter2::%player's uuid%} to "&cIn Progress"
+            set {zombiehunter2progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Zombie Hunter III":
+        if {zombiehunter3::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {zombiehunter3::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cZombie Hunter III&6 Quest!"
+            set {zombiehunter3::%player's uuid%} to "&cIn Progress"
+            set {zombiehunter3progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Zombie Hunter IV":
+        if {zombiehunter4::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {zombiehunter4::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cZombie Hunter IV&6 Quest!"
+            set {zombiehunter4::%player's uuid%} to "&cIn Progress"
+            set {zombiehunter4progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Zombie Hunter V":
+        if {zombiehunter5::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {zombiehunter5::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cZombie Hunter V&6 Quest!"
+            set {zombiehunter5::%player's uuid%} to "&cIn Progress"
+            set {zombiehunter5progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Zombie Hunter VI":
+        if {zombiehunter6::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {zombiehunter6::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cZombie Hunter VI&6 Quest!"
+            set {zombiehunter6::%player's uuid%} to "&cIn Progress"
+            set {zombiehunter6progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Zombie Hunter VII":
+        if {zombiehunter7::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {zombiehunter7::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cZombie Hunter VII&6 Quest!"
+            set {zombiehunter7::%player's uuid%} to "&cIn Progress"
+            set {zombiehunter7progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+
+
+
+
+on inventory click:
+    if name of event-item is "&6Criminal Stopper I":
+        if {criminalstopper1::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {criminalstopper1::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cCriminal Stopper I&6 Quest!"
+            set {criminalstopper1::%player's uuid%} to "&cIn Progress"
+            set {criminalstopper1progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Criminal Stopper II":
+        if {criminalstopper2::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {criminalstopper2::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cCriminal Stopper II&6 Quest!"
+            set {criminalstopper2::%player's uuid%} to "&cIn Progress"
+            set {criminalstopper2progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Criminal Stopper III":
+        if {criminalstopper3::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {criminalstopper3::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cCriminal Stopper III&6 Quest!"
+            set {criminalstopper3::%player's uuid%} to "&cIn Progress"
+            set {criminalstopper3progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Criminal Stopper IV":
+        if {criminalstopper4::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {criminalstopper4::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cCriminal Stopper IV&6 Quest!"
+            set {criminalstopper4::%player's uuid%} to "&cIn Progress"
+            set {criminalstopper4progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Criminal Stopper V":
+        if {criminalstopper5::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {criminalstopper5::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cCriminal Stopper V&6 Quest!"
+            set {criminalstopper5::%player's uuid%} to "&cIn Progress"
+            set {criminalstopper5progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Criminal Stopper VI":
+        if {criminalstopper6::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {criminalstopper6::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cCriminal Stopper VI&6 Quest!"
+            set {criminalstopper6::%player's uuid%} to "&cIn Progress"
+            set {criminalstopper6progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Criminal Stopper VII":
+        if {criminalstopper7::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {criminalstopper7::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cCriminal Stopper VII&6 Quest!"
+            set {criminalstopper7::%player's uuid%} to "&cIn Progress"
+            set {criminalstopper7progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+
+on inventory click:
+    if name of event-item is "&6F the Police I":
+        if {fthepolice1::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {fthepolice1::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cF the Police I&6 Quest!"
+            set {fthepolice1::%player's uuid%} to "&cIn Progress"
+            set {fthepolice1progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6F the Police II":
+        if {fthepolice2::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {fthepolice2::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cF the Police II&6 Quest!"
+            set {fthepolice2::%player's uuid%} to "&cIn Progress"
+            set {fthepolice2progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6F the Police III":
+        if {fthepolice3::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {fthepolice3::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cF the Police III&6 Quest!"
+            set {fthepolice3::%player's uuid%} to "&cIn Progress"
+            set {fthepolice3progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6F the Police IV":
+        if {fthepolice4::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {fthepolice4::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cF the Police IV&6 Quest!"
+            set {fthepolice4::%player's uuid%} to "&cIn Progress"
+            set {fthepolice4progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6F the Police V":
+        if {fthepolice5::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {fthepolice5::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cF the Police V&6 Quest!"
+            set {fthepolice5::%player's uuid%} to "&cIn Progress"
+            set {fthepolice5progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6F the Police VI":
+        if {fthepolice6::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {fthepolice6::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cF the Police VI&6 Quest!"
+            set {fthepolice6::%player's uuid%} to "&cIn Progress"
+            set {fthepolice6progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6F the Police VII":
+        if {fthepolice7::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {fthepolice7::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cF the Police VII&6 Quest!"
+            set {fthepolice7::%player's uuid%} to "&cIn Progress"
+            set {fthepolice7progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Cleaning up the City I":
+        if {cleaningupthecity1::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {cleaningupthecity1::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cCleaning up the City I&6 Quest!"
+            set {cleaningupthecity1::%player's uuid%} to "&cIn Progress"
+            set {cleaningupthecity1progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Cleaning up the City II":
+        if {cleaningupthecity2::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {cleaningupthecity2::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cCleaning up the City II&6 Quest!"
+            set {cleaningupthecity2::%player's uuid%} to "&cIn Progress"
+            set {cleaningupthecity2progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Cleaning up the City III":
+        if {cleaningupthecity3::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {cleaningupthecity3::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cCleaning up the City III&6 Quest!"
+            set {cleaningupthecity3::%player's uuid%} to "&cIn Progress"
+            set {cleaningupthecity3progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Cleaning up the City IV":
+        if {cleaningupthecity4::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {cleaningupthecity4::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cCleaning up the City IV&6 Quest!"
+            set {cleaningupthecity4::%player's uuid%} to "&cIn Progress"
+            set {cleaningupthecity4progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Cleaning up the City V":
+        if {cleaningupthecity5::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {cleaningupthecity5::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cCleaning up the City V&6 Quest!"
+            set {cleaningupthecity5::%player's uuid%} to "&cIn Progress"
+            set {cleaningupthecity5progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Cleaning up the City VI":
+        if {cleaningupthecity6::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {cleaningupthecity6::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cCleaning up the City VI&6 Quest!"
+            set {cleaningupthecity6::%player's uuid%} to "&cIn Progress"
+            set {cleaningupthecity6progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Cleaning up the City VII":
+        if {cleaningupthecity7::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {cleaningupthecity7::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cCleaning up the City VII&6 Quest!"
+            set {cleaningupthecity7::%player's uuid%} to "&cIn Progress"
+            set {cleaningupthecity7progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+
+on inventory click:
+    if name of event-item is "&6Glash Smasher I":
+        if {glasssmasher1::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {glasssmasher1::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cGlash Smasher I&6 Quest!"
+            set {glasssmasher1::%player's uuid%} to "&cIn Progress"
+            set {glasssmasher1progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Glash Smasher II":
+        if {glasssmasher2::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {glasssmasher2::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cGlash Smasher II&6 Quest!"
+            set {glasssmasher2::%player's uuid%} to "&cIn Progress"
+            set {glasssmasher2progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Glash Smasher III":
+        if {glasssmasher3::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {glasssmasher3::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cGlash Smasher III&6 Quest!"
+            set {glasssmasher3::%player's uuid%} to "&cIn Progress"
+            set {glasssmasher3progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Glash Smasher IV":
+        if {glasssmasher4::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {glasssmasher4::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cGlash Smasher IV&6 Quest!"
+            set {glasssmasher4::%player's uuid%} to "&cIn Progress"
+            set {glasssmasher4progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Glash Smasher V":
+        if {glasssmasher5::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {glasssmasher5::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cGlash Smasher V&6 Quest!"
+            set {glasssmasher5::%player's uuid%} to "&cIn Progress"
+            set {glasssmasher5progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Glash Smasher VI":
+        if {glasssmasher6::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {glasssmasher6::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cGlash Smasher VI&6 Quest!"
+            set {glasssmasher6::%player's uuid%} to "&cIn Progress"
+            set {glasssmasher6progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Glash Smasher VII":
+        if {glasssmasher7::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {glasssmasher7::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cGlash Smasher VII&6 Quest!"
+            set {glasssmasher7::%player's uuid%} to "&cIn Progress"
+            set {glasssmasher7progress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+
+# RENEWABLE
+
+on inventory click:
+    if name of event-item is "&6David VS Goliath":
+        if {davidvsgoliath::%player's uuid%} is "&cIn Progress":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already started this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cDavid VS Goliath&6 Quest!"
+            set {davidvsgoliath::%player's uuid%} to "&cIn Progress"
+            set {davidvsgoliathprogress::%player's uuid%} to 0
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"

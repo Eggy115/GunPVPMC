@@ -1,0 +1,49 @@
+command /sit [<text>]:
+    trigger:
+        player's world is not "world-you-dont-want-sit-working"
+        set {_cont} to true
+        loop all entities in radius 1.1 around location of block below player:
+            if loop-entity is a pig:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cThere is a sitting person too close to you. (It might even be you!)" to player
+                stop
+        player is not on ground:
+            send "&cYou must be on ground to be able to sit!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            stop
+        {_cont} is set
+        if x of velocity of player or z of velocity of player is not 0:
+            send "&cYou cannot sit while you have velocity!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            stop
+        if vehicle of player is set:
+            send "&cYou are already sitting!" to player
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                      
+            stop
+        set {_spawnloc} to location of player
+        set y-coordinate of {_spawnloc} to y-coordinate of {_spawnloc}-0.9
+        set {_n} to nbt compound from "{NoAI:1,NoGravity:1,Invulnerable:1,Silent:1}"
+        spawn 1 pig at {_spawnloc} with nbt {_n}
+        set name of last spawned pig to "&6Seat"
+        set {_pig} to spawned pig
+        set health of {_pig} to 1
+        #Add "{NoAI:1}" to entity nbt of {_pig}
+        #Add "{NoGravity:1}" to entity nbt of {_pig}
+        #Add "{Invulnerable:1}" to entity nbt of {_pig}
+        #Add "{Silent:1}" to entity nbt of {_pig}
+        apply potion of invisibility without any particles to {_pig} for 9 days
+        make the player ride {_pig}
+
+on death:
+    name of victim is "&6Seat"
+    clear drops
+on vehicle exit:
+    name of vehicle of player is "&6Seat":
+        delete vehicle of player
+        set {_w} to world of player
+        set {_loc} to location of player
+        set y-coordinate of {_loc} to y-coordinate of {_loc}+0.6
+        wait a tick
+        {_w} is player's world
+        teleport player to {_loc}
+ 

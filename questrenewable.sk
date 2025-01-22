@@ -1,0 +1,36 @@
+command /questrenewable:
+    trigger:
+        set {_store} to a new chest inventory with 6 row with name "&6[&cGuide&6] Walter"
+
+        set {_e} to 0
+        loop 54 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "        
+            add 1 to {_e}
+        set slot 49 of {_store} to book and quill named "&6Main Page"                    
+
+        set {_a} to -1
+        loop 4 times:  # Repeat the block 6 times
+            set {_a} to {_a} + 1
+            set slot (10 + {_a} * 9) of {_store} to book named "&7&o???"
+            set slot (11 + {_a} * 9) of {_store} to book named "&7&o???"
+            set slot (12 + {_a} * 9) of {_store} to book named "&7&o???"
+            set slot (13 + {_a} * 9) of {_store} to book named "&7&o???"
+            set slot (14 + {_a} * 9) of {_store} to book named "&7&o???"
+            set slot (15 + {_a} * 9) of {_store} to book named "&7&o???"
+            set slot (16 + {_a} * 9) of {_store} to book named "&7&o???"
+
+        set slot 10 of {_store} to enchanted book named "&6David VS Goliath" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 10 of {_store} to "&6&oKill a Giant"
+
+        if {davidvsgoliathprogress::%player's uuid%} is set:
+            set line 3 of lore of slot 10 of {_store} to "&6Progress: &c%{davidvsgoliathprogress::%player's uuid%}%&6/&c1&6"     
+        else:
+            set line 3 of lore of slot 10 of {_store} to "&6Progress: &c0&6/&c1&6"     
+
+        if {davidvsgoliath::%player's uuid%} is not set:  
+            set line 4 of lore of slot 10 of {_store} to "&6Status: &cIncomplete"   
+        else:         
+            set line 4 of lore of slot 10 of {_store} to "&6Status: %{davidvsgoliath::%player's uuid%}%"  
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true

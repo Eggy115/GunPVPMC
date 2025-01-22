@@ -1,0 +1,8 @@
+on join:
+    if {rank::%player's uuid%} is not set:
+        set {rank::%player's uuid%} to "&7Default"
+
+command /setrank [<offlineplayer>] [<text>]:
+    permission: op
+    trigger:
+        set {rank::%arg-1's uuid%} to arg-2   

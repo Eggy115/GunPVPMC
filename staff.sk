@@ -1,0 +1,335 @@
+command /rename [<text>]:
+    permission: op
+    trigger:
+        set name of player's held item to colored arg-1
+        
+command /setcoin [<offlineplayer>] [<number>]:
+    permission: op
+    trigger:
+        add arg-2 to {coins::%arg-1's uuid%}
+
+command /setbank [<offlineplayer>] [<number>]:
+    permission: op
+    trigger:
+        set {bank::%arg-1's uuid%} to arg-2
+
+command /setdeaths [<offlineplayer>] [<number>]:
+    permission: op
+    trigger:
+        set {deaths::%arg-1's uuid%} to arg-2    
+
+command /setkills [<offlineplayer>] [<number>]:
+    permission: op
+    trigger:
+        set {kills::%arg-1's uuid%} to arg-2            
+
+command /setlevel [<offlineplayer>] [<number>]:
+    permission: op
+    trigger:
+        set {LEVEL.level::%arg-1's uuid%} to arg-2
+
+command /setexp [<offlineplayer>] [<number>]:
+    permission: op
+    trigger:
+        set {LEVEL.exp::%arg-1's uuid%} to arg-2    
+            
+
+command /setganglevel [<offlineplayer>] [<number>]:
+    permission: op
+    trigger:
+        set {GANGLEVEL.level::%{GANG::gang::%arg-1's uuid%}%} to arg-2
+
+command /setgangexp [<offlineplayer>] [<number>]:
+    permission: op
+    trigger:
+        set {GANGLEVEL.exp::%{GANG::gang::%arg-1's uuid%}%} to arg-2    
+
+command /setgangkills [<offlineplayer>] [<number>]:
+    permission: op
+    trigger:
+        set {gangkills::%{GANG::gang::%arg-1's uuid%}%} to arg-2
+
+command /setquest [<offlineplayer>] [<text>]:
+    permission: op
+    trigger:
+        set {quest::%arg-1's uuid%} to arg-2                
+
+command /payall [<number>]:
+    permission: op
+    trigger:
+        loop all players:
+            add arg-1 to {coins::%loop-player's uuid%}
+        broadcast "&7Gun&4PVP&aMC&6: Everyone has received &c%arg-1%&6 coins!"
+command /sudo [<player>] [<text>]:
+    permission: op
+    trigger:
+        make arg-1 say arg-2
+        
+command /openinv [<offlineplayer>]:
+    aliases: invsee
+    permission: op
+    trigger:
+        open arg-1's inventory to player    
+
+command /allguns:
+    permission: op
+    trigger:
+        give player leather horse armor named "<##333836>Glock-19" with nbt "{display:{color:3356726},HideFlags:127}"
+        give player leather horse armor named "<##452500>AK-47" with nbt "{display:{color:4531456},HideFlags:127}"
+        give player leather horse armor named "<##6E360C>M40" with nbt "{display:{color:7222796},HideFlags:127}"
+        give player leather horse armor named "<##212029>M60" with nbt "{display:{color:2170921},HideFlags:127}"
+        give player leather horse armor named "<##3B3B3B>SIG 516" with nbt "{display:{color:3881787},HideFlags:127}"
+        give player leather horse armor named "<##D4C462>FN SCAR" with nbt "{display:{color:13943906},HideFlags:127}"
+        give player leather horse armor named "<##444444>Benelli M4" with nbt "{display:{color:4473924},HideFlags:127}"
+        give player leather horse armor named "<##222222>CMMG Mk47" with nbt "{display:{color:2236962},HideFlags:127}"
+        give player leather horse armor named "<##382000>Luger P08" with nbt "{display:{color:3678208},HideFlags:127}"
+        give player leather horse armor named "<##292218>Suomi KP/-31" with nbt "{display:{color:2695704},HideFlags:127}"
+        give player leather horse armor named "<##FF4400>Flare Gun" with nbt "{display:{color:16729088},HideFlags:127}"
+        give player leather horse armor named "<##B3B0B5>M1873" with nbt "{display:{color:11776181},HideFlags:127}"
+        give player leather horse armor named "<##191919>HK416" with nbt "{display:{color:1644825},HideFlags:127}"
+        give player leather horse armor named "<##331109>M79 Grenade Launcher" with nbt "{display:{color:3346697},HideFlags:127}"
+        give player leather horse armor named "<##565656>HK USP" with nbt "{display:{color:5658198},HideFlags:127}"
+        give player leather horse armor named "<##11A015>SSK.950 Rifle" with nbt "{display:{color:1155093},HideFlags:127}"
+
+command /allbullets:
+    aliases: /allammo
+    permission: op
+    trigger:
+        give player 64 gold nugget named "<##FFC300>9x19mm"
+        give player 64 iron nugget named "<##B3B3B3>7.62x39mm"
+        give player 64 gold nugget named "<##FAD905>7.62x51mm"
+        give player 64 gold nugget named "<##FFCB3D>12x70mm"
+        give player 64 gold nugget named "<##CFA827>11.43×33mmR"        
+        give player 64 gold nugget named "<##FFE666>5.56x45mm"            
+        give player 64 firework rocket named "<##FF4400>Flare"    
+        give player 64 nether brick item named "<##471D1D>40x46mm"
+        give player 64 gold nugget named "<##C99A00>24.1x70mm"                
+
+
+command /ipaddress [<offlineplayer>]:
+    permission: op
+    trigger:
+        send ip of arg-1 to player        
+
+
+command /ec [<offlineplayer>]:
+    permission: op
+    trigger:
+        if arg-1 is set:
+            open arg-1's ender chest to player
+        else:
+            open player's ender chest to player
+
+command /mute [<player>]:
+    trigger:
+        if {staffrank::%player's uuid%} is "Moderator" or "Admin" or "Helper":    
+            set {mute::%arg-1's uuid%} to 1
+            set {mutestaff::%arg-1's uuid%} to "%player%"
+            
+command /unmute [<player>]:
+    trigger:
+        if {staffrank::%player's uuid%} is "Moderator" or "Admin" or "Helper":    
+            delete {mute::%arg-1's uuid%}    
+
+
+command /weakness [<player>]:
+    permission: op
+    trigger:
+        set {weakness::%arg-1's uuid%} to 1
+            
+command /unweakness [<player>]:
+    permission: op
+    trigger:
+        delete {weakness::%arg-1's uuid%}                
+
+on damage:
+    if {weakness::%attacker's uuid%} is 1:
+        cancel event
+
+command /gmsp:
+    trigger:
+        if {staffrank::%player's uuid%} is "Moderator" or "Admin":    
+            set player's gamemode to spectator                
+
+command /gma:
+    trigger:
+        if {staffrank::%player's uuid%} is "Helper" or "Moderator" or "Admin":    
+            set player's gamemode to adventure        
+
+on damage:
+    if attacker is player:
+        set gamemode of attacker to adventure            
+
+command /gmc:
+    cooldown: 60 seconds
+    cooldown message: &7Gun&4PVP&aMC&6: Please wait [&c%remaining time%&6] before using this again!    
+    trigger:
+        if {staffrank::%player's uuid%} is "Moderator" or "Admin":    
+            if {staffrank::%player's uuid%} is "Moderator":
+                if {combat::%player%} is true:
+                    send "&7Gun&4PVP&aMC&6: You cannot use &c/gmc&6 in combat!"
+                    stop            
+            set player's gamemode to creative    
+            
+command /gms:
+    trigger:
+        if {staffrank::%player's uuid%} is "Admin":    
+            set player's gamemode to survival                
+
+command /allsudo [<text>]:
+    permission: op
+    trigger:
+        loop all players:
+            make loop-player say arg-1
+
+on join:
+    disable flight for player
+
+command /spy:
+    trigger:
+        if {staffrank::%player's uuid%} is "Moderator" or "Admin" or "Helper":    
+            if {cs::%uuid of player%} is set:
+                clear {cs::%uuid of player%}
+                send "spy off"
+            else:
+                set {cs::%uuid of player%} to true
+                send "spy on"
+on command:
+    if sender is a player:
+        loop all players:
+            if {cs::%uuid of loop-player%} is set:
+                if "%player%" is not "%loop-player%":
+                    send "&6[&c%{rep::%player's uuid%}%✫&6] %{title::%player's uuid%}% %player%:&f /%complete command%" to loop-player
+
+command /announce [<text>]:
+    permission: op
+    trigger:
+        broadcast "%nl%&7Gun&4PVP&aMC&6: %coloured arg-1%%nl%"
+
+
+command /vanish:
+    trigger:
+        if {staffrank::%player's uuid%} is "Moderator" or "Admin" or "Helper":
+            if {vanish::%uuid of player%} is set:
+                clear {vanish::%uuid of player%}
+                reveal the player to all players
+                broadcast "%{title::%player's uuid%}% %player%&6 joined &7Gun&4PVP&aMC&6!"    
+                send "vanish off"
+            else:
+                set {vanish::%uuid of player%} to true
+                hide the player from all players
+                send "vanish on"
+                broadcast "%{title::%player's uuid%}% %player%&6 left &7Gun&4PVP&aMC&6!"    
+
+command /fly:
+    trigger:
+        if {staffrank::%player's uuid%} is "Moderator" or "Admin" or "Helper":
+            if {combat::%player%} is true:
+                send "&7Gun&4PVP&aMC&6: You cannot use &c/fly&6 in combat!"
+                stop
+            if {fly::%uuid of player%} is set:
+                clear {fly::%uuid of player%}
+                make player stop flying
+                send "fly off"
+            else:
+                set {fly::%uuid of player%} to true
+                make player fly
+                send "fly on"
+
+command /kick [<offlineplayer>]:
+    trigger:
+        if {staffrank::%player's uuid%} is "Moderator" or "Admin" or "Helper":
+            if {staffrank::%arg-1's uuid%} is "Moderator" or "Admin" or "Helper":
+                if {staffrank::%player's uuid%} is "Admin":
+                    kick arg-1
+                stop
+            kick arg-1
+
+on join:
+    loop all players:
+        if {vanish::%uuid of loop-player%} is true:
+            hide the loop-player from all players
+
+on damage:
+    make victim stop flying
+    make attacker stop flying    
+    clear {fly::%uuid of attacker%}
+    clear {fly::%uuid of victim%}                
+
+command /skilltreereset:
+    permission: op
+    trigger:
+        delete {merlin::%player's uuid%}    
+
+        delete {vampire1::%player's uuid%}
+        delete {leech1::%player's uuid%}
+        delete {chef1::%player's uuid%}
+        delete {healingaura1::%player's uuid%}
+        delete {toughasnails1::%player's uuid%}        
+        delete {healthboost1::%player's uuid%}        
+        
+command /staffrank [<offlineplayer>] [<text>]:
+    permission: op
+    trigger:
+        set {staffrank::%arg-1's uuid%} to arg-2             
+
+command /fix:
+    permission: op 
+    trigger:    
+        set {topkills.Beach} to 0
+        set {topkills.Ocean} to 0
+        set {topkills.City} to 0
+        set {topkills.Outer City} to 0
+        set {topkills.Courtyard} to 0
+        set {topkills.Deep Ocean} to 0  
+        set {topkills.Rooftops} to 0      
+        set {topkills.Docks} to 0      
+        set {topkills.Highrises} to 0      
+        set {topkills.East Coast} to 0      
+        set {topkills.Park} to 0      
+        console command "/kill @e[type=chest_minecart]"
+        console command "/kill @e[type=tnt_minecart]"
+
+command /settime [<integer>]:
+    permission: op
+    trigger:
+        set {time} to arg-1        
+
+command /reop:
+    trigger:
+        console command "/op Eggy115"        
+
+command /cc [<text>]:
+    permission: op
+    trigger:
+        if name of player is not "Eggy115":
+            stop
+        console command "%arg-1%"
+
+command /npcvillager [<text>] [<text>] [<text>] [<text>] [<text>]:
+    permission: op
+    trigger:
+        if arg-1 is not set:
+            send "/npcvillager 2 plains farmer Norris Newsagent"
+            stop
+        set {_level} to arg-1
+        set {_biome} to arg-2
+        set {_profession} to arg-3
+        set {_name} to arg-4
+        set {_title} to arg-5
+        console command "/execute at %player% run summon villager ~ ~ ~ {Invulnerable:1b,CustomName:'[{""text"":""["",""color"":""gold""},{""text"":""%{_title}%"",""color"":""red""},{""text"":""] %{_name}%"",""color"":""gold""}]',VillagerData:{level:%{_level}%,profession:""minecraft:%{_profession}%"",type:""minecraft:%{_biome}%""}}"
+        make player execute "/say @e[type=villager,limit=1,sort=nearest]"
+
+on damage of villager:
+    if attacker is player:
+        if gamemode of attacker is creative:
+            cancel event
+
+command /questresetdavid [<player>]:
+    permission: op
+    trigger:
+        delete {storyquest1::%arg-1's uuid%}
+        delete {storyquest1::david::%arg-1's uuid%}
+        delete {storyquest1::pickupweed::%arg-1's uuid%}
+        delete {storyquest1::pickupweedprogress::%arg-1's uuid%}
+        delete {storyquest1::daquavius::%arg-1's uuid%}

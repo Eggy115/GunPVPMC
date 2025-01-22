@@ -1,0 +1,5 @@
+on right click with wolf spawn egg:
+    remove 1 wolf spawn egg from player
+    spawn 1 wolf at player
+    set {_r} to spawned wolf
+    set owner of {_r} to player

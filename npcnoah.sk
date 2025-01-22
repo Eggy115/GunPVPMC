@@ -1,0 +1,40 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 79751984-1208-48c7-872a-fe909983d049 -43 100 -501"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Ninja] Noah":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cNinja&6] Noah"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to 1 bamboo named "&aBamboo Staff &6[&cx1&6]"
+        set line 1 of lore of slot 10 of {_store} to "&6Damage: &c3"
+        set line 2 of lore of slot 10 of {_store} to "&6Speed: &c25"
+        set line 4 of lore of slot 10 of {_store} to "&6Cost: &c1000"            
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "&aBamboo Staff &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 1000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to 1 bamboo named "&aBamboo Staff" with nbt "{HideFlags:127,Unbreakable:1b,AttributeModifiers:[{AttributeName:""generic.attack_speed"",Name:""generic.attack_speed"",Amount:25,Operation:0,UUID:[I;1490559785,13648994,-1962202669,-1631646275],Slot:""mainhand""},{AttributeName:""generic.attack_damage"",Name:""generic.attack_damage"",Amount:3,Operation:0,UUID:[I;998794192,-251510545,-1241418722,1467533627],Slot:""mainhand""}]}"
+            set line 1 of lore of {_i} to "&6Damage: &c3"
+            set line 2 of lore of {_i} to "&6Speed: &c25"
+            give player {_i}
+            send "&6[&cNinja&6] Noah: My Sensei told me - 'Yesterday is history, tomorrow is a mystery, but today is a gift - that is why it is called the present'."
+        else:
+            send "&6[&cNinja&6] Noah: It takes much training to use this weapon..."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"          

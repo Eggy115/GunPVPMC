@@ -1,0 +1,48 @@
+command /spawn:
+  trigger:
+    if {deaths::%player's uuid%} < 1:
+      stop
+    if {combat::%player%} is true:
+      send "&7Gun&4PVP&aMC&6: You cannot use &c/spawn&6 in combat!"
+    else:
+      console command "/tp %player% -38 67 -589"
+
+options:
+  timer: 20
+
+on damage:
+  set {_y} to victim's y coordinate
+  if {_y} < 40:
+    stop
+  if attacker is a player:
+    if victim is a player:
+      set {combat::%victim%} to true
+      set {combat::%attacker%} to true
+      set {combatTimer::%attacker%} to {@timer}
+      set {combatTimer::%victim%} to {@timer}
+      set {combatmsg::%victim%} to true
+      set {combatmsg::%attacker%} to true
+
+
+every 1 second:
+  loop all players:
+    if {combatTimer::%loop-player%} is less than 1:
+      set {combat::%loop-player%} to false
+      if {combatmsg::%loop-player%} is true:
+        send "&7Gun&4PVP&aMC&6: You are now out of combat!" to loop-player
+        set {combatmsg::%loop-player%} to false
+    
+on join:
+  set {combatmsg::%player%} to false
+  set {combat::%player%} to false
+
+on death:
+  if victim is a player:
+    set {combat::%victim%} to false
+    set {combatTimer::%victim%} to 0
+    set {combatmsg::%victim%} to false
+
+every 1 second:
+  loop all players:
+    if {combatTimer::%loop-player%} is set:
+      subtract 1 from {combatTimer::%loop-player%}

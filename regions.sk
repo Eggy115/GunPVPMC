@@ -1,0 +1,46 @@
+command /whereami:
+    trigger:
+        set {_x} to player's x coordinate
+        set {_y} to player's y coordinate
+        set {_z} to player's z coordinate
+        set {_truerg} to "Park"
+        if {_z} < -440:
+            set {_truerg} to "Outer City"        
+        if {_z} < -510:
+            set {_truerg} to "City"
+        if {_x} < -65:
+            set {_truerg} to "Courtyard"           
+        if {_x} < -160:
+            set {_truerg} to "Highrises"                    
+        if {_z} < -580:
+            set {_truerg} to "Beach"
+        if {_z} < -610:
+            set {_truerg} to "Ocean"
+        if {_z} < -670:
+            set {_truerg} to "Deep Ocean"  
+        if {_y} > 80:
+            set {_truerg} to "Rooftops"      
+        if {_z} > -410:
+            set {_truerg} to "Docks"    
+        if {_x} > 100:
+            set {_truerg} to "East Coast"                                 
+        if {_y} < 40:
+            if {_z} > -610:
+                set {_truerg} to "Walter's Bunker"
+
+        send "%nl%&6Co-ordinates: &c%{_x}% %{_y}% %{_z}%" to player
+        send "&6Region: &c%{_truerg}%" to player
+        send "&6Regional Gang: &c%{topgangdisplay.%{_truerg}%}%" to player        
+        send "&6Regional Gang Kills: &c%{topkills.%{_truerg}%}%%nl%" to player
+        if {GANG::gang::%player's uuid%} is set:
+            send "&6Your Gang: &c%{GANG::ganglist::%{GANG::gang::%player's uuid%}%}%"
+            send "&6Your Total Gang Kills: &c%{kills.%{GANG::gang::%player's uuid%}%}%"
+            if {_truerg} is "Walter's Bunker":
+                send ""
+                stop
+            send "&6Your Regional Gang Kills: &c%{gangkills.%{_truerg}%::%{GANG::gang::%player's uuid%}%}%%nl%"
+
+every 30 minutes in "GunPVPMC":
+    console command "/fix"
+
+

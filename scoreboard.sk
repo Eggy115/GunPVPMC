@@ -1,0 +1,148 @@
+every 20 ticks:
+    loop all players:
+
+        set {_x} to loop-player's x coordinate
+        set {_y} to loop-player's y coordinate
+        set {_z} to loop-player's z coordinate
+
+        set {networth::%loop-player's uuid%} to {bank::%loop-player's uuid%} + {coins::%loop-player's uuid%}
+        set {stocksvalue::%loop-player's uuid%} to 0
+        set {_} to {STOCKS::villagerprotectioninc::price} * {STOCKS::villagerprotectioninc::%loop-player's uuid%}
+        add {_} to {stocksvalue::%loop-player's uuid%}
+        set {_} to {STOCKS::bigglass::price} * {STOCKS::bigglass::%loop-player's uuid%}
+        add {_} to {stocksvalue::%loop-player's uuid%}
+        set {networth::%loop-player's uuid%} to {networth::%loop-player's uuid%} + {stocksvalue::%loop-player's uuid%}        
+        if {networth::%loop-player's uuid%} > 9999:
+            set {titleaffluent::%loop-player's uuid%} to true
+        if {networth::%loop-player's uuid%} > 29999:
+            set {titlewealthy::%loop-player's uuid%} to true
+        if {networth::%loop-player's uuid%} > 49999:
+            set {titlerich::%loop-player's uuid%} to true
+        if {networth::%loop-player's uuid%} > 99999:
+            set {title100k::%loop-player's uuid%} to true
+        if {networth::%loop-player's uuid%} > 999999:
+            set {titlemillionaire::%loop-player's uuid%} to true
+        if {networth::%loop-player's uuid%} > 1999999:
+            set {titlemultimillionaire::%loop-player's uuid%} to true
+        if {networth::%loop-player's uuid%} > 999999999:
+            set {titlebillionaire::%loop-player's uuid%} to true                                                                        
+
+        set {_truerg} to "&2Park"
+        if {_z} < -440:
+            set {_truerg} to "&7Outer City"        
+        if {_z} < -510:
+            set {_truerg} to "&7City"
+        if {_x} < -65:
+            set {_truerg} to "&aCourtyard"           
+        if {_x} < -160:
+            set {_truerg} to "&5Highrises"                    
+        if {_z} < -580:
+            set {_truerg} to "&eBeach"
+        if {_z} < -610:
+            set {_truerg} to "&9Ocean"
+        if {_z} < -670:
+            set {_truerg} to "&1Deep Ocean"  
+        if {_y} > 80:
+            set {_truerg} to "&8Rooftops"      
+        if {_z} > -410:
+            set {_truerg} to "&8Docks"    
+        if {_x} > 100:
+            set {_truerg} to "&3East Coast"   
+
+        if {_y} < 40:
+            if {_z} > -610:
+                set {_truerg} to "Walter's Bunker"
+                set {topgangdisplay.%{_truerg}%} to "N/A"
+                console command "/effect clear %loop-player% blindness"                
+        if {_y} > 40:
+            console command "/clear %loop-player% minecraft:diamond_horse_armor"
+            console command "/clear %loop-player% minecraft:glass_bottle"
+
+        set {_rank} to "&7Default"
+        if {rank::%loop-player's uuid%} is "DONOR":
+            set {_rank} to "&dDONOR"        
+        if {rank::%loop-player's uuid%} is "VIP":
+            set {_rank} to "&aVIP"
+        if {rank::%loop-player's uuid%} is "MVP":
+            set {_rank} to "&bMVP"
+        if {rank::%loop-player's uuid%} is "EPIC":
+            set {_rank} to "&5EPIC"
+        if {rank::%loop-player's uuid%} is "LEGEND":
+            set {_rank} to "&eLEGEND"                        
+        if {rank::%loop-player's uuid%} is "Helper":
+            set {_rank} to "&9Helper"
+        if {rank::%loop-player's uuid%} is "Moderator":
+            set {_rank} to "&2Moderator"
+        if {rank::%loop-player's uuid%} is "Admin":
+            set {_rank} to "&4Admin"            
+
+        if {GANG::gang::%loop-player's uuid%} is set:
+
+            set title of loop-player's scoreboard to "&7Gun&4PVP&aMC&6 BETA"
+            set line 15 of loop-player's scoreboard to "&6Title: %{title::%loop-player's uuid%}%"
+            set line 14 of loop-player's scoreboard to "&6Rank: %{_rank}%"    
+            set line 13 of loop-player's scoreboard to "&2 "        
+
+            set line 12 of loop-player's scoreboard to "&6Gang: &c%{GANG::ganglist::%{GANG::gang::%loop-player's uuid%}%}%"
+            set line 11 of loop-player's scoreboard to "&6Gang Reputation: &c%{GANGREP::%{GANG::gang::%loop-player's uuid%}%}%✫"
+            set line 10 of loop-player's scoreboard to "&6Gang Experience: &c%{GANGLEVEL.exp::%{GANG::gang::%loop-player's uuid%}%}%&6/&c%{GANGLEVEL.needed::%{GANG::gang::%loop-player's uuid%}%}% ⚡"                
+            if {gangkills::%{GANG::gang::%loop-player's uuid%}%} is set:
+                set line 9 of loop-player's scoreboard to "&6Gang Kills: &c%{gangkills::%{GANG::gang::%loop-player's uuid%}%}% ⚔"    
+            else:
+                set line 9 of loop-player's scoreboard to "&6Gang Kills: &c0 ⚔"    
+            
+            if {topgang.%{_truerg}%} = {GANG::gang::%loop-player's uuid%}:
+                console command "/effect give %loop-player% regeneration 3 0 true"
+
+            if {healingaura1::%loop-player's uuid%} is true:
+                if loop-player's health < 2:
+                    console command "/effect give %loop-player% regeneration 3 0 true"
+                    if {healingaura2::%loop-player's uuid%} is true:
+                        console command "/effect give %loop-player% regeneration 3 1 true"
+                        if {healingaura3::%loop-player's uuid%} is true:
+                            console command "/effect give %loop-player% regeneration 3 2 true"
+
+            if {adrenalinerush1::%loop-player's uuid%} is true:
+                if loop-player's health < 2:
+                    console command "/effect give %loop-player% speed 3 1 true"            
+
+            if {laststand1::%loop-player's uuid%} is true:
+                if loop-player's health < 2:
+                    console command "/effect give %loop-player% strength 3 0 true"                            
+
+            if loop-player's health < 5:            
+                if {toughasnails1::%loop-player's uuid%} is true:
+                    console command "/effect give %loop-player% resistance 3 0 true"
+                    if {toughasnails2::%loop-player's uuid%} is true:
+                        console command "/effect give %loop-player% resistance 3 1 true"
+                        if {toughasnails3::%loop-player's uuid%} is true:
+                            console command "/effect give %loop-player% resistance 3 2 true"
+
+            set line 8 of loop-player's scoreboard to "&6Region: &c%{_truerg}%"    
+            set line 7 of loop-player's scoreboard to "&6Regional Gang: &c%{topgangdisplay.%uncolored {_truerg}%}%"    
+            set line 6 of loop-player's scoreboard to "&2 "    
+            set line 5 of loop-player's scoreboard to "&6Reputation: &c%{rep::%loop-player's uuid%}%✫"
+            set line 4 of loop-player's scoreboard to "&6Experience: &c%{LEVEL.exp::%loop-player's uuid%}%&6/&c%{LEVEL.needed::%loop-player's uuid%}% ⚡"        
+            set line 3 of loop-player's scoreboard to "&6Coins: &c%{coins::%loop-player's uuid%}%"    
+            set line 2 of loop-player's scoreboard to "&1 "        
+            set line 1 of loop-player's scoreboard to "&6Time Until Event: &c%{time}%"
+
+        else:
+            set title of loop-player's scoreboard to "&7Gun&4PVP&aMC&6 BETA"
+            set line 15 of loop-player's scoreboard to "&6Title: %{title::%loop-player's uuid%}%"
+            set line 14 of loop-player's scoreboard to "&6Rank: %{_rank}%"    
+            set line 13 of loop-player's scoreboard to "&2 "    
+            set line 12 of loop-player's scoreboard to "&6Region: &c%{_truerg}%"    
+            set line 11 of loop-player's scoreboard to "&6Regional Gang: &c%{topgangdisplay.%uncolored {_truerg}%}%"                
+            set line 10 of loop-player's scoreboard to "&2 "    
+            set line 9 of loop-player's scoreboard to "&6Reputation: &c%{rep::%loop-player's uuid%}%✫"
+            set line 8 of loop-player's scoreboard to "&6Experience: &c%{LEVEL.exp::%loop-player's uuid%}%&6/&c%{LEVEL.needed::%loop-player's uuid%}% ⚡"        
+            set line 7 of loop-player's scoreboard to "&6Coins: &c%{coins::%loop-player's uuid%}%"    
+            set line 6 of loop-player's scoreboard to "&1 "        
+            set line 5 of loop-player's scoreboard to "&6Kills: &c%{kills::%loop-player's uuid%}% 💀"
+            set line 4 of loop-player's scoreboard to "&6Deaths: &c%{deaths::%loop-player's uuid%}% ⚔"
+            set line 3 of loop-player's scoreboard to "&6KDR: &c%{kdr::%loop-player's uuid%}% 🏹"
+            set line 2 of loop-player's scoreboard to "&4 "        
+            set line 1 of loop-player's scoreboard to "&6Time Until Event: &c%{time}%"            
+on join:
+    clear player's scoreboard

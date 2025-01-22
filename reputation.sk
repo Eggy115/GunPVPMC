@@ -1,0 +1,108 @@
+every 1 minute:
+	loop all players:
+		#exp
+		console command "/xp set %loop-player% %{LEVEL.level::%loop-player's uuid%}% levels"
+every 5 ticks:
+	loop all players:
+		#Sets level if not set
+		if {LEVEL.level::%loop-player's uuid%} is not set:
+			set {LEVEL.level::%loop-player's uuid%} to 1
+			set {LEVEL.exp::%loop-player's uuid%} to 0
+		#Sets the exp needed
+		set {LEVEL.needed::%loop-player's uuid%} to {LEVEL.level::%loop-player's uuid%}*5
+			
+		#Checks if you have enough exp	
+		if {LEVEL.exp::%loop-player's uuid%} >= {LEVEL.needed::%loop-player's uuid%}:
+
+			set {LEVEL.exp::%loop-player's uuid%} to {LEVEL.exp::%loop-player's uuid%} - {LEVEL.needed::%loop-player's uuid%}
+			add 1 to {LEVEL.level::%loop-player's uuid%}
+			set {LEVEL.final::%loop-player's uuid%} to "&6[&c%{LEVEL.level::%loop-player's uuid%}%✫&6]"
+
+			send title "&6Reputation Increased!" with subtitle "&6[&c%{LEVEL.level::%loop-player's uuid%}%✫&6]" to loop-player for 1 seconds
+			console command "/execute at %loop-player% run playsound minecraft:block.note_block.pling master %loop-player% ~ ~ ~ 100000 1"
+			wait 0.2 seconds
+			console command "/execute at %loop-player% run playsound minecraft:block.note_block.pling master %loop-player% ~ ~ ~ 100000 1.5"
+			wait 0.2 seconds
+			console command "/execute at %loop-player% run playsound minecraft:block.note_block.pling master %loop-player% ~ ~ ~ 100000 2"
+			
+		#Makes the final
+		set {rep::%loop-player's uuid%} to {LEVEL.level::%loop-player's uuid%}    
+		console command "/xp set %loop-player% %{LEVEL.level::%loop-player's uuid%}% levels"
+		#######################
+		### GANG REPUTATION ###
+		#######################
+
+		if {GANG::gang::%loop-player's uuid%} is set:
+			if {GANGLEVEL.level::%{GANG::gang::%loop-player's uuid%}%} is not set:
+				set {GANGLEVEL.level::%{GANG::gang::%loop-player's uuid%}%} to 1
+				set {GANGLEVEL.exp::%{GANG::gang::%loop-player's uuid%}%} to 0
+			#Sets the exp needed
+			set {GANGLEVEL.needed::%{GANG::gang::%loop-player's uuid%}%} to {GANGLEVEL.level::%{GANG::gang::%loop-player's uuid%}%}*25
+				
+			#Checks if you have enough exp	
+			if {GANGLEVEL.exp::%{GANG::gang::%loop-player's uuid%}%} >= {GANGLEVEL.needed::%{GANG::gang::%loop-player's uuid%}%}:
+
+				set {GANGLEVEL.exp::%{GANG::gang::%loop-player's uuid%}%} to {GANGLEVEL.exp::%{GANG::gang::%loop-player's uuid%}%} - {GANGLEVEL.needed::%{GANG::gang::%loop-player's uuid%}%}
+				add 1 to {GANGLEVEL.level::%{GANG::gang::%loop-player's uuid%}%}
+				set {GANGLEVEL.final::%{GANG::gang::%loop-player's uuid%}%} to "&6[&c%{GANGLEVEL.level::%{GANG::gang::%loop-player's uuid%}%}%✫&6]"
+				
+				#1
+				send title "&6Gang Reputation Increased!" with subtitle "&6[&c%{GANGLEVEL.level::%{GANG::gang::%loop-player's uuid%}%}%✫&6]" to {GANG::gangfirst::%{GANG::gang::%loop-player's uuid%}%} parsed as player for 1 seconds
+				console command "/execute at %{GANG::gangfirst::%{GANG::gang::%loop-player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfirst::%{GANG::gang::%loop-player's uuid%}%} parsed as player% ~ ~ ~ 100000 1"
+				wait 0.2 seconds
+				console command "/execute at %{GANG::gangfirst::%{GANG::gang::%loop-player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfirst::%{GANG::gang::%loop-player's uuid%}%} parsed as player% ~ ~ ~ 100000 1.5"
+				wait 0.2 seconds
+				console command "/execute at %{GANG::gangfirst::%{GANG::gang::%loop-player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfirst::%{GANG::gang::%loop-player's uuid%}%} parsed as player% ~ ~ ~ 100000 2"
+					
+				#2
+				send title "&6Gang Reputation Increased!" with subtitle "&6[&c%{GANGLEVEL.level::%{GANG::gang::%loop-player's uuid%}%}%✫&6]" to {GANG::gangsecond::%{GANG::gang::%loop-player's uuid%}%} parsed as player for 1 seconds
+				console command "/execute at %{GANG::gangsecond::%{GANG::gang::%loop-player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangsecond::%{GANG::gang::%loop-player's uuid%}%} parsed as player% ~ ~ ~ 100000 1"
+				wait 0.2 seconds
+				console command "/execute at %{GANG::gangsecond::%{GANG::gang::%loop-player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangsecond::%{GANG::gang::%loop-player's uuid%}%} parsed as player% ~ ~ ~ 100000 1.5"
+				wait 0.2 seconds
+				console command "/execute at %{GANG::gangsecond::%{GANG::gang::%loop-player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangsecond::%{GANG::gang::%loop-player's uuid%}%} parsed as player% ~ ~ ~ 100000 2"
+
+				#3
+				send title "&6Gang Reputation Increased!" with subtitle "&6[&c%{GANGLEVEL.level::%{GANG::gang::%loop-player's uuid%}%}%✫&6]" to {GANG::gangthird::%{GANG::gang::%loop-player's uuid%}%} parsed as player for 1 seconds
+				console command "/execute at %{GANG::gangthird::%{GANG::gang::%loop-player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangthird::%{GANG::gang::%loop-player's uuid%}%} parsed as player% ~ ~ ~ 100000 1"
+				wait 0.2 seconds
+				console command "/execute at %{GANG::gangthird::%{GANG::gang::%loop-player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangthird::%{GANG::gang::%loop-player's uuid%}%} parsed as player% ~ ~ ~ 100000 1.5"
+				wait 0.2 seconds
+				console command "/execute at %{GANG::gangthird::%{GANG::gang::%loop-player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangthird::%{GANG::gang::%loop-player's uuid%}%} parsed as player% ~ ~ ~ 100000 2"
+
+				#4
+				send title "&6Gang Reputation Increased!" with subtitle "&6[&c%{GANGLEVEL.level::%{GANG::gang::%loop-player's uuid%}%}%✫&6]" to {GANG::gangfourth::%{GANG::gang::%loop-player's uuid%}%} parsed as player for 1 seconds
+				console command "/execute at %{GANG::gangfourth::%{GANG::gang::%loop-player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfourth::%{GANG::gang::%loop-player's uuid%}%} parsed as player% ~ ~ ~ 100000 1"
+				wait 0.2 seconds
+				console command "/execute at %{GANG::gangfourth::%{GANG::gang::%loop-player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfourth::%{GANG::gang::%loop-player's uuid%}%} parsed as player% ~ ~ ~ 100000 1.5"
+				wait 0.2 seconds
+				console command "/execute at %{GANG::gangfourth::%{GANG::gang::%loop-player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfourth::%{GANG::gang::%loop-player's uuid%}%} parsed as player% ~ ~ ~ 100000 2"
+
+				#5
+				send title "&6Gang Reputation Increased!" with subtitle "&6[&c%{GANGLEVEL.level::%{GANG::gang::%loop-player's uuid%}%}%✫&6]" to {GANG::gangfifth::%{GANG::gang::%loop-player's uuid%}%} parsed as player for 1 seconds
+				console command "/execute at %{GANG::gangfifth::%{GANG::gang::%loop-player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfifth::%{GANG::gang::%loop-player's uuid%}%} parsed as player% ~ ~ ~ 100000 1"
+				wait 0.2 seconds
+				console command "/execute at %{GANG::gangfifth::%{GANG::gang::%loop-player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfifth::%{GANG::gang::%loop-player's uuid%}%} parsed as player% ~ ~ ~ 100000 1.5"
+				wait 0.2 seconds
+				console command "/execute at %{GANG::gangfifth::%{GANG::gang::%loop-player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfifth::%{GANG::gang::%loop-player's uuid%}%} parsed as player% ~ ~ ~ 100000 2"
+																									
+
+			#Makes the final
+			set {GANGREP::%{GANG::gang::%loop-player's uuid%}%} to {GANGLEVEL.level::%{GANG::gang::%loop-player's uuid%}%} 		  
+
+every 1 minute:
+	loop all players:
+		add 1 to {LEVEL.exp::%loop-player's uuid%}
+		add 1 to {coins::%loop-player's uuid%}
+		add 1 to {GANGLEVEL.exp::%{GANG::gang::%loop-player's uuid%}%}
+		set {_y} to loop-player's y coordinate
+		if {_y} < 40:	
+			add 1 to {LEVEL.exp::%loop-player's uuid%}
+			add 1 to {coins::%loop-player's uuid%}	
+			add 1 to {GANGLEVEL.exp::%{GANG::gang::%loop-player's uuid%}%}		
+		if {rank::%loop-player's uuid%} is "VIP":
+			add 1 to {LEVEL.exp::%loop-player's uuid%}
+			add 1 to {GANGLEVEL.exp::%{GANG::gang::%loop-player's uuid%}%}
+		if {rank::%loop-player's uuid%} is "MVP":
+			add 2 to {LEVEL.exp::%loop-player's uuid%}	
+			add 2 to {GANGLEVEL.exp::%{GANG::gang::%loop-player's uuid%}%}		

@@ -1,0 +1,89 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 8d7a8d51-516d-49a9-a86d-ebac977a53b6 -125 69 -533"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Murderer] Marvin":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cMurderer&6] Marvin"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to stone axe named "<##7f7f7f>Rusty Iron Axe &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 10 of {_store} to "&6Damage: &c6"
+        set line 2 of lore of slot 10 of {_store} to "&6Speed: &c0.8"
+        set line 4 of lore of slot 10 of {_store} to "&6Cost: &c500"    
+
+        set slot 11 of {_store} to iron axe named "<##c1c1c1>Steel Axe &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 11 of {_store} to "&6Damage: &c7"
+        set line 2 of lore of slot 11 of {_store} to "&6Speed: &c0.9"
+        set line 4 of lore of slot 11 of {_store} to "&6Cost: &c1000"  
+
+        set slot 12 of {_store} to netherite axe named "<##4b2c34>Titanium Axe &6[&cx1&6]" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 12 of {_store} to "&6Damage: &c8"
+        set line 2 of lore of slot 12 of {_store} to "&6Speed: &c1"
+        set line 4 of lore of slot 12 of {_store} to "&6Cost: &c1500"                           
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##7f7f7f>Rusty Iron Axe &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 499:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 500
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to stone axe named "<##7f7f7f>Rusty Iron Axe" with nbt "{HideFlags:127,Unbreakable:1b,AttributeModifiers:[{AttributeName:""generic.attack_damage"",Name:""generic.attack_damage"",Amount:6,Operation:0,UUID:[I;998794192,-251510545,-1241418722,1467533627],Slot:""mainhand""}]}"     
+            set line 1 of lore of {_i} to "&6Damage: &c6"
+            set line 2 of lore of {_i} to "&6Speed: &c0.8"
+            give player {_i}            
+            send "&6[&cMurderer&6] Marvin: The blade has a little bit of blood on the edge... it's sharp though!"
+        else:
+            send "&6[&cMurderer&6] Marvin: *laughs maniacally* - *stops* - No."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                      
+
+on inventory click:
+    if name of event-item is "<##c1c1c1>Steel Axe &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 999:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 1000
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to iron axe named "<##c1c1c1>Steel Axe" with nbt "{HideFlags:127,Unbreakable:1b,AttributeModifiers:[{AttributeName:""generic.attack_damage"",Name:""generic.attack_damage"",Amount:7,Operation:0,UUID:[I;998794192,-251510545,-1241418722,1467533627],Slot:""mainhand""}]}"     
+            set line 1 of lore of {_i} to "&6Damage: &c7"
+            set line 2 of lore of {_i} to "&6Speed: &c0.9"
+            give player {_i}            
+            send "&6[&cMurderer&6] Marvin: The blade has a little bit of blood on the edge... it's sharp though!"
+        else:
+            send "&6[&cMurderer&6] Marvin: *laughs maniacally* - *stops* - No."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                      
+
+
+on inventory click:
+    if name of event-item is "<##4b2c34>Titanium Axe &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 1499:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 1500
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to netherite axe named "<##4b2c34>Titanium Axe" with nbt "{HideFlags:127,Unbreakable:1b,AttributeModifiers:[{AttributeName:""generic.attack_damage"",Name:""generic.attack_damage"",Amount:8,Operation:0,UUID:[I;998794192,-251510545,-1241418722,1467533627],Slot:""mainhand""}]}"     
+            set line 1 of lore of {_i} to "&6Damage: &c8"
+            set line 2 of lore of {_i} to "&6Speed: &c1"
+            give player {_i}            
+            send "&6[&cMurderer&6] Marvin: The blade has a little bit of blood on the edge... it's sharp though!"
+        else:
+            send "&6[&cMurderer&6] Marvin: *laughs maniacally* - *stops* - No."
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                      

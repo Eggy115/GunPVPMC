@@ -1,0 +1,176 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 0bf57129-207e-4ca1-9954-0b6236192ab7 -54 98 -548"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Sniper] Oliver":
+        set {_store} to a new chest inventory with 4 row with name "&6[&cSniper&6] Oliver"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to leather horse armor named "<##6E360C>M40 &6[&cx1&6]" with nbt "{display:{color:7222796},HideFlags:127}"
+        set line 1 of lore of slot 10 of {_store} to "&6Cartridge: &c5&6/&c5"
+        set line 2 of lore of slot 10 of {_store} to "&6Reload Time: &c3000ms"
+        set line 3 of lore of slot 10 of {_store} to "&6Damage: &c20"
+        set line 4 of lore of slot 10 of {_store} to "&6Ammunition: &c7.62x51mm"
+        set line 6 of lore of slot 10 of {_store} to "&6Cost: &c3500"
+
+        set slot 11 of {_store} to 5 gold nuggets named "<##FAD905>7.62x51mm &6[&cx5&6]"
+        set line 2 of lore of slot 11 of {_store} to "&6Cost: &c5"
+
+        set slot 12 of {_store} to leather helmet named "<##444444>Sniper Cap &6[&cx1&6]" with nbt "{display:{color:4473924},HideFlags:127,Unbreakable:1b}"
+        set line 1 of lore of slot 12 of {_store} to "&6Armour: &c1"
+        set line 3 of lore of slot 12 of {_store} to "&6Cost: &c500"          
+
+        set slot 19 of {_store} to 1 tripwire hook named "<##AAAAAA>Fixed Scope &6[&cx1&6]"
+        set line 1 of lore of slot 19 of {_store} to "&6Zoom: &c2"        
+        set line 3 of lore of slot 19 of {_store} to "&6Cost: &c100"   
+
+        set slot 20 of {_store} to 1 tripwire hook named "<##999999>Tactical Scope &6[&cx1&6]"
+        set line 1 of lore of slot 20 of {_store} to "&6Zoom: &c4"        
+        set line 3 of lore of slot 20 of {_store} to "&6Cost: &c200"  
+
+        set slot 21 of {_store} to 1 tripwire hook named "<##777777>Sniper Scope &6[&cx1&6]"
+        set line 1 of lore of slot 21 of {_store} to "&6Zoom: &c6"        
+        set line 2 of lore of slot 21 of {_store} to "&6Protection: &c1"        
+        set line 4 of lore of slot 21 of {_store} to "&6Cost: &c300"   
+
+        set slot 22 of {_store} to 1 tripwire hook named "<##555555>Night Vision Scope &6[&cx1&6]"
+        set line 1 of lore of slot 22 of {_store} to "&6Zoom: &c8"        
+        set line 2 of lore of slot 22 of {_store} to "&6Protection: &c2"        
+        set line 4 of lore of slot 22 of {_store} to "&6Cost: &c400"                              
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##444444>Sniper Cap &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 499:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 500
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cSniper&6] Oliver: Fair trade"
+            set {_i} to leather helmet named "<##444444>Sniper Cap" with nbt "{display:{color:4473924},HideFlags:127,Unbreakable:1b}"
+            set line 1 of lore of {_i} to "&6Armour: &c1"
+            give player {_i}
+        else:
+            send "&6[&cSniper&6] Oliver: Bro I need money, c'mon man"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+
+
+on inventory click:
+    if name of event-item is "<##6E360C>M40 &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 3499:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 3500
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player leather horse armor named "<##6E360C>M40" with nbt "{display:{color:7222796},HideFlags:127,AttributeModifiers:[{AttributeName:""generic.movement_speed"",Name:""generic.movement_speed"",Amount:-0.03,Operation:0,UUID:[I;169330485,-1820177759,-1813702515,-1975406584],Slot:""mainhand""}]}"
+            send "&6[&cSniper&6] Oliver: Fair trade"
+        else:
+            send "&6[&cSniper&6] Oliver: Bro I need money, c'mon man"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+
+
+on inventory click:
+    if name of event-item is "<##FAD905>7.62x51mm &6[&cx5&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 4:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 5
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 5 gold nugget named "<##FAD905>7.62x51mm"
+            send "&6[&cSniper&6] Oliver: Fair trade"
+        else:
+            send "&6[&cSniper&6] Oliver: Bro I need money, c'mon man"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+
+
+on inventory click:
+    if name of event-item is "<##AAAAAA>Fixed Scope &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 99:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to tripwire hook named "<##AAAAAA>Fixed Scope" with nbt "{HideFlags:127,AttributeModifiers:[{AttributeName:""generic.movement_speed"",Name:""generic.movement_speed"",Amount:-0.02,Operation:0,UUID:[I;1829473882,2131837589,-1458044107,-1778411984]}]}"
+            set line 1 of lore of {_i} to "&6Zoom: &c2"
+            give player {_i}
+            send "&6[&cSniper&6] Oliver: Fair trade"
+        else:
+            send "&6[&cSniper&6] Oliver: Bro I need money, c'mon man"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                
+
+on inventory click:
+    if name of event-item is "<##999999>Tactical Scope &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 199:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 200
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to tripwire hook named "<##999999>Tactical Scope" with nbt "{HideFlags:127,AttributeModifiers:[{AttributeName:""generic.movement_speed"",Name:""generic.movement_speed"",Amount:-0.04,Operation:0,UUID:[I;1829473882,2131837589,-1458044107,-1778411984]}]}"
+            set line 1 of lore of {_i} to "&6Zoom: &c4"
+            give player {_i}
+            send "&6[&cSniper&6] Oliver: Fair trade"
+        else:
+            send "&6[&cSniper&6] Oliver: Bro I need money, c'mon man"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                            
+
+on inventory click:
+    if name of event-item is "<##777777>Sniper Scope &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 299:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 300
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to tripwire hook named "<##777777>Sniper Scope" with nbt "{HideFlags:127,AttributeModifiers:[{AttributeName:""generic.movement_speed"",Name:""generic.movement_speed"",Amount:-0.06,Operation:0,UUID:[I;-829145029,-812626920,-1228343930,598059952]},{AttributeName:""generic.armor"",Name:""generic.armor"",Amount:1,Operation:0,UUID:[I;-405498168,-365736837,-1571899975,1288535230]}]}"
+            set line 1 of lore of {_i} to "&6Zoom: &c6"
+            set line 2 of lore of {_i} to "&6Protection: &c1"
+            give player {_i}
+            send "&6[&cSniper&6] Oliver: Fair trade"
+        else:
+            send "&6[&cSniper&6] Oliver: Bro I need money, c'mon man"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                                        
+
+on inventory click:
+    if name of event-item is "<##555555>Night Vision Scope &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 399:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 400
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_i} to tripwire hook named "<##555555>Night Vision Scope" with nbt "{HideFlags:127,AttributeModifiers:[{AttributeName:""generic.movement_speed"",Name:""generic.movement_speed"",Amount:-0.08,Operation:0,UUID:[I;-829145029,-812626920,-1228343930,598059952]},{AttributeName:""generic.armor"",Name:""generic.armor"",Amount:2,Operation:0,UUID:[I;-405498168,-365736837,-1571899975,1288535230]}]}"
+            set line 1 of lore of {_i} to "&6Zoom: &c8"
+            set line 2 of lore of {_i} to "&6Protection: &c2"
+            give player {_i}
+            send "&6[&cSniper&6] Oliver: Fair trade"
+        else:
+            send "&6[&cSniper&6] Oliver: Bro I need money, c'mon man"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"                                                    

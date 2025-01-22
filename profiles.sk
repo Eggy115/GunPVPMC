@@ -1,0 +1,89 @@
+command /list:
+    trigger:
+        set {trade::%player's uuid%} to true
+        set {_a} to online player count
+        set {_rows} to 1
+        if {_a} > 9:
+            set {_rows} to 2
+        if {_a} > 18:
+            set {_rows} to 3
+        if {_a} > 27:
+            set {_rows} to 4
+        if {_a} > 36:
+            set {_rows} to 5
+        if {_a} > 45:
+            set {_rows} to 6                                                           
+
+        set {_store} to a new chest inventory with {_rows} row with name "&7Gun&4PVP&aMC&6 Server List"
+        set {_e} to 0
+        set {_rows} to {_rows} * 10
+        loop {_rows} times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "    
+            add 1 to {_e}
+        
+        set {_b} to 0
+        loop all players:
+            if {vanish::%loop-player's uuid%} is not true:
+                set slot {_b} of {_store} to loop-player's skull named "%{title::%loop-player's uuid%}% %loop-player%"
+                set line 1 of lore of slot {_b} of {_store} to "&6Deaths: &c%{deaths::%loop-player's uuid%}% 💀"
+                set line 2 of lore of slot {_b} of {_store} to "&6Kills: &c%{kills::%loop-player's uuid%}% ⚔"
+                set line 3 of lore of slot {_b} of {_store} to "&6K/DR: &c%{kdr::%loop-player's uuid%}% 🏹"
+                set line 4 of lore of slot {_b} of {_store} to "&6Reputation: &c%{LEVEL.level::%loop-player's uuid%}%✫"
+                set line 5 of lore of slot {_b} of {_store} to "&6Coins: &c%{coins::%loop-player's uuid%}%"
+                set line 6 of lore of slot {_b} of {_store} to "&6Bank: &c%{bank::%loop-player's uuid%}%"
+                set {_b} to {_b} + 1
+        
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+command /profile [<offlineplayer>]:
+    aliases: /profiles
+    trigger:
+        set {trade::%player's uuid%} to true
+
+        set {_arg} to player
+        if arg-1 is set:
+            set {_arg} to arg-1                                                      
+
+        set {_store} to a new chest inventory with 3 row with name "%{title::%{_arg}'s uuid%}% %{_arg}%"
+        set {_e} to 0
+        loop 27 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "    
+            add 1 to {_e}
+
+        set slot 13 of {_store} to {_arg}'s skull named "%{title::%{_arg}'s uuid%}% %{_arg}%"
+        set line 1 of lore of slot 13 of {_store} to "&6Deaths: &c%{deaths::%{_arg}'s uuid%}% 💀"
+        set line 2 of lore of slot 13 of {_store} to "&6Kills: &c%{kills::%{_arg}'s uuid%}% ⚔"
+        set line 3 of lore of slot 13 of {_store} to "&6K/DR: &c%{kdr::%{_arg}'s uuid%}% 🏹"
+        set line 4 of lore of slot 13 of {_store} to "&6Reputation: &c%{LEVEL.level::%{_arg}'s uuid%}%✫"
+        set line 5 of lore of slot 13 of {_store} to "&6Coins: &c%{coins::%{_arg}'s uuid%}%"
+        set line 6 of lore of slot 13 of {_store} to "&6Bank: &c%{bank::%{_arg}'s uuid%}%"
+
+        set slot 18 of {_store} to enchanting table named "&6Return to Skilltree"
+
+        set slot 26 of {_store} to paper named "&6Return to List"
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true      
+
+on inventory click:
+    if event-item is player skull:
+        if {trade::%player's uuid%} is true:
+            if name of event-inventory contains "Credits":
+                stop
+            if name of event-item contains "&6Track":
+                stop           
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {_words::*} to name of event-item split by "] "
+            make player execute "/profile %{_words::2}%"
+
+on inventory click:
+    if event-item is paper:
+        if name of event-item is "&6Return to List":
+            make player execute "/list"
+
+            
+on inventory click:
+    if event-item is enchanting table:
+        if name of event-item is "&6Return to Skilltree":
+            make player execute "/skilltree"

@@ -1,0 +1,232 @@
+command /villagers:
+    permission: op
+    trigger:
+        set {_id} to random integer between 10000 and 99999
+        loop 12 times:
+            set {_name} to random element out of {name::*}
+            console command "/summon villager ~ ~ ~ {Tags:[""npcvillager"",""npcvillager%{_id}%""],CustomName:'[{""text"":""["",""color"":""gold""},{""text"":""Citizen"",""color"":""red""},{""text"":""] %{_name}%"",""color"":""gold""}]'}"            
+        console command "/spreadplayers -38 -547 10 50 false @e[tag=npcvillager%{_id}%]"
+
+on right click on villager:
+    if villager has scoreboard tag "npcvillager":
+        if player is holding netherite hoe:
+            stop
+        if {NPCVILLAGER::%event-entity's uuid%::%player's uuid%} is "ATTACKING":
+            set {_} to random integer between 1 and 9
+            if {_} = 1:
+                set {_message} to "What are you doing?"
+            if {_} = 2:
+                set {_message} to "Get off me!"
+            if {_} = 3:
+                set {_message} to "Stop fucking shooting!"
+            if {_} = 4:
+                set {_message} to "What the fuck are you doing?"
+            if {_} = 5:
+                set {_message} to "I'm calling the cops!"
+            if {_} = 6:
+                set {_message} to "Are you out of your mind?"
+            if {_} = 7:
+                set {_message} to "What is wrong with you?!"
+            if {_} = 8:
+                set {_message} to "Hey, knock it off!"
+            if {_} = 9:
+                set {_message} to "That's it, I'm done with you!"
+            set {_words::*} to event-entity's name split by " |"
+            send "%{_words::1}%: %{_message}%" to player                  
+            stop
+
+        if player's gamemode is spectator:
+            stop
+        set {_store} to a new chest inventory with 3 row with name "%name of event-entity%"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to oak sign named "<##91754D>Chat"
+
+        set slot 12 of {_store} to feather named "<##AAAAAA>Pickpocket"
+
+        set slot 14 of {_store} to pink bed named "&dFlirt &6[WIP]"
+
+        set slot 16 of {_store} to iron sword named "<##777777>Threaten &6[WIP]" with nbt "{HideFlags:127}"
+        set {entitydiscussion::%player's uuid%} to "%name of event-entity%"
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on damage of villager:
+    if attacker is player:           
+        set {NPCVILLAGER::%victim's uuid%::%attacker's uuid%} to "ATTACKING"
+        wait 60 seconds
+        delete {NPCVILLAGER::%victim's uuid%::%attacker's uuid%}
+
+on inventory click:
+    if name of event-item is "<##AAAAAA>Pickpocket":          
+        set {_r} to random integer between 1 and 10
+        if {_r} is 1:
+            set {_r} to random integer between 1 and 5
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + {_r}
+            send action bar "&c+%{_r}%&6 Coins" to player   
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            close player's inventory        
+        else:
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send action bar "&cFailed to pickpocket!"
+            close player's inventory 
+            set {_loc} to location of player 
+            chance of 1%:
+                set {_x} to player's x coordinate
+                set {_y} to player's y coordinate
+                set {_z} to player's z coordinate            
+                wait 1 second
+                if {_r} is 1:   
+                    spawn iron golem at {_loc} 
+                send title "&cWARNING" with subtitle "&cPOLICE HAVE SPAWNED" to player for 1 seconds                      
+            stop              
+
+
+on inventory click:
+    if name of event-item is "<##91754D>Chat":    
+        close player's inventory    
+        if {entitydiscussion::%player's uuid%} contains "Suspicious":
+            set {_} to random integer between 1 and 30
+            if {_} = 1:
+                set {_message} to "Hey, you didn't see me here, right?"
+            if {_} = 2:
+                set {_message} to "What are you looking at? Keep moving."
+            if {_} = 3:
+                set {_message} to "You got something for me, or you just wasting my time?"
+            if {_} = 4:
+                set {_message} to "Yeah, I know some people. You don't want to get on their bad side."
+            if {_} = 5:
+                set {_message} to "You wanna make a deal? I got some... 'special items'."
+            if {_} = 6:
+                set {_message} to "You ever been to The Red Light club? I can hook you up with something good."
+            if {_} = 7:
+                set {_message} to "Don't get too close. I don't want any problems... you feel me?"
+            if {_} = 8:
+                set {_message} to "I know a few places around here, *underground*, if you're looking for something... extra."
+            if {_} = 9:
+                set {_message} to "I could use a partner for something *discreet*. Interested?"
+            if {_} = 10:
+                set {_message} to "Watch your back, there's *dangerous* people around here."
+            if {_} = 11:
+                set {_message} to "You ever heard of the *black market* around here? I could show you where it is."
+            if {_} = 12:
+                set {_message} to "Ain't no need to act all innocent. You know what goes on around here."
+            if {_} = 13:
+                set {_message} to "I've got some pills, if you're looking to relax... or something more intense."
+            if {_} = 14:
+                set {_message} to "Shh, don't let anyone hear you. I've got a stash you wouldn't believe."
+            if {_} = 15:
+                set {_message} to "You didn't see me come out of that alley, got it?"
+            if {_} = 16:
+                set {_message} to "Hey, you look like someone who could appreciate a *good deal*. What's your poison?"
+            if {_} = 17:
+                set {_message} to "Yeah, I run with a crew. We got a lot of connections. Don't cross us."
+            if {_} = 18:
+                set {_message} to "I don't trust you, but I'll sell you something if you keep quiet about it."
+            if {_} = 19:
+                set {_message} to "You see those guys over there? They work for me. Don't ask too many questions."
+            if {_} = 20:
+                set {_message} to "I wouldn't go in there, but if you're into that kind of thing... I can point you in the right direction."
+            if {_} = 21:
+                set {_message} to "You ever feel like you're being followed? I know the feeling."
+            if {_} = 22:
+                set {_message} to "I don't take kindly to people asking too many questions. Keep it moving, pal."
+            if {_} = 23:
+                set {_message} to "I've got some *exclusive* stuff. You'd be *foolish* not to check it out."
+            if {_} = 24:
+                set {_message} to "You didn't hear this from me, but there's a big *deal* going down soon. Stay close if you wanna be part of it."
+            if {_} = 25:
+                set {_message} to "You need anything? I've got connections. Might have to pay up, though."
+            if {_} = 26:
+                set {_message} to "You know that club on Eastside? You can find just about anything there."
+            if {_} = 27:
+                set {_message} to "I know what's going on around here... just don't get in my way."
+            if {_} = 28:
+                set {_message} to "Watch your step. There's a lot of *interesting* people in this city."
+            if {_} = 29:
+                set {_message} to "If you've got the cash, I can get you *anything* you want... but it won't be cheap."
+            if {_} = 30:
+                set {_message} to "I'm just trying to lay low... you didn't see anything, right?"
+                
+        else:
+            set {_} to random integer between 1 and 30
+            if {_} = 1:
+                set {_message} to "Hello."
+            if {_} = 2:
+                set {_message} to "Good morning."
+            if {_} = 3:
+                set {_message} to "Errrr..."
+            if {_} = 4:
+                set {_message} to "How's it going?"
+            if {_} = 5:
+                set {_message} to "Nice to meet you!"
+            if {_} = 6:
+                set {_message} to "What's up?"
+            if {_} = 7:
+                set {_message} to "Good evening!"
+            if {_} = 8:
+                set {_message} to "Long time no see!"
+            if {_} = 9:
+                set {_message} to "Hey there!"
+            if {_} = 10:
+                set {_message} to "What's new?"
+            if {_} = 11:
+                set {_message} to "Howdy!"
+            if {_} = 12:
+                set {_message} to "How are you?"
+            if {_} = 13:
+                set {_message} to "Yo!"
+            if {_} = 14:
+                set {_message} to "What's going on?"
+            if {_} = 15:
+                set {_message} to "Hey, what's up?"
+            if {_} = 16:
+                set {_message} to "Ah, %player%! It's a beautiful day, isn't it?"
+            if {_} = 17:
+                set {_message} to "Greetings, %player%! Have you seen the new gang attack?"
+            if {_} = 18:
+                set {_message} to "Well met, %player%! Looking for something to trade today?"
+            if {_} = 19:
+                set {_message} to "Ah, %player%! The city has been busy. Need anything?"
+            if {_} = 20:
+                set {_message} to "Good to see you, %player%! I've got some new items in stock."
+            if {_} = 21:
+                set {_message} to "Hello there, %player%! Interested in some fine goods?"
+            if {_} = 22:
+                set {_message} to "Ah, %player%! I see you've returned. What can I do for you?"
+            if {_} = 23:
+                set {_message} to "Welcome back, %player%! The city is violent today."
+            if {_} = 24:
+                set {_message} to "Hey there, %player%! Do you need any help with your journey?"
+            if {_} = 25:
+                set {_message} to "Ah, %player%! I've got a few things you might like. Take a look!"
+            if {_} = 26:
+                set {_message} to "Well, if it isn't %player%! Fancy a chat or some trades?"
+            if {_} = 27:
+                set {_message} to "Ah, %player%! If you're looking for rare items, I've got just the thing."
+            if {_} = 28:
+                set {_message} to "Greetings, %player%! The city has been quiet lately... too quiet!"
+            if {_} = 29:
+                set {_message} to "Hey %player%, you look like you've seen some adventures. Care to trade?"
+            if {_} = 30:
+                set {_message} to "Ah, %player%! You've got a good eye for trades. What can I get for you today?"
+
+        set {_words::*} to {entitydiscussion::%player's uuid%} split by " |"
+        send "%{_words::1}%: %{_message}%" to player  
+
+on first join:
+    console command "/villagers"
+
+every 10 minutes in "GunPVPMC":
+    set {_villagers} to 0
+    loop all villagers:
+        if loop-villager has scoreboard tag "npcvillager":
+            set {_villagers} to {_villagers} + 1
+    set {_a} to online player count
+    set {_b} to {_a} * 10
+    if {_villagers} < {_b}:
+        console command "/villagers"

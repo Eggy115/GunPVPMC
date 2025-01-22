@@ -1,0 +1,32 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 8b447f5d-14ed-40fe-86ca-2da512981a88 -71 74 -478"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Magician] Merlin":
+        if {merlin::%player's uuid%} is not set:
+            set {merlin::%player's uuid%} to false
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cMagician&6] Merlin: Hello there, I am Merlin.%nl%" to player
+            wait 2 seconds
+
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cMagician&6] Merlin: Unlike other shopkeepers, who upgrade your items, I upgrade YOU.%nl%" to player
+            wait 3 seconds
+
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cMagician&6] Merlin: You can improve your speed, strength, and health through me.%nl%" to player
+            wait 3 seconds
+
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cMagician&6] Merlin: Although I do cost money, it is certainly worth it.%nl%" to player
+            wait 3 seconds            
+
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cMagician&6] Merlin: If you want to upgrade, either come back to me, or access my services from afar with &c/skilltree&6.%nl%" to player
+            wait 3 seconds   
+            set {merlin::%player's uuid%} to true             
+
+        if {merlin::%player's uuid%} is true:
+            make player execute "/skilltree"

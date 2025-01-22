@@ -1,0 +1,44 @@
+command /quests:
+    trigger:
+        set {_store} to a new chest inventory with 3 row with name "&6[&cGuide&6] Walter"
+
+        set {_e} to 0
+        loop 54 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "        
+            add 1 to {_e}
+
+        set slot 11 of {_store} to emerald named "&aStory Quests" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 11 of {_store} to "&6&oThese quests are part" 
+        set line 2 of lore of slot 11 of {_store} to "&6&oof the core game" 
+
+        set slot 13 of {_store} to golden horse armor named "&eTiered Quests" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 13 of {_store} to "&6&oThese quests are repetitive" 
+        set line 2 of lore of slot 13 of {_store} to "&6&oand should be done non-stop" 
+        set line 3 of lore of slot 13 of {_store} to "&6&owhilst playing" 
+
+        set slot 15 of {_store} to ender pearl named "&3Renewable Quests" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 15 of {_store} to "&6&oThese quests can be done"                 
+        set line 2 of lore of slot 15 of {_store} to "&6&oover and over again"                 
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "&aStory Quests":
+        make player execute "/queststory"
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&eTiered Quests":
+        make player execute "/questtiered"
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&3Renewable Quests":
+        make player execute "/questrenewable"
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Main Page":
+        make player execute "/quests"
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"

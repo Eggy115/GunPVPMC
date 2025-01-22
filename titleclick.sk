@@ -1,0 +1,480 @@
+on inventory click:
+    if event-item is arrow:
+        if name of event-item is "&6Page: &c2":        
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            make player execute "/titles 2"
+
+on inventory click:
+    if event-item is arrow:
+        if name of event-item is "&6Page: &c1":        
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            make player execute "/titles"            
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##999999>[Reputable]":       
+            if {rep::%player's uuid%} > 9: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##999999>[Reputable]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!" 
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##888888>[Prominent]":       
+            if {rep::%player's uuid%} > 19: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##888888>[Prominent]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!" 
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##777777>[Renowned]":       
+            if {rep::%player's uuid%} > 29: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##777777>[Renowned]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"                                 
+
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##666666>[Illustrious]":       
+            if {rep::%player's uuid%} > 49: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##666666>[Illustrious]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"                                 
+
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##555555>[Baron]":       
+            if {rep::%player's uuid%} > 74: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##555555>[Baron]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"      
+                
+                                           
+
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##444444>[Lord]":       
+            if {rep::%player's uuid%} > 99: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##444444>[Lord]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"                                 
+
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##333333>[Kingpin]":       
+            if {rep::%player's uuid%} > 149: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##333333>[Kingpin]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"                                 
+
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "&7[Outsider]":        
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {title::%player's uuid%} to "&7[Outsider]"
+            send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"
+            make player execute "/titles"
+
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "&7[Gunner]":        
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {title::%player's uuid%} to "&7[Gunner]"
+            send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+            make player execute "/titles"
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "&7[Pla&7yer]":        
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {title::%player's uuid%} to "&7[Pla&7yer]"
+            send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+            make player execute "/titles"            
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "&a[VIP]":       
+            if {rank::%player's uuid%} is "VIP": 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "&a[VIP]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!" 
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "&b[MVP]":       
+            if {rank::%player's uuid%} is "MVP": 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "&b[MVP]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"     
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "&5[EPIC]":       
+            if {rank::%player's uuid%} is "EPIC": 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "&5[EPIC]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"     
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "&e[LEGEND]":       
+            if {rank::%player's uuid%} is "LEGEND": 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "&e[LEGEND]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"     
+
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "&9[Helper]":       
+            if {staffrank::%player's uuid%} is "Helper": 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "&9[Helper]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles 2"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!" 
+                
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "&2[Moderator]":       
+            if {staffrank::%player's uuid%} is "Moderator": 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "&2[Moderator]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles 2"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"
+                
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "&4[Admin]":       
+            if {staffrank::%player's uuid%} is "Admin": 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "&4[Admin]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles 2"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"                
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##FF0000>[Killer]":       
+            if {kills::%player's uuid%} > 49: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##FF0000>[Killer]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!" 
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##DD0000>[Murderer]":       
+            if {kills::%player's uuid%} > 99: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##DD0000>[Murderer]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##BB0000>[Mass Murderer]":       
+            if {kills::%player's uuid%} > 249: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##BB0000>[Mass Murderer]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##990000>[Homicidal]":       
+            if {kills::%player's uuid%} > 499: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##990000>[Homicidal]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##770000>[Slaughterer]":       
+            if {kills::%player's uuid%} > 999: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##770000>[Slaughterer]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##550000>[Genocidal]":       
+            if {kills::%player's uuid%} > 1999: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##550000>[Genocidal]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##330000>[Annihilator]":       
+            if {kills::%player's uuid%} > 2999: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##330000>[Annihilator]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"   
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##DDDDDD>[Crackhead]":       
+            if {cocaine::%player's uuid%} > 0: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##DDDDDD>[Crackhead]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"  
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##30660b>[Stoner]":       
+            if {cannabis::%player's uuid%} > 0: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##30660b>[Stoner]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"                 
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##FFD324>[Alcoholic]":       
+            if {alcohol::%player's uuid%} > 19: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##FFD324>[Alcoholic]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"                 
+
+                
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##CCCCCC>[Methhead]":       
+            if {meth::%player's uuid%} > 0: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##CCCCCC>[Methhead]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"                  
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##00CC00>[Junkie]":       
+            if {drugs::%player's uuid%} > 0: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##00CC00>[Junkie]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"   
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##009900>[Druggie]":       
+            if {drugs::%player's uuid%} > 24: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##009900>[Druggie]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##006600>[Addict]":       
+            if {drugs::%player's uuid%} > 49: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##006600>[Addict]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"                                                                                                                                           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##FF7700>[Affluent]":       
+            if {titleaffluent::%player's uuid%} is true: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##FF7700>[Affluent]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles 2"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!" 
+
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##FF9900>[Wealthy]":       
+            if {titlewealthy::%player's uuid%} is true: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##FF9900>[Wealthy]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles 2"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!" 
+                
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##FFAA00>[Rich]":       
+            if {titlerich::%player's uuid%} is true: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##FFAA00>[Rich]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles 2"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!" 
+                
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##FFCC00>[100k]":       
+            if {title100k::%player's uuid%} is true: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##FFCC00>[100k]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles 2"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!" 
+                
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##FFEE00>[Millionaire]":       
+            if {titlemillionaire::%player's uuid%} is true: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##FFEE00>[Millionaire]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles 2"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!" 
+                
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##AAFF00>[Multimillionaire]":       
+            if {titlemultimillionaire::%player's uuid%} is true: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##AAFF00>[Multimillionaire]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles 2"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!" 
+                
+                
+on inventory click:
+    if event-item is sign:
+        if name of event-item is "<##CCFF00>[Billionaire]":       
+            if {titlebillionaire::%player's uuid%} is true: 
+                console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {title::%player's uuid%} to "<##CCFF00>[Billionaire]"
+                send "&7Gun&4PVP&aMC&6 Titles: Title set to %{title::%player's uuid%}%"            
+                make player execute "/titles 2"     
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+                send "&7Gun&4PVP&aMC&6 Titles: You do not have that title!"                                 

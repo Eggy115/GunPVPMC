@@ -1,0 +1,52 @@
+on break of any concrete:
+    if event-entity is player:
+        set {_x} to player's x coordinate
+        set {_y} to player's y coordinate
+        set {_z} to player's z coordinate
+        if {_y} < 20:
+            if block above event-block is concrete:
+                set block above event-block to air
+            if block below event-block is concrete:
+                set block below event-block to air  
+        set event-block to air          
+        remove 1 diamond pickaxe from player's held item
+
+        #1
+        send title "&6Room Unlocked!" with subtitle "&6by &c%player%" to {GANG::gangfirst::%{GANG::gang::%player's uuid%}%} parsed as player for 1 seconds
+        console command "/execute at %{GANG::gangfirst::%{GANG::gang::%player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfirst::%{GANG::gang::%player's uuid%}%} parsed as player% ~ ~ ~ 100000 1"
+        wait 0.2 seconds
+        console command "/execute at %{GANG::gangfirst::%{GANG::gang::%player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfirst::%{GANG::gang::%player's uuid%}%} parsed as player% ~ ~ ~ 100000 1.5"
+        wait 0.2 seconds
+        console command "/execute at %{GANG::gangfirst::%{GANG::gang::%player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfirst::%{GANG::gang::%player's uuid%}%} parsed as player% ~ ~ ~ 100000 2"
+            
+        #2
+        send title "&6Room Unlocked!" with subtitle "&6by &c%player%" to {GANG::gangsecond::%{GANG::gang::%player's uuid%}%} parsed as player for 1 seconds
+        console command "/execute at %{GANG::gangsecond::%{GANG::gang::%player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangsecond::%{GANG::gang::%player's uuid%}%} parsed as player% ~ ~ ~ 100000 1"
+        wait 0.2 seconds
+        console command "/execute at %{GANG::gangsecond::%{GANG::gang::%player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangsecond::%{GANG::gang::%player's uuid%}%} parsed as player% ~ ~ ~ 100000 1.5"
+        wait 0.2 seconds
+        console command "/execute at %{GANG::gangsecond::%{GANG::gang::%player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangsecond::%{GANG::gang::%player's uuid%}%} parsed as player% ~ ~ ~ 100000 2"
+
+        #3
+        send title "&6Room Unlocked!" with subtitle "&6by &c%player%" to {GANG::gangthird::%{GANG::gang::%player's uuid%}%} parsed as player for 1 seconds
+        console command "/execute at %{GANG::gangthird::%{GANG::gang::%player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangthird::%{GANG::gang::%player's uuid%}%} parsed as player% ~ ~ ~ 100000 1"
+        wait 0.2 seconds
+        console command "/execute at %{GANG::gangthird::%{GANG::gang::%player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangthird::%{GANG::gang::%player's uuid%}%} parsed as player% ~ ~ ~ 100000 1.5"
+        wait 0.2 seconds
+        console command "/execute at %{GANG::gangthird::%{GANG::gang::%player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangthird::%{GANG::gang::%player's uuid%}%} parsed as player% ~ ~ ~ 100000 2"
+
+        #4
+        send title "&6Room Unlocked!" with subtitle "&6by &c%player%" to {GANG::gangfourth::%{GANG::gang::%player's uuid%}%} parsed as player for 1 seconds
+        console command "/execute at %{GANG::gangfourth::%{GANG::gang::%player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfourth::%{GANG::gang::%player's uuid%}%} parsed as player% ~ ~ ~ 100000 1"
+        wait 0.2 seconds
+        console command "/execute at %{GANG::gangfourth::%{GANG::gang::%player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfourth::%{GANG::gang::%player's uuid%}%} parsed as player% ~ ~ ~ 100000 1.5"
+        wait 0.2 seconds
+        console command "/execute at %{GANG::gangfourth::%{GANG::gang::%player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfourth::%{GANG::gang::%player's uuid%}%} parsed as player% ~ ~ ~ 100000 2"
+
+        #5
+        send title "&6Room Unlocked!" with subtitle "&6by &c%player%" to {GANG::gangfifth::%{GANG::gang::%player's uuid%}%} parsed as player for 1 seconds
+        console command "/execute at %{GANG::gangfifth::%{GANG::gang::%player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfifth::%{GANG::gang::%player's uuid%}%} parsed as player% ~ ~ ~ 100000 1"
+        wait 0.2 seconds
+        console command "/execute at %{GANG::gangfifth::%{GANG::gang::%player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfifth::%{GANG::gang::%player's uuid%}%} parsed as player% ~ ~ ~ 100000 1.5"
+        wait 0.2 seconds
+        console command "/execute at %{GANG::gangfifth::%{GANG::gang::%player's uuid%}%} parsed as player% run playsound minecraft:block.note_block.pling master %{GANG::gangfifth::%{GANG::gang::%player's uuid%}%} parsed as player% ~ ~ ~ 100000 2"    

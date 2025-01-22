@@ -1,0 +1,203 @@
+on right click with green concrete:
+    if name of event-item is "&2Tank":
+        remove 1 green concrete from player
+#        console command "/execute at %player% run summon pig ~ ~ ~ {Attributes:[{Name:generic.movement_speed,Base:0.1}],Silent:1b,Invulnerable:1b,Saddle:1b,Tags:[""TANK"",""TANKPIG""]}"
+ 
+
+        set {_n} to nbt compound from "{Attributes:[{Name:generic.movement_speed,Base:0.1}],Silent:1b,Invulnerable:1b,Saddle:1b,Tags:[""TANK"",""TANKPIG""]}"
+        spawn 1 pig at player's location with nbt {_n}
+        set {tankid::%uuid of last spawned pig%} to random integer from 10000 to 99999
+        add "%{tankid::%uuid of last spawned pig%}%" to the scoreboard tags of last spawned pig
+
+        #SEAT
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKA""],ArmorItems:[{},{},{},{id:""minecraft:smooth_stone_slab"",Count:1b}]}"
+
+        #BASE
+        set {_mat} to random integer between 1 and 2
+        if {_mat} = 1:
+            set {_material} to "green_concrete"
+        if {_mat} = 2:
+            set {_material} to "green_terracotta"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK1""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        set {_mat} to random integer between 1 and 2
+        if {_mat} = 1:
+            set {_material} to "green_concrete"
+        if {_mat} = 2:
+            set {_material} to "green_terracotta"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK2""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        set {_mat} to random integer between 1 and 2
+        if {_mat} = 1:
+            set {_material} to "green_concrete"
+        if {_mat} = 2:
+            set {_material} to "green_terracotta"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK3""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        set {_mat} to random integer between 1 and 2
+        if {_mat} = 1:
+            set {_material} to "green_concrete"
+        if {_mat} = 2:
+            set {_material} to "green_terracotta"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK4""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        set {_mat} to random integer between 1 and 2
+        if {_mat} = 1:
+            set {_material} to "green_concrete"
+        if {_mat} = 2:
+            set {_material} to "green_terracotta"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK5""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        set {_mat} to random integer between 1 and 2
+        if {_mat} = 1:
+            set {_material} to "green_concrete"
+        if {_mat} = 2:
+            set {_material} to "green_terracotta"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK6""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        set {_mat} to random integer between 1 and 2
+        if {_mat} = 1:
+            set {_material} to "green_concrete"
+        if {_mat} = 2:
+            set {_material} to "green_terracotta"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK7""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        set {_mat} to random integer between 1 and 2
+        if {_mat} = 1:
+            set {_material} to "green_concrete"
+        if {_mat} = 2:
+            set {_material} to "green_terracotta"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK8""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"                                                                
+
+        #SHOES
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKSHOES1""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKSHOES2""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKSHOES3""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKSHOES4""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKSHOES5""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKSHOES6""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+
+        # TURRET
+        set {_mat} to random integer between 1 and 2
+        if {_mat} = 1:
+            set {_material} to "green_concrete"
+        if {_mat} = 2:
+            set {_material} to "green_terracotta"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKB""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        set {_mat} to random integer between 1 and 2
+        if {_mat} = 1:
+            set {_material} to "green_concrete"
+        if {_mat} = 2:
+            set {_material} to "green_terracotta"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKC""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        set {_mat} to random integer between 1 and 2
+        if {_mat} = 1:
+            set {_material} to "green_concrete"
+        if {_mat} = 2:
+            set {_material} to "green_terracotta"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKD""],ArmorItems:[{},{},{},{id:""minecraft:%{_material}%"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKE""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+
+        console command "/effect give @e[tag=TANK] invisibility 100000 99 true"
+
+on right click with sandstone:
+    if name of event-item is "<##ded7ac>Tank":
+        remove 1 sandstone from player
+#        console command "/execute at %player% run summon pig ~ ~ ~ {Attributes:[{Name:generic.movement_speed,Base:0.1}],Silent:1b,Invulnerable:1b,Saddle:1b,Tags:[""TANK"",""TANKPIG""]}"
+ 
+
+        set {_n} to nbt compound from "{Attributes:[{Name:generic.movement_speed,Base:0.1}],Silent:1b,Invulnerable:1b,Saddle:1b,Tags:[""TANK"",""TANKPIG""]}"
+        spawn 1 pig at player's location with nbt {_n}
+        set {tankid::%uuid of last spawned pig%} to random integer from 10000 to 99999
+        add "%{tankid::%uuid of last spawned pig%}%" to the scoreboard tags of last spawned pig
+
+        #SEAT
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKA""],ArmorItems:[{},{},{},{id:""minecraft:smooth_stone_slab"",Count:1b}]}"
+
+        #BASE
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK1""],ArmorItems:[{},{},{},{id:""minecraft:smooth_sandstone"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK2""],ArmorItems:[{},{},{},{id:""minecraft:smooth_sandstone"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK3""],ArmorItems:[{},{},{},{id:""minecraft:smooth_sandstone"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK4""],ArmorItems:[{},{},{},{id:""minecraft:smooth_sandstone"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK5""],ArmorItems:[{},{},{},{id:""minecraft:smooth_sandstone"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK6""],ArmorItems:[{},{},{},{id:""minecraft:smooth_sandstone"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK7""],ArmorItems:[{},{},{},{id:""minecraft:smooth_sandstone"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANK8""],ArmorItems:[{},{},{},{id:""minecraft:smooth_sandstone"",Count:1b}]}"                                                                
+
+        #SHOES
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKSHOES1""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKSHOES2""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKSHOES3""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKSHOES4""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKSHOES5""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKSHOES6""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+
+        # TURRET
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKB""],ArmorItems:[{},{},{},{id:""minecraft:smooth_sandstone"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKC""],ArmorItems:[{},{},{},{id:""minecraft:smooth_sandstone"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKD""],ArmorItems:[{},{},{},{id:""minecraft:smooth_sandstone"",Count:1b}]}"
+        console command "/execute at %player% run summon armor_stand ~ ~ ~ {Marker:1b,Silent:1b,Invulnerable:1b,Invisible:1b,Tags:[""%{tankid::%uuid of last spawned pig%}%"",""TANK"",""TANKE""],ArmorItems:[{},{},{},{id:""minecraft:black_concrete"",Count:1b}]}"
+
+        console command "/effect give @e[tag=TANK] invisibility 100000 99 true"        
+
+command /tankkill:
+    permission: op
+    trigger:
+        console command "/tp @e[tag=TANK] 0 -10000 0"
+
+on mount:
+    if name of vehicle of player is not "&6Seat":
+        wait 1 tick
+        if vehicle of player has scoreboard tag "TANKPIG": 
+            if player is riding saddled pig:
+                if player does not have carrot on a stick:
+                    send "&6You need a &2Tank Key&6 to drive this tank!" to player
+                console command "/effect give %player% resistance 999999 3 true"
+
+on dismount:
+    console command "/effect clear %player% resistance"
+
+on left click:
+    if player is riding saddled pig:
+        if name of vehicle of player is not "&6Seat":
+            if vehicle of player has scoreboard tag "TANKPIG": 
+                if player does not have carrot on a stick:
+                    send "&6You need a &2Tank Key&6 to fire this tank!" to player
+                    stop
+
+                if difference between {tankcd.%player%} and now > 1 second:
+                    set {tankcd.%player%} to now          
+                    shoot fireball from vehicle of player
+                    console command "/execute at %player% run tag @e[type=fireball,limit=1,sort=nearest] add TANK"
+                    console command "/execute at %player% run data merge entity @e[type=fireball,tag=TANK,limit=1,sort=nearest] {ExplosionPower:10b}"
+                else:
+                    send action bar "&6Wait before firing!" to player
+
+every 1 tick in "GunPVPMC":
+    loop all pigs:
+        if name of loop-entity is not "&6Seat":
+            if loop-entity has scoreboard tag "TANKPIG":
+                # SEAT
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANKA] ~ ~-0.5 ~"
+
+                # BASE
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANK1] ~.5 ~-1 ~"  
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANK2] ~.5 ~-1 ~.5"  
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANK3] ~.5 ~-1 ~-.5"  
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANK4] ~-.5 ~-1 ~"  
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANK5] ~-.5 ~-1 ~.5"  
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANK6] ~-.5 ~-1 ~-.5"  
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANK7] ~ ~-1 ~.5"  
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANK8] ~ ~-1 ~-.5"                
+
+                # SHOES                                                                         
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANKSHOES1] ~.6 ~-1.5 ~"  
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANKSHOES2] ~.6 ~-1.5 ~.6"  
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANKSHOES3] ~.6 ~-1.5 ~-.6"  
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANKSHOES4] ~-.6 ~-1.5 ~"  
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANKSHOES5] ~-.6 ~-1.5 ~.6"  
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANKSHOES6] ~-.6 ~-1.5 ~-.6"  
+    
+                #TURRET
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned ~ ~-.5 ~ rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANKB] ^ ^ ^1"            
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned ~ ~-.5 ~ rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANKC] ^ ^ ^1.5"            
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned ~ ~-.5 ~ rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANKD] ^ ^ ^2"            
+                console command "/execute at @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] positioned ~ ~-.5 ~ rotated as @e[tag=TANKPIG,tag=%{tankid::%loop-value's uuid%}%,limit=1] run tp @e[tag=%{tankid::%loop-value's uuid%}%,tag=TANKE] ^ ^ ^2.5"                
+
+on pig move:
+    if name of event-entity is not "&6Seat":
+        if passenger of event-entity is not set:
+            cancel event  

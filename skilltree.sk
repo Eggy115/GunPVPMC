@@ -1,0 +1,561 @@
+command /skilltree [<text>]:
+	aliases: /st
+	trigger:
+		if {merlin::%player's uuid%} is not set:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "%nl%&7Gun&4PVP&aMC&6 Skilltree: Speak to &cMerlin&6 before you do this!%nl%"
+			stop
+
+		if arg-1 is not set:
+			set {_skilltree} to a new chest inventory with 4 row with name "&6[&cMagician&6] Merlin"
+			
+			set {_e} to 0
+			loop 36 times:
+				set slot {_e} of {_skilltree} to gray stained glass pane named "&0 "			
+				add 1 to {_e}
+
+			set slot 10 of {_skilltree} to feather named "&fMovement"
+			set line 1 of lore of slot 10 of {_skilltree} to "&6Move faster and avoid enemy attacks"
+		
+			set slot 12 of {_skilltree} to diamond horse armour named "&bDamage" with nbt "{HideFlags:127}"
+			set line 1 of lore of slot 12 of {_skilltree} to "&6Improve your strength and damage"
+
+			set slot 14 of {_skilltree} to iron block named "&7Protection and Health"
+			set line 1 of lore of slot 14 of {_skilltree} to "&6Upgrade your durability and fortitude"
+
+			set slot 16 of {_skilltree} to sticky piston named "&aMiscellaneous"
+			set line 1 of lore of slot 16 of {_skilltree} to "&6Other abilities and bonuses"
+
+			set slot 20 of {_skilltree} to anvil named "&8Personal Stats"
+			set line 1 of lore of slot 20 of {_skilltree} to "&6Upgrade your intelligence, charisma, etc. directly"
+
+			set slot 22 of {_skilltree} to red concrete named "&4Gang Upgrades"
+			set line 1 of lore of slot 22 of {_skilltree} to "&6Help upgrade your gang"			
+
+			set slot 24 of {_skilltree} to player's skull named "%{title::%player's uuid%}% %player%"
+			set line 1 of lore of slot 24 of {_skilltree} to "&6Deaths: &c%{deaths::%player's uuid%}%"
+			set line 2 of lore of slot 24 of {_skilltree} to "&6Kills: &c%{kills::%player's uuid%}%"
+			set line 3 of lore of slot 24 of {_skilltree} to "&6K/DR: &c%{kdr::%player's uuid%}%"
+			set line 4 of lore of slot 24 of {_skilltree} to "&6Reputation: &c%{LEVEL.level::%player's uuid%}%✫"
+			set line 5 of lore of slot 24 of {_skilltree} to "&6Coins: &c%{coins::%player's uuid%}%"
+			set line 6 of lore of slot 24 of {_skilltree} to "&6Bank: &c%{bank::%player's uuid%}%"
+
+			open {_skilltree} to player
+			set {trade::%player's uuid%} to true
+		
+		if arg-1 is "damage":
+			set {_skilltree} to a new chest inventory with 6 row with name "&6[&cDamage&6]"
+			console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+			set {_e} to 0
+			loop 60 times:
+				set slot {_e} of {_skilltree} to gray stained glass pane named "&0 "			
+				add 1 to {_e}
+			set {_a} to 10
+			loop 4 times:
+				set {_e} to {_a}
+				loop 4 times:
+					set slot {_e} of {_skilltree} to gray dye named "&6Attribute"			
+					add 9 to {_e}
+				add 2 to {_a}	
+			
+			set slot 38 of {_skilltree} to gray dye named "&6Attribute"
+			set slot 13 of {_skilltree} to gray dye named "&6Attribute"
+			set slot 42 of {_skilltree} to gray dye named "&6Attribute"	
+			set slot 53 of {_skilltree} to arrow named "&6B&6ac&6k"	
+
+			if {laststand1::%player's uuid%} is true:
+				set slot 10 of {_skilltree} to lime dye named "&6Last Stand I"
+				set line 1 of slot 10 of {_skilltree}'s lore to "&6Gain Strength I below &c2❤"		
+			else:
+				set slot 10 of {_skilltree} to gray dye named "&6Last Stand I"
+				set line 1 of slot 10 of {_skilltree}'s lore to "&6Gain Strength I below &c2❤"
+				set line 2 of slot 10 of {_skilltree}'s lore to "&6Cost: &c500 Coins"			
+
+			open {_skilltree} to player
+			set {trade::%player's uuid%} to true		
+
+		if arg-1 is "misc":
+			set {_skilltree} to a new chest inventory with 6 row with name "&6[&cMiscellaneous&6]"
+			console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+			set {_e} to 0
+			loop 60 times:
+				set slot {_e} of {_skilltree} to gray stained glass pane named "&0 "			
+				add 1 to {_e}
+			set {_a} to 10
+			loop 4 times:
+				set {_e} to {_a}
+				loop 4 times:
+					set slot {_e} of {_skilltree} to gray dye named "&6Attribute"			
+					add 9 to {_e}
+				add 2 to {_a}	
+			
+			set slot 38 of {_skilltree} to gray dye named "&6Attribute"
+			set slot 13 of {_skilltree} to gray dye named "&6Attribute"
+			set slot 42 of {_skilltree} to gray dye named "&6Attribute"		
+			set slot 53 of {_skilltree} to arrow named "&6B&6ac&6k"					
+			open {_skilltree} to player
+			set {trade::%player's uuid%} to true	
+
+		if arg-1 is "move":
+			set {_skilltree} to a new chest inventory with 6 row with name "&6[&cMovement&6]"
+			console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+			set {_e} to 0
+			loop 60 times:
+				set slot {_e} of {_skilltree} to gray stained glass pane named "&0 "			
+				add 1 to {_e}
+			set {_a} to 10
+			loop 4 times:
+				set {_e} to {_a}
+				loop 4 times:
+					set slot {_e} of {_skilltree} to gray dye named "&6Attribute"			
+					add 9 to {_e}
+				add 2 to {_a}				
+			
+			set slot 38 of {_skilltree} to gray dye named "&6Attribute"
+			set slot 13 of {_skilltree} to gray dye named "&6Attribute"
+			set slot 42 of {_skilltree} to gray dye named "&6Attribute"	
+			set slot 53 of {_skilltree} to arrow named "&6B&6ac&6k"		
+
+			if {adrenalinerush1::%player's uuid%} is true:
+				set slot 10 of {_skilltree} to lime dye named "&6Adrenaline Rush I"
+				set line 1 of slot 10 of {_skilltree}'s lore to "&6Gain Speed II below &c2❤"		
+			else:
+				set slot 10 of {_skilltree} to gray dye named "&6Adrenaline Rush I"
+				set line 1 of slot 10 of {_skilltree}'s lore to "&6Gain Speed II below &c2❤"
+				set line 2 of slot 10 of {_skilltree}'s lore to "&6Cost: &c500 Coins"			
+
+			open {_skilltree} to player
+			set {trade::%player's uuid%} to true			
+
+		if arg-1 is "health":						
+			set {_skilltree} to a new chest inventory with 6 row with name "&6[&cProtection and Health&6]"
+			console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+			set {_e} to 0
+			loop 60 times:
+				set slot {_e} of {_skilltree} to gray stained glass pane named "&0 "			
+				add 1 to {_e}
+			set {_a} to 10
+			loop 4 times:
+				set {_e} to {_a}
+				loop 4 times:
+					set slot {_e} of {_skilltree} to gray dye named "&6Attribute"			
+					add 9 to {_e}
+				add 2 to {_a}	
+			
+			if {vampire1::%player's uuid%} is true:
+				set slot 10 of {_skilltree} to lime dye named "&6Vampire I"
+				set line 1 of slot 10 of {_skilltree}'s lore to "&6Gain &c0.5❤&6 upon killing a player"		
+			else:
+				set slot 10 of {_skilltree} to gray dye named "&6Vampire I"
+				set line 1 of slot 10 of {_skilltree}'s lore to "&6Gain &c0.5❤&6 upon killing a player"
+				set line 2 of slot 10 of {_skilltree}'s lore to "&6Cost: &c500 Coins"
+
+			if {vampire1::%player's uuid%} is true:
+				if {leech1::%player's uuid%} is true:
+					set slot 19 of {_skilltree} to lime dye named "&6Leech I"
+					set line 1 of slot 19 of {_skilltree}'s lore to "&610%% chance of gaining &c0.1❤&6 on damage"		
+				else:
+					set slot 19 of {_skilltree} to gray dye named "&6Leech I"
+					set line 1 of slot 19 of {_skilltree}'s lore to "&610%% chance of gaining &c0.1❤&6 on damage"
+					set line 2 of slot 19 of {_skilltree}'s lore to "&6Cost: &c1000 Coins"		
+			else:
+				set slot 19 of {_skilltree} to gray dye named "&8Locked"		
+
+			if {leech1::%player's uuid%} is true:
+				if {chef1::%player's uuid%} is true:
+					set slot 28 of {_skilltree} to lime dye named "&6Chef I"
+					set line 1 of slot 28 of {_skilltree}'s lore to "&6Consuming food heals &c0.5❤"		
+				else:
+					set slot 28 of {_skilltree} to gray dye named "&6Chef I"
+					set line 1 of slot 28 of {_skilltree}'s lore to "&6Consuming food heals &c0.5❤"
+					set line 2 of slot 28 of {_skilltree}'s lore to "&6Cost: &c1500 Coins"		
+			else:
+				set slot 28 of {_skilltree} to gray dye named "&8Locked"
+
+			if {chef1::%player's uuid%} is true:
+				if {healingaura1::%player's uuid%} is true:
+					set slot 37 of {_skilltree} to lime dye named "&6Healing Aura I"
+					set line 1 of slot 37 of {_skilltree}'s lore to "&6Regeneration I when below &c2❤"		
+				else:
+					set slot 37 of {_skilltree} to gray dye named "&6Healing Aura I"
+					set line 1 of slot 37 of {_skilltree}'s lore to "&6Regeneration I when below &c2❤"
+					set line 2 of slot 37 of {_skilltree}'s lore to "&6Cost: &c2000 Coins"		
+			else:
+				set slot 37 of {_skilltree} to gray dye named "&8Locked"								
+
+			if {healingaura1::%player's uuid%} is true:
+				if {toughasnails1::%player's uuid%} is true:
+					set slot 38 of {_skilltree} to lime dye named "&6Tough as Nails I"
+					set line 1 of slot 38 of {_skilltree}'s lore to "&6Resistance I when below &c5❤"		
+				else:
+					set slot 38 of {_skilltree} to gray dye named "&6Tough as Nails I"
+					set line 1 of slot 38 of {_skilltree}'s lore to "&6Resistance I when below &c5❤"		
+					set line 2 of slot 38 of {_skilltree}'s lore to "&6Cost: &c2500 Coins"		
+			else:
+				set slot 38 of {_skilltree} to gray dye named "&8Locked"
+
+			if {toughasnails1::%player's uuid%} is true:
+				if {healthboost1::%player's uuid%} is true:
+					set slot 39 of {_skilltree} to lime dye named "&6Health Boost I"
+					set line 1 of slot 39 of {_skilltree}'s lore to "&6Permanent &c2❤&6 health boost"		
+				else:
+					set slot 39 of {_skilltree} to gray dye named "&6Health Boost I"
+					set line 1 of slot 39 of {_skilltree}'s lore to "&6Permanent &c2❤&6 health boost"
+					set line 2 of slot 39 of {_skilltree}'s lore to "&6Cost: &c3000 Coins"		
+			else:
+				set slot 39 of {_skilltree} to gray dye named "&8Locked"
+
+			if {healthboost1::%player's uuid%} is true:
+				if {vampire2::%player's uuid%} is true:
+					set slot 30 of {_skilltree} to lime dye named "&6Vampire II"
+					set line 1 of slot 30 of {_skilltree}'s lore to "&6Gain &c1❤&6 upon killing a player"		
+				else:
+					set slot 30 of {_skilltree} to gray dye named "&6Vampire II"
+					set line 1 of slot 30 of {_skilltree}'s lore to "&6Gain &c1❤&6 upon killing a player"
+					set line 2 of slot 30 of {_skilltree}'s lore to "&6Cost: &c3500 Coins"		
+			else:
+				set slot 30 of {_skilltree} to gray dye named "&8Locked"	
+
+			if {vampire2::%player's uuid%} is true:
+				if {leech2::%player's uuid%} is true:
+					set slot 21 of {_skilltree} to lime dye named "&6Leech II"
+					set line 1 of slot 21 of {_skilltree}'s lore to "&620%% chance of gaining &c0.1❤&6 on damage"		
+				else:
+					set slot 21 of {_skilltree} to gray dye named "&6Leech II"
+					set line 1 of slot 21 of {_skilltree}'s lore to "&620%% chance of gaining &c0.1❤&6 on damage"
+					set line 2 of slot 21 of {_skilltree}'s lore to "&6Cost: &c4000 Coins"		
+			else:
+				set slot 21 of {_skilltree} to gray dye named "&8Locked"	
+
+			if {leech2::%player's uuid%} is true:
+				if {chef2::%player's uuid%} is true:
+					set slot 12 of {_skilltree} to lime dye named "&6Chef II"
+					set line 1 of slot 12 of {_skilltree}'s lore to "&6&6Consuming food heals &c1❤"		
+				else:
+					set slot 12 of {_skilltree} to gray dye named "&6Chef II"
+					set line 1 of slot 12 of {_skilltree}'s lore to "&6&6Consuming food heals &c1❤"
+					set line 2 of slot 12 of {_skilltree}'s lore to "&6Cost: &c4500 Coins"		
+			else:
+				set slot 12 of {_skilltree} to gray dye named "&8Locked"	
+
+			if {chef2::%player's uuid%} is true:
+				if {healingaura2::%player's uuid%} is true:
+					set slot 13 of {_skilltree} to lime dye named "&6Healing Aura II"
+					set line 1 of slot 13 of {_skilltree}'s lore to "&6Regeneration II when below &c2❤"		
+				else:
+					set slot 13 of {_skilltree} to gray dye named "&6Healing Aura II"
+					set line 1 of slot 13 of {_skilltree}'s lore to "&6Regeneration II when below &c2❤"
+					set line 2 of slot 13 of {_skilltree}'s lore to "&6Cost: &c5000 Coins"		
+			else:
+				set slot 13 of {_skilltree} to gray dye named "&8Locked"
+
+			if {healingaura2::%player's uuid%} is true:
+				if {toughasnails2::%player's uuid%} is true:
+					set slot 14 of {_skilltree} to lime dye named "&6Tough as Nails II"
+					set line 1 of slot 14 of {_skilltree}'s lore to "&6Resistance II when below &c5❤"		
+				else:
+					set slot 14 of {_skilltree} to gray dye named "&6Tough as Nails II"
+					set line 1 of slot 14 of {_skilltree}'s lore to "&6Resistance II when below &c5❤"
+					set line 2 of slot 14 of {_skilltree}'s lore to "&6Cost: &c5500 Coins"		
+			else:
+				set slot 14 of {_skilltree} to gray dye named "&8Locked"
+
+			if {toughasnails2::%player's uuid%} is true:
+				if {healthboost2::%player's uuid%} is true:
+					set slot 23 of {_skilltree} to lime dye named "&6Health Boost II"
+					set line 1 of slot 23 of {_skilltree}'s lore to "&6Permanent &c4❤&6 health boost"		
+				else:
+					set slot 23 of {_skilltree} to gray dye named "&6Health Boost II"
+					set line 1 of slot 23 of {_skilltree}'s lore to "&6Permanent &c4❤&6 health boost"	
+					set line 2 of slot 23 of {_skilltree}'s lore to "&6Cost: &c6000 Coins"		
+			else:
+				set slot 23 of {_skilltree} to gray dye named "&8Locked"	
+				
+			if {healthboost2::%player's uuid%} is true:
+				if {vampire3::%player's uuid%} is true:
+					set slot 32 of {_skilltree} to lime dye named "&6Vampire III"
+					set line 1 of slot 32 of {_skilltree}'s lore to "&6Gain &c1.5❤&6 upon killing a player"		
+				else:
+					set slot 32 of {_skilltree} to gray dye named "&6Vampire III"
+					set line 1 of slot 32 of {_skilltree}'s lore to "&6Gain &c1.5❤&6 upon killing a player"
+					set line 2 of slot 32 of {_skilltree}'s lore to "&6Cost: &c6500 Coins"		
+			else:
+				set slot 32 of {_skilltree} to gray dye named "&8Locked"	
+
+			if {vampire3::%player's uuid%} is true:
+				if {leech3::%player's uuid%} is true:
+					set slot 41 of {_skilltree} to lime dye named "&6Leech III"
+					set line 1 of slot 41 of {_skilltree}'s lore to "&630%% chance of gaining &c0.1❤&6 on damage"		
+				else:
+					set slot 41 of {_skilltree} to gray dye named "&6Leech III"
+					set line 1 of slot 41 of {_skilltree}'s lore to "&630%% chance of gaining &c0.1❤&6 on damage"
+					set line 2 of slot 41 of {_skilltree}'s lore to "&6Cost: &c7000 Coins"		
+			else:
+				set slot 41 of {_skilltree} to gray dye named "&8Locked"	
+
+			if {leech3::%player's uuid%} is true:
+				if {chef3::%player's uuid%} is true:
+					set slot 42 of {_skilltree} to lime dye named "&6Chef III"
+					set line 1 of slot 42 of {_skilltree}'s lore to "&6&6Consuming food heals &c1.5❤"		
+				else:
+					set slot 42 of {_skilltree} to gray dye named "&6Chef III"
+					set line 1 of slot 42 of {_skilltree}'s lore to "&6&6Consuming food heals &c1.5❤"
+					set line 2 of slot 42 of {_skilltree}'s lore to "&6Cost: &c7500 Coins"		
+			else:
+				set slot 42 of {_skilltree} to gray dye named "&8Locked"	
+
+			if {chef3::%player's uuid%} is true:
+				if {healingaura3::%player's uuid%} is true:
+					set slot 43 of {_skilltree} to lime dye named "&6Healing Aura III"
+					set line 1 of slot 43 of {_skilltree}'s lore to "&6Regeneration III when below &c2❤"		
+				else:
+					set slot 43 of {_skilltree} to gray dye named "&6Healing Aura III"
+					set line 1 of slot 43 of {_skilltree}'s lore to "&6Regeneration III when below &c2❤"
+					set line 2 of slot 43 of {_skilltree}'s lore to "&6Cost: &c8000 Coins"		
+			else:
+				set slot 43 of {_skilltree} to gray dye named "&8Locked"
+
+			if {healingaura3::%player's uuid%} is true:
+				if {toughasnails3::%player's uuid%} is true:
+					set slot 34 of {_skilltree} to lime dye named "&6Tough as Nails III (MAX)"
+					set line 1 of slot 34 of {_skilltree}'s lore to "&6Resistance III when below &c5❤"		
+				else:
+					set slot 34 of {_skilltree} to gray dye named "&6Tough as Nails III (MAX)"
+					set line 1 of slot 34 of {_skilltree}'s lore to "&6Resistance III when below &c5❤"
+					set line 2 of slot 34 of {_skilltree}'s lore to "&6Cost: &c8500 Coins"		
+			else:
+				set slot 34 of {_skilltree} to gray dye named "&8Locked"
+
+			if {toughasnails3::%player's uuid%} is true:
+				if {healthboost3::%player's uuid%} is true:
+					set slot 25 of {_skilltree} to lime dye named "&6Health Boost III"
+					set line 1 of slot 25 of {_skilltree}'s lore to "&6Permanent &c6❤&6 health boost"		
+				else:
+					set slot 25 of {_skilltree} to gray dye named "&6Health Boost III"
+					set line 1 of slot 25 of {_skilltree}'s lore to "&6Permanent &c6❤&6 health boost"	
+					set line 2 of slot 25 of {_skilltree}'s lore to "&6Cost: &c9000 Coins"		
+			else:
+				set slot 25 of {_skilltree} to gray dye named "&8Locked"				
+
+			set slot 53 of {_skilltree} to arrow named "&6B&6ac&6k"					
+			open {_skilltree} to player
+			set {trade::%player's uuid%} to true
+
+on inventory click:
+	if event-item is lime dye:
+		if name of player's inventory is "&6[&cMovement&6]" or "&6[&cDamage&6]" or "&6[&cProtection and Health&6]" or "&6[&cMiscellaneous&6]":
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			stop
+	if name of event-item is "&8Locked":
+		console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+		send "&cYou must unlock previous tiers first!" to player
+		stop	
+
+	#MOVEMENT
+
+	if name of event-item is "&6Adrenaline Rush I":
+		if {coins::%player's uuid%} > 499:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 500
+			set {adrenalinerush1::%player's uuid%} to true
+			make player execute "/skilltree move"
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player
+
+	#DAMAGE
+
+	if name of event-item is "&6Last Stand I":
+		if {coins::%player's uuid%} > 499:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 500
+			set {laststand1::%player's uuid%} to true
+			make player execute "/skilltree damage"
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player			
+
+	# PROTECTION AND HEALTH
+
+	if name of event-item is "&6Vampire I":
+		if {coins::%player's uuid%} > 499:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 500
+			set {vampire1::%player's uuid%} to true
+			make player execute "/skilltree health"
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player
+
+	if name of event-item is "&6Leech I":
+		if {coins::%player's uuid%} > 999:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 1000
+			set {leech1::%player's uuid%} to true
+			make player execute "/skilltree health"
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player
+
+	if name of event-item is "&6Chef I":
+		if {coins::%player's uuid%} > 1499:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 1500
+			set {chef1::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player	
+
+	if name of event-item is "&6Healing Aura I":
+		if {coins::%player's uuid%} > 1999:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 2000
+			set {healingaura1::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player	
+
+	if name of event-item is "&6Tough as Nails I":
+		if {coins::%player's uuid%} > 2499:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 2500
+			set {toughasnails1::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player	
+
+	if name of event-item is "&6Health Boost I":
+		if {coins::%player's uuid%} > 2999:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 3000
+			set {healthboost1::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player		
+
+	if name of event-item is "&6Vampire II":
+		if {coins::%player's uuid%} > 3499:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 3500
+			set {vampire2::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player		
+
+	if name of event-item is "&6Leech II":
+		if {coins::%player's uuid%} > 3999:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 4000
+			set {leech2::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player	
+
+	if name of event-item is "&6Chef II":
+		if {coins::%player's uuid%} > 4499:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 4500
+			set {chef2::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player	
+
+	if name of event-item is "&6Healing Aura II":
+		if {coins::%player's uuid%} > 4999:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 5000
+			set {healingaura2::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player	
+
+	if name of event-item is "&6Tough as Nails II":
+		if {coins::%player's uuid%} > 5499:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 5500
+			set {toughasnails2::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player	
+
+	if name of event-item is "&6Health Boost II":
+		if {coins::%player's uuid%} > 5999:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 6000
+			set {healthboost2::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player	
+			
+	if name of event-item is "&6Vampire III":
+		if {coins::%player's uuid%} > 6499:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 6500
+			set {vampire3::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player		
+
+	if name of event-item is "&6Leech III":
+		if {coins::%player's uuid%} > 6999:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 7000
+			set {leech3::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player	
+
+	if name of event-item is "&6Chef III":
+		if {coins::%player's uuid%} > 7499:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 7500
+			set {chef3::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player	
+
+	if name of event-item is "&6Healing Aura III":
+		if {coins::%player's uuid%} > 7999:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 8000
+			set {healingaura3::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player	
+
+	if name of event-item is "&6Tough as Nails III (MAX)":
+		if {coins::%player's uuid%} > 8499:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 8500
+			set {toughasnails3::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player	
+
+	if name of event-item is "&6Health Boost III":
+		if {coins::%player's uuid%} > 8999:
+			set {coins::%player's uuid%} to {coins::%player's uuid%} - 9000
+			set {healthboost3::%player's uuid%} to true
+			make player execute "/skilltree health"			
+		else:
+			console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+			send "&cYou cannot afford this!" to player				
+
+on inventory click:
+	if name of event-item is "&6B&6ac&6k":
+		console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+		make player execute "/skilltree"
+
+on inventory click:
+	if name of event-item is "&bDamage":
+		make player execute "/skilltree damage"
+
+on inventory click:
+	if name of event-item is "&aMiscellaneous":
+		make player execute "/skilltree misc"
+		
+on inventory click:
+	if name of event-item is "&fMovement":
+		make player execute "/skilltree move"
+		
+on inventory click:
+	if name of event-item is "&7Protection and Health":
+		make player execute "/skilltree health"
+	

@@ -1,0 +1,35 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 4e2fedb4-950b-4907-89e0-14f2b9404528 -131 76 -480"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Librarian] Levi":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cLibrarian&6] Levi"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to 1 book named "<##5a4729>Book &6[&cx1&6]"
+        set line 2 of lore of slot 10 of {_store} to "&6Cost: &c100"
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##5a4729>Book &6[&cx1&6]":
+        if player doesn't have enough space for bedrock:
+            close player's inventory
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&7Gun&4PVP&aMC&6: Your inventory is full!"
+            stop        
+        if {coins::%player's uuid%} > 99:
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - 100
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            give player 1 book named "<##5a4729>Book"
+            send "&6[&cLibrarian&6] Levi: Be careful with this, it's very old"
+        else:
+            send "&6[&cLibrarian&6] Levi: Books aren't cheap you know!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  

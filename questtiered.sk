@@ -1,0 +1,1002 @@
+command /questtiered [<text>]:
+    trigger:
+        if arg-1 is not set:
+            make player execute "/questtiered 1"
+        if arg-1 is "1":
+            set {_store} to a new chest inventory with 6 row with name "&6[&cGuide&6] Walter"
+
+            set {_e} to 0
+            loop 54 times:
+                set slot {_e} of {_store} to gray stained glass pane named "&0 "        
+                add 1 to {_e}
+
+            set {_a} to -1
+            loop 4 times:  # Repeat the block 6 times
+                set {_a} to {_a} + 1
+                set slot (10 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (11 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (12 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (13 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (14 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (15 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (16 + {_a} * 9) of {_store} to book named "&7&o???"
+
+            #CHEST LOOTER 1
+            set slot 10 of {_store} to enchanted book named "&6Chest Looter I" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 10 of {_store} to "&6&oLoot 10 Chests"
+            
+            if {chestlooter1progress::%player's uuid%} is set:
+                set line 3 of lore of slot 10 of {_store} to "&6Progress: &c%{chestlooter1progress::%player's uuid%}%&6/&c10&6"     
+            else:
+                set line 3 of lore of slot 10 of {_store} to "&6Progress: &c0&6/&c10&6"     
+            
+            if {chestlooter1::%player's uuid%} is not set:  
+                set line 4 of lore of slot 10 of {_store} to "&6Status: &cIncomplete"   
+            else:         
+                set line 4 of lore of slot 10 of {_store} to "&6Status: %{chestlooter1::%player's uuid%}%"   
+
+            #CHEST LOOTER 2
+            if {chestlooter1::%player's uuid%} is "&cComplete":
+                set slot 11 of {_store} to enchanted book named "&6Chest Looter II" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 11 of {_store} to "&6&oLoot 20 Chests"
+                if {chestlooter2progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 11 of {_store} to "&6Progress: &c%{chestlooter2progress::%player's uuid%}%&6/&c20&6"     
+                else:
+                    set line 3 of lore of slot 11 of {_store} to "&6Progress: &c0&6/&c20&6"     
+
+                if {chestlooter2::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 11 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 11 of {_store} to "&6Status: %{chestlooter2::%player's uuid%}%"  
+
+            #CHEST LOOTER 3
+            if {chestlooter2::%player's uuid%} is "&cComplete":
+                set slot 12 of {_store} to enchanted book named "&6Chest Looter III" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 12 of {_store} to "&6&oLoot 30 Chests"
+                if {chestlooter3progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 12 of {_store} to "&6Progress: &c%{chestlooter3progress::%player's uuid%}%&6/&c30&6"     
+                else:
+                    set line 3 of lore of slot 12 of {_store} to "&6Progress: &c0&6/&c30&6"     
+
+                if {chestlooter3::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 12 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 12 of {_store} to "&6Status: %{chestlooter3::%player's uuid%}%"    
+
+            #CHEST LOOTER 4
+            if {chestlooter3::%player's uuid%} is "&cComplete":
+                set slot 13 of {_store} to enchanted book named "&6Chest Looter IV" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 13 of {_store} to "&6&oLoot 40 Chests"
+                if {chestlooter4progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 13 of {_store} to "&6Progress: &c%{chestlooter4progress::%player's uuid%}%&6/&c40&6"     
+                else:
+                    set line 3 of lore of slot 13 of {_store} to "&6Progress: &c0&6/&c40&6"     
+
+                if {chestlooter4::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 13 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 13 of {_store} to "&6Status: %{chestlooter4::%player's uuid%}%"         
+
+            #CHEST LOOTER 5
+            if {chestlooter4::%player's uuid%} is "&cComplete":
+                set slot 14 of {_store} to enchanted book named "&6Chest Looter V" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 14 of {_store} to "&6&oLoot 50 Chests"
+                if {chestlooter5progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 14 of {_store} to "&6Progress: &c%{chestlooter5progress::%player's uuid%}%&6/&c50&6"     
+                else:
+                    set line 3 of lore of slot 14 of {_store} to "&6Progress: &c0&6/&c50&6"     
+
+                if {chestlooter5::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 14 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 14 of {_store} to "&6Status: %{chestlooter5::%player's uuid%}%"  
+
+            #CHEST LOOTER 6
+            if {chestlooter5::%player's uuid%} is "&cComplete":
+                set slot 15 of {_store} to enchanted book named "&6Chest Looter VI" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 15 of {_store} to "&6&oLoot 100 Chests"
+                if {chestlooter6progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 15 of {_store} to "&6Progress: &c%{chestlooter6progress::%player's uuid%}%&6/&c100&6"        
+                else:
+                    set line 3 of lore of slot 15 of {_store} to "&6Progress: &c0&6/&c100&6"        
+
+                if {chestlooter6::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 15 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 15 of {_store} to "&6Status: %{chestlooter6::%player's uuid%}%"    
+
+            #CHEST LOOTER 7
+            if {chestlooter6::%player's uuid%} is "&cComplete":
+                set slot 16 of {_store} to enchanted book named "&6Chest Looter VII" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 16 of {_store} to "&6&oLoot 200 Chests"
+                if {chestlooter7progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 16 of {_store} to "&6Progress: &c%{chestlooter7progress::%player's uuid%}%&6/&c200&6"        
+                else:
+                    set line 3 of lore of slot 16 of {_store} to "&6Progress: &c0&6/&c200&6"        
+
+                if {chestlooter7::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 16 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 16 of {_store} to "&6Status: %{chestlooter7::%player's uuid%}%"   
+                    
+            #CHEST LOOTER 8
+            if {chestlooter7::%player's uuid%} is "&cComplete":
+                set slot 17 of {_store} to enchanted book named "&6Chest Looter VIII" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 17 of {_store} to "&6&oLoot 1000 Chests"
+                if {chestlooter8progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 17 of {_store} to "&6Progress: &c%{chestlooter8progress::%player's uuid%}%&6/&c200&6"        
+                else:
+                    set line 3 of lore of slot 17 of {_store} to "&6Progress: &c0&6/&c1000&6"        
+
+                if {chestlooter8::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 17 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 17 of {_store} to "&6Status: %{chestlooter8::%player's uuid%}%"                      
+
+            #BARREL LOOTER 1
+            set slot 19 of {_store} to enchanted book named "&6Barrel Looter I" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 19 of {_store} to "&6&oLoot 10 Barrels"
+            
+            if {barrellooter1progress::%player's uuid%} is set:
+                set line 3 of lore of slot 19 of {_store} to "&6Progress: &c%{barrellooter1progress::%player's uuid%}%&6/&c10&6"     
+            else:
+                set line 3 of lore of slot 19 of {_store} to "&6Progress: &c0&6/&c10&6"     
+            
+            if {barrellooter1::%player's uuid%} is not set:  
+                set line 4 of lore of slot 19 of {_store} to "&6Status: &cIncomplete"   
+            else:         
+                set line 4 of lore of slot 19 of {_store} to "&6Status: %{barrellooter1::%player's uuid%}%"   
+
+            #BARREL LOOTER 2
+            if {barrellooter1::%player's uuid%} is "&cComplete":
+                set slot 20 of {_store} to enchanted book named "&6Barrel Looter II" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 20 of {_store} to "&6&oLoot 20 Barrels"
+                if {barrellooter2progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 20 of {_store} to "&6Progress: &c%{barrellooter2progress::%player's uuid%}%&6/&c20&6"     
+                else:
+                    set line 3 of lore of slot 20 of {_store} to "&6Progress: &c0&6/&c20&6"     
+
+                if {barrellooter2::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 20 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 20 of {_store} to "&6Status: %{barrellooter2::%player's uuid%}%"  
+
+            #BARREL LOOTER 3
+            if {barrellooter2::%player's uuid%} is "&cComplete":
+                set slot 21 of {_store} to enchanted book named "&6Barrel Looter III" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 21 of {_store} to "&6&oLoot 30 Barrels"
+                if {barrellooter3progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 21 of {_store} to "&6Progress: &c%{barrellooter3progress::%player's uuid%}%&6/&c30&6"     
+                else:
+                    set line 3 of lore of slot 21 of {_store} to "&6Progress: &c0&6/&c30&6"     
+
+                if {barrellooter3::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 21 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 21 of {_store} to "&6Status: %{barrellooter3::%player's uuid%}%"    
+
+            #BARREL LOOTER 4
+            if {barrellooter3::%player's uuid%} is "&cComplete":
+                set slot 22 of {_store} to enchanted book named "&6Barrel Looter IV" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 22 of {_store} to "&6&oLoot 40 Barrels"
+                if {barrellooter4progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 22 of {_store} to "&6Progress: &c%{barrellooter4progress::%player's uuid%}%&6/&c40&6"     
+                else:
+                    set line 3 of lore of slot 22 of {_store} to "&6Progress: &c0&6/&c40&6"     
+
+                if {barrellooter4::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 22 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 22 of {_store} to "&6Status: %{barrellooter4::%player's uuid%}%"         
+
+            #BARREL LOOTER 5
+            if {barrellooter4::%player's uuid%} is "&cComplete":
+                set slot 23 of {_store} to enchanted book named "&6Barrel Looter V" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 23 of {_store} to "&6&oLoot 50 Barrels"
+                if {barrellooter5progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 23 of {_store} to "&6Progress: &c%{barrellooter5progress::%player's uuid%}%&6/&c50&6"     
+                else:
+                    set line 3 of lore of slot 23 of {_store} to "&6Progress: &c0&6/&c50&6"     
+
+                if {barrellooter5::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 23 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 23 of {_store} to "&6Status: %{barrellooter5::%player's uuid%}%"  
+
+            #BARREL LOOTER 6
+            if {barrellooter5::%player's uuid%} is "&cComplete":
+                set slot 24 of {_store} to enchanted book named "&6Barrel Looter VI" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 24 of {_store} to "&6&oLoot 100 Barrels"
+                if {barrellooter6progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 24 of {_store} to "&6Progress: &c%{barrellooter6progress::%player's uuid%}%&6/&c100&6"        
+                else:
+                    set line 3 of lore of slot 24 of {_store} to "&6Progress: &c0&6/&c100&6"        
+
+                if {barrellooter6::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 24 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 24 of {_store} to "&6Status: %{barrellooter6::%player's uuid%}%"    
+
+            #BARREL LOOTER 7
+            if {barrellooter6::%player's uuid%} is "&cComplete":
+                set slot 25 of {_store} to enchanted book named "&6Barrel Looter VII" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 25 of {_store} to "&6&oLoot 200 Barrels"
+                if {barrellooter7progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 25 of {_store} to "&6Progress: &c%{barrellooter7progress::%player's uuid%}%&6/&c200&6"        
+                else:
+                    set line 3 of lore of slot 25 of {_store} to "&6Progress: &c0&6/&c200&6"        
+
+                if {barrellooter7::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 25 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 25 of {_store} to "&6Status: %{barrellooter7::%player's uuid%}%"  
+
+            #VILLAGER KILLER 1
+            set slot 28 of {_store} to enchanted book named "&6Villager Killer I" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 28 of {_store} to "&6&oKill 10 villagers"
+            
+            if {villagerkiller1progress::%player's uuid%} is set:
+                set line 3 of lore of slot 28 of {_store} to "&6Progress: &c%{villagerkiller1progress::%player's uuid%}%&6/&c10&6"      
+            else:
+                set line 3 of lore of slot 28 of {_store} to "&6Progress: &c0&6/&c10&6"     
+            
+            if {villagerkiller1::%player's uuid%} is not set:  
+                set line 4 of lore of slot 28 of {_store} to "&6Status: &cIncomplete"   
+            else:         
+                set line 4 of lore of slot 28 of {_store} to "&6Status: %{villagerkiller1::%player's uuid%}%" 
+            
+            #VILLAGER KILLER 2
+            if {villagerkiller1::%player's uuid%} is "&cComplete":      
+                set slot 29 of {_store} to enchanted book named "&6Villager Killer II" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 29 of {_store} to "&6&oKill 50 villagers"           
+                if {villagerkiller2progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 29 of {_store} to "&6Progress: &c%{villagerkiller2progress::%player's uuid%}%&6/&c50&6"      
+                else:
+                    set line 3 of lore of slot 29 of {_store} to "&6Progress: &c0&6/&c50&6"     
+
+                if {villagerkiller2::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 29 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 29 of {_store} to "&6Status: %{villagerkiller2::%player's uuid%}%" 
+
+            #VILLAGER KILLER 3
+            if {villagerkiller2::%player's uuid%} is "&cComplete":      
+                set slot 30 of {_store} to enchanted book named "&6Villager Killer III" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 30 of {_store} to "&6&oKill 100 villagers"           
+                if {villagerkiller3progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 30 of {_store} to "&6Progress: &c%{villagerkiller3progress::%player's uuid%}%&6/&c100&6"      
+                else:
+                    set line 3 of lore of slot 30 of {_store} to "&6Progress: &c0&6/&c100&6"     
+
+                if {villagerkiller3::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 30 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 30 of {_store} to "&6Status: %{villagerkiller3::%player's uuid%}%" 
+
+            #VILLAGER KILLER 4
+            if {villagerkiller3::%player's uuid%} is "&cComplete":      
+                set slot 31 of {_store} to enchanted book named "&6Villager Killer IV" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 31 of {_store} to "&6&oKill 200 villagers"           
+                if {villagerkiller4progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 31 of {_store} to "&6Progress: &c%{villagerkiller4progress::%player's uuid%}%&6/&c200&6"      
+                else:
+                    set line 3 of lore of slot 31 of {_store} to "&6Progress: &c0&6/&c200&6"     
+
+                if {villagerkiller4::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 31 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 31 of {_store} to "&6Status: %{villagerkiller4::%player's uuid%}%" 
+
+            #VILLAGER KILLER 5
+            if {villagerkiller4::%player's uuid%} is "&cComplete":      
+                set slot 32 of {_store} to enchanted book named "&6Villager Killer V" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 32 of {_store} to "&6&oKill 500 villagers"           
+                if {villagerkiller5progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 32 of {_store} to "&6Progress: &c%{villagerkiller5progress::%player's uuid%}%&6/&c500&6"      
+                else:
+                    set line 3 of lore of slot 32 of {_store} to "&6Progress: &c0&6/&c500&6"     
+
+                if {villagerkiller5::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 32 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 32 of {_store} to "&6Status: %{villagerkiller5::%player's uuid%}%" 
+
+            #VILLAGER KILLER 6
+            if {villagerkiller5::%player's uuid%} is "&cComplete":      
+                set slot 33 of {_store} to enchanted book named "&6Villager Killer VI" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 33 of {_store} to "&6&oKill 1000 villagers"           
+                if {villagerkiller6progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 33 of {_store} to "&6Progress: &c%{villagerkiller6progress::%player's uuid%}%&6/&c1000&6"      
+                else:
+                    set line 3 of lore of slot 33 of {_store} to "&6Progress: &c0&6/&c1000&6"     
+
+                if {villagerkiller6::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 33 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 33 of {_store} to "&6Status: %{villagerkiller6::%player's uuid%}%" 
+
+            #VILLAGER KILLER 7
+            if {villagerkiller6::%player's uuid%} is "&cComplete":      
+                set slot 34 of {_store} to enchanted book named "&6Villager Killer VII" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 34 of {_store} to "&6&oKill 2000 villagers"           
+                if {villagerkiller7progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 34 of {_store} to "&6Progress: &c%{villagerkiller7progress::%player's uuid%}%&6/&c2000&6"      
+                else:
+                    set line 3 of lore of slot 34 of {_store} to "&6Progress: &c0&6/&c2000&6"     
+
+                if {villagerkiller7::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 34 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 34 of {_store} to "&6Status: %{villagerkiller7::%player's uuid%}%"                
+
+            #FLOWER PICKER 1
+            set slot 37 of {_store} to enchanted book named "&6Flower Picker I" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 37 of {_store} to "&6&oPick 10 flowers"
+            
+            if {flowerpicker1progress::%player's uuid%} is set:
+                set line 3 of lore of slot 37 of {_store} to "&6Progress: &c%{flowerpicker1progress::%player's uuid%}%&6/&c10&6"      
+            else:
+                set line 3 of lore of slot 37 of {_store} to "&6Progress: &c0&6/&c10&6"     
+            
+            if {flowerpicker1::%player's uuid%} is not set:  
+                set line 4 of lore of slot 37 of {_store} to "&6Status: &cIncomplete"   
+            else:         
+                set line 4 of lore of slot 37 of {_store} to "&6Status: %{flowerpicker1::%player's uuid%}%" 
+
+            #FLOWER PICKER 2
+            if {flowerpicker1::%player's uuid%} is "&cComplete":  
+                set slot 38 of {_store} to enchanted book named "&6Flower Picker II" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 38 of {_store} to "&6&oPick 25 flowers"
+                
+                if {flowerpicker2progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 38 of {_store} to "&6Progress: &c%{flowerpicker2progress::%player's uuid%}%&6/&c25&6"      
+                else:
+                    set line 3 of lore of slot 38 of {_store} to "&6Progress: &c0&6/&c25&6"     
+                
+                if {flowerpicker2::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 38 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 38 of {_store} to "&6Status: %{flowerpicker2::%player's uuid%}%"    
+
+            #FLOWER PICKER 3
+            if {flowerpicker2::%player's uuid%} is "&cComplete":  
+                set slot 39 of {_store} to enchanted book named "&6Flower Picker III" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 39 of {_store} to "&6&oPick 50 flowers"
+                
+                if {flowerpicker3progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 39 of {_store} to "&6Progress: &c%{flowerpicker3progress::%player's uuid%}%&6/&c50&6"      
+                else:
+                    set line 3 of lore of slot 39 of {_store} to "&6Progress: &c0&6/&c50&6"     
+                
+                if {flowerpicker3::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 39 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 39 of {_store} to "&6Status: %{flowerpicker3::%player's uuid%}%"             
+
+            #FLOWER PICKER 4
+            if {flowerpicker3::%player's uuid%} is "&cComplete":  
+                set slot 40 of {_store} to enchanted book named "&6Flower Picker IV" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 40 of {_store} to "&6&oPick 75 flowers"
+                
+                if {flowerpicker4progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 40 of {_store} to "&6Progress: &c%{flowerpicker4progress::%player's uuid%}%&6/&c75&6"      
+                else:
+                    set line 3 of lore of slot 40 of {_store} to "&6Progress: &c0&6/&c75&6"     
+                
+                if {flowerpicker4::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 40 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 40 of {_store} to "&6Status: %{flowerpicker4::%player's uuid%}%"             
+
+            #FLOWER PICKER 5
+            if {flowerpicker4::%player's uuid%} is "&cComplete":  
+                set slot 41 of {_store} to enchanted book named "&6Flower Picker V" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 41 of {_store} to "&6&oPick 100 flowers"
+                
+                if {flowerpicker5progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 41 of {_store} to "&6Progress: &c%{flowerpicker5progress::%player's uuid%}%&6/&c100&6"      
+                else:
+                    set line 3 of lore of slot 41 of {_store} to "&6Progress: &c0&6/&c100&6"     
+                
+                if {flowerpicker5::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 41 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 41 of {_store} to "&6Status: %{flowerpicker5::%player's uuid%}%"             
+
+            #FLOWER PICKER 6
+            if {flowerpicker5::%player's uuid%} is "&cComplete":  
+                set slot 42 of {_store} to enchanted book named "&6Flower Picker VI" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 42 of {_store} to "&6&oPick 200 flowers"
+                
+                if {flowerpicker6progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 42 of {_store} to "&6Progress: &c%{flowerpicker6progress::%player's uuid%}%&6/&c200&6"      
+                else:
+                    set line 3 of lore of slot 42 of {_store} to "&6Progress: &c0&6/&c200&6"     
+                
+                if {flowerpicker6::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 42 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 42 of {_store} to "&6Status: %{flowerpicker6::%player's uuid%}%"             
+
+            #FLOWER PICKER 7
+            if {flowerpicker6::%player's uuid%} is "&cComplete":  
+                set slot 43 of {_store} to enchanted book named "&6Flower Picker VII" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 43 of {_store} to "&6&oPick 500 flowers"
+                
+                if {flowerpicker7progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 43 of {_store} to "&6Progress: &c%{flowerpicker7progress::%player's uuid%}%&6/&c500&6"      
+                else:
+                    set line 3 of lore of slot 43 of {_store} to "&6Progress: &c0&6/&c500&6"     
+                
+                if {flowerpicker7::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 43 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 43 of {_store} to "&6Status: %{flowerpicker7::%player's uuid%}%"             
+
+
+
+            set slot 49 of {_store} to book and quill named "&6Main Page"
+            set slot 53 of {_store} to arrow named "&6Pa&6ge: &c2"
+
+            open {_store} to player
+            set {trade::%player's uuid%} to true
+        if arg-1 is "2":
+            set {_store} to a new chest inventory with 6 row with name "&6[&cGuide&6] Walter"
+
+            set {_e} to 0
+            loop 54 times:
+                set slot {_e} of {_store} to gray stained glass pane named "&0 "        
+                add 1 to {_e}
+
+            set {_a} to -1
+            loop 4 times:  # Repeat the block 6 times
+                set {_a} to {_a} + 1
+                set slot (10 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (11 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (12 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (13 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (14 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (15 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (16 + {_a} * 9) of {_store} to book named "&7&o???"
+
+            #ZOMBIE HUNTER 1
+            set slot 10 of {_store} to enchanted book named "&6Zombie Hunter I" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 10 of {_store} to "&6&oKill 10 Zombies"
+            
+            if {zombiehunter1progress::%player's uuid%} is set:
+                set line 3 of lore of slot 10 of {_store} to "&6Progress: &c%{zombiehunter1progress::%player's uuid%}%&6/&c10&6"     
+            else:
+                set line 3 of lore of slot 10 of {_store} to "&6Progress: &c0&6/&c10&6"     
+            
+            if {zombiehunter1::%player's uuid%} is not set:  
+                set line 4 of lore of slot 10 of {_store} to "&6Status: &cIncomplete"   
+            else:         
+                set line 4 of lore of slot 10 of {_store} to "&6Status: %{zombiehunter1::%player's uuid%}%"   
+
+            #ZOMBIE HUNTER 2
+            if {zombiehunter1::%player's uuid%} is "&cComplete":
+                set slot 11 of {_store} to enchanted book named "&6Zombie Hunter II" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 11 of {_store} to "&6&oKill 50 Zombies"
+                if {zombiehunter2progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 11 of {_store} to "&6Progress: &c%{zombiehunter2progress::%player's uuid%}%&6/&c50&6"     
+                else:
+                    set line 3 of lore of slot 11 of {_store} to "&6Progress: &c0&6/&c50&6"     
+
+                if {zombiehunter2::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 11 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 11 of {_store} to "&6Status: %{zombiehunter2::%player's uuid%}%"  
+
+            #ZOMBIE HUNTER 3
+            if {zombiehunter2::%player's uuid%} is "&cComplete":
+                set slot 12 of {_store} to enchanted book named "&6Zombie Hunter III" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 12 of {_store} to "&6&oKill 100 Zombies"
+                if {zombiehunter3progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 12 of {_store} to "&6Progress: &c%{zombiehunter3progress::%player's uuid%}%&6/&c100&6"     
+                else:
+                    set line 3 of lore of slot 12 of {_store} to "&6Progress: &c0&6/&c100&6"     
+
+                if {zombiehunter3::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 12 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 12 of {_store} to "&6Status: %{zombiehunter3::%player's uuid%}%"    
+
+            #ZOMBIE HUNTER 4
+            if {zombiehunter3::%player's uuid%} is "&cComplete":
+                set slot 13 of {_store} to enchanted book named "&6Zombie Hunter IV" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 13 of {_store} to "&6&oKill 200 Zombies"
+                if {zombiehunter4progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 13 of {_store} to "&6Progress: &c%{zombiehunter4progress::%player's uuid%}%&6/&c200&6"     
+                else:
+                    set line 3 of lore of slot 13 of {_store} to "&6Progress: &c0&6/&c200&6"     
+
+                if {zombiehunter4::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 13 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 13 of {_store} to "&6Status: %{zombiehunter4::%player's uuid%}%"         
+
+            #ZOMBIE HUNTER 5
+            if {zombiehunter4::%player's uuid%} is "&cComplete":
+                set slot 14 of {_store} to enchanted book named "&6Zombie Hunter V" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 14 of {_store} to "&6&oKill 500 Zombies"
+                if {zombiehunter5progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 14 of {_store} to "&6Progress: &c%{zombiehunter5progress::%player's uuid%}%&6/&c500&6"     
+                else:
+                    set line 3 of lore of slot 14 of {_store} to "&6Progress: &c0&6/&c500&6"     
+
+                if {zombiehunter5::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 14 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 14 of {_store} to "&6Status: %{zombiehunter5::%player's uuid%}%"  
+
+            #ZOMBIE HUNTER 6
+            if {zombiehunter5::%player's uuid%} is "&cComplete":
+                set slot 15 of {_store} to enchanted book named "&6Zombie Hunter VI" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 15 of {_store} to "&6&oKill 1000 Zombies"
+                if {zombiehunter6progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 15 of {_store} to "&6Progress: &c%{zombiehunter6progress::%player's uuid%}%&6/&c1000&6"        
+                else:
+                    set line 3 of lore of slot 15 of {_store} to "&6Progress: &c0&6/&c1000&6"        
+
+                if {zombiehunter6::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 15 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 15 of {_store} to "&6Status: %{zombiehunter6::%player's uuid%}%"    
+
+            #ZOMBIE HUNTER 7
+            if {zombiehunter6::%player's uuid%} is "&cComplete":
+                set slot 16 of {_store} to enchanted book named "&6Zombie Hunter VII" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 16 of {_store} to "&6&oKill 2000 Zombies"
+                if {zombiehunter7progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 16 of {_store} to "&6Progress: &c%{zombiehunter7progress::%player's uuid%}%&6/&c2000&6"        
+                else:
+                    set line 3 of lore of slot 16 of {_store} to "&6Progress: &c0&6/&c2000&6"        
+
+                if {zombiehunter7::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 16 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 16 of {_store} to "&6Status: %{zombiehunter7::%player's uuid%}%" 
+
+
+            #CRIMINAL STOPPER 1
+            set slot 19 of {_store} to enchanted book named "&6Criminal Stopper I" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 19 of {_store} to "&6&oStop 10 Criminals"
+            
+            if {criminalstopper1progress::%player's uuid%} is set:
+                set line 3 of lore of slot 19 of {_store} to "&6Progress: &c%{criminalstopper1progress::%player's uuid%}%&6/&c10&6"     
+            else:
+                set line 3 of lore of slot 19 of {_store} to "&6Progress: &c0&6/&c10&6"     
+            
+            if {criminalstopper1::%player's uuid%} is not set:  
+                set line 4 of lore of slot 19 of {_store} to "&6Status: &cIncomplete"   
+            else:         
+                set line 4 of lore of slot 19 of {_store} to "&6Status: %{criminalstopper1::%player's uuid%}%"   
+
+            #CRIMINAL STOPPER 2
+            if {criminalstopper1::%player's uuid%} is "&cComplete":
+                set slot 20 of {_store} to enchanted book named "&6Criminal Stopper II" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 20 of {_store} to "&6&oStop 50 Criminals"
+                if {criminalstopper2progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 20 of {_store} to "&6Progress: &c%{criminalstopper2progress::%player's uuid%}%&6/&c50&6"     
+                else:
+                    set line 3 of lore of slot 20 of {_store} to "&6Progress: &c0&6/&c50&6"     
+
+                if {criminalstopper2::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 20 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 20 of {_store} to "&6Status: %{criminalstopper2::%player's uuid%}%"  
+
+            #CRIMINAL STOPPER 3
+            if {criminalstopper2::%player's uuid%} is "&cComplete":
+                set slot 21 of {_store} to enchanted book named "&6Criminal Stopper III" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 21 of {_store} to "&6&oStop 100 Criminals"
+                if {criminalstopper3progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 21 of {_store} to "&6Progress: &c%{criminalstopper3progress::%player's uuid%}%&6/&c100&6"     
+                else:
+                    set line 3 of lore of slot 21 of {_store} to "&6Progress: &c0&6/&c100&6"     
+
+                if {criminalstopper3::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 21 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 21 of {_store} to "&6Status: %{criminalstopper3::%player's uuid%}%"    
+
+            #CRIMINAL STOPPER 4
+            if {criminalstopper3::%player's uuid%} is "&cComplete":
+                set slot 22 of {_store} to enchanted book named "&6Criminal Stopper IV" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 22 of {_store} to "&6&oStop 200 Criminals"
+                if {criminalstopper4progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 22 of {_store} to "&6Progress: &c%{criminalstopper4progress::%player's uuid%}%&6/&c200&6"     
+                else:
+                    set line 3 of lore of slot 22 of {_store} to "&6Progress: &c0&6/&c200&6"     
+
+                if {criminalstopper4::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 22 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 22 of {_store} to "&6Status: %{criminalstopper4::%player's uuid%}%"         
+
+            #CRIMINAL STOPPER 5
+            if {criminalstopper4::%player's uuid%} is "&cComplete":
+                set slot 23 of {_store} to enchanted book named "&6Criminal Stopper V" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 23 of {_store} to "&6&oStop 500 Criminals"
+                if {criminalstopper5progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 23 of {_store} to "&6Progress: &c%{criminalstopper5progress::%player's uuid%}%&6/&c500&6"     
+                else:
+                    set line 3 of lore of slot 23 of {_store} to "&6Progress: &c0&6/&c500&6"     
+
+                if {criminalstopper5::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 23 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 23 of {_store} to "&6Status: %{criminalstopper5::%player's uuid%}%"  
+
+            #CRIMINAL STOPPER 6
+            if {criminalstopper5::%player's uuid%} is "&cComplete":
+                set slot 24 of {_store} to enchanted book named "&6Criminal Stopper VI" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 24 of {_store} to "&6&oStop 1000 Criminals"
+                if {criminalstopper6progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 24 of {_store} to "&6Progress: &c%{criminalstopper6progress::%player's uuid%}%&6/&c1000&6"        
+                else:
+                    set line 3 of lore of slot 24 of {_store} to "&6Progress: &c0&6/&c1000&6"        
+
+                if {criminalstopper6::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 24 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 24 of {_store} to "&6Status: %{criminalstopper6::%player's uuid%}%"    
+
+            #CRIMINAL STOPPER 7
+            if {criminalstopper6::%player's uuid%} is "&cComplete":
+                set slot 25 of {_store} to enchanted book named "&6Criminal Stopper VII" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 25 of {_store} to "&6&oStop 2000 Criminals"
+                if {criminalstopper7progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 25 of {_store} to "&6Progress: &c%{criminalstopper7progress::%player's uuid%}%&6/&c2000&6"        
+                else:
+                    set line 3 of lore of slot 25 of {_store} to "&6Progress: &c0&6/&c2000&6"        
+
+                if {criminalstopper7::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 25 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 25 of {_store} to "&6Status: %{criminalstopper7::%player's uuid%}%" 
+
+
+            #F THE POLICE 1
+            set slot 28 of {_store} to enchanted book named "&6F the Police I" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 28 of {_store} to "&6&oKill 10 Police"
+            
+            if {fthepolice1progress::%player's uuid%} is set:
+                set line 3 of lore of slot 28 of {_store} to "&6Progress: &c%{fthepolice1progress::%player's uuid%}%&6/&c10&6"     
+            else:
+                set line 3 of lore of slot 28 of {_store} to "&6Progress: &c0&6/&c10&6"     
+            
+            if {fthepolice1::%player's uuid%} is not set:  
+                set line 4 of lore of slot 28 of {_store} to "&6Status: &cIncomplete"   
+            else:         
+                set line 4 of lore of slot 28 of {_store} to "&6Status: %{fthepolice1::%player's uuid%}%"   
+
+            #F THE POLICE 2
+            if {fthepolice1::%player's uuid%} is "&cComplete":
+                set slot 29 of {_store} to enchanted book named "&6F the Police II" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 29 of {_store} to "&6&oKill 50 Police"
+                if {fthepolice2progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 29 of {_store} to "&6Progress: &c%{fthepolice2progress::%player's uuid%}%&6/&c50&6"     
+                else:
+                    set line 3 of lore of slot 29 of {_store} to "&6Progress: &c0&6/&c50&6"     
+
+                if {fthepolice2::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 29 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 29 of {_store} to "&6Status: %{fthepolice2::%player's uuid%}%"  
+
+            #F THE POLICE 3
+            if {fthepolice2::%player's uuid%} is "&cComplete":
+                set slot 30 of {_store} to enchanted book named "&6F the Police III" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 30 of {_store} to "&6&oKill 100 Police"
+                if {fthepolice3progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 30 of {_store} to "&6Progress: &c%{fthepolice3progress::%player's uuid%}%&6/&c100&6"     
+                else:
+                    set line 3 of lore of slot 30 of {_store} to "&6Progress: &c0&6/&c100&6"     
+
+                if {fthepolice3::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 30 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 30 of {_store} to "&6Status: %{fthepolice3::%player's uuid%}%"    
+
+            #F THE POLICE 4
+            if {fthepolice3::%player's uuid%} is "&cComplete":
+                set slot 31 of {_store} to enchanted book named "&6F the Police IV" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 31 of {_store} to "&6&oKill 200 Police"
+                if {fthepolice4progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 31 of {_store} to "&6Progress: &c%{fthepolice4progress::%player's uuid%}%&6/&c200&6"     
+                else:
+                    set line 3 of lore of slot 31 of {_store} to "&6Progress: &c0&6/&c200&6"     
+
+                if {fthepolice4::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 31 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 31 of {_store} to "&6Status: %{fthepolice4::%player's uuid%}%"         
+
+            #F THE POLICE 5
+            if {fthepolice4::%player's uuid%} is "&cComplete":
+                set slot 32 of {_store} to enchanted book named "&6F the Police V" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 32 of {_store} to "&6&oKill 500 Police"
+                if {fthepolice5progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 32 of {_store} to "&6Progress: &c%{fthepolice5progress::%player's uuid%}%&6/&c500&6"     
+                else:
+                    set line 3 of lore of slot 32 of {_store} to "&6Progress: &c0&6/&c500&6"     
+
+                if {fthepolice5::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 32 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 32 of {_store} to "&6Status: %{fthepolice5::%player's uuid%}%"  
+
+            #F THE POLICE 6
+            if {fthepolice5::%player's uuid%} is "&cComplete":
+                set slot 33 of {_store} to enchanted book named "&6F the Police VI" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 33 of {_store} to "&6&oKill 1000 Police"
+                if {fthepolice6progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 33 of {_store} to "&6Progress: &c%{fthepolice6progress::%player's uuid%}%&6/&c1000&6"        
+                else:
+                    set line 3 of lore of slot 33 of {_store} to "&6Progress: &c0&6/&c1000&6"        
+
+                if {fthepolice6::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 33 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 33 of {_store} to "&6Status: %{fthepolice6::%player's uuid%}%"    
+
+            #F THE POLICE 7
+            if {fthepolice6::%player's uuid%} is "&cComplete":
+                set slot 24 of {_store} to enchanted book named "&6F the Police VII" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 24 of {_store} to "&6&oKill 2000 Police"
+                if {fthepolice7progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 24 of {_store} to "&6Progress: &c%{fthepolice7progress::%player's uuid%}%&6/&c2000&6"        
+                else:
+                    set line 3 of lore of slot 24 of {_store} to "&6Progress: &c0&6/&c2000&6"        
+
+                if {fthepolice7::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 24 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 24 of {_store} to "&6Status: %{fthepolice7::%player's uuid%}%"          
+
+
+            #CLEANING UP THE CITY 1
+            set slot 37 of {_store} to enchanted book named "&6Cleaning up the City I" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 37 of {_store} to "&6&oKill 10 Suspicious Citizens"
+            
+            if {cleaningupthecity1progress::%player's uuid%} is set:
+                set line 3 of lore of slot 37 of {_store} to "&6Progress: &c%{cleaningupthecity1progress::%player's uuid%}%&6/&c10&6"     
+            else:
+                set line 3 of lore of slot 37 of {_store} to "&6Progress: &c0&6/&c10&6"     
+            
+            if {cleaningupthecity1::%player's uuid%} is not set:  
+                set line 4 of lore of slot 37 of {_store} to "&6Status: &cIncomplete"   
+            else:         
+                set line 4 of lore of slot 37 of {_store} to "&6Status: %{cleaningupthecity1::%player's uuid%}%"   
+
+            #CLEANING UP THE CITY 2
+            if {cleaningupthecity1::%player's uuid%} is "&cComplete":
+                set slot 38 of {_store} to enchanted book named "&6Cleaning up the City II" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 38 of {_store} to "&6&oKill 50 Suspicious Citizens"
+                if {cleaningupthecity2progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 38 of {_store} to "&6Progress: &c%{cleaningupthecity2progress::%player's uuid%}%&6/&c50&6"     
+                else:
+                    set line 3 of lore of slot 38 of {_store} to "&6Progress: &c0&6/&c50&6"     
+
+                if {cleaningupthecity2::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 38 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 38 of {_store} to "&6Status: %{cleaningupthecity2::%player's uuid%}%"  
+
+            #CLEANING UP THE CITY 3
+            if {cleaningupthecity2::%player's uuid%} is "&cComplete":
+                set slot 39 of {_store} to enchanted book named "&6Cleaning up the City III" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 39 of {_store} to "&6&oKill 100 Suspicious Citizens"
+                if {cleaningupthecity3progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 39 of {_store} to "&6Progress: &c%{cleaningupthecity3progress::%player's uuid%}%&6/&c100&6"     
+                else:
+                    set line 3 of lore of slot 39 of {_store} to "&6Progress: &c0&6/&c100&6"     
+
+                if {cleaningupthecity3::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 39 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 39 of {_store} to "&6Status: %{cleaningupthecity3::%player's uuid%}%"    
+
+            #CLEANING UP THE CITY 4
+            if {cleaningupthecity3::%player's uuid%} is "&cComplete":
+                set slot 40 of {_store} to enchanted book named "&6Cleaning up the City IV" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 40 of {_store} to "&6&oKill 200 Suspicious Citizens"
+                if {cleaningupthecity4progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 40 of {_store} to "&6Progress: &c%{cleaningupthecity4progress::%player's uuid%}%&6/&c200&6"     
+                else:
+                    set line 3 of lore of slot 40 of {_store} to "&6Progress: &c0&6/&c200&6"     
+
+                if {cleaningupthecity4::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 40 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 40 of {_store} to "&6Status: %{cleaningupthecity4::%player's uuid%}%"         
+
+            #CLEANING UP THE CITY 5
+            if {cleaningupthecity4::%player's uuid%} is "&cComplete":
+                set slot 41 of {_store} to enchanted book named "&6Cleaning up the City V" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 41 of {_store} to "&6&oKill 500 Suspicious Citizens"
+                if {cleaningupthecity5progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 41 of {_store} to "&6Progress: &c%{cleaningupthecity5progress::%player's uuid%}%&6/&c500&6"     
+                else:
+                    set line 3 of lore of slot 41 of {_store} to "&6Progress: &c0&6/&c500&6"     
+
+                if {cleaningupthecity5::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 41 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 41 of {_store} to "&6Status: %{cleaningupthecity5::%player's uuid%}%"  
+
+            #CLEANING UP THE CITY 6
+            if {cleaningupthecity5::%player's uuid%} is "&cComplete":
+                set slot 42 of {_store} to enchanted book named "&6Cleaning up the City VI" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 42 of {_store} to "&6&oKill 1000 Suspicious Citizens"
+                if {cleaningupthecity6progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 42 of {_store} to "&6Progress: &c%{cleaningupthecity6progress::%player's uuid%}%&6/&c1000&6"        
+                else:
+                    set line 3 of lore of slot 42 of {_store} to "&6Progress: &c0&6/&c1000&6"        
+
+                if {cleaningupthecity6::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 42 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 42 of {_store} to "&6Status: %{cleaningupthecity6::%player's uuid%}%"    
+
+            #CLEANING UP THE CITY 7
+            if {cleaningupthecity6::%player's uuid%} is "&cComplete":
+                set slot 43 of {_store} to enchanted book named "&6Cleaning up the City VII" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 43 of {_store} to "&6&oKill 2000 Suspicious Citizens"
+                if {cleaningupthecity7progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 43 of {_store} to "&6Progress: &c%{cleaningupthecity7progress::%player's uuid%}%&6/&c2000&6"        
+                else:
+                    set line 3 of lore of slot 43 of {_store} to "&6Progress: &c0&6/&c2000&6"        
+
+                if {cleaningupthecity7::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 43 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 43 of {_store} to "&6Status: %{cleaningupthecity7::%player's uuid%}%"   
+
+
+            set slot 49 of {_store} to book and quill named "&6Main Page"
+            set slot 45 of {_store} to arrow named "&6Pa&6ge: &c1"
+            set slot 53 of {_store} to arrow named "&6Pa&6ge: &c3"
+
+            open {_store} to player
+            set {trade::%player's uuid%} to true   
+            
+        if arg-1 is "3":
+            set {_store} to a new chest inventory with 6 row with name "&6[&cGuide&6] Walter"
+
+            set {_e} to 0
+            loop 54 times:
+                set slot {_e} of {_store} to gray stained glass pane named "&0 "        
+                add 1 to {_e}
+
+            set {_a} to -1
+            loop 4 times:  # Repeat the block 6 times
+                set {_a} to {_a} + 1
+                set slot (10 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (11 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (12 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (13 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (14 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (15 + {_a} * 9) of {_store} to book named "&7&o???"
+                set slot (16 + {_a} * 9) of {_store} to book named "&7&o???"  
+                
+            #GLASS SMASHER 1
+            set slot 10 of {_store} to enchanted book named "&6Glash Smasher I" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 10 of {_store} to "&6&oDestroy 10 glass"
+            
+            if {glasssmasher1progress::%player's uuid%} is set:
+                set line 3 of lore of slot 10 of {_store} to "&6Progress: &c%{glasssmasher1progress::%player's uuid%}%&6/&c10&6"     
+            else:
+                set line 3 of lore of slot 10 of {_store} to "&6Progress: &c0&6/&c10&6"     
+            
+            if {glasssmasher1::%player's uuid%} is not set:  
+                set line 4 of lore of slot 10 of {_store} to "&6Status: &cIncomplete"   
+            else:         
+                set line 4 of lore of slot 10 of {_store} to "&6Status: %{glasssmasher1::%player's uuid%}%"   
+
+            #GLASS SMASHER 2
+            if {glasssmasher1::%player's uuid%} is "&cComplete":
+                set slot 11 of {_store} to enchanted book named "&6Glash Smasher II" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 11 of {_store} to "&6&oDestroy 50 glass"
+                if {glasssmasher2progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 11 of {_store} to "&6Progress: &c%{glasssmasher2progress::%player's uuid%}%&6/&c50&6"     
+                else:
+                    set line 3 of lore of slot 11 of {_store} to "&6Progress: &c0&6/&c50&6"     
+
+                if {glasssmasher2::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 11 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 11 of {_store} to "&6Status: %{glasssmasher2::%player's uuid%}%"  
+
+            #GLASS SMASHER 3
+            if {glasssmasher2::%player's uuid%} is "&cComplete":
+                set slot 12 of {_store} to enchanted book named "&6Glash Smasher III" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 12 of {_store} to "&6&oDestroy 100 glass"
+                if {glasssmasher3progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 12 of {_store} to "&6Progress: &c%{glasssmasher3progress::%player's uuid%}%&6/&c100&6"     
+                else:
+                    set line 3 of lore of slot 12 of {_store} to "&6Progress: &c0&6/&c100&6"     
+
+                if {glasssmasher3::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 12 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 12 of {_store} to "&6Status: %{glasssmasher3::%player's uuid%}%"    
+
+            #GLASS SMASHER 4
+            if {glasssmasher3::%player's uuid%} is "&cComplete":
+                set slot 13 of {_store} to enchanted book named "&6Glash Smasher IV" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 13 of {_store} to "&6&oDestroy 200 glass"
+                if {glasssmasher4progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 13 of {_store} to "&6Progress: &c%{glasssmasher4progress::%player's uuid%}%&6/&c200&6"     
+                else:
+                    set line 3 of lore of slot 13 of {_store} to "&6Progress: &c0&6/&c200&6"     
+
+                if {glasssmasher4::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 13 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 13 of {_store} to "&6Status: %{glasssmasher4::%player's uuid%}%"         
+
+            #GLASS SMASHER 5
+            if {glasssmasher4::%player's uuid%} is "&cComplete":
+                set slot 14 of {_store} to enchanted book named "&6Glash Smasher V" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 14 of {_store} to "&6&oDestroy 500 glass"
+                if {glasssmasher5progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 14 of {_store} to "&6Progress: &c%{glasssmasher5progress::%player's uuid%}%&6/&c500&6"     
+                else:
+                    set line 3 of lore of slot 14 of {_store} to "&6Progress: &c0&6/&c500&6"     
+
+                if {glasssmasher5::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 14 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 14 of {_store} to "&6Status: %{glasssmasher5::%player's uuid%}%"  
+
+            #GLASS SMASHER 6
+            if {glasssmasher5::%player's uuid%} is "&cComplete":
+                set slot 15 of {_store} to enchanted book named "&6Glash Smasher VI" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 15 of {_store} to "&6&oDestroy 1000 glass"
+                if {glasssmasher6progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 15 of {_store} to "&6Progress: &c%{glasssmasher6progress::%player's uuid%}%&6/&c1000&6"        
+                else:
+                    set line 3 of lore of slot 15 of {_store} to "&6Progress: &c0&6/&c1000&6"        
+
+                if {glasssmasher6::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 15 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 15 of {_store} to "&6Status: %{glasssmasher6::%player's uuid%}%"    
+
+            #GLASS SMASHER 7
+            if {glasssmasher6::%player's uuid%} is "&cComplete":
+                set slot 16 of {_store} to enchanted book named "&6Glash Smasher VII" with nbt "{HideFlags:127}"
+                set line 1 of lore of slot 16 of {_store} to "&6&oDestroy 2000 glass"
+                if {glasssmasher7progress::%player's uuid%} is set:
+                    set line 3 of lore of slot 16 of {_store} to "&6Progress: &c%{glasssmasher7progress::%player's uuid%}%&6/&c2000&6"        
+                else:
+                    set line 3 of lore of slot 16 of {_store} to "&6Progress: &c0&6/&c2000&6"        
+
+                if {glasssmasher7::%player's uuid%} is not set:  
+                    set line 4 of lore of slot 16 of {_store} to "&6Status: &cIncomplete"   
+                else:         
+                    set line 4 of lore of slot 16 of {_store} to "&6Status: %{glasssmasher7::%player's uuid%}%"                 
+
+            set slot 49 of {_store} to book and quill named "&6Main Page"
+            set slot 45 of {_store} to arrow named "&6Pa&6ge: &c2"
+
+            open {_store} to player
+            set {trade::%player's uuid%} to true                 
+
+on inventory click:
+    if name of event-item is "&6Pa&6ge: &c2":
+        make player execute "/questtiered 2"
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Pa&6ge: &c1":
+        make player execute "/questtiered 1"
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6Pa&6ge: &c3":
+        make player execute "/questtiered 3"
+        console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+

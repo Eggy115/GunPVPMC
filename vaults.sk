@@ -1,0 +1,394 @@
+options:
+    permission-message: You lack the required permission nodes to execute this command
+    permissions:
+        # Represents the required permission node to use /pv
+        pv: playervaults.command.open
+        # Represents the required permission node to use /pv-admin
+        pv-admin: playervaults.command.open.admin
+        # Represents the required permission node to use /pv-del
+        pv-del: playervaults.command.delete
+        # Represents the required permission node to use /pv-del-admin
+        pv-del-admin: playervaults.command.delete.admin
+
+    # Allows/Disallows admins from creating new vaults for players
+    allow-admin-creation: false
+    # The prefix prepended to all messages
+    prefix: "&7Gun&4PVP&aMC&6 Vaults: "
+    
+    # it is suggested to stay away from changing these values
+    # these are how the system manages vault creation
+    # inventory_item is the item that stores all the contents, this must be a container item with an inventory
+    inventory_item: chest
+    # inventory_type is the type of inventory that will be opened to a player, changing item to dropper and type to dropper inventory opens a 3x3
+    inventory_type: chest inventory
+
+on load:
+    parse if all:
+        {@inventory_item} is not an item
+        {@inventory_item} is not an itemtype
+    then:
+        log "The option 'inventory_item' in %script%.sk is not a valid itemstack" with severity severe
+    parse if {@inventory_type} is not an inventory type:
+        log "The option 'inventory_type' in %script%.sk is not a valid inventory type" with severity severe
+    parse if {@allow-admin-creation} is not a boolean:
+        log "The option 'allow-admin-creation' in %script%.sk is not a valid boolean" with severity severe
+
+function playerVault(vaultOwner:offlineplayer, vaultId:string, openTo:player={_null}):
+    {_vaultOwner} and {_vaultId} are set    
+    set {_vaultViewer} to {_openTo} ? {_vaultOwner}
+    set metadata "viewingVault;id" of {_vaultViewer} to {_vaultId}
+    set metadata "viewingVault;owner" of {_vaultViewer} to {_vaultOwner}
+    if {-playerVault::%{_vaultOwner}%::%{_vaultId}%} is set:
+        set metadata "viewingVault" of {_vaultViewer} to {-playerVault::%{_vaultOwner}%::%{_vaultId}%}
+        open {-playerVault::%{_vaultOwner}%::%{_vaultId}%} to {_vaultViewer}
+        stop
+    if {playerVault::%{_vaultOwner}%::%{_vaultId}%} is not set:
+        set {playerVault::%{_vaultOwner}%::%{_vaultId}%} to {@inventory_item}
+    set {_invItem} to inventory of {-playerVault::%{_vaultOwner}%::%{_vaultId}%}
+    set {-playerVault::%{_vaultOwner}%::%{_vaultId}%} and {_invObject} to {@inventory_type} named "Personal Vault"
+    loop items in {_invItem}:
+        set slot (index of loop-slot) of {_invObject} to loop-item
+    set metadata "viewingVault" of {_vaultViewer} to {_invObject}
+    open {_invObject} to {_vaultViewer}
+
+on inventory close:
+    event-inventory is metadata "viewingVault" of player
+    set {_vaultOwner} to metadata "viewingVault;owner" of player
+    set {_vaultId} to metadata "viewingVault;id" of player
+    set {_inv} to inventory of {playerVault::%{_vaultOwner}%::%{_vaultId}%}
+    clear items in {_inv} 
+    loop items in event-inventory:
+        set slot (index of loop-slot) of {_inv} to loop-item
+    clear metadata "viewingVault", "viewingVault;id", "viewingVault;owner" of player
+
+command /pv <vaultId:string>:
+    permission: {@permissions.pv}
+    permission message: {@permission-message}
+    prefix: player-vault
+    usage: /pv <vaultId>
+    trigger:
+        playerVault(player, {_vaultId})
+
+command /vaultbank [<text>]:
+    trigger:
+
+        # ARG-1 NOT SET
+        if arg-1 is not set:
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&cThis command cannot be run outside of the bank!"    
+            stop
+
+        # ARG-1 IS NOT A VALID VAULT
+        if arg-1 is not "1" or "2" or "3" or "4" or "5" or "6" or "7":
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+            send "&cThis command cannot be run outside of the bank!"    
+            stop
+
+        # VAULT ONE (1)
+        if arg-1 is "1":
+            if {vaultbank1::%player's uuid%} is set:
+                set {_vaultId} to "%player%1"
+                playerVault(player, {_vaultId})
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou have not unlocked this vault!"    
+                stop
+                
+        # VAULT TWO (2)
+        if arg-1 is "2":
+            if {vaultbank2::%player's uuid%} is set:
+                set {_vaultId} to "%player%2"
+                playerVault(player, {_vaultId})
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou have not unlocked this vault!"    
+                stop
+                
+        # VAULT THREE (3)
+        if arg-1 is "3":
+            if {vaultbank3::%player's uuid%} is set:
+                set {_vaultId} to "%player%3"
+                playerVault(player, {_vaultId})
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou have not unlocked this vault!"    
+                stop    
+                
+        # VAULT FOUR (4)
+        if arg-1 is "4":
+            if {vaultbank4::%player's uuid%} is set:
+                set {_vaultId} to "%player%4"
+                playerVault(player, {_vaultId})
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou have not unlocked this vault!"    
+                stop                    
+        
+        # VAULT FIVE (5)
+        if arg-1 is "5":
+            if {vaultbank5::%player's uuid%} is set:
+                set {_vaultId} to "%player%5"
+                playerVault(player, {_vaultId})
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou have not unlocked this vault!"    
+                stop
+                
+        # VAULT SIX (6)
+        if arg-1 is "6":
+            if {vaultbank6::%player's uuid%} is set:
+                set {_vaultId} to "%player%6"
+                playerVault(player, {_vaultId})
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou have not unlocked this vault!"    
+                stop    
+                
+        # VAULT SEVEN (7)
+        if arg-1 is "7":
+            if {vaultbank7::%player's uuid%} is set:
+                set {_vaultId} to "%player%7"
+                playerVault(player, {_vaultId})
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+                send "&cYou have not unlocked this vault!"    
+                stop                    
+
+command /pv-del <vaultId:string>:
+    permission: {@permissions.pv-del}
+    permission message: {@permission-message}
+    prefix: player-vault
+    usage: /pv-del <vaultId>
+    trigger:
+        if {-playerVault::%player%::%{_vaultId}%} is not set:
+            send {@prefix} + "The vault '&c%{_vaultId}%&6' doesn't exist."
+            play sound "entity.armadillo.hurt" with pitch 1.5 for player 
+        else:
+            set {_viewers::*} to viewers of {-playerVault::%player%::%{_vaultId}%}
+            close inventory of {_viewers::*}
+            delete {-playerVault::%player%::%{_vaultId}%} and {playerVault::%player%::%{_vaultId}%}
+            send {@prefix} + "The vault '&c%{_vaultId}%&6' was successfully deleted."
+
+command /pv-admin <vaultOwner:offlineplayer> <vaultId:string>:
+    permission: {@permissions.pv-admin}
+    permission message: {@permission-message}
+    prefix: player-vault
+    usage: /pv-admin <vaultOwner> <vaultId>
+    trigger:
+        if all:
+            {@allow-admin-creation} is not true
+            {-playerVault::%{_vaultOwner}%::%{_vaultId}%} is not set
+        then:
+            send {@prefix} + "'&c%{_vaultOwner}%&6' doesn't have a vault by the name '&c%{_vaultId}%&6'."
+            play sound "entity.armadillo.hurt" with pitch 1.5 for player 
+        else:
+            playerVault({_vaultOwner}, {_vaultId}, player)
+
+command /pv-del-admin <vaultOwner:offlineplayer> <vaultId:string>:
+    permission: {@permissions.pv-del-admin}
+    permission message: {@permission-message}
+    prefix: player-vault
+    usage: /pv-admin <vaultOwner> <vaultId>
+    trigger:
+        if {-playerVault::%{_vaultOwner}%::%{_vaultId}%} is not set:
+            send {@prefix} + "'&c%{_vaultOwner}%&6' doesn't have a vault by the name '&c%{_vaultId}%&6'."
+            play sound "entity.armadillo.hurt" with pitch 1.5 for player 
+        else:
+            set {_viewers::*} to viewers of {-playerVault::%{_vaultOwner}%::%{_vaultId}%}
+            close inventory of {_viewers::*}
+            delete {-playerVault::%{_vaultOwner}%::%{_vaultId}%} and {playerVault::%{_vaultOwner}%::%{_vaultId}%}
+            send {@prefix} + "The vault '&c%{_vaultId}%&6' was successfully deleted for '&c%{_vaultOwner}%&6'."
+
+on tab complete for "pv":
+    player has permission "{@permissions.pv}"
+    set tab completions of position 1 to "<vaultId>", indices of {playerVault::%player%::*}
+on tab complete for "pv-del":
+    player has permission "{@permissions.pv-del}"
+    set tab completions of position 1 to "<vaultId>", indices of {playerVault::%player%::*}
+on tab complete for "pv-admin":
+    player has permission "{@permissions.pv-admin}"
+    set {_target} to offlineplayer(tab argument 1)
+    set tab completions of position 2 to "<vaultId>", indices of {playerVault::%{_target}%::*}
+on tab complete for "pv-del-admin":
+    player has permission "{@permissions.pv-del-admin}"
+    set {_target} to offlineplayer(tab argument 1)
+    set tab completions of position 2 to "<vaultId>", indices of {playerVault::%{_target}%::*}
+
+command /vaults [<text>]:
+    trigger:
+        if {combat::%player%} is true:
+            send "&7Gun&4PVP&aMC&6: You cannot use &c/bank&6 in combat!"        
+            stop
+                     
+        set {_store} to a new chest inventory with 6 row with name "&7Gun&4PVP&aMC&6 Vaults"
+
+        set {_e} to 0
+        loop 54 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "    
+            add 1 to {_e}
+
+        if {vaultbank1::%player's uuid%} is true:
+            set slot 10 of {_store} to barrel named "&6Vault I" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+            set line 1 of lore of slot 10 of {_store} to "&6Storage: &c27"            
+        else:
+            set slot 10 of {_store} to barrel named "&6Vault I" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 10 of {_store} to "&6Storage: &c27"            
+            set line 2 of lore of slot 10 of {_store} to "&6Cost: &c1000"
+
+        if {vaultbank2::%player's uuid%} is true:
+            set slot 11 of {_store} to barrel named "&6Vault II" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+            set line 1 of lore of slot 11 of {_store} to "&6Storage: &c27"            
+        else:
+            set slot 11 of {_store} to barrel named "&6Vault II" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 11 of {_store} to "&6Storage: &c27"            
+            set line 2 of lore of slot 11 of {_store} to "&6Cost: &c2000"
+
+        if {vaultbank3::%player's uuid%} is true:
+            set slot 12 of {_store} to barrel named "&6Vault III" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+            set line 1 of lore of slot 12 of {_store} to "&6Storage: &c27"            
+        else:
+            set slot 12 of {_store} to barrel named "&6Vault III" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 12 of {_store} to "&6Storage: &c27"            
+            set line 2 of lore of slot 12 of {_store} to "&6Cost: &c5000"
+
+        if {vaultbank4::%player's uuid%} is true:
+            set slot 13 of {_store} to barrel named "&6Vault IV" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+            set line 1 of lore of slot 13 of {_store} to "&6Storage: &c27"            
+        else:
+            set slot 13 of {_store} to barrel named "&6Vault IV" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 13 of {_store} to "&6Storage: &c27"            
+            set line 2 of lore of slot 13 of {_store} to "&6Cost: &c10000"
+			
+        if {vaultbank5::%player's uuid%} is true:
+            set slot 14 of {_store} to barrel named "&6Vault V" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+            set line 1 of lore of slot 14 of {_store} to "&6Storage: &c27"            
+        else:
+            set slot 14 of {_store} to barrel named "&6Vault V" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 14 of {_store} to "&6Storage: &c27"            
+            set line 2 of lore of slot 14 of {_store} to "&6Cost: &c20000"
+
+        if {vaultbank6::%player's uuid%} is true:
+            set slot 15 of {_store} to barrel named "&6Vault VI" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+            set line 1 of lore of slot 15 of {_store} to "&6Storage: &c27"            
+        else:
+            set slot 15 of {_store} to barrel named "&6Vault VI" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 15 of {_store} to "&6Storage: &c27"            
+            set line 2 of lore of slot 15 of {_store} to "&6Cost: &c30000"
+			
+        if {vaultbank7::%player's uuid%} is true:
+            set slot 16 of {_store} to barrel named "&6Vault VII" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+            set line 1 of lore of slot 16 of {_store} to "&6Storage: &c27"            
+        else:
+            set slot 16 of {_store} to barrel named "&6Vault VII" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 16 of {_store} to "&6Storage: &c27"            
+            set line 2 of lore of slot 16 of {_store} to "&6Cost: &c50000"
+			
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true  
+        
+on inventory click:
+    if name of event-item is "&6Vault I":
+        if {vaultbank1::%player's uuid%} is true:
+            make player execute "/vaultbank 1"
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        else:
+            if {coins::%player's uuid%} > 999:
+                set {coins::%player's uuid%} to {coins::%player's uuid%} - 1000
+                console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {vaultbank1::%player's uuid%} to true
+                make player execute "/vaults"
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+                send "&cYou cannot afford this!" to player
+        
+on inventory click:
+    if name of event-item is "&6Vault II":
+        if {vaultbank2::%player's uuid%} is true:
+            make player execute "/vaultbank 2"
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        else:
+            if {coins::%player's uuid%} > 1999:
+                set {coins::%player's uuid%} to {coins::%player's uuid%} - 2000
+                console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {vaultbank2::%player's uuid%} to true
+                make player execute "/vaults"
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+                send "&cYou cannot afford this!" to player
+
+on inventory click:
+    if name of event-item is "&6Vault III":
+        if {vaultbank3::%player's uuid%} is true:
+            make player execute "/vaultbank 3"
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        else:
+            if {coins::%player's uuid%} > 4999:
+                set {coins::%player's uuid%} to {coins::%player's uuid%} - 5000
+                console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {vaultbank3::%player's uuid%} to true
+                make player execute "/vaults"
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+                send "&cYou cannot afford this!" to player
+
+on inventory click:
+    if name of event-item is "&6Vault IV":
+        if {vaultbank4::%player's uuid%} is true:
+            make player execute "/vaultbank 4"
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        else:
+            if {coins::%player's uuid%} > 9999:
+                set {coins::%player's uuid%} to {coins::%player's uuid%} - 10000
+                console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {vaultbank4::%player's uuid%} to true
+                make player execute "/vaults"
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+                send "&cYou cannot afford this!" to player		
+				
+on inventory click:
+    if name of event-item is "&6Vault V":
+        if {vaultbank5::%player's uuid%} is true:
+            make player execute "/vaultbank 5"
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        else:
+            if {coins::%player's uuid%} > 19999:
+                set {coins::%player's uuid%} to {coins::%player's uuid%} - 20000
+                console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {vaultbank5::%player's uuid%} to true
+                make player execute "/vaults"
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+                send "&cYou cannot afford this!" to player						
+        
+on inventory click:
+    if name of event-item is "&6Vault VI":
+        if {vaultbank6::%player's uuid%} is true:
+            make player execute "/vaultbank 6"
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        else:
+            if {coins::%player's uuid%} > 29999:
+                set {coins::%player's uuid%} to {coins::%player's uuid%} - 30000
+                console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {vaultbank6::%player's uuid%} to true
+                make player execute "/vaults"
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+                send "&cYou cannot afford this!" to player	
+				
+on inventory click:
+    if name of event-item is "&6Vault VII":
+        if {vaultbank7::%player's uuid%} is true:
+            make player execute "/vaultbank 7"
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+        else:
+            if {coins::%player's uuid%} > 49999:
+                set {coins::%player's uuid%} to {coins::%player's uuid%} - 50000
+                console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+                set {vaultbank7::%player's uuid%} to true
+                make player execute "/vaults"
+            else:
+                console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+                send "&cYou cannot afford this!" to player					
+        								

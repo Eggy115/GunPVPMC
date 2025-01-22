@@ -1,0 +1,275 @@
+every 20 ticks:
+	if {tabcounter} is not set:
+		set {tabcounter} to 0
+	set {tabcounter} to {tabcounter} + 1
+	if {tabcounter} = 1:
+		set {tabtext} to "Join the Discord"
+	if {tabcounter} = 2:
+		set {tabtext} to "The horse armour are guns"
+	if {tabcounter} is 3:
+		set {tabtext} to "Griefing's probably allowed"			
+	if {tabcounter} is 4:
+		set {tabtext} to "Dying is bad"
+	if {tabcounter} is 5:
+		set {tabtext} to "There's a small chance you can get bad items"			
+	if {tabcounter} is 6:
+		set {tabtext} to "Fortune is not overpowered at all"
+	if {tabcounter} = 7:
+		set {tabtext} to "Does it look like an anarchy server?"
+	if {tabcounter} = 8:
+		set {tabtext} to "123456789"
+	if {tabcounter} is 9:
+		set {tabtext} to "Stop griefing bro"			
+	if {tabcounter} is 10:
+		set {tabtext} to "Don't leave... please don't leave"
+	if {tabcounter} is 11:
+		set {tabtext} to "This game is 100%% luck"			
+	if {tabcounter} is 12:
+		set {tabtext} to "1.18.2 features now here... kinda"
+	if {tabcounter} = 13:
+		set {tabtext} to "Death messages 100%% custom"
+	if {tabcounter} = 14:
+		set {tabtext} to "Milk buckets rarest item in the game"
+	if {tabcounter} is 15:
+		set {tabtext} to "Didn't someone already make this?"			
+	if {tabcounter} is 16:
+		set {tabtext} to "Flans mod ripoff"
+	if {tabcounter} is 17:
+		set {tabtext} to "Yeah there's not actualy anything good"			
+	if {tabcounter} is 18:
+		set {tabtext} to "Underated server"
+	if {tabcounter} = 19:
+		set {tabtext} to "G to the u to the n to the P to the V"
+	if {tabcounter} = 20:
+		set {tabtext} to "Gun pew pew"
+	if {tabcounter} is 21:
+		set {tabtext} to "Spawnkill = dad left"			
+	if {tabcounter} is 22:
+		set {tabtext} to "MineHut... its the best"
+	if {tabcounter} is 23:
+		set {tabtext} to "Now on 1.18.2"	
+	if {tabcounter} is 24:
+		set {tabtext} to "No skill involved"	
+	if {tabcounter} = 25:
+		set {tabtext} to "This server is how old now?"
+	if {tabcounter} = 26:
+		set {tabtext} to "I cannot count to 10"
+	if {tabcounter} is 27:
+		set {tabtext} to "Should've used Aternos..."			
+	if {tabcounter} is 28:
+		set {tabtext} to "Does anyone even read these?"
+	if {tabcounter} is 29:
+		set {tabtext} to "Replacement MOTDs"			
+	if {tabcounter} is 30:
+		set {tabtext} to "Buy MVP Now"
+	if {tabcounter} = 31:
+		set {tabtext} to "Buy VIP Now"
+	if {tabcounter} = 32:
+		set {tabtext} to "It's like rolling dice to see if you win"
+	if {tabcounter} is 33:
+		set {tabtext} to "Pretty sure I just had a stroke"			
+	if {tabcounter} is 34:
+		set {tabtext} to "Better than whatever the top MineHut server is"
+	if {tabcounter} is 34:
+		set {tabtext} to "Could be worse"			
+	if {tabcounter} is 35:
+		set {tabtext} to "Claim your daily prize"
+	if {tabcounter} = 36:
+		set {tabtext} to "We now own your soul"
+	if {tabcounter} = 37:
+		set {tabtext} to "Buy something. Do it. Do it now."
+	if {tabcounter} is 38:
+		set {tabtext} to "oofo momento"			
+	if {tabcounter} is 39:
+		set {tabtext} to "Time for the SUPER GUNPVPMC CHALLENGE"
+	if {tabcounter} is 40:
+		set {tabtext} to "Biggest waste of time yet"			
+	if {tabcounter} is 41:
+		set {tabtext} to "Best thing since... idk"
+	if {tabcounter} = 42:
+		set {tabtext} to "Staff needed totally 100%%"
+	if {tabcounter} = 43:
+		set {tabtext} to "Hello there"
+	if {tabcounter} is 44:
+		set {tabtext} to "Breaking Bad ripoff"			
+	if {tabcounter} is 45:
+		set {tabtext} to "The end is somewhere down there"
+	if {tabcounter} is 46:
+		set {tabtext} to "Somehow the nether is nicer than spawn"	
+	if {tabcounter} is 47:
+		set {tabtext} to "Should be hosted on 1.12.2"	
+	if {tabcounter} is 48:
+		set {tabtext} to "Unorthodox"	
+	if {tabcounter} is 49:
+		set {tabtext} to "The End is basically just a quarry now"	
+	if {tabcounter} is 50:
+		set {tabtext} to "Currently stuck in tab, send help"	
+	if {tabcounter} is 51:
+		set {tabtext} to "Ooga Booga Ooga Booga"
+	if {tabcounter} = 52:
+		set {tabtext} to "What the actual frig nuggets"
+	if {tabcounter} = 53:
+		set {tabtext} to "New updates daily"
+	if {tabcounter} is 54:
+		set {tabtext} to "Have a very merry spooky easter week"			
+	if {tabcounter} is 55:
+		set {tabtext} to "Over 1 bajillion items"
+	if {tabcounter} is 56:
+		set {tabtext} to "20/10 players hmmmm"	
+	if {tabcounter} is 57:
+		set {tabtext} to "I'm watching you"	
+	if {tabcounter} is 58:
+		set {tabtext} to "Loozer Boozer"	
+	if {tabcounter} is 59:
+		set {tabtext} to "I wonder who the owner is..."	
+	if {tabcounter} is 60:
+		set {tabtext} to "Epik Gamerz"	
+	if {tabcounter} is 61:
+		set {tabtext} to "<insert message here>"
+	if {tabcounter} = 62:
+		set {tabtext} to "Support the server with /buy"
+	if {tabcounter} = 63:
+		set {tabtext} to "You should join the Discord"
+	if {tabcounter} is 64:
+		set {tabtext} to "Try to make it to level 1000"			
+	if {tabcounter} is 65:
+		set {tabtext} to "Custom item and stuff innit"
+	if {tabcounter} is 66:
+		set {tabtext} to "GunPVPMC.minehut.gg"	
+	if {tabcounter} is 67:
+		set {tabtext} to "Bro is hacking"	
+	if {tabcounter} is 68:
+		set {tabtext} to "##1 Server"	
+	if {tabcounter} is 69:
+		set {tabtext} to "Woah"	
+	if {tabcounter} is 70:
+		set {tabtext} to "Actually bad"	
+	if {tabcounter} is 71:
+		set {tabtext} to "People-stayer yes"
+	if {tabcounter} = 72:
+		set {tabtext} to "Do you have enough"
+	if {tabcounter} = 73:
+		set {tabtext} to "Work now"
+	if {tabcounter} is 74:
+		set {tabtext} to "Top 10 server moments"			
+	if {tabcounter} is 75:
+		set {tabtext} to "Only 1%% can find the lucky block"
+	if {tabcounter} is 76:
+		set {tabtext} to "OOOK"	
+	if {tabcounter} is 77:
+		set {tabtext} to "Oh no"	
+	if {tabcounter} is 78:
+		set {tabtext} to "Join the discord because..."	
+	if {tabcounter} is 79:
+		set {tabtext} to "You can apply for staff now"	
+	if {tabcounter} is 80:
+		set {tabtext} to "Theres like... 1000 drops idk"	
+	if {tabcounter} is 81:
+		set {tabtext} to "Actually 10/10 ngl"
+	if {tabcounter} = 82:
+		set {tabtext} to "Get ez'd"
+	if {tabcounter} = 83:
+		set {tabtext} to "Don't kill dogs"
+	if {tabcounter} is 84:
+		set {tabtext} to "gunpvpmc.craftingstore.net"				
+	if {tabcounter} is 85:
+		set {tabtext} to "Pls donat"
+	if {tabcounter} is 86:
+		set {tabtext} to "Ice bucket challenge IRL"	
+	if {tabcounter} is 87:
+		set {tabtext} to "Netherite hoe most valuable item"	
+	if {tabcounter} is 88:
+		set {tabtext} to "Wet sponges now useless!"	
+	if {tabcounter} is 89:
+		set {tabtext} to "Cool new animations"	
+	if {tabcounter} is 90:
+		set {tabtext} to "ABCDEFGHIJKLMNOPQRSTUVWXYZ"	
+	if {tabcounter} is 91:
+		set {tabtext} to "abcdefghijklmnopqrstuvwxyz"
+	if {tabcounter} = 92:
+		set {tabtext} to "01234567891011121314151617181920"
+	if {tabcounter} = 93:
+		set {tabtext} to "What??!??!!!"
+	if {tabcounter} is 94:
+		set {tabtext} to "hax"			
+	if {tabcounter} is 95:
+		set {tabtext} to "Broski"
+	if {tabcounter} is 96:
+		set {tabtext} to "Do a kickflip!"	
+	if {tabcounter} is 97:
+		set {tabtext} to "Safety first"	
+	if {tabcounter} is 98:
+		set {tabtext} to "Always wear armour"	
+	if {tabcounter} is 99:
+		set {tabtext} to "Shield > Totem"	
+	if {tabcounter} is 100:
+		set {tabtext} to "Golden carrot > steak"	
+	if {tabcounter} is 101:
+		set {tabtext} to "Cooked_Beef"
+	if {tabcounter} = 102:
+		set {tabtext} to "lol.mp3"
+	if {tabcounter} = 103:
+		set {tabtext} to "Run, run, run"
+	if {tabcounter} is 104:
+		set {tabtext} to "The antidote for fun!"			
+	if {tabcounter} is 105:
+		set {tabtext} to "Why...?"
+	if {tabcounter} is 106:
+		set {tabtext} to "Well well well"	
+	if {tabcounter} is 107:
+		set {tabtext} to "banana"	
+	if {tabcounter} is 108:
+		set {tabtext} to "gunpvpmc block hahaha oh wait i already did that shit"	
+	if {tabcounter} is 109:
+		set {tabtext} to "ummmm"	
+	if {tabcounter} is 110:
+		set {tabtext} to "Damn"			
+		set {tabcounter} to 0			
+	loop all players:
+
+		set loop-player's tablist header to "%nl%&6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 %nl%%nl%&7Gun&4PVP&aMC&6.minehut.gg%nl%"
+		
+		set {_rank} to ""
+		set {_staffrank} to ""
+
+		if {rank::%loop-player's uuid%} is "DONOR":
+			if {title::%loop-player's uuid%} is not "&d[DONOR]":
+				set {_rank} to "&d [D]"
+
+		if {rank::%loop-player's uuid%} is "VIP":
+			if {title::%loop-player's uuid%} is not "&a[VIP]":
+				set {_rank} to "&a [V]"
+
+		if {rank::%loop-player's uuid%} is "MVP":
+			if {title::%loop-player's uuid%} is not "&b[MVP]":
+				set {_rank} to "&b [M]"
+
+		if {rank::%loop-player's uuid%} is "EPIC":
+			if {title::%loop-player's uuid%} is not "&5[EPIC]":
+				set {_rank} to "&5 [E]"
+
+		if {rank::%loop-player's uuid%} is "LEGEND":
+			if {title::%loop-player's uuid%} is not "&e[LEGEND]":
+				set {_rank} to "&e [L]"								
+
+		if {staffrank::%loop-player's uuid%} is "Helper":
+			if {title::%loop-player's uuid%} is not "&9[Helper]":
+				set {_staffrank} to "&9 [H]"
+
+		if {staffrank::%loop-player's uuid%} is "Moderator":
+			if {title::%loop-player's uuid%} is not "&2[Moderator]":
+				set {_staffrank} to "&2 [M]"	
+
+		if {staffrank::%loop-player's uuid%} is "Admin":
+			if {title::%loop-player's uuid%} is not "&4[Admin]":
+				set {_staffrank} to "&4 [A]"					
+
+		if {GANG::gang::%loop-player's uuid%} is set:
+			if {GANG::gangfirst::%{GANG::gang::%loop-player's uuid%}%} is not uuid of loop-player:
+				set loop-player's tablist name to "&r&6[&c%{rep::%loop-player's uuid%}%✫&6] %{title::%loop-player's uuid%}% %loop-player% &6[&c%{GANG::ganglist::%{GANG::gang::%loop-player's uuid%}%}%&6 | &c%{GANGrep::%{GANG::gang::%loop-player's uuid%}%}%✫&6]%{_rank}%%{_staffrank}%"
+			else:
+				set loop-player's tablist name to "&r&6[&c%{rep::%loop-player's uuid%}%✫&6] %{title::%loop-player's uuid%}% %loop-player% &6[&c%{GANG::ganglist::%{GANG::gang::%loop-player's uuid%}%}% ☠&6 | &c%{GANGrep::%{GANG::gang::%loop-player's uuid%}%}%✫&6]%{_rank}%%{_staffrank}%"
+		else:	
+			set loop-player's tablist name to "&r&6[&c%{rep::%loop-player's uuid%}%✫&6] %{title::%loop-player's uuid%}% %loop-player%%{_rank}%%{_staffrank}%"
+		set loop-player's tablist footer to "%nl%&6TPS: &c%tps from last 1m%%nl%&6Ping: &c%loop-player's ping%%nl%&6Players: &c%online player count%%nl%%nl%&6&o%{tabtext}%%nl%%nl%&6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 &6 %nl%"
+		

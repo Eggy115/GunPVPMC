@@ -1,0 +1,31 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 8a3ae29d-e1e3-4f0b-b194-51b2f94b4dea 10 72 -475"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Zombie Hunter] Zachary":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cZombie Hunter&6] Zachary"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to 1 rotten flesh named "<##994B24>Rotten Flesh &6[&cx1&6]"
+        set line 2 of lore of slot 10 of {_store} to "&6Sell: &c5"
+                 
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "<##994B24>Rotten Flesh &6[&cx1&6]":
+        if player has 1 rotten flesh:
+            remove 1 rotten flesh from player
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 5
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            send "&6[&cZombie Hunter&6] Zachary: You're a good kid, lad"
+        else:
+            send "&6[&cZombie Hunter&6] Zachary: You're gonna have to kill some zombies first!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  

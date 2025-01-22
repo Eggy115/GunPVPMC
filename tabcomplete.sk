@@ -1,0 +1,15 @@
+#on tab completer for "/gangs":
+#    if argument at 1 is not set:
+#        set {_completers::*} to "create", "kick", "invite", "accept", "leave", "info", "delete", "promote", "demote", and "list"
+#        loop {_completers::*}:
+#            add loop-value to completions	
+#on tab completer for "/gang":
+#    if argument at 1 is not set:
+#        set {_completers::*} to "create", "kick", "invite", "accept", "leave", "info", "delete", "promote", "demote", and "list"
+#        loop {_completers::*}:
+#            add loop-value to completions	
+#on tab completer for "/g":
+#    if argument at 1 is not set:
+#        set {_completers::*} to "create", "kick", "invite", "accept", "leave", "info", "delete", "promote", "demote", and "list"
+#        loop {_completers::*}:
+#            add loop-value to completions	

@@ -1,0 +1,88 @@
+command /queststory:
+    trigger:
+        set {_store} to a new chest inventory with 6 row with name "&6[&cGuide&6] Walter"
+
+        set {_e} to 0
+        loop 54 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "        
+            add 1 to {_e}
+
+        set {_a} to -1
+        loop 4 times:  # Repeat the block 6 times
+            set {_a} to {_a} + 1
+            set slot (10 + {_a} * 9) of {_store} to book named "&7&o???"
+            set slot (11 + {_a} * 9) of {_store} to book named "&7&o???"
+            set slot (12 + {_a} * 9) of {_store} to book named "&7&o???"
+            set slot (13 + {_a} * 9) of {_store} to book named "&7&o???"
+            set slot (14 + {_a} * 9) of {_store} to book named "&7&o???"
+            set slot (15 + {_a} * 9) of {_store} to book named "&7&o???"
+            set slot (16 + {_a} * 9) of {_store} to book named "&7&o???"
+
+        set slot 10 of {_store} to enchanted book named "&6First Steps" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 10 of {_store} to "&6&oSpeak to Walter" 
+        set line 3 of lore of slot 10 of {_store} to "&6Recommend Reputation: &c1✫"
+        set line 4 of lore of slot 10 of {_store} to "&6Status: &cComplete"   
+
+        set slot 11 of {_store} to enchanted book named "&6Toke and Transit" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 11 of {_store} to "&6&oDealer David needs some product moved"
+        set line 3 of lore of slot 11 of {_store} to "&6Recommend Reputation: &c5✫"
+        if {storyquest1::%player's uuid%} is not set:  
+            set line 4 of lore of slot 11 of {_store} to "&6Status: &cIncomplete"   
+        else:         
+            set line 4 of lore of slot 11 of {_store} to "&6Status: %{storyquest1::%player's uuid%}%"         
+
+        if {storyquest1::%player's uuid%} is "&cComplete":
+            set slot 12 of {_store} to enchanted book named "&6The ""Non-Consensual Human Delivery Service""" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 12 of {_store} to "&6&oSomeone's causing trouble in Bill's club - remove them"
+            set line 3 of lore of slot 12 of {_store} to "&6Recommend Reputation: &c7✫"
+            if {storyquest2::%player's uuid%} is not set:  
+                set line 4 of lore of slot 12 of {_store} to "&6Status: &cIncomplete"   
+            else:         
+                set line 4 of lore of slot 12 of {_store} to "&6Status: %{storyquest2::%player's uuid%}%"   
+                
+        if {storyquest2::%player's uuid%} is "&cComplete":
+            set slot 13 of {_store} to enchanted book named "&6Bring Him Down!" with nbt "{HideFlags:127}"
+            set line 1 of lore of slot 13 of {_store} to "&6&oThe police have found note threatening to blow up the courtyard"
+            set line 3 of lore of slot 13 of {_store} to "&6Recommend Reputation: &c10✫"
+            if {storyquest3::%player's uuid%} is not set:  
+                set line 4 of lore of slot 13 of {_store} to "&6Status: &cIncomplete"   
+            else:         
+                set line 4 of lore of slot 13 of {_store} to "&6Status: %{storyquest3::%player's uuid%}%"                    
+
+        set slot 49 of {_store} to book and quill named "&6Main Page"                    
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "&6First Steps":
+        send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+        console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+
+on inventory click:
+    if name of event-item is "&6Toke and Transit":
+        if {storyquest1::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {storyquest1::%player's uuid%} is "&cIn Progress":
+            send "%nl%&6[&cGuide&6] Walter: Like I said, Dealer David needs some product moved. That's all I know. Go speak to him. He's at &c60 64 -522&6.%nl%"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cToke and Transit&6 Quest!"
+            set {storyquest1::%player's uuid%} to "&cIn Progress"
+            send "%nl%&6[&cGuide&6] Walter: Dealer David needs some product moved. That's all I know. Go speak to him. He's at &c60 64 -522&6.%nl%"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+
+on inventory click:
+    if name of event-item is "&6The ""Non-Consensual Human Delivery Service""":
+        if {storyquest2::%player's uuid%} is "&cComplete":
+            send "&7Gun&4PVP&aMC&6 Quests: You have already completed this quest!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"  
+        else if {storyquest2::%player's uuid%} is "&cIn Progress":
+            send "%nl%&6[&cGuide&6] Walter: Like I said, Mob Boss Bill has been facing some trouble at his club. Go speak to him. He's at &c-73 70 -524&6.%nl%"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"              
+        else:
+            send "&7Gun&4PVP&aMC&6 Quests: Started &cToke and Transit&6 Quest!"
+            set {storyquest2::%player's uuid%} to "&cIn Progress"
+            send "%nl%&6[&cGuide&6] Walter: Mob Boss Bill has been facing some trouble at his club. Go speak to him. He's at &c-73 70 -524&6.%nl%"
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"            

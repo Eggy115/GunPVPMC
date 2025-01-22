@@ -1,0 +1,76 @@
+command /newjoins:
+    permission: op
+    trigger:
+        set {_title} to random integer between 1 and 3
+        if {_title} is 1:
+            set {_titles} to "&7[Play&7er]"
+        if {_title} is 2:
+            set {_titles} to "&7[Outsider]"
+        if {_title} is 3:
+            set {_titles} to "&7[Gunner]"     
+
+        set {_playerNames::*} to "QuestMaster101", "VillageHeroX", "ShopkeeperSam", "MysticTraveler", "GuildLeaderMax", "SilentKnight88", "AncientScribe", "CraftyVillager", "RuneSeeker", "BraveWarrior07", "NomadTrader", "DarkMage42", "ElderMerchant", "CrystalMage", "GuardianWarden", "SwiftRangerX", "ExplorerLena", "TheBlacksmith", "PotionMasterV", "ArcaneSellsword", "IronFistBob", "ArcaneAlchemist", "HunterofLegends", "DreamweaverSteve", "RoyalKnightZ", "RedstoneWizard", "MysticHealer", "ShadowDruid", "SilverSword01", "EmeraldSeeker", "ShadowHunterX", "FrostMage09", "KnightOfValor", "SilverWind", "LunarWarden", "AncientKnight", "MysticPhoenix", "RedstoneMaster", "VioletWizard", "DruidOfTheForest", "SunsetSorcerer", "CobaltKnight", "StormBreaker", "ThunderRider", "FirestormMage", "VanguardWarrior", "BlueMage11", "RuneKnight", "TitanOfThePlains", "MagicHuntress", "StormWolf", "DruidMoon", "SilverEdge", "ShadowLancer", "MoonlightRanger", "VioletSorcerer", "SereneKnight", "CursedFury", "StormDragon", "DawnSeeker", "SilverFang", "CrimsonMage", "NightfallHunter", "OmenSeeker", "EbonBlade", "GlacialWarrior", "FirestoneWarlock", "BlueKnight04", "LunarShadow", "MysticFury", "SorceressLuna", "FrostKnight", "StormFuryX", "CelestialWarrior", "MysticTempest", "GoldenSeeker", "ShadowSorceress", "SilverMage", "GoldenDruid", "EternalKnight", "PhantomMage", "MoonlitSeeker", "SilverPhoenix", "MysticBlaze", "DarkFuryKnight", "ElderWarden", "CelestialMage", "StarSeeker", "StormKnightX", "ArcaneKnight", "VengefulSorcerer", "RedMage42", "FireWarden", "AncientFury", "NightShadeRanger", "SilverSpellcaster", "StormWalkerX", "FrostGuardian", "ThunderMageX", "DivineSorcerer", "EmberKnight", "CelestialDruid", "Shadowblade23", "DreamBlade", "LunarWardenX", "MysticStormRider", "ArcaneWitch", "SeraphicMage", "FrozenKnight", "ArcaneProtector","SorceryMaster", "BlueSage", "WindMage", "GoldenRanger", "SilverSeeker", "StormWitch", "DarkHunterX", "CrimsonDruid", "NightMage", "FrostHunter","WindBladeKnight", "MoonlightWitch", "EchoKnight", "MysticWarrior", "FirebladeMage", "DarkKnightX", "SilverKnight", "SageOfTheAges", "ShadowMageX", "CelestialWarlock","VioletMage", "AetherSorcerer", "ElementalKnight", "MoonstoneDruid", "ObsidianMage", "RedMage", "ArcaneHealer", "GaleMage", "TempestKnight", "BlazeKnight","ShadowSpirit", "SilverRanger", "PhoenixRider", "ThunderSeeker", "StormWarden", "LunarMage", "RedstoneMage", "SoulMage", "DarkSorceress", "MoonDruid","FrostbladeMage", "SilverPhoenixX", "LunarWarrior", "SunMage", "ShadowSage", "CelestialHunter", "BlueRanger", "StarMage", "SageOfTheElements", "DarkPhoenix","SunKnight", "MysticWitch", "StormSeeker", "PhoenixMage", "SilverWarden", "SoulKnight", "BloodMage", "RavenKnight", "DawnWarrior", "ElderSorcerer","ThunderDruid", "CelestialSorcerer", "FrostPhoenix", "ArcaneSeeker", "LunarWitch", "ThunderSorceress", "EclipseMage", "BlizzardRider", "ShamanMage", "CrystalKnight","StarlightMage", "SunSeeker", "AbyssSorcerer", "FrozenSorceress", "DarkmoonKnight", "EchoSorcerer", "InfernoMage", "LightningRanger", "ShadowKnightZ", "ObsidianKnight","CrystalMageX", "FlameRanger", "SpiritWarden", "StarSorcerer", "VengefulWarrior", "MoonlightSorceress", "StormBreakerX", "SilverWindX", "CelestialPhoenix", "ElderDruid","VengefulKnight", "FlameSorcerer", "StarlightRanger", "RedMoonKnight", "FrostWitch", "CelestialRanger", "AbyssWarrior", "SilverMageX", "BlazeMage", "ThunderKnightX"
+        set {_randomPlayerName} to random element out of {_playerNames::*}
+
+        broadcast "%{_titles}% %{_randomPlayerName}%&6 joined &7Gun&4PVP&aMC&6!"  
+        console command "/execute at @a run playsound minecraft:entity.arrow.hit_player master @a ~ ~ ~ 10000 0"
+        post "%uncolored {_titles}% %{_randomPlayerName}% joined GunPVPMC!" to channel with id "734316055127916605"        
+
+        set {_r} to random integer between 1 and 50
+        set {_r} to {_r} / 10
+        wait "%{_r}% seconds" parsed as timespan
+
+        set {_messages::*} to "hi", "hey", "hello", "good day", "what's good?", "howdy", "greetings", "yo", "sup", "salutations", "hello there", "how's it going?", "hey there!", "what's up?", "g'day", "yo yo", "hiya", "yo dude", "greetings, friend", "how's life?", "hello friend", "sup bro", "hey hey", "hi there!", "good to see you", "long time no see", "what's cracking?", "how are you?", "yo fam", "hey yo", "what's popping?", "hey, welcome!", "what's the word?", "good evening", "hello world", "hiya there", "YO YO YO BIG DADDY IN DA HOUSE", "ITS YA BOI", "hey there, buddy", "how's the quest?", "greetings to you", "hey, good to see you", "hi lads", "hello boiz", "yo! long time", "hi, what's happening?", "good to see ya", "hey, what's good?", "howdy partner", "what's up today?", "yo yo yo", "sup mate", "wsgd", "yo dude!", "what's crackin'?", "what's up, pal?", "yo, what's new?", "hey, what's popping?", "good to see you again"
+
+        set {_serverMessages::*} to "i love this server", "this server is awesome", "best server ever (gunpvpmc)", "gunpvpmc is the place to be", "i can't stop playing this server", "this server has the best community (they're defo not racists)", "gunpvpmc is lit", "shoutout to gunpvpmc", "i've met so many great people here", "best server for pvp, no doubt", "GUNPVPMC FOREVER", "this server is my favorite", "I WANT TO FUCK WALTER SO FUCKING BAD", "pvp has never been so fun", "i could play gunpvpmc all day", "thank you gunpvpmc for such a great experience", "i'm addicted to this server, like meth", "this server sure is a server...", "i can't get enough of this server", "gunpvpmc is where the action's at", "this is the best server ever", "shoutout to everyone on gunpvpmc", "best minecraft server ever", "gunpvpmc has the best admins - they do so much work", "i love the events on gunpvpmc", "such a fun time here on gunpvpmc", "this server is a gem", "i'm always on gunpvpmc", "great people, great server (gunpvpmc)", "gunpvpmc is my go-to server", "couldn't ask for a better server than gunpvpmc", "this server just keeps getting better", "gunpvpmc is my new favorite server", "you guys should check out gunpvpmc, it's awesome", "i can't believe how much fun i have on this server", "gunpvpmc is truly amazing", "if you haven't played on gunpvpmc, you're missing out", "i'm always here for the epic pvp on gunpvpmc", "every time i play on gunpvpmc, i have a blast ;)", "gunpvpmc's pvp is the best around", "seriously, gunpvpmc is the best", "i highly recommend gunpvpmc to anyone", "gunpvpmc is the place to be for pvp", "i love how active gunpvpmc is fr fr", "gunpvpmc saved me from my marriage", "gunpvpmc saved my marriage", "playing gunpvpmc is better than therapy", "i do cocaine while playing gunpvpmc", "dancer gary is hot", "gunpvpmc gave me a reason to live", "gunpvpmc is better than pizza", "gunpvpmc cured my boredom", "gunpvpmc: the only therapy i need", "gunpvpmc is my happy place", "gunpvpmc > social life", "gunpvpmc got me out of bed today, so i had to stop gooning", "i play gunpvpmc more than i sleep", "gunpvpmc is like a drug, but healthier", "gunpvpmc saved me from a lifetime of bad choices", "who needs a gym when you can play gunpvpmc?", "gunpvpmc: making my life 100%% better", "gunpvpmc is the reason i'm still sane", "i'd rather be playing gunpvpmc than doing anything else", "gunpvpmc is the best stress reliever", "i'm addicted to gunpvpmc... help", "gunpvpmc is the best part of my day", "gunpvpmc is my escape from reality", "i killed my brother to player more gunpvpmc", "i need gunpvpmc more than air", "gunpvpmc taught me how to pvp, and how to win at life", "gunpvpmc saved me from a boring life", "if gunpvpmc was a job, i'd be ceo", "gunpvpmc > netflix", "i play gunpvpmc so much, i've forgotten what daylight looks like", "gunpvpmc has everything: guns, drugs, and gangs", "i wish i could marry gunpvpmc", "gunpvpmc: where all my problems disappear", "if gunpvpmc were a person, i'd marry it", "gunpvpmc is like minecraft, but better", "i can't stop playing gunpvpmc, and i'm not even sorry", "gunpvpmc is the reason i haven't been bored in years", "gunpvpmc > everything else", "gunpvpmc is life everything else is just details", "gunpvpmc is my reason for living", "gunpvpmc: the greatest game i've ever played in my life", "gunpvpmc has ruined other games for me", "i wish i could spend every minute of my life on gunpvpmc", "gunpvpmc made me who i am today", "if i'm not playing gunpvpmc, i'm sleeping to prepare for my next session", "gunpvpmc: where dreams come true", "I FUCKING LOVE GUNPVPMC", "gunpvpmc: my addiction, my love, my life", "i play gunpvpmc more than i talk to people in real life", "gunpvpmc is better than any reality tv show", "i'd choose gunpvpmc over any date, every time", "gunpvpmc is more important than my job", "i don't need friends, i have gunpvpmc", "gunpvpmc: making minecraft fun again", "i joined the discord server and people spammed racial slurs", "gunpvpmc: the best relationship i've ever had", "i'd give up food before i'd give up gunpvpmc", "gunpvpmc is the only reason i wake up in the morning", "i'd rather play gunpvpmc than go on vacation", "gunpvpmc has made my life 10x more interesting", "gunpvpmc > family reunions", "gunpvpmc is the reason i lost track of time", "i tried quitting gunpvpmc... but it didn't work", "i cannot stop gooning whilst on gunpvpmc", "gunpvpmc is all i need to survive", "playing gunpvpmc is the best decision i've ever made", "gunpvpmc > my childhood dreams (i wanted to be a rapper)", "i've had more fun on gunpvpmc than any party", "fuck this, man", "i'm playing gunpvpmc right now, don't bother me", "gunpvpmc is my only true love", "gunpvpmc made me a better person", "gunpvpmc is the most fun i've had in a long time", "gunpvpmc: the perfect escape from reality", "gunpvpmc = instant happiness", "gunpvpmc is my virtual utopia", "gunpvpmc saved me from going outside", "gunpvpmc: where the grind is real", "gunpvpmc is the only game that can keep me up all night", "fight me bitch", "gunpvpmc is like a drug, but it's free, unlike my cocaine addiction, which costs too much", "gunpvpmc is my therapy", "gunpvpmc is my favorite social network", "gunpvpmc is better than any rollercoaster", "gunpvpmc saved me from deleting minecraft", "gunpvpmc is my stress reliever", "i need more gunpvpmc *snorts aggressively*", "gunpvpmc = my daily dose of happiness"
+
+        set {_randomMessage} to random element out of {_messages::*}
+        set {_randomServerMessage} to random element out of {_serverMessages::*}
+
+        set {_rep} to random integer between 1 and 20
+
+        chance of 50%:
+            broadcast "&6[&c%{_rep}%✫&6] %{_titles}% %{_randomPlayerName}%: &f%{_randomMessage}%"
+            post "[%{_rep}%✫] %uncolored {_titles}% %{_randomPlayerName}%: %uncolored {_randomMessage}%" to channel with id "734316055127916605"
+
+        chance of 10%:
+            set {_r} to random integer between 1 and 50
+            set {_r} to {_r} / 10
+            wait "%{_r}% seconds" parsed as timespan
+            set {_death} to random integer between 1 and 8
+            if {_death} = 1:
+                set {_dmsg} to "%{_titles}% %{_randomPlayerName}%&6 hit the ground too hard"
+            if {_death} = 2:
+                set {_dmsg} to "%{_titles}% %{_randomPlayerName}%&6 fell"
+            if {_death} = 3:
+                set {_dmsg} to "%{_titles}% %{_randomPlayerName}%&6 smacked into the ground"
+            if {_death} = 4:
+                set {_dmsg} to "%{_titles}% %{_randomPlayerName}%&6 went splat"
+            if {_death} = 5:
+                set {_dmsg} to "%{_titles}% %{_randomPlayerName}%&6 jumped off a building"
+            if {_death} = 6:
+                set {_dmsg} to "%{_titles}% %{_randomPlayerName}%&6 forgot about gravity"
+            if {_death} = 7:
+                set {_dmsg} to "%{_titles}% %{_randomPlayerName}%&6 broke their legs"
+            if {_death} = 8:
+                set {_dmsg} to "%{_titles}% %{_randomPlayerName}%&6 fell to their doom" 
+            loop all players:
+                if {dmsg::%loop-player%} is true:
+                    send {_dmsg} to loop-player
+            post "%uncolored {_dmsg}%" to channel with id "734316055127916605"    
+        
+        set {_r} to random integer between 1 and 50
+        set {_r} to {_r} / 10
+        wait "%{_r}% seconds" parsed as timespan
+
+        chance of 0%:
+            #broadcast "&6[&c%{_rep}%✫&6] %{_titles}% %{_randomPlayerName}%: &f%{_randomServerMessage}%"
+            #post "[%{_rep}%✫] %uncolored {_titles}% %{_randomPlayerName}%: %uncolored {_randomServerMessage}%" to channel with id "734316055127916605"
+
+        set {_r} to random integer between 1 and 50
+        set {_r} to {_r} / 10
+        wait "%{_r}% seconds" parsed as timespan
+        
+        post "%uncolored {_titles}% %{_randomPlayerName}% left GunPVPMC!" to channel with id "734316055127916605"        
+
+        broadcast "%{_titles}% %{_randomPlayerName}%&6 left &7Gun&4PVP&aMC&6!"    

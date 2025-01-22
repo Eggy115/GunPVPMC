@@ -1,0 +1,291 @@
+command /titles [<text>]:
+    aliases: /title, /freerank
+    trigger:
+        set {_store} to a new chest inventory with 6 row with name "&7Gun&4PVP&aMC&6 Titles"
+
+        set {_e} to 0
+        loop 54 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "    
+            add 1 to {_e}
+
+        if arg-1 is not set:
+            if {title::%player's uuid%} is "&7[Pla&7yer]":
+                set slot 10 of {_store} to oak sign named "&7[Pla&7yer]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 10 of {_store} to "&aSELECTED"
+            else:
+                set slot 10 of {_store} to oak sign named "&7[Pla&7yer]"
+            set line 1 of lore of slot 10 of {_store} to "&6Default title"
+
+            if {title::%player's uuid%} is "&7[Outsider]":
+                set slot 11 of {_store} to oak sign named "&7[Outsider]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 11 of {_store} to "&aSELECTED"
+            else:
+                set slot 11 of {_store} to oak sign named "&7[Outsider]"
+            set line 1 of lore of slot 11 of {_store} to "&6Default title"
+
+            if {title::%player's uuid%} is "&7[Gunner]":
+                set slot 12 of {_store} to oak sign named "&7[Gunner]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 12 of {_store} to "&aSELECTED"
+            else:
+                set slot 12 of {_store} to oak sign named "&7[Gunner]"
+            set line 1 of lore of slot 12 of {_store} to "&6Default title"
+
+            if {title::%player's uuid%} is "&a[VIP]":
+                set slot 13 of {_store} to oak sign named "&a[VIP]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 13 of {_store} to "&aSELECTED"
+            else:
+                set slot 13 of {_store} to oak sign named "&a[VIP]"
+            set line 1 of lore of slot 13 of {_store} to "&6Requires VIP rank"
+
+            if {title::%player's uuid%} is "&b[MVP]":
+                set slot 14 of {_store} to oak sign named "&b[MVP]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 14 of {_store} to "&aSELECTED"
+            else:
+                set slot 14 of {_store} to oak sign named "&b[MVP]"
+            set line 1 of lore of slot 14 of {_store} to "&6Requires MVP rank"    
+
+            if {title::%player's uuid%} is "&5[EPIC]":
+                set slot 15 of {_store} to oak sign named "&5[EPIC]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 15 of {_store} to "&aSELECTED"
+            else:
+                set slot 15 of {_store} to oak sign named "&5[EPIC]"
+            set line 1 of lore of slot 15 of {_store} to "&6Requires EPIC rank"   
+
+            if {title::%player's uuid%} is "&e[LEGEND]":
+                set slot 16 of {_store} to oak sign named "&e[LEGEND]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 16 of {_store} to "&aSELECTED"
+            else:
+                set slot 16 of {_store} to oak sign named "&e[LEGEND]"
+            set line 1 of lore of slot 16 of {_store} to "&6Requires LEGEND rank"                            
+
+            if {title::%player's uuid%} is "<##FF0000>[Killer]":
+                set slot 19 of {_store} to oak sign named "<##FF0000>[Killer]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 19 of {_store} to "&aSELECTED"
+            else:
+                set slot 19 of {_store} to oak sign named "<##FF0000>[Killer]"
+            set line 1 of lore of slot 19 of {_store} to "&650 kills"   
+
+            if {title::%player's uuid%} is "<##DD0000>[Murderer]":
+                set slot 20 of {_store} to oak sign named "<##DD0000>[Murderer]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 20 of {_store} to "&aSELECTED"
+            else:
+                set slot 20 of {_store} to oak sign named "<##DD0000>[Murderer]"
+            set line 1 of lore of slot 20 of {_store} to "&6100 kills"   
+
+            if {title::%player's uuid%} is "<##BB0000>[Mass Murderer]":
+                set slot 21 of {_store} to oak sign named "<##BB0000>[Mass Murderer]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 21 of {_store} to "&aSELECTED"
+            else:
+                set slot 21 of {_store} to oak sign named "<##BB0000>[Mass Murderer]"
+            set line 1 of lore of slot 21 of {_store} to "&6250 kills"   
+
+            if {title::%player's uuid%} is "<##990000>[Homicidal]":
+                set slot 22 of {_store} to oak sign named "<##990000>[Homicidal]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 22 of {_store} to "&aSELECTED"
+            else:
+                set slot 22 of {_store} to oak sign named "<##990000>[Homicidal]"
+            set line 1 of lore of slot 22 of {_store} to "&6500 kills"   
+
+            if {title::%player's uuid%} is "<##770000>[Slaughterer]":
+                set slot 23 of {_store} to oak sign named "<##770000>[Slaughterer]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 23 of {_store} to "&aSELECTED"
+            else:
+                set slot 23 of {_store} to oak sign named "<##770000>[Slaughterer]"
+            set line 1 of lore of slot 23 of {_store} to "&61000 kills"   
+
+            if {title::%player's uuid%} is "<##550000>[Genocidal]":
+                set slot 24 of {_store} to oak sign named "<##550000>[Genocidal]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 24 of {_store} to "&aSELECTED"
+            else:
+                set slot 24 of {_store} to oak sign named "<##550000>[Genocidal]"
+            set line 1 of lore of slot 24 of {_store} to "&62000 kills"   
+
+            if {title::%player's uuid%} is "<##330000>[Annihilator]":
+                set slot 25 of {_store} to oak sign named "<##330000>[Annihilator]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 25 of {_store} to "&aSELECTED"
+            else:
+                set slot 25 of {_store} to oak sign named "<##330000>[Annihilator]"
+            set line 1 of lore of slot 25 of {_store} to "&63000 kills"   
+
+            if {title::%player's uuid%} is "<##00CC00>[Junkie]":
+                set slot 28 of {_store} to oak sign named "<##00CC00>[Junkie]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 28 of {_store} to "&aSELECTED"
+            else:
+                set slot 28 of {_store} to oak sign named "<##00CC00>[Junkie]"
+            set line 1 of lore of slot 28 of {_store} to "&6Do any drug at least once"                                                                
+
+
+            if {title::%player's uuid%} is "<##009900>[Druggie]":
+                set slot 29 of {_store} to oak sign named "<##009900>[Druggie]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 29 of {_store} to "&aSELECTED"
+            else:
+                set slot 29 of {_store} to oak sign named "<##009900>[Druggie]"
+            set line 1 of lore of slot 29 of {_store} to "&6Do any drug 25 times"                                                                
+
+
+            if {title::%player's uuid%} is "<##006600>[Addict]":
+                set slot 30 of {_store} to oak sign named "<##006600>[Addict]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 30 of {_store} to "&aSELECTED"
+            else:
+                set slot 30 of {_store} to oak sign named "<##006600>[Addict]"
+            set line 1 of lore of slot 30 of {_store} to "&6Do any drug 50 times"                                                                
+
+            if {title::%player's uuid%} is "<##DDDDDD>[Crackhead]":
+                set slot 31 of {_store} to oak sign named "<##DDDDDD>[Crackhead]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 31 of {_store} to "&aSELECTED"
+            else:
+                set slot 31 of {_store} to oak sign named "<##DDDDDD>[Crackhead]"
+            set line 1 of lore of slot 31 of {_store} to "&6Do cocaine at least once"     
+
+            if {title::%player's uuid%} is "<##CCCCCC>[Methhead]":
+                set slot 32 of {_store} to oak sign named "<##CCCCCC>[Methhead]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 32 of {_store} to "&aSELECTED"
+            else:
+                set slot 32 of {_store} to oak sign named "<##CCCCCC>[Methhead]"
+            set line 1 of lore of slot 32 of {_store} to "&6Do meth at least once"                                                                      
+
+            if {title::%player's uuid%} is "<##30660b>[Stoner]":
+                set slot 33 of {_store} to oak sign named "<##30660b>[Stoner]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 33 of {_store} to "&aSELECTED"
+            else:
+                set slot 33 of {_store} to oak sign named "<##30660b>[Stoner]"
+            set line 1 of lore of slot 33 of {_store} to "&6Do cannabis at least once" 
+
+            if {title::%player's uuid%} is "<##FFD324>[Alcoholic]":
+                set slot 34 of {_store} to oak sign named "<##FFD324>[Alcoholic]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 34 of {_store} to "&aSELECTED"
+            else:
+                set slot 34 of {_store} to oak sign named "<##FFD324>[Alcoholic]"
+            set line 1 of lore of slot 34 of {_store} to "&6Drink alcohol at least 20 times" 
+            
+            set slot 53 of {_store} to arrow named "&6Page: &c2"
+
+            if {title::%player's uuid%} is "<##999999>[Reputable]":
+                set slot 37 of {_store} to oak sign named "<##999999>[Reputable]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 37 of {_store} to "&aSELECTED"
+            else:
+                set slot 37 of {_store} to oak sign named "<##999999>[Reputable]"
+            set line 1 of lore of slot 37 of {_store} to "&6Reputation of 10 or more"   
+
+            if {title::%player's uuid%} is "<##888888>[Prominent]":
+                set slot 38 of {_store} to oak sign named "<##888888>[Prominent]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 38 of {_store} to "&aSELECTED"
+            else:
+                set slot 38 of {_store} to oak sign named "<##888888>[Prominent]"
+            set line 1 of lore of slot 38 of {_store} to "&6Reputation of 20 or more"     
+
+            if {title::%player's uuid%} is "<##777777>[Renowned]":
+                set slot 39 of {_store} to oak sign named "<##777777>[Renowned]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 39 of {_store} to "&aSELECTED"
+            else:
+                set slot 39 of {_store} to oak sign named "<##777777>[Renowned]"
+            set line 1 of lore of slot 39 of {_store} to "&6Reputation of 30 or more"        
+
+            if {title::%player's uuid%} is "<##666666>[Illustrious]":
+                set slot 40 of {_store} to oak sign named "<##666666>[Illustrious]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 40 of {_store} to "&aSELECTED"
+            else:
+                set slot 40 of {_store} to oak sign named "<##666666>[Illustrious]"
+            set line 1 of lore of slot 40 of {_store} to "&6Reputation of 50 or more" 
+
+            if {title::%player's uuid%} is "<##555555>[Baron]":
+                set slot 41 of {_store} to oak sign named "<##555555>[Baron]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 41 of {_store} to "&aSELECTED"
+            else:
+                set slot 41 of {_store} to oak sign named "<##555555>[Baron]"
+            set line 1 of lore of slot 41 of {_store} to "&6Reputation of 75 or more"     
+
+            if {title::%player's uuid%} is "<##444444>[Lord]":
+                set slot 42 of {_store} to oak sign named "<##444444>[Lord]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 42 of {_store} to "&aSELECTED"
+            else:
+                set slot 42 of {_store} to oak sign named "<##444444>[Lord]"
+            set line 1 of lore of slot 42 of {_store} to "&6Reputation of 100 or more"        
+
+            if {title::%player's uuid%} is "<##333333>[Kingpin]":
+                set slot 43 of {_store} to oak sign named "<##333333>[Kingpin]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 43 of {_store} to "&aSELECTED"
+            else:
+                set slot 43 of {_store} to oak sign named "<##333333>[Kingpin]"
+            set line 1 of lore of slot 43 of {_store} to "&6Reputation of 150 or more" 
+
+        if arg-1 is "2":
+            set slot 45 of {_store} to arrow named "&6Page: &c1"
+
+            if {title::%player's uuid%} is "<##FF7700>[Affluent]":
+                set slot 10 of {_store} to oak sign named "<##FF7700>[Affluent]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 10 of {_store} to "&aSELECTED"
+            else:
+                set slot 10 of {_store} to oak sign named "<##FF7700>[Affluent]"
+            set line 1 of lore of slot 10 of {_store} to "&610,000 Net Worth at any time"
+
+            if {title::%player's uuid%} is "<##FF9900>[Wealthy]":
+                set slot 11 of {_store} to oak sign named "<##FF9900>[Wealthy]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 11 of {_store} to "&aSELECTED"
+            else:
+                set slot 11 of {_store} to oak sign named "<##FF9900>[Wealthy]"
+            set line 1 of lore of slot 11 of {_store} to "&630,000 Net Worth at any time"
+
+            if {title::%player's uuid%} is "<##FFAA00>[Rich]":
+                set slot 12 of {_store} to oak sign named "<##FFAA00>[Rich]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 12 of {_store} to "&aSELECTED"
+            else:
+                set slot 12 of {_store} to oak sign named "<##FFAA00>[Rich]"
+            set line 1 of lore of slot 12 of {_store} to "&650,000 Net Worth at any time"
+
+            if {title::%player's uuid%} is "<##FFCC00>[100k]":
+                set slot 13 of {_store} to oak sign named "<##FFCC00>[100k]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 13 of {_store} to "&aSELECTED"
+            else:
+                set slot 13 of {_store} to oak sign named "<##FFCC00>[100k]"
+            set line 1 of lore of slot 13 of {_store} to "&6100,000 Net Worth at any time"
+
+            if {title::%player's uuid%} is "<##FFEE00>[Millionaire]":
+                set slot 14 of {_store} to oak sign named "<##FFEE00>[Millionaire]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 14 of {_store} to "&aSELECTED"
+            else:
+                set slot 14 of {_store} to oak sign named "<##FFEE00>[Millionaire]"
+            set line 1 of lore of slot 14 of {_store} to "&61,000,000 Net Worth at any time"    
+
+            if {title::%player's uuid%} is "<##AAFF00>[Multimillionaire]":
+                set slot 15 of {_store} to oak sign named "<##AAFF00>[Multimillionaire]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 15 of {_store} to "&aSELECTED"
+            else:
+                set slot 15 of {_store} to oak sign named "<##AAFF00>[Multimillionaire]"
+            set line 1 of lore of slot 15 of {_store} to "&62,000,000 Net Worth at any time"   
+
+            if {title::%player's uuid%} is "<##CCFF00>[Billionaire]":
+                set slot 16 of {_store} to oak sign named "<##CCFF00>[Billionaire]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 16 of {_store} to "&aSELECTED"
+            else:
+                set slot 16 of {_store} to oak sign named "<##CCFF00>[Billionaire]"
+            set line 1 of lore of slot 16 of {_store} to "&61,000,000,000 Net Worth at any time"            
+
+            if {title::%player's uuid%} is "&9[Helper]":
+                set slot 37 of {_store} to oak sign named "&9[Helper]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 37 of {_store} to "&aSELECTED"
+            else:
+                set slot 37 of {_store} to oak sign named "&9[Helper]"
+            set line 1 of lore of slot 37 of {_store} to "&6Requires Helper rank (staff)"   
+
+            if {title::%player's uuid%} is "&2[Moderator]":
+                set slot 38 of {_store} to oak sign named "&2[Moderator]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 38 of {_store} to "&aSELECTED"
+            else:
+                set slot 38 of {_store} to oak sign named "&2[Moderator]"
+            set line 1 of lore of slot 38 of {_store} to "&6Requires Moderator rank (staff)"        
+
+            if {title::%player's uuid%} is "&4[Admin]":
+                set slot 39 of {_store} to oak sign named "&4[Admin]" with nbt "{HideFlags:127,Enchantments:[{id:""minecraft:protection"",lvl:1s}]}"
+                set line 2 of lore of slot 39 of {_store} to "&aSELECTED"
+            else:
+                set slot 39 of {_store} to oak sign named "&4[Admin]"
+            set line 1 of lore of slot 39 of {_store} to "&6Requires Admin rank (staff)"   
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true
+
+command /settitle [<offlineplayer>] [<text>]:
+    permission: op
+    trigger:      
+        set {title::%arg-1's uuid%} to colored arg-2

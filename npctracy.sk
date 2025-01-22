@@ -1,0 +1,37 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport b06b7382-2a9c-4cd6-abf0-7b310229e75a -96 70 -566"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Travel Agent] Tracy":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cTravel Agent&6] Tracy"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        set slot 10 of {_store} to cobblestone named "&6Travel to Coastal City"
+        set line 2 of lore of slot 10 of {_store} to "&6Cost: &c100"
+
+        set slot 11 of {_store} to grass block named "&6Travel to Suburban Neighbourhood"
+        set line 2 of lore of slot 11 of {_store} to "&6Cost: &c100"
+        
+        set slot 12 of {_store} to stone named "&6Travel to North Mountain Range"
+        set line 2 of lore of slot 12 of {_store} to "&6Cost: &c100"
+        
+        set slot 13 of {_store} to andesite named "&6Travel to South Mountain Range"
+        set line 2 of lore of slot 13 of {_store} to "&6Cost: &c100"        
+
+        set slot 14 of {_store} to jungle leaves named "&6Travel to Jungle Islands"
+        set line 2 of lore of slot 14 of {_store} to "&6Cost: &c100"
+        
+        set slot 15 of {_store} to sand named "&6Travel to West Desert"
+        set line 2 of lore of slot 15 of {_store} to "&6Cost: &c100"
+        
+        set slot 16 of {_store} to sandstone named "&6Travel to East Desert"
+        set line 2 of lore of slot 16 of {_store} to "&6Cost: &c100"           
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true

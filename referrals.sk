@@ -1,0 +1,28 @@
+command /referral [<offlineplayer>]:
+    aliases: /referrals, /referal, /referals
+    trigger:
+        if {referral::%player's uuid%} is set:
+            send "&cYou have already used this command!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+            stop      
+        if arg-1 is not set:
+            send "&cYou need to mention a player name!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+            stop  
+        if arg-1 is player:
+            send "&cYou cannot refer yourself!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+            stop  
+        if {rep::%player's uuid%} < 5:
+            send "&cYou must be at least 5✫ to use this command!"
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 10000 0"
+            stop              
+        set {coins::%player's uuid%} to {coins::%player's uuid%} + 500
+        set {coins::%arg-1's uuid%} to {coins::%arg-1's uuid%} + 500    
+        set {referral::%player's uuid%} to true
+        if {referrals::%arg-1's uuid%} is not set:
+            set {referrals::%arg-1's uuid%} to 0
+        set {referrals::%arg-1's uuid%} to {referrals::%arg-1's uuid%} + 1
+        send "%nl%&6You and &c%arg-1%&6 have received &c500&6 coins each!%nl%" to player
+        send "%nl%&6You and &c%player%&6 have received &c500&6 coins each!%nl%" to arg-1
+    

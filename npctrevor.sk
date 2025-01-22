@@ -1,0 +1,16 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 8a8ae6ff-b27e-4cd3-8b05-341885fa1f6e -177 115 -487"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Traceur] Trevor":
+        set {_store} to a new chest inventory with 3 row with name "&6[&cTraceur&6] Trevor"
+        
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_store} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+
+        open {_store} to player
+        set {trade::%player's uuid%} to true

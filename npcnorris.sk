@@ -1,0 +1,19 @@
+every 1 second in "GunPVPMC":
+	console command "/teleport 1b96b652-04b8-4c55-b317-38c413d9c5b7 -42 67 -585"
+
+on right click on villager:
+    if player's gamemode is spectator:
+        stop
+    if uncolored name of event-entity is "[Newsagent] Norris":
+        set {_i} to a written book 
+
+        set {_a} to text component of "Update 1.0.0%nl%%nl%- Added [Newsagent] Norris%nl%%nl%- New ghillie suit enemy%nl%%nl%- New Glass Smasher quest%nl%%nl%"        
+        set page 1 of book {_i} to {_a}       
+
+        set {_a} to text component of "Update 1.0.0%nl%%nl%View the full changelog:%nl%%nl%&nhttps://discord.gg/uJgwCQC"
+        set page 2 of book {_i} to {_a}   
+        
+        set book author of {_i} to "Norris"
+        set book title of {_i} to "News"
+        open book {_i} to player
+

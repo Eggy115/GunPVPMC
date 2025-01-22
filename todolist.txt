@@ -1,0 +1,250 @@
+####################################################
+NPCS:
+
+NPCs more dialogue (especially ammo and cannibal)
+
+Hector - Sell more drugs
+witch gives potions
+lawyer - legal rep, get out of prison
+hitman - kill people
+postman pat
+vicar george
+banker
+gang registrar
+business registrar
+heists - evil eddie
+
+####################################################
+TITLES:
+executioner
+destroyer
+
+assassin
+hitman
+
+criminal
+
+####################################################
+ITEMS:
+grappling hook
+crossbow 
+katana from ninja
+creepers for explosions
+molotov cocktail
+taser
+
+military exoskeleton 
+stabproof vest (only sword prot)
+
+MUD Multiple use doctor kit
+
+trinkets, e.g. ring
+
+vape
+cigarettes
+leather combat boots
+
+####################################################
+FEATURES:
+reputation needed to buy items
+level benefits
+wanted level
+bounties
+
+Give VIP MVP EPIC LEGEND bonuses
+battlepass
+
+banks building
+gang base building
+
+spray paint
+
+drug other players
+pickpocket villagers
+ROBBABLE BANKS
+GROWING WEED/making drugs in chemist lab
+mining
+
+ABILITY TO CHANGE MAGS
+ABILITY TO RENAME GUNS (GUN SMITH)
+
+police send you to prison, either break out, pay bail, or get out of jail card
+
+gambling w/ casion
+
+FACTION ALIGNMENT
+gang allies
+
+mafia
+
+horses
+plane/train for quick transport (fast travel)
+
+garage for upgrade cars
+cutscnes
+
+####################################################
+MAP IMPROVEMENTS:
+make underground bit better (like vines and stuff and redstone torches) - seagrass- waterfall
+better foliage
+redstone splodges
+sewer cannal connect ocean
+more things to hide behind
+bank
+
+####################################################
+MINOR IMPROVEMENTS
+make player look up a bit
+chest particle colours
+
+improve flare gun
+make it so it goes higher
+glowing only effects one person
+
+police drop wild things
+paratroopers too
+
+make NPCs sell more than one item
+more NPC dialogue
+tablist messages
+fun death messages
+
+more food
+playing music
+
+leaderboards better
+update bot
+buy property
+more stocks
+
+VIP,MVP,EPIC,LEGEND vault too
+
+####################################################
+BUG FIXES
+suomi-kp / m60 switch bug
+the death animation getting looped
+bazaar bob disappears at night
+
+####################################################
+QUESTS
+turtle petter
+add turtles
+postman pat black and white cat
+The "Non-Consensual Human Delivery Service"
+Bring Him Down!
+Buffet Bodyguard (protect chef chester)
+Walter's 11 (bank robbery)
+Any Channel (prevent 9/11)
+Heist 666 (robbery of evil company)
+Saving Fezco (save fezco)
+
+####################################################
+THEMES
+more fun jokes and stuff
+a bit more edgy
+world more interactive
+actions have consequences
+
+####################################################
+SKILLTREE
+
+MOVEMENT
+adrenaline rush 1 - below 2 hearts, speed 2 - 500
+dodge 1 - chance of 5% to entirely dodge bullets - 1000
+breakfall 1 - when falling, sneak to negate 10% fall damage - 1500
+bunny rabbit 1 - permament jump boost 1 - 2000
+strong swimmer 1 - permanent dolphin grace 1 - 2500
+reckless driver 1 - tanks drive 1.1x as fast - 3000
+
+Double Jump (MAX) - ability to double jump - 10000
+
+DAMAGE
+last stand 1 - below 2 hearts, get strength 1 - 500
+critical hit 1 - 1% chance of doing an extra 1 heart - 1000
+infectious hands 1 - 1% chance of poisoning a player when hitting them - 1500
+knockout 1 - 1% chance of giving weakness, slowness to player - 2000
+zombie hunter 1 - 10% extra damage to zombies - 2500
+slip through the cracks 1 - 1% chance to entirely negate armour - 3000
+
+HEALTH
+vampire 1 - gain 0.5 heart when kill someone - 500
+leech 1 - 10% chance of gaining 0.1 hearts on attack - 1000
+chef 1 - consuming food heals 0.5 heart 1500
+healing aura 1 - below 2 hearts, regeration 2 - 2000
+toughasnails1 - half health resistance 1 - 2500
+healthboost 1 - increase health by 2 heart - 3000
+
+vampire 2 - gain 1 heart when kill someone - 500
+leech 2 - 20% chance of gaining 0.1 hearts on attack - 1000
+chef 2 - consuming food heals 1 heart 1500
+healing aura 2 - below 2 hearts, regeration 2 - 2000
+toughasnails2 - half health resistance 2 - 2500
+healthboost 2 - increase health by 4 heart - 3000
+
+vampire 3 - gain 1.5 heart when kill someone - 3500
+leech 3 - 30% chance of gaining 0.1 hearts on attack - 4000
+chef 3 - consuming food heals 1.5 heart 4500
+healing aura 3 - below 2 hearts, regeration 3 - 5000
+toughasnails3 (MAX) - half health resistance 3 - 5500
+healthboost 3 - increase health by 6 heart - 6000
+
+MISC
+Deus Vult 1 - increased chance of gaining loot in chests - 1000
+battle-ready 1 - gain speed, regen, strength, when a gang raid/zombie/police/air strike begins - 2000
+stealth 1 - when still 10 seconds, gain invisibility - 3000
+Allāhu 'akbar 1 - spawn primed tnt on death - 4000
+Seductive 1 - villagers nearby have a 10% chance to walk towards you - 5000
+
+Tolerance (MAX) - permament immunity to nausea
+Tankjacker (MAX) - do not need a key to operate a tank
+
+####################################################
+EVENTS:
+bandits
+radioactive fallout
+tornado
+tsunami
+civilian protests
+earthquake
+
+####################################################
+WIKIPEDIA PAGES
+https://en.wikipedia.org/wiki/Barrett_M82
+https://en.wikipedia.org/wiki/.50_BMG
+
+https://en.wikipedia.org/wiki/XM7_rifle
+https://en.wikipedia.org/wiki/.277_Fury
+
+https://en.wikipedia.org/wiki/Milkor_MGL
+
+https://en.wikipedia.org/wiki/OSV-96
+https://en.wikipedia.org/wiki/12.7_%C3%97_108_mm
+
+https://en.wikipedia.org/wiki/M1917_Browning_machine_gun
+
+https://en.wikipedia.org/wiki/C-4_(explosive)
+
+M4A1 - 3k
+many more snipers
+many more cheap guns (worse than glock)
+
+####################################################
+SETTINGS
+Toggle gun sounds
+Toggle action sounds (ding that plays when receiving exp or completing a task for a quest)
+Toggle death messages (yes i know theres a command)
+Toggle gang invitations
+Stock market notifications (if the value of your stocks changes drastically or it reaches 0 value)
+Disable npc nametags
+Toggle drops + option for drops when double clicking the drop button
+API settings (allowing people to see your reputation/coins/exp etc...)
+Scoreboard settings (showing stocks/gang name/time+date/reputation/server IP/time till event etc...)
+Player list information (switch between seeing ping/reputation level/kills etc...)
+
+####################################################
+THINGS TO RELOAD
+
+mining
+settings page
+information aliases
+bulk buying/trading

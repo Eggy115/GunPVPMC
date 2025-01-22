@@ -1,0 +1,124 @@
+every 1 seconds in "GunPVPMC":
+    if weather is raining:
+        if {storm} is true:
+            loop all players:
+                altitude of highest block at location of loop-player < y-coordinate of loop-player:
+                    chance of 25%:
+                        push loop-player in direction of loop-player at speed -0.5
+                        console command "/execute at %loop-player% run playsound entity.ender_dragon.growl master @a ~ ~ ~ 0.5 2"
+                    chance of 25%:
+                        push loop-player in direction of loop-player at speed 0.5
+                        console command "/execute at %loop-player% run playsound entity.ender_dragon.growl master @a ~ ~ ~ 0.5 2"
+                    chance of 25%:
+                        push loop-player up at speed 0.5
+                        console command "/execute at %loop-player% run playsound entity.ender_dragon.growl master @a ~ ~ ~ 0.5 2"
+
+                    chance of 25%:
+                        set {_loc} to location of loop-player
+                        wait 3 seconds
+                        altitude of highest block at location of loop-player < y-coordinate of loop-player:
+                            if weather is raining:
+                                push loop-player (direction from loop-player to {_loc}) at speed 0.5
+                                console command "/execute at %loop-player% run playsound entity.ender_dragon.growl master @a ~ ~ ~ 0.5 2"
+
+                    chance of 25%:
+                        set {_loc} to location of loop-player
+                        wait 3 seconds
+                        altitude of highest block at location of loop-player < y-coordinate of loop-player:
+                            if weather is raining:
+                                push loop-player (direction from loop-player to {_loc}) at speed -0.5
+                                console command "/execute at %loop-player% run playsound entity.ender_dragon.growl master @a ~ ~ ~ 0.5 2"
+        if {acidrain} is true:
+            loop all players:
+                altitude of highest block at location of loop-player < y-coordinate of loop-player:
+                    console command "/effect give %loop-player% poison 3 0 true"
+        if {lightning} is true:
+            loop all players:
+                altitude of highest block at location of loop-player < y-coordinate of loop-player:
+                    set {_loc} to location of loop-player
+                    chance of 10%:
+                        strike ultra fake lightning at {_loc}
+                        damage loop-player by 3 hearts
+        if {hurricane} is true:
+            loop all players:
+                altitude of highest block at location of loop-player < y-coordinate of loop-player:
+                    chance of 25%:
+                        push loop-player in direction of loop-player at speed -2
+                        console command "/execute at %loop-player% run playsound entity.ender_dragon.growl master @a ~ ~ ~ 0.5 2"
+                    chance of 25%:
+                        push loop-player in direction of loop-player at speed 2
+                        console command "/execute at %loop-player% run playsound entity.ender_dragon.growl master @a ~ ~ ~ 0.5 2"
+                    chance of 25%:
+                        push loop-player up at speed 2
+                        console command "/execute at %loop-player% run playsound entity.ender_dragon.growl master @a ~ ~ ~ 0.5 2"
+
+                    chance of 25%:
+                        set {_loc} to location of loop-player
+                        wait 3 seconds
+                        altitude of highest block at location of loop-player < y-coordinate of loop-player:
+                            if weather is raining:
+                                push loop-player (direction from loop-player to {_loc}) at speed 2
+                                console command "/execute at %loop-player% run playsound entity.ender_dragon.growl master @a ~ ~ ~ 0.5 2"
+
+                    chance of 25%:
+                        set {_loc} to location of loop-player
+                        wait 3 seconds
+                        altitude of highest block at location of loop-player < y-coordinate of loop-player:
+                            if weather is raining:
+                                push loop-player (direction from loop-player to {_loc}) at speed -2
+                                console command "/execute at %loop-player% run playsound entity.ender_dragon.growl master @a ~ ~ ~ 0.5 2"       
+command /storm:
+    permission: op
+    trigger:
+        loop all players:
+            set {_y} to loop-player's y-coordinate
+            if {_y} > 40:         
+                send title "&7Gun&4PVP&aMC &6Events" with subtitle "&6A storm is incoming - take shelter!" to loop-player for 2 seconds
+        broadcast "&7Gun&4PVP&aMC&6 Events: &6A storm is incoming - take shelter!"    
+        console command "/execute in minecraft:overworld run weather rain"
+        set {storm} to true
+        wait 30 seconds
+        console command "/execute in minecraft:overworld run weather clear"
+        set {storm} to false
+
+command /hurricane:
+    permission: op
+    trigger:
+        loop all players:
+            set {_y} to loop-player's y-coordinate
+            if {_y} > 40:         
+                send title "&7Gun&4PVP&aMC &6Events" with subtitle "&6A hurricane is incoming - take shelter!" to loop-player for 2 seconds
+        broadcast "&7Gun&4PVP&aMC&6 Events: &6A hurricane is incoming - take shelter!"    
+        console command "/execute in minecraft:overworld run weather rain"
+        set {hurricane} to true
+        wait 30 seconds
+        console command "/execute in minecraft:overworld run weather clear"
+        set {hurricane} to false        
+
+command /lightning:
+    permission: op
+    trigger:
+        loop all players:
+            set {_y} to loop-player's y-coordinate
+            if {_y} > 40:         
+                send title "&7Gun&4PVP&aMC &6Events" with subtitle "&6A lightning storm is incoming - take shelter!" to loop-player for 2 seconds
+        broadcast "&7Gun&4PVP&aMC&6 Events: &6A lightning storm is incoming - take shelter!"    
+        console command "/execute in minecraft:overworld run weather rain"
+        set {lightning} to true
+        wait 30 seconds
+        console command "/execute in minecraft:overworld run weather clear"
+        set {lightning} to false        
+
+command /acidrain:
+    permission: op
+    trigger:
+        loop all players:
+            set {_y} to loop-player's y-coordinate
+            if {_y} > 40:         
+                send title "&7Gun&4PVP&aMC &6Events" with subtitle "&6It's raining acid!" to loop-player for 2 seconds
+        broadcast "&7Gun&4PVP&aMC&6 Events: &6It's raining acid!"    
+        console command "/execute in minecraft:overworld run weather rain"
+        set {acidrain} to true
+        wait 30 seconds
+        console command "/execute in minecraft:overworld run weather clear"
+        set {acidrain} to false        

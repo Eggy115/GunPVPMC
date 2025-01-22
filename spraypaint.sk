@@ -1,0 +1,83 @@
+on rightclick:
+    if player is holding lime candle:
+        if name of event-item contains "<##67FF26>Lime Spraypaint &6[&cRefilling&6]":
+            if {limepaint.%line 5 of lore of player's held item%} = 0:
+                stop
+        if name of event-item is "<##67FF26>Lime Spraypaint":    
+            set {_} to "%player%%random integer between 10000 and 99999%"
+            set line 5 of lore of player's held item to "&6ID: &c%{_}%"
+            set {limepaint.%line 5 of lore of player's held item%} to 50
+            set name of player's held item to "<##67FF26>Lime Spraypaint &6[&c%{limepaint.%line 5 of lore of player's held item%}%&6]"
+        if name of event-item contains "<##67FF26>Lime Spraypaint":        
+            
+            set name of player's held item to "<##67FF26>Lime Spraypaint &6[&c%{limepaint.%line 5 of lore of player's held item%}%&6]"
+            set line 1 of lore of player's held item to "&6Cartridge: &c%{limepaint.%line 5 of lore of player's held item%}%&6/&c50"
+            set line 2 of lore of player's held item to "&6Reload Time: &c200ms"
+            set line 3 of lore of player's held item to "&6Damage: &cPaint"
+            set line 4 of lore of player's held item to "&6Ammunition: &cLime Paint"
+            
+            if {limepaint.%line 5 of lore of player's held item%} > 0:
+                if difference between {limepaintcd.%player%} and now > 0.1 second:
+                    set {limepaintcd.%player%} to now                
+                    remove 1 from {limepaint.%line 5 of lore of player's held item%}    
+                    loop all blocks in radius 1 around event-block:
+                        if loop-block is stone or stone bricks or bricks or smooth stone or mossy stone bricks or cracked stone bricks or brick block or cobblestone or mossy cobblestone or any planks or any log or any terracotta:
+                            doStuff(loop-block)
+                    console command "/execute at %player% run playsound entity.shulker_bullet.hit master @a ~ ~ ~ 1 1"
+                    edit bossbar "%player%" title to "&6Lime Spray Paint: &c%{limepaint.%line 5 of lore of player's held item%}%"
+                    set bossbar "%player%" value to {limepaint.%line 5 of lore of player's held item%} * 2
+                
+                    set name of player's held item to "<##67FF26>Lime Spraypaint &6[&c%{limepaint.%line 5 of lore of player's held item%}%&6]"
+                    set line 1 of lore of player's held item to "&6Cartridge: &c%{limepaint.%line 5 of lore of player's held item%}%&6/&c50"
+                    set line 2 of lore of player's held item to "&6Reload Time: &c200ms"
+                    set line 3 of lore of player's held item to "&6Damage: &cPaint"
+                    set line 4 of lore of player's held item to "&6Ammunition: &cLime Paint"    
+                    
+                else:
+                    send action bar "&6Wait before painting!" to player
+            else:
+                
+                if player has 1 lime dye named "<##67FF26>Lime Paint":
+                    set {_id} to line 5 of lore of player's held item
+                    set name of player's held item to "<##67FF26>Lime Spraypaint &6[&cRefilling&6]"
+                    set line 1 of lore of player's held item to "&6Cartridge: &c0&6/&c50"
+                    set line 2 of lore of player's held item to "&6Reload Time: &c200ms"
+                    set line 3 of lore of player's held item to "&6Damage: &cPaint"
+                    set line 4 of lore of player's held item to "&6Ammunition: &cLime Paint"
+                    loop 4 times:
+                        console command "/execute at %player% run playsound entity.generic.drink master @a ~ ~ ~ 0.5 2"
+                        wait 0.05 second    
+
+                    set {ammo.%{_id}%} to amount of lime dye named "<##67FF26>Lime Paint" in player's inventory
+                    if {ammo.%{_id}%} > 50:
+                        remove 50 lime dye named "<##67FF26>Lime Paint" from player's inventory
+                        set {limepaint.%{_id}%} to 50
+                    else:
+                        
+                        remove 50 lime dye named "<##67FF26>Lime Paint" from player's inventory
+                        set {limepaint.%{_id}%} to {ammo.%{_id}%}
+
+                        
+                    edit bossbar "%player%" title to "&6Lime Spray Paint: &c%{limepaint.%line 5 of lore of player's held item%}%"
+                    set bossbar "%player%" value to {limepaint.%line 5 of lore of player's held item%} * 2
+                else:
+                    send action bar "&6You are missing &cLime Paint&6!" to player    
+
+on join:
+    set {limepaintcd.%player%} to now
+
+on load:
+    loop all players:
+        set {limepaintcd.%loop-player%} to now
+        
+local function doStuff(value:block):
+    set {_r} to type of block at {_value}
+    set block at {_value} to lime concrete
+    set {_x} to x coordinate of block at {_value}
+    set {_y} to y coordinate of block at {_value}
+    set {_z} to z coordinate of block at {_value}
+    console command "/particle dust 0.404 1.000 0.149 3 %{_x}% %{_y}% %{_z}% -1 -1 -1 1 5 normal"    
+    console command "/particle dust 0.404 1.000 0.149 3 %{_x}% %{_y}% %{_z}% 1 1 1 1 5 normal"  
+    console command "/summon area_effect_cloud %{_x}% %{_y} + 1% %{_z}% {Particle:""dust 0.404 1.000 0.149 1"",Radius:2f,Duration:20,Color:6815526,Effects:[{Id:19b,Amplifier:0b,Duration:60,ShowParticles:0b}]}" 
+    wait 10 second
+    set block at {_value} to {_r}

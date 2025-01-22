@@ -1,0 +1,35 @@
+           
+command /rules:
+    trigger:
+        set {_rules} to chest inventory named "&7Gun&4PVP&aMC &6Rules:"
+        
+        set {_e} to 0
+        loop 30 times:
+            set slot {_e} of {_rules} to gray stained glass pane named "&0 "            
+            add 1 to {_e}
+        
+        set slot 10 of {_rules} to oak sign named "&6[&cChat Rules&6]" with lore "&0 "
+        set line 2 of slot 10 of {_rules}'s lore to "&6[&c1&6] No extreme discrimination"
+        set line 3 of slot 10 of {_rules}'s lore to "&6[&c2&6] No advertising"
+        set line 4 of slot 10 of {_rules}'s lore to "&6[&c3&6] No *excessive* swearing"
+        set line 5 of slot 10 of {_rules}'s lore to "&6[&c4&6] No spamming"
+        
+        set slot 12 of {_rules} to chest named "&6[&cGameplay Rules&6]" with lore "&0 "
+        set line 2 of slot 12 of {_rules}'s lore to "&6[&c1&6] No hacking or cheating"
+        set line 3 of slot 12 of {_rules}'s lore to "&6[&c2&6] No kill farming/trading"
+        set line 4 of slot 12 of {_rules}'s lore to "&6[&c3&6] No camping spawn/new players"
+        set line 5 of slot 12 of {_rules}'s lore to "&6[&c4&6] Do not combat log"        
+
+        set slot 14 of {_rules} to ender eye named "&6[&cGang Rules&6]" with lore "&0 "
+        set line 2 of slot 14 of {_rules}'s lore to "&6[&c1&6] Do not team with players not in your gang"
+        set line 3 of slot 14 of {_rules}'s lore to "&6[&c2&6] Do not spam gang requests"
+
+        set slot 16 of {_rules} to command block named "&6[&cOther Rules&6]" with lore "&0 "
+        set line 2 of slot 16 of {_rules}'s lore to "&6[&c1&6] No attempting to lag the server"
+        set line 3 of slot 16 of {_rules}'s lore to "&6[&c2&6] Obey MineHut Rules"
+        set line 4 of slot 16 of {_rules}'s lore to "&6[&c3&6] Follow Minecraft EULA"
+        set line 5 of slot 16 of {_rules}'s lore to "&6[&c4&6] No abusing glitches or finding loopholes"
+        
+        set {trade::%player's uuid%} to true
+
+        open {_rules} to player

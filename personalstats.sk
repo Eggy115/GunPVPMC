@@ -1,0 +1,149 @@
+command /personalstats [<text>]:
+    aliases: /pst
+    trigger:
+        if {merlin::%player's uuid%} is not set:
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+            send "%nl%&7Gun&4PVP&aMC&6 Skilltree: Speak to &cMerlin&6 before you do this!%nl%"
+            stop
+
+        set {_skilltree} to a new chest inventory with 3 row with name "&6[&cPersonal Stats&6]"
+
+        set {_e} to 0
+        loop 36 times:
+            set slot {_e} of {_skilltree} to gray stained glass pane named "&0 "        
+            add 1 to {_e}
+
+        if {PT::intelligence::%player's uuid%} is not set:
+            set {PT::intelligence::%player's uuid%} to 1
+        if {PT::charisma::%player's uuid%} is not set:
+            set {PT::charisma::%player's uuid%} to 1
+        if {PT::strength::%player's uuid%} is not set:
+            set {PT::strength::%player's uuid%} to 1
+        if {PT::agility::%player's uuid%} is not set:
+            set {PT::agility::%player's uuid%} to 1
+        if {PT::endurance::%player's uuid%} is not set:
+            set {PT::endurance::%player's uuid%} to 1
+        if {PT::luck::%player's uuid%} is not set:
+            set {PT::luck::%player's uuid%} to 1  
+        if {PT::magic::%player's uuid%} is not set:
+            set {PT::magic::%player's uuid%} to 1   
+            
+        set {PT::intelligencecost::%player's uuid%} to 500 * {PT::intelligence::%player's uuid%} * {PT::intelligence::%player's uuid%}
+        set {PT::charismacost::%player's uuid%} to 500 * {PT::charisma::%player's uuid%} * {PT::charisma::%player's uuid%}
+        set {PT::strengthcost::%player's uuid%} to 500 * {PT::strength::%player's uuid%} * {PT::strength::%player's uuid%}
+        set {PT::agilitycost::%player's uuid%} to 500 * {PT::agility::%player's uuid%} * {PT::agility::%player's uuid%}
+        set {PT::endurancecost::%player's uuid%} to 500 * {PT::endurance::%player's uuid%} * {PT::endurance::%player's uuid%}
+        set {PT::luckcost::%player's uuid%} to 500 * {PT::luck::%player's uuid%} * {PT::luck::%player's uuid%}
+        set {PT::magiccost::%player's uuid%} to 500 * {PT::magic::%player's uuid%} * {PT::magic::%player's uuid%}
+
+        set slot 10 of {_skilltree} to {PT::intelligence::%player's uuid%} of book named "<##5a4729>Intelligence" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 10 of {_skilltree} to "&6Level: &c%{PT::intelligence::%player's uuid%}%"
+        set line 2 of lore of slot 10 of {_skilltree} to "&6Cost: &c%{PT::intelligencecost::%player's uuid%}%"
+
+        set slot 11 of {_skilltree} to {PT::charisma::%player's uuid%} of pink dye named "&dCharisma" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 11 of {_skilltree} to "&6Level: &c%{PT::charisma::%player's uuid%}%"
+        set line 2 of lore of slot 11 of {_skilltree} to "&6Cost: &c%{PT::charismacost::%player's uuid%}%"
+
+        set slot 12 of {_skilltree} to {PT::strength::%player's uuid%} of iron block named "&7Strength" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 12 of {_skilltree} to "&6Level: &c%{PT::strength::%player's uuid%}%"
+        set line 2 of lore of slot 12 of {_skilltree} to "&6Cost: &c%{PT::strengthcost::%player's uuid%}%"
+
+        set slot 13 of {_skilltree} to {PT::agility::%player's uuid%} of feather named "<##CFCFCF>Agility" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 13 of {_skilltree} to "&6Level: &c%{PT::agility::%player's uuid%}%"
+        set line 2 of lore of slot 13 of {_skilltree} to "&6Cost: &c%{PT::agilitycost::%player's uuid%}%"
+
+        set slot 14 of {_skilltree} to {PT::endurance::%player's uuid%} of stick named "<##4e3b20>Endurance" with nbt "{HideFlags:127}" 
+        set line 1 of lore of slot 14 of {_skilltree} to "&6Level: &c%{PT::endurance::%player's uuid%}%"
+        set line 2 of lore of slot 14 of {_skilltree} to "&6Cost: &c%{PT::endurancecost::%player's uuid%}%"
+
+        set slot 15 of {_skilltree} to {PT::luck::%player's uuid%} of gold nugget named "&eLuck" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 15 of {_skilltree} to "&6Level: &c%{PT::luck::%player's uuid%}%"
+        set line 2 of lore of slot 15 of {_skilltree} to "&6Cost: &c%{PT::luckcost::%player's uuid%}%"
+
+        set slot 16 of {_skilltree} to {PT::magic::%player's uuid%} of eye of ender named "<##00AA66>Magic" with nbt "{HideFlags:127}"
+        set line 1 of lore of slot 16 of {_skilltree} to "&6Level: &c%{PT::magic::%player's uuid%}%"
+        set line 2 of lore of slot 16 of {_skilltree} to "&6Cost: &c%{PT::magiccost::%player's uuid%}%"        
+
+        set slot 18 of {_skilltree} to enchanting table named "&6Return to Skilltree"
+
+        set slot 26 of {_skilltree} to paper named "&6Return to List"
+
+        open {_skilltree} to player
+        set {trade::%player's uuid%} to true
+
+on inventory click:
+    if event-item is anvil:
+        if name of event-item is "&8Personal Stats":
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            make player execute "/personalstats"
+        
+on inventory click:
+    if name of event-item is "<##5a4729>Intelligence":
+        if {coins::%player's uuid%} > ({PT::intelligencecost::%player's uuid%} - 1):
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - {PT::intelligencecost::%player's uuid%}
+            set {PT::intelligence::%player's uuid%} to {PT::intelligence::%player's uuid%} + 1
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            make player execute "/pst"
+        else:
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+            send "&cYou cannot afford this!" to player
+
+    if name of event-item is "&dCharisma":
+        if {coins::%player's uuid%} > ({PT::charismacost::%player's uuid%} - 1):
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - {PT::charismacost::%player's uuid%}
+            set {PT::charisma::%player's uuid%} to {PT::charisma::%player's uuid%} + 1
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            make player execute "/pst"
+        else:
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+            send "&cYou cannot afford this!" to player
+
+    if name of event-item is "&7Strength":
+        if {coins::%player's uuid%} > ({PT::strengthcost::%player's uuid%} - 1):
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - {PT::strengthcost::%player's uuid%}
+            set {PT::strength::%player's uuid%} to {PT::strength::%player's uuid%} + 1
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            make player execute "/pst"
+        else:
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+            send "&cYou cannot afford this!" to player
+
+    if name of event-item is "<##CFCFCF>Agility":
+        if {coins::%player's uuid%} > ({PT::agilitycost::%player's uuid%} - 1):
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - {PT::agilitycost::%player's uuid%}
+            set {PT::agility::%player's uuid%} to {PT::agility::%player's uuid%} + 1
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            make player execute "/pst"
+        else:
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+            send "&cYou cannot afford this!" to player
+
+    if name of event-item is "<##4e3b20>Endurance":
+        if {coins::%player's uuid%} > ({PT::endurancecost::%player's uuid%} - 1):
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - {PT::endurancecost::%player's uuid%}
+            set {PT::endurance::%player's uuid%} to {PT::endurance::%player's uuid%} + 1
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            make player execute "/pst"
+        else:
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+            send "&cYou cannot afford this!" to player
+
+    if name of event-item is "&eLuck":
+        if {coins::%player's uuid%} > ({PT::luckcost::%player's uuid%} - 1):
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - {PT::luckcost::%player's uuid%}
+            set {PT::luck::%player's uuid%} to {PT::luck::%player's uuid%} + 1
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            make player execute "/pst"
+        else:
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+            send "&cYou cannot afford this!" to player
+
+    if name of event-item is "<##00AA66>Magic":
+        if {coins::%player's uuid%} > ({PT::magiccost::%player's uuid%} - 1):
+            set {coins::%player's uuid%} to {coins::%player's uuid%} - {PT::magiccost::%player's uuid%}
+            set {PT::magic::%player's uuid%} to {PT::magic::%player's uuid%} + 1
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            make player execute "/pst"
+        else:
+            console command "/execute at %player% run playsound minecraft:entity.enderman.teleport master %player% ~ ~ ~ 100000 0"
+            send "&cYou cannot afford this!" to player

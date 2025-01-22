@@ -1,0 +1,126 @@
+on join:
+    if {questwalter::%player's uuid%} is not set:
+        if {quest::%player's uuid%} is set:
+            stop
+        set {questwalter::%player's uuid%} to "&cIncomplete"
+        console command "/tp %player% -37 36 -599"
+        console command "/clear %player%"
+        set {invulnerable::%player's uuid%} to true
+    if {questwalter::%player's uuid%} is "&cIn Progress":
+        set {questwalter::%player's uuid%} to "&cIncomplete"
+        console command "/tp %player% -37 36 -599"
+        console command "/clear %player%"
+        set {invulnerable::%player's uuid%} to true    
+
+every 1 second in "GunPVPMC":
+	console command "/teleport 06bec0c2-993a-4128-a03b-44b6bca4eb7e -37 36 -595"
+
+on right click on villager:
+    cancel event
+
+command /speaktowalter [<offlineplayer>]:
+    permission: op
+    trigger:
+        console command "/tp %arg-1% -37 36 -599"
+        set {questwalter::%arg-1's uuid%} to "&cIncomplete"
+
+on join:
+    wait 3 seconds
+    if {questwalter::%player's uuid%} is not set:
+        send title "&6Speak to Walter" for 2 seconds
+        
+
+on right click on villager:
+    if uncolored name of event-entity is "[Guide] Walter":
+        if {questwalter::%player's uuid%} is "&cIncomplete":
+            set {questwalter::%player's uuid%} to "&cIn Progress"
+            set {hints::%player's uuid%} to false
+            set {deathmessages::%player's uuid%} to false            
+            console command "/execute at %player% run tp %player% ~ ~ ~ facing entity 06bec0c2-993a-4128-a03b-44b6bca4eb7e"
+
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cGuide&6] Walter: Welcome to &7Gun&4PVP&aMC&6 city. This is a Gun PVP/PVE/RPG server.%nl%" to player
+            wait 2 seconds
+
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cGuide&6] Walter: Here, take this. It's a knife. You'll need it.%nl%" to player
+            set {_i} to iron sword named "&7Knife" with nbt "{HideFlags:127,Unbreakable:1b}"     
+            set line 1 of lore of {_i} to "&6Damage: &c6"
+            set line 2 of lore of {_i} to "&6Speed: &c1.6"
+            give player {_i}
+            wait 3 seconds  
+
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cGuide&6] Walter: And this. It's a Glock. Try using it now.%nl%" to player
+            give player leather horse armor named "<##333836>Glock-19" with nbt "{display:{color:3356726},HideFlags:127}"
+            give player 45 gold nugget named "<##FFC300>9x19mm"
+            wait 1 second
+            console command "/execute at %player% run tp %player% -47 36 -596"
+            set {shootywalter::%player's uuid%} to true
+            set {shootwaltercount::%player's uuid%} to 0
+            send title "&6Shoot the targets" for 2 seconds
+
+on right click with leather horse armor:   
+    if {shootywalter::%player's uuid%} is true:   
+        add 1 to {shootwaltercount::%player's uuid%}
+        send title "" with subtitle "&c%{shootwaltercount::%player's uuid%}%&6/&c5" for 2 seconds
+        if {shootwaltercount::%player's uuid%} > 4:   
+            delete {shootywalter::%player's uuid%}  
+            send title "&6Successfully shot targets!" with subtitle "&6View chat for more" for 2 seconds
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+         
+            wait 2 seconds
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cGuide&6] Walter: There's shopkeepers all over the map.%nl%" to player
+            set player's gamemode to spectator
+            set {coins::%player's uuid%} to {coins::%player's uuid%} + 500 
+            console command "/tag %player% add speccy"
+            wait 2 seconds   
+            console command "/tag %player% remove speccy"
+            console command "/tag %player% add speccy2"  
+            wait 2 seconds
+            console command "/tag %player% remove speccy2" 
+            console command "/tp %player% -37 36 -598"
+            set player's gamemode to adventure
+
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cGuide&6] Walter: Try speaking to one of them now.%nl%" to player
+            console command "/execute at %player% run tp %player% ~ ~ ~ facing entity 06bec0c2-993a-4128-a03b-44b6bca4eb7e"            
+            wait 2 seconds
+            console command "/tp %player% -59 34 -602"
+            send title "&6Trade with the shopkeeper" for 2 seconds
+            set {clicky::%player's uuid%} to true
+
+on inventory click:
+    if name of event-item is "&cExample (click here)":  
+        if {clicky::%player's uuid%} is true:
+            delete {click::%player's uuid%}
+            close player's inventory
+            send title "&6Successfully traded!" with subtitle "&6View chat for more" for 2 seconds
+            console command "/execute at %player% run playsound block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            wait 2 seconds
+            console command "/tp %player% -37 36 -599"
+            console command "/execute at %player% run tp %player% ~ ~ ~ facing entity 06bec0c2-993a-4128-a03b-44b6bca4eb7e"            
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cGuide&6] Walter: Fight other players, mobs, complete quests, and more to get money.%nl%" to player
+            wait 3 seconds       
+
+            console command "/execute at %player% run playsound entity.villager.ambient master %player% ~ ~ ~ 100000 1"
+            send "%nl%&6[&cGuide&6] Walter: If you need any more help, just use &c/help&6, or use &c/discord&6 to speak to our community.%nl%" to player      
+            wait 2 seconds               
+            console command "/tp %player% -38 67 -589"
+            set {questwalter::%player's uuid%} to "&cComplete"
+            send "&7Gun&4PVP&aMC&6 Quests: &6Completed quest &cSpeak to Walter&6!" to player
+            console command "/execute at %player% run playsound minecraft:block.note_block.pling master %player% ~ ~ ~ 100000 2"
+            set {invulnerable::%player's uuid%} to false
+            set {hints::%player's uuid%} to true
+            set {deathmessages::%player's uuid%} to true
+        
+on damage:
+    if {invulnerable::%victim's uuid%} is true:
+        cancel event  
+
+on join:
+    delete {tutorial::%player%}     
+    console command "/tag %player% remove speccy"
+    console command "/tag %player% remove speccy2"     

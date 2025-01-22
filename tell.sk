@@ -1,0 +1,8 @@
+command /tell [<player>] [<text>]:
+    trigger:
+        if arg-1 is not set:
+            stop
+        if arg-2 is not set:
+            stop
+        send "&6You whisper to %{title::%arg-1's uuid%}% %arg-1%: &f%arg-2%" to player
+        send "%{title::%player's uuid%}% %player% &6whispers to you: &f%arg-2%" to arg-1
